@@ -1,5 +1,5 @@
 export default function page() {
   return (
-    <div>Futurepreneurs 10.0</div>
+    <><div>Futurepreneurs 10.0</div><div>Sign in</div></>
   )
 }
