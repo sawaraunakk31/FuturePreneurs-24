@@ -17,6 +17,9 @@ const userSchema = new Schema(
     },
     hasFilledDetails:{
         type:Boolean,
+    },
+    consent:{
+        type:Boolean,
     }
   },
   { collection: "Users" }

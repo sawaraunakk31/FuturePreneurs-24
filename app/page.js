@@ -1,5 +1,10 @@
+import Link from "next/link";
+
 export default function page() {
   return (
-    <><div>Futurepreneurs 10.0</div><div>Sign in</div></>
-  )
+    <main>
+      <div>Futurepreneurs 10.0</div>
+      <Link href={'/register'}>Sign In</Link>
+    </main>
+  );
 }
