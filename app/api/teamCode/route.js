@@ -34,7 +34,7 @@ async function updateTeamCodes() {
             const newTeamCode = await generateUniqueTeamCode();
 
             // Set a new expiry time (60 seconds from now)
-            const newExpiry = new Date(now.getTime() + 60 * 1000); // 60 seconds
+            const newExpiry = new Date(now.getTime() + 20 * 60 * 1000); // 60 seconds
 
             // Update the team code and expiry time in the database
             team.teamCode = newTeamCode;
@@ -59,7 +59,7 @@ async function updateTeamCodes() {
 
 updateTeamCodes();
 // Set an interval to run the update function every 20 minutes (1200000 milliseconds)
-setInterval(updateTeamCodes, 60000);
+setInterval(updateTeamCodes, 1200000);
 
 // Route to handle team creation
 export async function POST(request) {
@@ -74,7 +74,7 @@ export async function POST(request) {
         const teamCode = await generateUniqueTeamCode();
 
         // Set the expiry time to 20 minutes from now
-        const codeExpiry = new Date(Date.now() + 60 * 1000);  // 20 minutes from now
+        const codeExpiry = new Date(Date.now() + 20 * 60 * 1000);  // 20 minutes from now
 
         // Create a new user
         const newUser = new Users({
