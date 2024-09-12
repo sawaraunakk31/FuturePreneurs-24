@@ -23,7 +23,7 @@ export async function POST(req){
                     //check if the team has less than 4 members
                     if (team.members.length<4) {
                         //check if the user has team ID
-                        if (!user.teamID) {
+                        if (!user.teamId) {
                             //adding user to the team
                             const updatedTeam = await TeamModel.findOneAndUpdate(
                                 {teamName},
@@ -32,7 +32,7 @@ export async function POST(req){
                             )
                             const updatedUser = await Users.findOneAndUpdate(
                                 {email},
-                                {$set: {teamID: updatedTeam._id, teamLeaderID: updatedTeam.teamLeaderId}},
+                                {$set: {teamId: updatedTeam._id, teamLeaderId: updatedTeam.teamLeaderId}},
                                 {new: true}
                             )
                             if (updatedTeam && updatedUser) {

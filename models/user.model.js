@@ -21,11 +21,11 @@ const userSchema = new Schema(
     consent:{
         type:Boolean,
     },
-    teamID:{
+    teamId:{
         type:mongoose.Schema.Types.ObjectId,
         ref:'TeamModel'
     },
-    teamLeaderID:{
+    teamLeaderId:{
         type:mongoose.Schema.Types.ObjectId,
         ref:'TeamModel'
     }
