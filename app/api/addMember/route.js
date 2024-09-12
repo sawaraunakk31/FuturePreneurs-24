@@ -23,18 +23,18 @@ export async function POST(req){
                     //check if the team has less than 4 members
                     if (team.members.length<4) {
                         //check if the user has team ID
-                        if (!user.teamId) {
+                        if (user.teamId == null) {
                             //adding user to the team
                             const updatedTeam = await TeamModel.findOneAndUpdate(
                                 {teamName},
                                 {$push: {members: user._id}},
                                 {new: true}
-                            )
+                            );
                             const updatedUser = await Users.findOneAndUpdate(
                                 {email},
                                 {$set: {teamId: updatedTeam._id, teamLeaderId: updatedTeam.teamLeaderId}},
                                 {new: true}
-                            )
+                            );
                             if (updatedTeam && updatedUser) {
                                 return NextResponse.json({message:"Successfully added to the team",status:200});
                             } else {
