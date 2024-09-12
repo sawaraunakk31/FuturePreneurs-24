@@ -20,6 +20,14 @@ const userSchema = new Schema(
     },
     consent:{
         type:Boolean,
+    },
+    teamID:{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:'TeamModel'
+    },
+    teamLeaderID:{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:'TeamModel'
     }
   },
   { collection: "Users" }
