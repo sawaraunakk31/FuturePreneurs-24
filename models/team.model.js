@@ -21,6 +21,7 @@ const teamSchema = mongoose.Schema(
     },
     isQualified: {
       type: Boolean,
+      default: false,
     },
     members: [
       {
@@ -30,11 +31,14 @@ const teamSchema = mongoose.Schema(
     ],
     teamCode: {
       type: String,
+      unique: true, // Ensure the team code is unique
+    },
+    codeExpiry: {
+      type: Date,  // To store the time when the code expires
     },
   },
   { collection: 'TeamModel' }
 );
 
 export const TeamModel =
-  mongoose.models.TeamModel ||
-  mongoose.model('TeamModel', teamSchema);
+  mongoose.models.TeamModel || mongoose.model('TeamModel', teamSchema);
