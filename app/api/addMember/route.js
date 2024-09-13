@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import { connectMongoDB } from "@/libs/mongodb";
+import { connectMongo } from "@/libs/mongodb";
 import { NextResponse } from "next/server";
 import { Users } from "@/models/user.model";
 import { TeamModel } from "@/models/team.model";
@@ -7,12 +7,8 @@ import { TeamModel } from "@/models/team.model";
 export async function POST(req){
     if (req.method === "POST") {
         try {
-            await connectMongoDB();
+            await connectMongo();
             const {teamName,email} = await req.json();
-
-            // const user = await new Users({
-            //     email : email
-            // })
             const user = await Users.findOne({email:email});
             
             //check if the user exists
