@@ -1,4 +1,4 @@
-import connectMongo from '@/libs/mongodb';
+import { connectMongo } from '@/libs/mongodb';
 import { Users } from '@/models/user.model';
 import { TeamModel } from '@/models/team.model';
 
