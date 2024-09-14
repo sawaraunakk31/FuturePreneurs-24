@@ -1,10 +1,13 @@
+"use client";
+import React, { useState } from 'react';
 import Link from "next/link";
-
-export default function page() {
+import Image from 'next/image';
+import UserDetail from './userDetails/user.js'
+export default function Page() {
+  
   return (
-    <main>
-      <div>Futurepreneurs 10.0</div>
-      <Link href={'/userDetails'}>Sign In</Link>
-    </main>
+    <>
+ <UserDetail></UserDetail>
+    </>
   );
 }
