@@ -1,9 +1,8 @@
 "use client";
-import Navbar from '../components/Navbar';
 import React from 'react';
 import Link from "next/link";
 import UserDetail from './userDetails/user.js'; // Ensure this path is correct
-
+import Navbar from '../components/Navbar';
 export default function Page() {
   return (
     <main>
