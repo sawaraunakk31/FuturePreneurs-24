@@ -1,6 +1,9 @@
+import NavBar from "@/components/navbar";
+
 export default function page() {
   return (
     <main className="h-[100vh] w-[100vw] flex items-center justify-center bg-[url('../assests/assests/background_image.jpg')]">
+      <NavBar/>
       <div className="bg-[#141B2B] h-[80vh] w-[90vw] md:h-[80vh] md:w-[80vw] lg:h-[50vh] lg:w-[50vw] rounded-md flex justify-around  content-around flex-col portrait:lg:w-[90vw] portrait:lg:h-[70vh]">
         <div className=" hidden md:block lg:block text-center font-bold  text-[4vh] lg:text-[5vh]  ">Join a Team or Create a Team</div>
         <div className=" lg:hidden md:hidden text-center font-bold  text-[4vh] lg:text-[4vw] ">Join a Team </div>
