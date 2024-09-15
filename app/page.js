@@ -1,15 +1,17 @@
-"use client";
-import React from "react";
-
-import Link from "next/link";
-import Navbar from "../components/Navbar";
-import SignInBtn from "@/components/SignInbtn";
+'use client';
+import React from 'react';
+import { useSpring, animated } from '@react-spring/web';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faFacebookF, faTwitter, faInstagram, faLinkedinIn } from '@fortawesome/free-brands-svg-icons';
+import Navbar from '../components/Navbar'; // Ensure this import path is correct
+import SignInBtn from "@/components/SignInbtn"; // Ensure this import path is correct
+import Footer from '../components/Footer'; // Ensure this import path is correct
 import { useSession } from "next-auth/react";
-import Navbar from '../components/navbar';
-import Footer from '../components/footer';
+import '../components/footer.css';
 
-export default function Page() {
+const Page = () => {
   const { data: session, status } = useSession();
+  
   const testing = async () => {
     const res = await fetch("/api/testing", {
       method: "POST",
@@ -22,21 +24,21 @@ export default function Page() {
         "key": "value",
       }),
     });
-  }
 
-    if(res.status===200){
+    if(res.status === 200){
       console.log("Success");
     }
   };
-export default function Page() {
+
   return (
     <main>
-       <Navbar /> 
+      <Navbar />
       <div>Futurepreneurs 10.0</div>
       <SignInBtn />
-
       <button onClick={testing}>Click me</button>
       <Footer />
     </main>
   );
-}
+};
+
+export default Page;

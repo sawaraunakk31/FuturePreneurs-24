@@ -1,12 +1,9 @@
 'use client';
 import React from 'react';
 import { useSpring, animated } from '@react-spring/web';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faFacebookF, faTwitter, faInstagram, faLinkedinIn } from '@fortawesome/free-brands-svg-icons';
 import './footer.css';
-
-import facebookLogo from '../assests/assests/facebook.jpg';
-import twitterLogo from '../assests/assests/twitter.jpg'; 
-import instagramLogo from '../assests/assests/instagram.jpg'; 
-import linkedinLogo from '../assests/assests/linkedin.jpg'; 
 
 const Footer = () => {
   const footerSpring = useSpring({
@@ -43,39 +40,27 @@ const Footer = () => {
         <div className="footer-right">
           <div className="social-links">
             <a href="#" aria-label="Facebook" className="social-link">
-              <animated.img 
-                src={facebookLogo} 
-                alt="Facebook" 
-                className="social-icon" 
-                style={iconSpring} 
-              />
+              <animated.div style={iconSpring}>
+                <FontAwesomeIcon icon={faFacebookF} className="social-icon" />
+              </animated.div>
               <span className="social-name">Facebook</span>
             </a>
             <a href="#" aria-label="Twitter" className="social-link">
-              <animated.img 
-                src={twitterLogo} 
-                alt="Twitter" 
-                className="social-icon" 
-                style={iconSpring} 
-              />
+              <animated.div style={iconSpring}>
+                <FontAwesomeIcon icon={faTwitter} className="social-icon" />
+              </animated.div>
               <span className="social-name">Twitter</span>
             </a>
             <a href="#" aria-label="Instagram" className="social-link">
-              <animated.img 
-                src={instagramLogo} 
-                alt="Instagram" 
-                className="social-icon" 
-                style={iconSpring} 
-              />
+              <animated.div style={iconSpring}>
+                <FontAwesomeIcon icon={faInstagram} className="social-icon" />
+              </animated.div>
               <span className="social-name">Instagram</span>
             </a>
             <a href="#" aria-label="LinkedIn" className="social-link">
-              <animated.img 
-                src={linkedinLogo} 
-                alt="LinkedIn" 
-                className="social-icon" 
-                style={iconSpring} 
-              />
+              <animated.div style={iconSpring}>
+                <FontAwesomeIcon icon={faLinkedinIn} className="social-icon" />
+              </animated.div>
               <span className="social-name">LinkedIn</span>
             </a>
           </div>
