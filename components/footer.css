@@ -1,42 +1,76 @@
-
 .footer {
-    background-color: #282c34;
-    color: white;
-    padding: 1rem;
-    text-align: center;
-    position: relative;
-    border:2px solid black;
-    margin-top:0px;
+    padding: 20px;
+    background-color: #f8f9fa;
+    background-image: url('../assests/assests/background_image.jpg'); 
+    background-size: cover; 
+    background-position: center; 
+    background-repeat: no-repeat; 
+    color: white; 
   }
   
-  .footer .container {
-    max-width: 1200px;
-    margin: 0 auto;
+  .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 100%;
   }
   
-  .footer p {
-    margin: 0.5rem 0;
+  .footer-left {
+    flex: 2;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .footer-heading {
+    font-size: 24px;
+    transition: transform 0.5s ease; 
+    color: white; 
+  }
+  
+  .footer-right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end; 
   }
   
   .social-links {
-    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 10px; 
+    padding-right: 20px; 
   }
   
-  .social-links a {
-    color: #61dafb;
-    margin: 0 0.5rem;
+  .social-link {
+    display: flex;
+    align-items: center;
     text-decoration: none;
   }
   
-  .social-links a:hover {
+  .social-icon {
+    width: 24px;
+    height: 24px;
+  }
+  
+  .social-name {
+    color: white; 
+    margin-left: 8px; 
+  }
+  
+  .contact-info {
+    margin-top: 20px;
+  }
+  
+  .contact-info a {
+    color: white; 
+    text-decoration: none; 
+  }
+  
+  .contact-info a:hover {
     text-decoration: underline;
   }
   
-  /* Responsive design */
-  @media (max-width: 768px) {
-    .social-links a {
-      display: block;
-      margin: 0.5rem 0;
-    }
+  
+  .footer-heading.animate {
+    transform: scale(1.2); 
   }
   
