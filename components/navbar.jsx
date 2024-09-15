@@ -2,6 +2,7 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import SignInBtn from './SignInBtn';
 
 function NavBar() {
   const [navbar, setNavbar] = useState(false);
@@ -55,6 +56,9 @@ function NavBar() {
               <li>
                 <Link href="#Contact" className="text-xl text-black hover:text-blue-600" onClick={() => setNavbar(false)}>Contact Us</Link>
               </li>
+              <li>
+                <SignInBtn/>
+              </li>
             </ul>
           </div>
         </div>
@@ -65,6 +69,7 @@ function NavBar() {
           <Link href="#About" className="hover:text-blue-600">About</Link>
           <Link href="#Timeline" className="hover:text-blue-600">Timeline</Link>
           <Link href="#Contact" className="hover:text-blue-600">Contact Us</Link>
+          <SignInBtn/>
         </div>
       </div>
     </nav>
