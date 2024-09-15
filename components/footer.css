@@ -5,6 +5,8 @@
     padding: 1rem;
     text-align: center;
     position: relative;
+    border:2px solid black;
+    margin-top:0px;
   }
   
   .footer .container {

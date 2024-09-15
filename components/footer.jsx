@@ -1,7 +1,7 @@
 'use client';
 import React from 'react';
 import { useSpring, animated } from '@react-spring/web';
-import './Footer.css';
+import './footer.css';
 
 const Footer = () => {
   // Define the animation using react-spring
@@ -14,7 +14,7 @@ const Footer = () => {
   return (
     <animated.footer style={props} className="footer">
       <div className="container">
-        <p>&copy; 2024 My Website</p>
+        <p>2024 My Website</p>
         <p>Follow us on social media</p>
         <div className="social-links">
           <a href="#">Facebook</a>
