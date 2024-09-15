@@ -2,6 +2,7 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import SignInBtn from './SignInBtn';
 
 function NavBar() {
     const [navbar, setNavbar] = useState(false);
@@ -53,25 +54,25 @@ function NavBar() {
                 </li>
                 <li>
                 <Link href="#Contact" className="text-xl text-black hover:text-blue-600" onClick={() => setNavbar(false)}>Contact Us</Link>
-                </li>
-                <li>
-                <button type="Submit" className="items-center md-7 rounded-4xl w-[30vw] md:w-[20vw] lg:w-[6vw] lg:h-[4vh] text-black text-2xl">
-                Sign In
-                </button> 
-                </li>
+
+              </li>
+              <li>
+                <SignInBtn/>
+              </li>
+
             </ul>
             </div>
         </div>
 
         {/* DESKTOP MENU */}
+
         <div className="hidden w-[inherit] md:flex flex-1 justify-end space-x-10">
         <Link href="#Home" className="text-xl hover:text-blue-600">Home</Link>
         <Link href="#About" className="text-xl hover:text-blue-600">About</Link>
         <Link href="#Timeline" className="text-xl hover:text-blue-600">Timeline</Link>
         <Link href="#Contact" className="text-xl hover:text-blue-600">Contact Us</Link>
-        <button type="Submit" className="items-center md-7 rounded-2xl w-[30vw] md:w-[20vw] lg:w-[6vw] lg:h-[4vh] bg-[#03A3FE] hover:scale-100 hover:text-black active:scale-90 text-white text-lg">
-        Sign In 
-        </button>
+        <SignInBtn/>
+
         </div>
     </div>
     </nav>
