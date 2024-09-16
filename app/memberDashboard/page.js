@@ -11,7 +11,6 @@ export default function Home() {
   const teamLeader = [
     { id: 1, name: 'Full Name', registrationNumber: '2XXXXXXXX', mobileNumber: 'XXXXXXXXXX' },
   ];
-  
 
   const [teamMembers, setTeamMembers] = useState([
     { id: 1, name: 'Full Name', registrationNumber: '2XXXXXXXX', mobileNumber: 'XXXXXXXXXX' },
@@ -77,4 +76,3 @@ export default function Home() {
     </div>
   );
 }
-
