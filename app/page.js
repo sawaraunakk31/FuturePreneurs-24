@@ -2,6 +2,7 @@
 import React from 'react';
 import Navbar from '../components/Navbar'; // Ensure this import path is correct
 import Footer from '../components/Footer'; // Ensure this import path is correct
+import RegisterButton from '@/components/registerButton';
 import { useSession } from "next-auth/react";
 import { useRouter } from 'next/navigation';
 
@@ -34,6 +35,7 @@ const Page = () => {
        <Navbar /> 
       <div>Futurepreneurs 10.0</div>
       {/* <SignInBtn /> */}
+      <RegisterButton />
 
       <button onClick={testing}>Click me</button>
       <Footer />
