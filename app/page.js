@@ -3,14 +3,20 @@ import React from "react";
 
 import Link from "next/link";
 import SignInBtn from "@/components/SignInbtn";
+'use client';
+import React from 'react';
+import { useSpring, animated } from '@react-spring/web';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faFacebookF, faTwitter, faInstagram, faLinkedinIn } from '@fortawesome/free-brands-svg-icons';
+import Navbar from '../components/Navbar'; // Ensure this import path is correct
+import Footer from '../components/Footer'; // Ensure this import path is correct
 import { useSession } from "next-auth/react";
-import Navbar from '../components/navbar';
-import Footer from '../components/footer';
-import { useRouter } from "next/navigation";
+import '../components/footer.css';
 
-export default function Page() {
+const Page = () => {
   const { data: session, status } = useSession();
   const router = useRouter();
+  
   const testing = async () => {
     const res = await fetch("/api/testing", {
       method: "POST",
@@ -25,19 +31,21 @@ export default function Page() {
     });
   
 
-    if(res.status===200){
+    if(res.status === 200){
       console.log("Success");
       router.push('/userDetails');
     }
   };
+
   return (
     <main>
-       <Navbar /> 
-      <div>Futurepreneurs 10.0</div>
-      <SignInBtn />
-
-      <button onClick={testing}>Click me</button>
+      <Navbar />
+      {/* Removed Futurepreneurs 10.0 text */}
+      {/* Removed Sign In Button */}
+      {/*<button onClick={testing}>Click me</button>*/}
       <Footer />
     </main>
   );
 };
+
+export default Page;
