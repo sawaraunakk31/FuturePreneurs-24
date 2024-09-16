@@ -3,7 +3,7 @@ import React from 'react';
 import Navbar from '../components/Navbar'; // Ensure this import path is correct
 import Footer from '../components/Footer'; // Ensure this import path is correct
 import { useSession } from "next-auth/react";
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
 
 const Page = () => {
   const { data: session, status } = useSession();
