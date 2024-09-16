@@ -2,7 +2,6 @@
 import React from "react";
 
 import Link from "next/link";
-import Navbar from "../components/Navbar";
 import SignInBtn from "@/components/SignInbtn";
 import { useSession } from "next-auth/react";
 import Navbar from '../components/navbar';
@@ -22,13 +21,12 @@ export default function Page() {
         "key": "value",
       }),
     });
-  }
+  
 
     if(res.status===200){
       console.log("Success");
     }
   };
-export default function Page() {
   return (
     <main>
        <Navbar /> 
@@ -39,4 +37,4 @@ export default function Page() {
       <Footer />
     </main>
   );
-}
+};
