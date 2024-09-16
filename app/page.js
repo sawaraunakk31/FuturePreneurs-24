@@ -15,6 +15,7 @@ import '../components/footer.css';
 
 const Page = () => {
   const { data: session, status } = useSession();
+  const router = useRouter();
   
   const testing = async () => {
     const res = await fetch("/api/testing", {
@@ -32,6 +33,7 @@ const Page = () => {
 
     if(res.status === 200){
       console.log("Success");
+      router.push('/userDetails');
     }
   };
 
@@ -44,7 +46,6 @@ const Page = () => {
       <Footer />
     </main>
   );
-};
 };
 
 export default Page;

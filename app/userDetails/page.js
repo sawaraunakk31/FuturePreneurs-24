@@ -39,13 +39,13 @@ export default function UserDetail() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setLoading(true);
     const validationErrors = validate();
     if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors);
       return;
     }
     try {
+      setLoading(true);
       const response = await fetch('/api/submit', {
         method: 'POST',
         headers: {
@@ -63,6 +63,7 @@ export default function UserDetail() {
         router.push('/join&createTeam')
       } else {
         const errorData = await response.json();
+        setLoading(false);
         setSubmitMessage(`Form submission failed: ${errorData.error}`);
       }
     } catch (error) {
