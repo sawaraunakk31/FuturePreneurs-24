@@ -1,3 +1,8 @@
+"use client";
+import React from "react";
+
+import Link from "next/link";
+import SignInBtn from "@/components/SignInbtn";
 'use client';
 import React from 'react';
 import { useSpring, animated } from '@react-spring/web';
@@ -23,6 +28,7 @@ const Page = () => {
         "key": "value",
       }),
     });
+  
 
     if(res.status === 200){
       console.log("Success");
@@ -38,6 +44,7 @@ const Page = () => {
       <Footer />
     </main>
   );
+};
 };
 
 export default Page;
