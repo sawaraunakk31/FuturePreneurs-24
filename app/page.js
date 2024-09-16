@@ -4,7 +4,6 @@ import { useSpring, animated } from '@react-spring/web';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFacebookF, faTwitter, faInstagram, faLinkedinIn } from '@fortawesome/free-brands-svg-icons';
 import Navbar from '../components/Navbar'; // Ensure this import path is correct
-import SignInBtn from "@/components/SignInbtn"; // Ensure this import path is correct
 import Footer from '../components/Footer'; // Ensure this import path is correct
 import { useSession } from "next-auth/react";
 import '../components/footer.css';
@@ -33,9 +32,9 @@ const Page = () => {
   return (
     <main>
       <Navbar />
-      <div>Futurepreneurs 10.0</div>
-      <SignInBtn />
-      <button onClick={testing}>Click me</button>
+      {/* Removed Futurepreneurs 10.0 text */}
+      {/* Removed Sign In Button */}
+      {/*<button onClick={testing}>Click me</button>*/}
       <Footer />
     </main>
   );
