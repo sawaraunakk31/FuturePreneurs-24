@@ -6,9 +6,11 @@ import SignInBtn from "@/components/SignInbtn";
 import { useSession } from "next-auth/react";
 import Navbar from '../components/navbar';
 import Footer from '../components/footer';
+import { useRouter } from "next/navigation";
 
 export default function Page() {
   const { data: session, status } = useSession();
+  const router = useRouter();
   const testing = async () => {
     const res = await fetch("/api/testing", {
       method: "POST",
@@ -25,6 +27,7 @@ export default function Page() {
 
     if(res.status===200){
       console.log("Success");
+      router.push('/userDetails');
     }
   };
   return (
