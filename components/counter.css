@@ -12,6 +12,7 @@
   }
   
   .CountdownTimer {
+    position: relative;
     font-size: clamp(1rem, 4.8rem, 2rem);
     color: #ffff;
   }
@@ -27,6 +28,7 @@
   }
   
   .countContainer {
+    position: relative;
     font-size: 0.8rem;
     margin-bottom: 8rem;
     margin-left: 8rem;
