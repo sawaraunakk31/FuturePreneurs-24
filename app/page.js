@@ -1,14 +1,22 @@
 'use client';
 
 import React from 'react';
-import Navbar from '../components/Navbar'; // Ensure this path is correct
-import Footer from '../components/Footer'; // Ensure this path is correct
+ main
+import Navbar from '../components/Navbar'; 
+import Footer from '../components/Footer';
+import RegisterButton from '@/components/registerButton';
+ main
 import { useSession } from "next-auth/react";
-import '../components/footer.css';
+import { useRouter } from 'next/navigation';
 
 const Page = () => {
   const { data: session, status } = useSession();
+main
 
+
+  const router = useRouter();
+  
+main
   const testing = async () => {
     try {
       const res = await fetch("/api/testing", {
@@ -23,6 +31,7 @@ const Page = () => {
         }),
       });
 
+main
       if (res.ok) {
         console.log("Success");
       } else {
@@ -30,15 +39,22 @@ const Page = () => {
       }
     } catch (error) {
       console.error("Error during fetch", error);
+
+    if(res.status === 200){
+      console.log("Success");
+      router.push('/userDetails');
+main
     }
   };
 
   return (
     <main>
-      <Navbar />
-      {/* Removed Futurepreneurs 10.0 text */}
-      {/* Removed Sign In Button */}
-      {/*<button onClick={testing}>Click me</button>*/}
+       <Navbar /> 
+      <div>Futurepreneurs 10.0</div>
+      {/* <SignInBtn /> */}
+      <RegisterButton />
+
+      <button onClick={testing}>Click me</button>
       <Footer />
     </main>
   );
