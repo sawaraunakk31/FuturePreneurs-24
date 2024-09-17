@@ -8,7 +8,7 @@ export async function POST(req) {
     try {
         await connectMongo();
 
-        const leaderEmail = 'aryanshar17@gmail.com';//get user email
+        const leaderEmail = 'john.doehehehe@example.com'; // Hardcoded for now, can be replaced later
 
         const leaderUser = await Users.findOne({ email: leaderEmail });
         if (!leaderUser || !leaderUser.email) {
@@ -42,10 +42,10 @@ export async function POST(req) {
         }
 
         const updatedMembers = team.members
-            .filter(member => !member.equals(oldLeaderId)) 
+            .filter(member => !member.equals(oldLeaderId) && !member.equals(newLeader._id))
             .map(member => member.toString()); 
 
-        updatedMembers.unshift(newLeader._id.toString()); 
+        updatedMembers.unshift(newLeader._id.toString());
 
         await TeamModel.findByIdAndUpdate(
             team._id,
