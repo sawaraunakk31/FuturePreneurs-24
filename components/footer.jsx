@@ -2,7 +2,7 @@
 import React from 'react';
 import { useSpring, animated } from '@react-spring/web';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faFacebookF, faTwitter, faInstagram, faLinkedinIn } from '@fortawesome/free-brands-svg-icons';
+import { faFacebook, faTwitter, faInstagram, faLinkedinIn } from '@fortawesome/free-brands-svg-icons';
 import './footer.css';
 
 const Footer = () => {
@@ -41,7 +41,7 @@ const Footer = () => {
           <div className="social-links">
             <a href="#" aria-label="Facebook" className="social-link">
               <animated.div style={iconSpring}>
-                <FontAwesomeIcon icon={faFacebookF} className="social-icon" />
+                <FontAwesomeIcon icon={faFacebook} className="social-icon" />
               </animated.div>
               <span className="social-name">Facebook</span>
             </a>

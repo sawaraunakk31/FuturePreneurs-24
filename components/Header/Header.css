@@ -1,0 +1,109 @@
+.container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  align-items: center;
+  border-top: 4px solid transparent;
+  border-right: 2px solid grey;
+  border-bottom:  0px;
+  border-left: 2px solid grey;
+
+  border-image: linear-gradient(to left, grey, transparent 90%, transparent 100%);
+  /* border-image: linear-gradient(to right, grey, transparent 90%, transparent 100%); */
+  border-image-slice: 1;
+  
+
+
+  
+}
+
+.container_new{
+  border-top:0px;
+  border-right: 2px solid grey;
+  border-bottom: 4px solid transparent;
+  border-left: 2px solid grey;
+
+  border-image: linear-gradient(to right, grey, transparent 90%, transparent 100%);
+  /* border-image: linear-gradient(to right, grey, transparent 90%, transparent 100%); */
+  border-image-slice: 1;
+}
+
+
+
+.left-column {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.row-1, .row-2 {
+  background-color: white;
+  color: black;
+ 
+}
+
+/* Adjusted margin and font size */
+.row-1 {
+  display: inline-block;
+  font-size: 9rem;
+  font-weight: 1000;
+  margin-bottom: -3%;
+  perspective: 10000;
+  /* border-top: 4px solid transparent;
+  border-image: linear-gradient(to left, grey, transparent 90%, transparent 100%); */
+}
+
+.row-2 {
+  display: inline-block;
+  font-size: 9rem;
+  font-weight: 1000;
+  margin-left: 27%; /* Optional, can be removed for proper centering */
+  /* border-bottom:  4px solid transparent;
+  border-image: linear-gradient(to right, grey, transparent 90%, transparent 100%); */
+}
+
+/* Ensuring responsive layout */
+@media (max-width: 768px) {
+  .row-1 {
+      font-size: 2rem;
+  }
+
+  .row-2 {
+      font-size: 2rem;
+  }
+  .right-column .img :hover {
+    transform: rotateX(-30deg) rotateY(-20deg) rotateZ(360deg);
+    box-shadow: 20px 20px 40px rgba(0, 0, 0, 0.7);
+  }
+}
+
+.right-column {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  perspective: 1000px;
+}
+
+.right-column .img {
+  max-width: 100%;
+  height: auto;
+  transition: transform 0.8s ease, box-shadow 0.8s ease;
+}
+
+.right-column :hover {
+  transform: rotateX(-30deg) rotateY(-20deg) rotateZ(360deg);
+  box-shadow: 20px 20px 40px rgba(0, 0, 0, 0.7);
+}
+
+@font-face {
+  font-family: 'GeistMonoVF';
+  src: url('/fonts/Trap-ExtraBold.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+h1 {
+  font-family: 'GeistMonoVF', sans-serif;
+}
