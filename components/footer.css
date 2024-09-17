@@ -47,8 +47,8 @@
   }
   
   .social-icon {
-    width: 24px;
-    height: 24px;
+    font-size: 24px; /* Adjust size as needed */
+    color: white; /* Ensure icon color matches footer text color */
   }
   
   .social-name {
@@ -68,7 +68,6 @@
   .contact-info a:hover {
     text-decoration: underline;
   }
-  
   
   .footer-heading.animate {
     transform: scale(1.2); 
