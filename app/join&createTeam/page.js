@@ -18,9 +18,9 @@ export default function page() {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        Authorization: `Bearer ${session.accessTokenBackend}`,
+        "Access-Control-Allow-Origin": "*",
       },
-      Authorization: `Bearer ${session.accessTokenBackend}`,
-      "Access-Control-Allow-Origin": "*",
       body: JSON.stringify({
         teamName: teamName
       }),
@@ -33,7 +33,6 @@ export default function page() {
     if(res.status==200){
       setLoading(false);
       router.push('/leaderDashboard');
-
     }
   }
   return (
