@@ -1,3 +1,12 @@
+<<<<<<< HEAD
+export default function page(){
+    return (
+        <main>
+            Register successfully!!
+        </main>
+    );
+}
+=======
 'use client';
 
 import React, { useState } from 'react';
@@ -58,3 +67,4 @@ const TeamDetails = () => {
 };
 
 export default TeamDetails;
+>>>>>>> 87388eda33e6a847434da4986d8e873054aff070
