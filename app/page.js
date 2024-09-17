@@ -7,6 +7,7 @@ import CountdownTimer from '@/components/counter';
 import SignInBtn from '@/components/SignInBtn';
 import { useSession } from "next-auth/react";
 import { useRouter } from 'next/navigation';
+import Header from '../components/Header/Header';
 
 const Page = () => {
   const { data: session, status } = useSession();
@@ -35,6 +36,10 @@ const Page = () => {
   return (
     <main>
        <Navbar /> 
+       <br></br>
+       <br></br>
+       <Header/>
+       
       <div>Futurepreneurs 10.0</div>
       <SignInBtn />
       <RegisterButton />
