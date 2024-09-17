@@ -3,6 +3,7 @@ import React from 'react';
 import Navbar from '../components/Navbar'; // Ensure this import path is correct
 import Footer from '../components/Footer'; // Ensure this import path is correct
 import RegisterButton from '@/components/registerButton';
+import CountdownTimer from '@/components/counter';
 import SignInBtn from '@/components/SignInBtn';
 import { useSession } from "next-auth/react";
 import { useRouter } from 'next/navigation';
@@ -10,7 +11,7 @@ import { useRouter } from 'next/navigation';
 const Page = () => {
   const { data: session, status } = useSession();
   const router = useRouter();
-  
+  const targetDate = new Date("2024-10-05T18:00");
   const testing = async () => {
     const res = await fetch("/api/userData", {
       method: "POST",
@@ -37,9 +38,9 @@ const Page = () => {
       <div>Futurepreneurs 10.0</div>
       <SignInBtn />
       <RegisterButton />
-
+      <Footer/>
       <button onClick={testing}>Click me</button>
-      <Footer />
+      <CountdownTimer targetDate={targetDate} />
     </main>
   );
 };

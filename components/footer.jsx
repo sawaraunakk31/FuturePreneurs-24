@@ -1,7 +1,7 @@
 'use client';
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faFacebookF, faTwitter, faInstagram, faLinkedinIn } from '@fortawesome/free-brands-svg-icons';
+import { faFacebook, faTwitter, faInstagram, faLinkedinIn } from '@fortawesome/free-brands-svg-icons';
 import './footer.css';
 
 const Footer = () => {
@@ -9,6 +9,7 @@ const Footer = () => {
     <footer className="footer">
       <div className="container">
         <div className="footer-left">
+
           <div className="contact-info">
             <p>Email: <a href="mailto:helloecellvit@gmail.com">helloecellvit@gmail.com</a></p>
             <p>Phone: <a href="tel:+916306311799">+91 6306311799</a></p>
