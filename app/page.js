@@ -11,7 +11,7 @@ import { useRouter } from 'next/navigation';
 const Page = () => {
   const { data: session, status } = useSession();
   const router = useRouter();
-  const targetDate = new Date("2024-09-17T18:00");
+  const targetDate = new Date("2024-10-05T18:00");
   const testing = async () => {
     const res = await fetch("/api/userData", {
       method: "POST",

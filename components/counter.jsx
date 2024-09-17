@@ -1,5 +1,7 @@
 "use client";
 import React, { useState, useEffect } from "react";
+import Image from "next/image";
+import grad from "@/assests/assests/Ellipse 44.png";
 
 export default function CountdownTimer({ targetDate }) {
   const calculateTimeLeft = () => {
@@ -13,7 +15,7 @@ export default function CountdownTimer({ targetDate }) {
         minutes: Math.floor((difference / 1000 / 60) % 60),
       };
     } else {
-      timeLeft = { days: 0, hours: 0, minutes: 0};
+      timeLeft = { days: 0, hours: 0, minutes: 0 };
     }
 
     return timeLeft;
@@ -24,17 +26,47 @@ export default function CountdownTimer({ targetDate }) {
   useEffect(() => {
     const timer = setInterval(() => {
       setTimeLeft(calculateTimeLeft());
-    }, 1000); // Update every second
+    }, 1000);
 
-    return () => clearInterval(timer); // Clean up the interval on unmount
+    return () => clearInterval(timer);
   }, [targetDate]);
 
+  const formatNumber = (number) => String(number).padStart(2, '0');
+
+  const fontStyle = {
+    fontFamily: "'MyCustomFont', Trap-Black",
+    background: 'white',
+    WebkitBackgroundClip: 'text',
+    WebkitTextFillColor: 'transparent',
+  };
   return (
-    <div className="absolute w-[643px] h-[109px] top-[75px] left-[100px] bg-gradient-to-r from-white to-purple-300 flex items-center justify-center rounded-lg shadow-lg">
-      <div className="text-3xl font-bold text-gray-800">
-        {timeLeft.days}d {timeLeft.hours}h {timeLeft.minutes}m
+    <div className=" fixed bottom-0 right-0 w-[60rem] h-[25rem]">
+      {/* Background image */}
+      <Image src={grad} alt="Background Image" layout="fill" objectFit="cover" className="rounded-lg shadow-lg" />
+      <div className="absolute bottom-44 right-56 text-xl font-bold text-white">
+          Registration Closes In:
+        </div>
+
+      <div style={fontStyle} className="fixed bottom-0 right-72 text-8xl font-bold mb-7 mr-7 text-white bg-clip-text text-transparent ">
+        <div className="flex flex-col items-center justify-center">
+          {formatNumber(timeLeft.days)}:
+          <span className="text-sm ">DAYS</span>
+        </div>
+      </div>
+      <div style={fontStyle} className="fixed bottom-0 right-40 text-8xl font-bold mb-7 mr-7 text-white bg-clip-text text-transparent ">
+        <div className="flex flex-col items-center justify-center">
+          {formatNumber(timeLeft.hours)}:
+          <span className="text-sm">HOURS</span>
+        </div>
+      </div>
+
+      <div style={fontStyle} className="fixed bottom-0 right-10 text-8xl font-bold mb-7 mr-7 text-white 100 bg-clip-text text-transparent ">
+        <div className="flex flex-col items-center justify-center">
+          {formatNumber(timeLeft.minutes)}
+          <span className="text-sm ">MINUTES</span>
+        </div>
       </div>
       {Object.values(timeLeft).every((value) => value === 0)}
-    </div>
+      </div>
   );
 }
