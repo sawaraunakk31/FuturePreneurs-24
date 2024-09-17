@@ -1,6 +1,6 @@
 import { connectMongo } from "@/libs/mongodb";
 import { TeamModel } from "@/models/team.model";
-import {Users} from "@/models/user.model"; // Import the User model
+import { Users } from "@/models/user.model"; // Import the User model
 import { NextResponse } from "next/server";
 import { getToken } from "next-auth/jwt";
 import { getTokenDetails } from "@/utils/getTokenDetails";
@@ -20,43 +20,52 @@ export async function POST(req) {
         const user = await Users.findById(userId);
         if (!user) {
             return NextResponse.json({ message: "User not found" }, { status: 404 });
-            }
-            const name = user.name;
-            const email = user.email;
-
-        const {teamName} = await req.json();
-
-        const existingTeamName = await TeamModel.findOne({teamName});
-
-        if (existingTeamName) {
-            return NextResponse.json({ message: "Team name already exists" }, {status: 400});
         }
 
+        const name = user.name;
+        const email = user.email;
+        const { teamName } = await req.json();
+
+        const existingTeamName = await TeamModel.findOne({ teamName });
+        if (existingTeamName) {
+            return NextResponse.json({ message: "Team name already exists" }, { status: 400 });
+        }
+
+        let teamCode;
+        let isUnique = false;
+
+        // Keep generating new codes until we find a unique one
+        while (!isUnique) {
+            teamCode = Math.random().toString(36).substring(2, 10);
+            const existingTeam = await TeamModel.findOne({ teamCode });
+            if (!existingTeam) {
+                isUnique = true;
+            }
+        }
         const newTeam = new TeamModel({
             teamName: teamName,
             leaderName: name,
             leaderEmail: email,
             teamLeaderId: userId,
+            teamCode: teamCode, // Generate unique team code
             members: [userId]  // Initialize with userId in the members array
         });
         await newTeam.save();
 
-        const teamId = await newTeam._id;
-        
-        const newUser = await Users.findByIdAndUpdate(userId,
-            {$set:{
-                teamId: teamId,
-                teamLeaderId: userId,
-                consent:false
-            }},
-            {new: true}
-        )
-        console.log('ghjk',newUser);
+        console.log('asdfghjkl',newTeam);
+
+        const teamId = newTeam._id;
+
+        const newUser = await Users.findOneAndUpdate(
+            { _id: userId },
+            { $set: { teamId: teamId, teamLeaderId: userId, consent: false } },
+            { new: true }
+        );
         newUser.save();
 
-        return NextResponse.json({status:200},{message:"Team Created"});
+        return NextResponse.json({ message: "Team Created" }, { status: 200 });
     } catch (e) {
         console.error("Error", e);
-        return NextResponse.json({ status: 500}, {message: "Internal Server Error" });
+        return NextResponse.json({ message: "Internal Server Error" }, { status: 500 });
     }
 }
