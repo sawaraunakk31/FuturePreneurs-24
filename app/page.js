@@ -1,8 +1,9 @@
 'use client';
 import React from 'react';
-import Navbar from '../components/Navbar'; // Ensure this import path is correct
-import Footer from '../components/Footer'; // Ensure this import path is correct
+import Navbar from '../components/navbar'; // Ensure this import path is correct
+import Footer from '../components/footer'; // Ensure this import path is correct
 import RegisterButton from '@/components/registerButton';
+import TimerGradient from '../components/timerGradient';
 import { useSession } from "next-auth/react";
 import { useRouter } from 'next/navigation';
 
@@ -38,6 +39,7 @@ const Page = () => {
       <RegisterButton />
 
       <button onClick={testing}>Click me</button>
+      <TimerGradient />
       <Footer />
     </main>
   );
