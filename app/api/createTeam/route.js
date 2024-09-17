@@ -58,7 +58,7 @@ export async function POST(req) {
 
         const newUser = await Users.findOneAndUpdate(
             { _id: userId },
-            { $set: { teamId: teamId, teamLeaderId: userId, consent: false } },
+            { $set: { teamId: teamId, teamLeaderId: userId, consent: false, teamRole: 0 } },
             { new: true }
         );
         newUser.save();

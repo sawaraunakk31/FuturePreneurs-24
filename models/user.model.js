@@ -16,10 +16,10 @@ const userSchema = new Schema(
       type: Number,
     },
     hasFilledDetails:{
-        type:Boolean,
+      type:Boolean,
     },
     consent:{
-        type:Boolean,
+      type:Boolean,
     },
     teamId:{
         type:mongoose.Schema.Types.ObjectId,
@@ -28,6 +28,9 @@ const userSchema = new Schema(
     teamLeaderId:{
         type:mongoose.Schema.Types.ObjectId,
         ref:'TeamModel'
+    },
+    teamRole:{
+      type: Number,
     }
   },
   { collection: "Users" }
