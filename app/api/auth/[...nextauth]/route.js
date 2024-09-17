@@ -69,7 +69,7 @@ const authOptions = {
               status: 200,
             });
           }
-        } catch (error) {
+        } catch ({error}) {
         }
       }
     },
