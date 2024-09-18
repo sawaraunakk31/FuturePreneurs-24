@@ -1,5 +1,5 @@
 "use client";
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import ecellLogo from '@/assests/assests/ecell.jpg';
@@ -75,7 +75,7 @@ function NavBar() {
                 <div className="hidden md:flex items-center w-full">
                     <div className="flex flex-1 items-center justify-center gap-8">
                         <div
-                            className="flex items-center space-x-8 bg-white rounded-full px-4 py-2 shadow-lg"
+                            className="flex items-center justify-between space-x-8 bg-white rounded-full px-6 py-2 shadow-lg"
                             style={{ width: '600px', height: '50px', boxShadow: '1px 1px 6px 0px #000000BF' }}
                         >
                             <Link href="#Home" className="text-xl flex-1 text-black text-center hover:text-blue-600">Home</Link>

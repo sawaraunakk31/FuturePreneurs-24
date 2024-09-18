@@ -8,6 +8,7 @@ import SignInBtn from '@/components/SignInBtn';
 import { useSession } from "next-auth/react";
 import { useRouter } from 'next/navigation';
 import Header from '../components/Header/Header';
+import VideoBackground from '../components/landingPage/heroSection';
 
 const Page = () => {  
   const { data: session, status } = useSession();
@@ -34,14 +35,15 @@ const Page = () => {
   };
 
   return (
-    <main>
-       <Navbar /> 
-       <br></br>
-       <br></br>
-       <Header/>
+    <main className='scroll-auto'>
+      {/* <Navbar /> 
+      <br />
+      <br />  
+      <Header/>
       <RegisterButton />
-      <Footer/>
       <CountdownTimer targetDate={targetDate} />
+      <Footer /> */}
+      <VideoBackground />
     </main>
   );
 };

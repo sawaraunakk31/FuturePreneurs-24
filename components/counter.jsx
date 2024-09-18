@@ -43,7 +43,7 @@ export default function CountdownTimer({ targetDate }) {
     <div className=" fixed bottom-0 right-0 w-[60rem] h-[25rem]">
       {/* Background image */}
       <Image src={grad} alt="Background Image" layout="fill" objectFit="cover" className="rounded-lg shadow-lg" />
-      <div className="absolute bottom-44 right-56 text-xl font-bold text-white">
+      <div className="fixed bottom-44 right-56 text-xl font-bold text-white">
           Registration Closes In:
         </div>
 
