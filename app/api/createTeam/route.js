@@ -25,11 +25,18 @@ export async function POST(req) {
 
         const name = user.name;
         const email = user.email;
+        const teamIdCheck = user.teamId;
+
         const { teamName } = await req.json();
 
         const existingTeamName = await TeamModel.findOne({ teamName });
         if (existingTeamName) {
             return NextResponse.json({ message: "Team name already exists" }, { status: 400 });
+        }
+
+        //Check if the user is in a team or not
+        if (teamIdCheck!=null) {
+            return NextResponse.json({ message: "You are already in a team" }, { status: 401 });      
         }
 
         let teamCode;

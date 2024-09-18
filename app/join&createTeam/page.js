@@ -29,6 +29,9 @@ export default function page() {
     if(res.status==400){
       setLoading(false);
       alert("Team name already exists");
+    } else if(res.status==401){
+      setLoading(false);
+      alert("You are alredy in a team");
     }
     if(res.status==200){
       setLoading(false);
