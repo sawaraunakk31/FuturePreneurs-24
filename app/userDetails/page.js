@@ -73,10 +73,10 @@ export default function UserDetail() {
   };
 
   return (
-    <div className="bg-cover bg-center bg-no-repeat bg-[url('/assets/BG.png')]">
+    <div className="bg-cover bg-center bg-no-repeat bg-white">
     {loading && <LoadingScreen/>}
       <main className="p-4 md:p-8 lg:p-16">
-        <div className="text-xl font-bold mb-4 text-center">Futurepreneurs 10.0</div>
+        <div className="text-xl text-black font-bold mb-4 text-center">Futurepreneurs 10.0</div>
         {/* <Link href={'/userDetails'}>
           <a className="text-blue-600 hover:underline block text-center">Sign In</a>
         </Link> */}
@@ -93,7 +93,7 @@ export default function UserDetail() {
           <div className="w-full max-w-md lg:max-w-lg">
             <form onSubmit={handleSubmit} className="flex flex-col gap-6 bg-transparent p-4 rounded-lg shadow-lg">
               <div className="flex flex-col gap-2">
-                <label htmlFor="name" className="font-bold text-white text-md">Full Name:</label>
+                <label htmlFor="name" className="font-bold text-black text-md">Full Name:</label>
                 <input
                   type="text"
                   id="name"
@@ -105,7 +105,7 @@ export default function UserDetail() {
                 {errors.name && <p className="text-red-500 text-sm">{errors.name}</p>}
               </div>
               <div className="flex flex-col gap-2">
-                <label htmlFor="email" className="font-bold text-white text-md">Email:</label>
+                <label htmlFor="email" className="font-bold text-black text-md">Email:</label>
                 <input
                   type="email"
                   id="email"
@@ -117,7 +117,7 @@ export default function UserDetail() {
                 {errors.email && <p className="text-red-500 text-sm">{errors.email}</p>}
               </div>
               <div className="flex flex-col gap-2">
-                <label htmlFor="regNo" className="font-bold text-white text-md">Registration Number:</label>
+                <label htmlFor="regNo" className="font-bold text-black text-md">Registration Number:</label>
                 <input
                   type="text"
                   id="regNo"
@@ -129,7 +129,7 @@ export default function UserDetail() {
                 {errors.regNo && <p className="text-red-500 text-sm">{errors.regNo}</p>}
               </div>
               <div className="flex flex-col gap-2">
-                <label htmlFor="number" className="font-bold text-white text-md">Phone Number:</label>
+                <label htmlFor="number" className="font-bold text-black text-md">Phone Number:</label>
                 <input
                   type="text"
                   id="number"

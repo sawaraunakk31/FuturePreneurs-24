@@ -70,7 +70,7 @@ export default function Home() {
   };
 
   return (
-    <div className="bg-[url('../assests/assests/background_image.jpg')] bg-cover bg-center min-h-screen flex flex-col items-center justify-center p-4 text-white">
+    <div className="bg-white bg-cover bg-center min-h-screen flex flex-col items-center justify-center p-4 text-black">
       {loading && <LoadingScreen/>}
       <h1 className="text-2xl sm:text-3xl font-extrabold mb-4 text-center drop-shadow-lg">{teamName}</h1>
       

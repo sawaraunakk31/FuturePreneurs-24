@@ -32,7 +32,7 @@ export default function Home() {
   };
 
   return (
-    <div className="bg-[url('../assests/assests/background_image.jpg')] bg-cover bg-center min-h-screen flex flex-col items-center justify-center p-5 text-white">
+    <div className="bg-white bg-cover bg-center min-h-screen flex flex-col items-center justify-center p-5 text-black">
       <h1 className="text-4xl sm:text-5xl font-extrabold mb-8 text-center drop-shadow-lg">Your Team</h1>
       
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 w-full max-w-screen-lg px-4">
