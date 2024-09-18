@@ -16,8 +16,10 @@ export async function GET(req, { params }) {
     if (!team) {
       return NextResponse.json({ message: "Team Not found" });
     }
-
+    console.log('team',team);
+    console.log('teamCode',team.teamCode);
     if (!team.teamCode) {
+      console.log('team code not found!!!');
       const teamCode = Math.random().toString(36).substring(2, 10);
       // const teamCode = nanoid(10)
       const newToken = await new TeamToken({
@@ -33,15 +35,16 @@ export async function GET(req, { params }) {
 
       return NextResponse.json({ teamCode: teamCode, teamName: team.teamName });
     } else {
+      console.log('Team code found');
       const token = await TeamToken.findOne({ teamId: team._id });
-
+      console.log('token',token);
       if (!token) {
         return NextResponse.json({ message: "Token not found" });
       }
       const currentTime = new Date();
       const tokenCreationTime = token.createdAt;
       const timeDifference = (currentTime - tokenCreationTime) / (1000 * 60);
-      if (timeDifference > 3) {
+      if (timeDifference > 30) {
         const newTeamCode = Math.random().toString(36).substring(2, 10);
         await TeamToken.findOneAndUpdate(
           { teamId: team._id },
@@ -54,6 +57,7 @@ export async function GET(req, { params }) {
         );
         // tm.save();
 
+        console.log('exist',newTeamCode);
         return NextResponse.json({
           teamCode: newTeamCode,
           teamName: team.teamName,
