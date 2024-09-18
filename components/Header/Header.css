@@ -47,21 +47,25 @@
 /* Adjusted margin and font size */
 .row-1 {
   display: inline-block;
-  font-size: 9rem;
+  font-size: 8rem;
   font-weight: 1000;
-  margin-bottom: -3%;
+  padding: 0%;
+  margin-bottom: -14%;
   perspective: 10000;
   /* border-top: 4px solid transparent;
   border-image: linear-gradient(to left, grey, transparent 90%, transparent 100%); */
+  background: transparent;
 }
 
 .row-2 {
   display: inline-block;
-  font-size: 9rem;
+  font-size: 8rem;
   font-weight: 1000;
-  margin-left: 27%; /* Optional, can be removed for proper centering */
+  padding: 0%;
+  margin-left: 26%; /* Optional, can be removed for proper centering */
   /* border-bottom:  4px solid transparent;
   border-image: linear-gradient(to right, grey, transparent 90%, transparent 100%); */
+  z-index: -1;
 }
 
 /* Ensuring responsive layout */
@@ -88,14 +92,16 @@
 
 .right-column .img {
   max-width: 100%;
-  height: auto;
+  height: 15rem;
+  /* height: auto; */
   transition: transform 0.8s ease, box-shadow 0.8s ease;
+  margin-bottom: 10%;
+  margin-top: 5%;
+  margin-left: 25%;
+
 }
 
-.right-column :hover {
-  transform: rotateX(-30deg) rotateY(-20deg) rotateZ(360deg);
-  box-shadow: 20px 20px 40px rgba(0, 0, 0, 0.7);
-}
+
 
 @font-face {
   font-family: 'GeistMonoVF';
