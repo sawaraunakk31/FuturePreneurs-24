@@ -18,7 +18,7 @@ export default function page() {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${session.accessTokenBackend}`,
+        Authorization: `Bearer ${session?.accessTokenBackend}`,
         "Access-Control-Allow-Origin": "*",
       },
       body: JSON.stringify({
@@ -34,6 +34,10 @@ export default function page() {
       setLoading(false);
       router.push('/leaderDashboard');
     }
+  }
+
+  const handleJoinTeam=()=>{
+    router.push('/teamCode');
   }
   return (
     <main className="h-[100vh] w-[100vw] flex items-center justify-center bg-white">
@@ -62,7 +66,8 @@ export default function page() {
                 className=" sm:landscape:w-[20vw] sm:landscape:h-[7vh] md:max-w-[40vw] portrait:lg:w-[30vw] portrait:lg:text-2xl lg:w-[15vw] w-[55vw] h-[5vh] rounded-md text-xl text-slate-900  focus:outline-none focus:placeholder-transparent active:scale-95 transition-all duration-300"
               />
               <button
-                className=" sm:landscape:w-[15vw]  mb-7 rounded-3xl bg-gradient-to-b from-[#FF7E7E] to-[#FFEF99] text-center portrait:lg:w-[30vw]  md:max-w-[25vw] md:text-[20px] landscape:md:text-[1.6vh] lg:w-[15vw] w-[50vw] h-[5vh] hover:scale-110 active:scale-95 transition-transform ease-in-out duration-300 "
+                className=" sm:landscape:w-[15vw]  mb-7 rounded-3xl bg-gradient-to-r from-[#03A3FE] to-[#00FFA3] text-center portrait:lg:w-[30vw]  md:max-w-[25vw] md:text-[20px] landscape:md:text-[1.6vh] lg:w-[15vw] w-[50vw] h-[5vh] hover:scale-110 active:scale-95 transition-transform ease-in-out duration-300 "
+                onClick={handleJoinTeam}
               >
                 Find team to join
               </button>
