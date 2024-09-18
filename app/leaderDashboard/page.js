@@ -29,7 +29,7 @@ export default function Home() {
 
   const getData = async()=>{
     setLoading(true);
-    const res = await fetch('/api/userData',{
+    const res = await fetch('/api/userDataGet',{
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',

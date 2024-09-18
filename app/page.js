@@ -7,8 +7,9 @@ import CountdownTimer from '@/components/counter';
 import SignInBtn from '@/components/SignInBtn';
 import { useSession } from "next-auth/react";
 import { useRouter } from 'next/navigation';
+import Header from '../components/Header/Header';
 
-const Page = () => {
+const Page = () => {  
   const { data: session, status } = useSession();
   const router = useRouter();
   const targetDate = new Date("2024-10-05T18:00");
@@ -35,11 +36,11 @@ const Page = () => {
   return (
     <main>
        <Navbar /> 
-      <div>Futurepreneurs 10.0</div>
-      <SignInBtn />
+       <br></br>
+       <br></br>
+       <Header/>
       <RegisterButton />
       <Footer/>
-      <button onClick={testing}>Click me</button>
       <CountdownTimer targetDate={targetDate} />
     </main>
   );
