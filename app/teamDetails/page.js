@@ -1,12 +1,3 @@
-<<<<<<< HEAD
-export default function page(){
-    return (
-        <main>
-            Register successfully!!
-        </main>
-    );
-}
-=======
 'use client';
 
 import React, { useState } from 'react';
@@ -24,7 +15,7 @@ const TeamDetails = () => {
   };
 
   return (
-    <div className="h-[100vh] flex items-center justify-center text-white font-sans bg-[url('../assests/assests/background_image.jpg')] bg-cover bg-center">
+    <div className="h-[100vh] flex items-center justify-center text-white font-sans bg-white">
       <div className="w-[90%] max-w-[20rem] md:w-[95%] md:max-w-[28rem] lg:max-w-[32rem] p-[1.5rem] md:p-[2rem] bg-gray-800 rounded-lg shadow-lg flex flex-col justify-between md:h-[32rem] lg:h-[26rem]">
         <div className="text-center mb-[1.5rem]">
           <h1 className="text-[1.75rem] md:text-[2.5rem] lg:text-[3rem] font-bold pb-[0.5rem]">Enter Team Details</h1>
@@ -67,4 +58,3 @@ const TeamDetails = () => {
 };
 
 export default TeamDetails;
->>>>>>> 87388eda33e6a847434da4986d8e873054aff070

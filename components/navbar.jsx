@@ -10,7 +10,7 @@ function NavBar() {
     const [navbar, setNavbar] = useState(false);
 
     return (
-        <nav className="w-full bg-transparent shadow-md">
+        <nav className="w-full bg-blur opacity-75 fixed top-0">
             <div className="relative flex items-center justify-between px-4 py-3 mx-auto lg:w-full md:px-8">
                 {/* LOGO */}
                 <Link href="/" className="flex items-center">

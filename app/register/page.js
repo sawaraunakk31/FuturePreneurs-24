@@ -21,7 +21,7 @@ export default function Register() {
   };
 
   return (
-    <div style={styles.container}>
+    <div style={styles.container} className='bg-white'>
       <h1>Register</h1>
       <form onSubmit={handleSubmit} style={styles.form}>
         <div style={styles.inputGroup}>
