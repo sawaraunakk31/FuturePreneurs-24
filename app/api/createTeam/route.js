@@ -4,6 +4,7 @@ import { Users } from "@/models/user.model"; // Import the User model
 import { NextResponse } from "next/server";
 import { getToken } from "next-auth/jwt";
 import { getTokenDetails } from "@/utils/getTokenDetails";
+import { TeamToken } from "@/models/teamToken.model";
 
 export async function POST(req) {
     try {
@@ -24,11 +25,18 @@ export async function POST(req) {
 
         const name = user.name;
         const email = user.email;
+        const teamIdCheck = user.teamId;
+
         const { teamName } = await req.json();
 
         const existingTeamName = await TeamModel.findOne({ teamName });
         if (existingTeamName) {
             return NextResponse.json({ message: "Team name already exists" }, { status: 400 });
+        }
+
+        //Check if the user is in a team or not
+        if (teamIdCheck!=null) {
+            return NextResponse.json({ message: "You are already in a team" }, { status: 401 });      
         }
 
         let teamCode;
@@ -51,6 +59,13 @@ export async function POST(req) {
             members: [userId]  // Initialize with userId in the members array
         });
         await newTeam.save();
+
+        const newTeamToken = new TeamToken({
+            teamId:newTeam._id,
+            token:teamCode,
+            createdAt: Date.now(),
+        });
+        await newTeamToken.save();
 
         console.log('asdfghjkl',newTeam);
 
