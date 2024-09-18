@@ -7,6 +7,7 @@ export async function POST(req) {
   try {
     await connectMongo();
     const { teamCode } = await req.json();
+    console.log("ggggggggggggggg",teamCode);
     const team = await TeamToken.findOne({ token: teamCode });
 
     if (!team) {
