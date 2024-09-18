@@ -21,5 +21,5 @@ const teamTokenSchema = new Schema(
 );
 
 export const TeamToken =
-  mongoose.model.TeamToken ||
+  mongoose.models.TeamToken ||
   mongoose.model('TeamToken', teamTokenSchema);
