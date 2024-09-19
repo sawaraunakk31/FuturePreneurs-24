@@ -37,6 +37,13 @@ export default function UserDetail() {
     return newErrors;
   };
 
+  const handleKeyPress = (event) => {
+    const charCode = event.charCode;
+    if (!/^[a-zA-Z ]+$/.test(String.fromCharCode(charCode))) {
+      event.preventDefault();
+    }
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const validationErrors = validate();
@@ -75,14 +82,14 @@ export default function UserDetail() {
   return (
     <div className="bg-cover bg-center bg-no-repeat bg-white">
     {loading && <LoadingScreen/>}
-      <main className="p-4 md:p-8 lg:p-16">
-        <div className="text-xl text-black font-bold mb-4 text-center">Futurepreneurs 10.0</div>
+      <main className="p-4 md:p-8 lg:p-10">
+        <div className="text-2xl text-black font-bold mb-4 text-center">Futurepreneurs 10.0</div>
         {/* <Link href={'/userDetails'}>
           <a className="text-blue-600 hover:underline block text-center">Sign In</a>
         </Link> */}
       </main>
-      <div className="grid grid-cols-1  lg:grid-cols-3 gap-4 p-4 md:p-8 lg:p-10 ">
-        <div className="bg-transparent p-4 sm:border border-gray-600 rounded-3xl flex justify-center items-center">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 p-4 md:p-8 lg:p-10 ">
+        <div className="logo-container bg-transparent p-4 sm:border border-gray-600 rounded-3xl flex justify-center items-center">
           <img
             src="/assets/FP.png"
             alt="FP"
@@ -100,6 +107,7 @@ export default function UserDetail() {
                   name="name"
                   value={formData.name}
                   onChange={handleChange}
+                  onKeyPress={handleKeyPress}
                   className={`border rounded-md text-lg  text-black ${errors.name ? 'border-red-500 focus:ring-red-300' : 'border-gray-300 focus:ring-blue-200'} focus:outline-none focus:ring-2`}
                 />
                 {errors.name && <p className="text-red-500 text-sm">{errors.name}</p>}
@@ -131,7 +139,7 @@ export default function UserDetail() {
               <div className="flex flex-col gap-2">
                 <label htmlFor="number" className="font-bold text-black text-md">Phone Number:</label>
                 <input
-                  type="text"
+                  type="number"
                   id="number"
                   name="number"
                   value={formData.number}
@@ -148,6 +156,13 @@ export default function UserDetail() {
           </div>
         </div>
       </div>
+      <style jsx>{`
+        @media (max-width: 1024px) {
+          .logo-container {
+            display: none;
+          }
+        }
+      `}</style>
     </div>
   );
 }
