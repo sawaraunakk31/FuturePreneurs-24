@@ -1,12 +1,17 @@
 'use client';
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import { useSession } from "next-auth/react";
+import LoadingScreen from '@/components/LoadingScreen';
 import img1 from '@/assests/assests/teammember.jpg';
 import Modal from '@/components/Modal';
 import MyModal from '@/components/Modal';
 
 export default function Home() {
+  const { data: session, status } = useSession();
+  const [teamName,setTeamName] = useState();
   const router = useRouter();
+  const [loading, setLoading] = useState(false);
   
   const teamLeader = [
     { id: 1, name: 'Full Name', registrationNumber: '2XXXXXXXX', mobileNumber: 'XXXXXXXXXX' },
@@ -21,18 +26,33 @@ export default function Home() {
   const handleShowModal=()=>{
     setShowModal(!showModal)
   }
-  const handleLeave = () => {
-    if (teamMembers.length > 0) {
-      const updatedTeamMembers = teamMembers.slice(1);
-      setTeamMembers(updatedTeamMembers);
+
+  const handleLeave = async()=>{
+    setLoading(true);
+    const res = await fetch("/api/leaveTeam", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${session?.accessTokenBackend}`,
+        "Access-Control-Allow-Origin": "*",
+      },
+      body: JSON.stringify({
+        // teamName: teamName
+      }),
+    });
+  
+    if (res.status==200){
+      setLoading(false);
       router.push('/join&createTeam');
     } else {
-      alert("No more members to remove!");
+      setLoading(false);
+      alert("Error while leaving the team, please try again");
     }
-  };
+  }
 
   return (
     <div className="bg-white bg-cover bg-center min-h-screen flex flex-col items-center justify-center p-5 text-black">
+      {loading && <LoadingScreen/>}
       <h1 className="text-4xl sm:text-5xl font-extrabold mb-8 text-center drop-shadow-lg">Your Team</h1>
       
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 w-full max-w-screen-lg px-4">

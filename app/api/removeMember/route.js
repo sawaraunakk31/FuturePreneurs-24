@@ -1,12 +1,9 @@
-//get an integer value from frontend
-
 import { connectMongo } from "@/libs/mongodb";
 import { TeamModel } from "@/models/team.model";
 import { Users } from "@/models/user.model"; // Import the User model
 import { NextResponse } from "next/server";
 import { getToken } from "next-auth/jwt";
 import { getTokenDetails } from "@/utils/getTokenDetails";
-import { TeamToken } from "@/models/teamToken.model";
 
 export async function POST(req) {
     try {
