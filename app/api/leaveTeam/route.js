@@ -63,7 +63,7 @@ export async function POST(req) {
 
       // Remove member from team and save
       const members = team.members;
-      const newMembers = members.filter(item => item !== userId);
+      const newMembers = members.filter(item => item != userId);
       team.members = newMembers;
       await team.save();
 
