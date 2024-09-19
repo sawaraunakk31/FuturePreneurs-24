@@ -1,32 +1,51 @@
-.footer {
-  padding: 20px;
-  background-color: transparent; /* Background is now transparent */
-  color: black;
+/* Ensure the page layout uses flexbox for proper positioning */
+html, body {
+  height: 100%;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
 }
 
+main {
+  flex: 1; /* Allow the main content to take up remaining space */
+}
+
+/* Footer Styling */
+.footer {
+  padding: 20px;
+  background-color: transparent; /* Transparent background */
+  color: black;
+  width: 100%;
+  position: relative;
+}
+
+/* Flexbox container for footer content */
 .container {
   display: flex;
   justify-content: space-between;
-  align-items: center; /* Aligning contact details and social icons vertically */
+  align-items: center;
   width: 100%;
 }
 
+/* Left side - Contact info */
 .footer-left {
   flex: 1;
   display: flex;
-  justify-content: flex-start; /* Contact details aligned to the extreme left */
+  justify-content: flex-start;
 }
 
+/* Right side - Social links */
 .footer-right {
   flex: 1;
   display: flex;
-  justify-content: flex-end; /* Social icons aligned to the right */
+  justify-content: flex-end;
   align-items: center;
 }
 
+/* Social links */
 .social-links {
   display: flex;
-  gap: 10px; /* Space between icons */
+  gap: 10px;
 }
 
 .social-link {
@@ -40,8 +59,9 @@
   color: black;
 }
 
+/* Contact info styling */
 .contact-info {
-  margin-top: 0; /* No extra margin needed */
+  margin-top: 0;
 }
 
 .contact-info a {
