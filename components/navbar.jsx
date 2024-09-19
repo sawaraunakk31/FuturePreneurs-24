@@ -10,7 +10,7 @@ function NavBar() {
     const [navbar, setNavbar] = useState(false);
 
     return (
-        <nav className="w-full bg-transparent shadow-md">
+        <nav className="w-full bg-blur opacity-75 fixed top-0">
             <div className="relative flex items-center justify-between px-4 py-3 mx-auto lg:w-full md:px-8">
                 {/* LOGO */}
                 <Link href="/" className="flex items-center">
@@ -78,10 +78,10 @@ function NavBar() {
                             className="flex items-center space-x-8 bg-white rounded-full px-4 py-2 shadow-lg"
                             style={{ width: '600px', height: '50px', boxShadow: '1px 1px 6px 0px #000000BF' }}
                         >
-                            <Link href="#Home" className="text-xl flex-1 text-center hover:text-blue-600">Home</Link>
-                            <Link href="#About" className="text-xl flex-1 text-center hover:text-blue-600">About</Link>
-                            <Link href="#Timeline" className="text-xl flex-1 text-center hover:text-blue-600">Timeline</Link>
-                            <Link href="#Contact" className="text-xl flex-1 text-center hover:text-blue-600">Contact Us</Link>
+                            <Link href="#Home" className="text-xl flex-1 text-black text-center hover:text-blue-600">Home</Link>
+                            <Link href="#About" className="text-xl flex-1 text-center text-black hover:text-blue-600">About</Link>
+                            <Link href="#Timeline" className="text-xl flex-1 text-center text-black hover:text-blue-600">Timeline</Link>
+                            <Link href="#Contact" className="text-xl flex-1 text-center text-black hover:text-blue-600">Contact Us</Link>
                         </div>
                     </div>
                     {/* Sign In Button */}

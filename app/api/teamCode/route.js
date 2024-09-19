@@ -1,6 +1,7 @@
 import { connectMongo } from '@/libs/mongodb';
 import { Users } from '@/models/user.model';
 import { TeamModel } from '@/models/team.model';
+import { TeamToken } from '@/models/teamToken.model';
 
 // Function to generate a unique team code
 async function generateUniqueTeamCode() {
@@ -40,8 +41,13 @@ async function updateTeamCodes() {
             team.teamCode = newTeamCode;
             team.codeExpiry = newExpiry;
 
+            // Update the token in TeamToken
+            const teamToken = await TeamToken.findOne({teamId: team._id});
+            teamToken.token = newTeamCode;
+
             // Try saving the updated team data back to the database
             try {
+                await teamToken.save();
                 await team.save();  // This ensures the changes are saved in MongoDB
                 console.log('Updated team:', team);
             } catch (saveError) {
