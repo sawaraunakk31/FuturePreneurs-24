@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import MyModal from '@/Components/Modal';
 import { useSession } from 'next-auth/react'
 import LoadingScreen from '@/components/LoadingScreen';
+import toast, { Toaster } from 'react-hot-toast';
 
 export default function Home() {
 
@@ -59,9 +60,37 @@ export default function Home() {
   };
 
   
-  const handleRemove = () => {
-    const updatedTeamMembers = teamMembers.filter((member) => member.id !== modalMemberId);
-    setTeamMembers(updatedTeamMembers);
+  const handleRemove = async(index) => {
+    setLoading(true);
+    console.log('clicked');
+    console.log(index);
+    try {
+      console.log("inside fetch");
+      const response = await fetch(`/api/removeMember`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + session?.accessTokenBackend,
+        },
+        body: JSON.stringify({ index }),
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        console.log(data);
+        toast.success('Team Member is removed');
+        setLoading(false);
+        window.location.reload();
+      } else {
+        showMessage("Team code not found. Please try again.");
+        setLoading(false);
+      }
+    } catch (error) {
+      showMessage("An error occurred while fetching team name.");
+      setLoading(false);
+    }
+    // const updatedTeamMembers = teamMembers.filter((member) => member.id !== modalMemberId);
+    // setTeamMembers(updatedTeamMembers);
     handleCloseModal();
   };
 
@@ -78,7 +107,7 @@ export default function Home() {
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full max-w-2xl px-4 py-6 bg-black bg-opacity-50 rounded-lg shadow-lg">
         {teamMembers.map((member,index) => (
           <div
-            key={member.id}
+            key={index}
             className="bg-[#141B2B] rounded-lg p-3 text-center shadow-lg transform hover:scale-105 transition-transform duration-300 flex flex-col items-center justify-between"
           >
             <img src={img1.src} alt="Team Member" className="w-16 h-16 mb-3 rounded-full shadow-md" />
@@ -87,7 +116,7 @@ export default function Home() {
             <p className="text-xs">Mobile No.: {member.mobNo}</p>
             <button
               className="bg-blue-600 text-white py-1 px-4 rounded-full mt-2 font-semibold transition-colors duration-300 hover:bg-[#1e5db8] focus:outline-none text-sm"
-              onClick={() => handleShowModal(member.id, 'remove')} 
+              onClick={() => handleShowModal(index, 'remove')} 
             >
               {index==0 ? 'Leave' : 'Remove'}
             </button>
@@ -113,10 +142,18 @@ export default function Home() {
         <MyModal
           isVisible={true}
           onClose={handleCloseModal}  
-          onConfirm={modalType === 'remove' ? handleRemove : handleAddTeamMember} 
+          onConfirm={()=>{
+            if(modalType=='remove'){
+              console.log(modalMemberId);
+              handleRemove(modalMemberId);
+            }else{
+              handleAddTeamMember();
+            }
+          }} 
           text={modalType === 'remove' ? "Do you want to remove this member?" : "Do you want to add a member?"}
         />
       )}
+      <Toaster/>
     </div>
   );
 }
