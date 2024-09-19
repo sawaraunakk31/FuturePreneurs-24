@@ -13,6 +13,12 @@ export default function Home() {
   const [teamName,setTeamName] = useState();
   const router = useRouter();
   const [loading, setLoading] = useState(false);
+  const [teamMembers, setTeamMembers] = useState([]);
+  const [showModal,setShowModal]=useState(false);
+
+  const handleShowModal=()=>{
+    setShowModal(!showModal)
+  }
 
   useEffect(()=>{
     getData();
@@ -24,26 +30,19 @@ export default function Home() {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
-        },
-        
+      },
+      
       Authorization: `Bearer ${session?.accessTokenBackend}`,
       "Access-Control-Allow-Origin": "*",
     })
-    const data = await res.json();
-    setTeamName(data.team.teamName);
-    setTeamMembers(data.members);
-    setLoading(false);
-  }
-
-  const [teamMembers, setTeamMembers] = useState([
-    { id: 0, name: 'Full Name', regNo: '2XXXXXXXX', mobNo: 'XXXXXXXXXX' },
-    { id: 1, name: 'Full Name', regNo: '2XXXXXXXX', mobNo: 'XXXXXXXXXX' },
-    { id: 2, name: 'Full Name', regNo: '2XXXXXXXX', mobNo: 'XXXXXXXXXX' },
-    { id: 3, name: 'Full Name', regNo: '2XXXXXXXX', mobNo: 'XXXXXXXXXX' }
-  ]);
-  const [showModal,setShowModal]=useState(false)
-  const handleShowModal=()=>{
-    setShowModal(!showModal)
+    if (res.ok){
+      const data = await res.json();
+      setTeamName(data.team.teamName);
+      setTeamMembers(data.members);
+      setLoading(false);
+    } else {
+      toast.error('Error occured');
+    }
   }
 
   const handleLeave = async()=>{
