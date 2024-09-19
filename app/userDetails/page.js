@@ -102,6 +102,7 @@ export default function UserDetail() {
               <div className="flex flex-col gap-2">
                 <label htmlFor="name" className="font-bold text-black text-md">Full Name:</label>
                 <input
+                  placeholder=" Full Name"
                   type="text"
                   id="name"
                   name="name"
@@ -115,6 +116,7 @@ export default function UserDetail() {
               <div className="flex flex-col gap-2">
                 <label htmlFor="email" className="font-bold text-black text-md">Email:</label>
                 <input
+                  placeholder=" Email"
                   type="email"
                   id="email"
                   name="email"
@@ -127,6 +129,7 @@ export default function UserDetail() {
               <div className="flex flex-col gap-2">
                 <label htmlFor="regNo" className="font-bold text-black text-md">Registration Number:</label>
                 <input
+                  placeholder=" Registration Number"
                   type="text"
                   id="regNo"
                   name="regNo"
@@ -139,6 +142,7 @@ export default function UserDetail() {
               <div className="flex flex-col gap-2">
                 <label htmlFor="number" className="font-bold text-black text-md">Phone Number:</label>
                 <input
+                  placeholder=" Phone Number"
                   type="number"
                   id="number"
                   name="number"
