@@ -39,8 +39,8 @@ export default function CountdownTimer({ targetDate }) {
     <style>
       {`
         @font-face {
-          font-family: 'TrapBold';
-          src: url('../public/fonts/Trap-Bold.otf') format('opentype');
+          font-family: ${"GothamBlack"};
+          src: url(${"../public/fonts/Gotham-Black.ttf"}) format(${"opentype"});
           font-weight: bold;
           font-style: normal;
         }
@@ -49,7 +49,7 @@ export default function CountdownTimer({ targetDate }) {
   );
 
   const fontStyle = {
-    fontFamily: "'TrapBold', sans-serif",
+    fontFamily: "'GothamBlack', sans-serif",
     background: 'white',
     WebkitBackgroundClip: 'text',
     WebkitTextFillColor: 'transparent',
