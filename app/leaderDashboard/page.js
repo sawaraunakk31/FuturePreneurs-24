@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import img1 from "@/assests/assests/teammember.jpg";
 import { useRouter } from "next/navigation";
-import MyModal from "@/Components/Modal";
+import {MyModal,ChangeLeaderModal} from "@/Components/Modal";
 import { useSession } from "next-auth/react";
 import LoadingScreen from "@/components/LoadingScreen";
 import toast, { Toaster } from "react-hot-toast";
@@ -193,20 +193,22 @@ export default function Home() {
       )}
 
       {/*  ye new leaader selection ka h  */}
-      {leaveLeaderModal && (
-        <ChangeLeaderModal
-          isOpen={leaveLeaderModal}
-          onClose={() => setLeaveLeaderModal(false)}
-          members={teamMembers}
-          onConfirm={(memberId) => {
-            if (memberId !== 0) {
-              setNum(memberId);
-              console.log("New leader ID:", memberId);
-            }
-            setLeaveLeaderModal(false);
-          }}
-        />
-      )}
+     
+     {leaveLeaderModal && (
+      <ChangeLeaderModal
+        isOpen={leaveLeaderModal}
+        onClose={() => setLeaveLeaderModal(false)}
+        members={teamMembers}
+        onConfirm={(selectedMemberIndex) => {
+          if (selectedMemberIndex !== null) { // Check if a valid index is selected
+            setNum(selectedMemberIndex); // Store the selected member's index in `num`
+            console.log("New leader index:", selectedMemberIndex);
+          }
+          setLeaveLeaderModal(false); // Close the modal after confirmation
+        }}
+      />
+    )}
+    
 
 
       <Toaster />
