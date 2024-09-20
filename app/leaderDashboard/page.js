@@ -126,6 +126,39 @@ export default function Home() {
     handleCloseModal();
   };
 
+  const deleteTeam = async () => {
+    setLoading(true);
+    console.log("team delete");
+    try {
+      console.log("inside delete");
+      const response = await fetch("/api/deleteTeam", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${session?.accessTokenBackend}`,
+        },
+        body: JSON.stringify({  }),
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        console.log(data);
+        toast.success("Team is deleted");
+        setLoading(false);
+        router.push('/join&createTeam');
+      } else {
+        toast.error("Team can't be deleted");
+        setLoading(false);
+      }
+    } catch (error) {
+      toast.error("An error occurred while fetching team name.");
+      setLoading(false);
+    }
+    // const updatedTeamMembers = teamMembers.filter((member) => member.id !== modalMemberId);
+    // setTeamMembers(updatedTeamMembers);
+    handleCloseModal();
+  };
+
   const handleAddTeamMember = () => {
     router.push("/teamDetails");
   };
@@ -151,12 +184,12 @@ export default function Home() {
             <h2 className="text-lg font-bold mb-1">{member.name}</h2>
             <p className="text-xs mb-1">Reg. No.: {member.regNo}</p>
             <p className="text-xs">Mobile No.: {member.mobNo}</p>
-            <button
+            {teamMembers.length>1 && <button
               className="bg-blue-600 text-white py-1 px-4 rounded-full mt-2 font-semibold transition-colors duration-300 hover:bg-[#1e5db8] focus:outline-none text-sm"
               onClick={() => handleShowModal(index, "remove")}
             >
               {index == 0 ? "Leave" : "Remove"}
-            </button>
+            </button>}
           </div>
         ))}
       </div>
@@ -172,7 +205,18 @@ export default function Home() {
         </div>
       )}
 
-      {showModal && (
+      {teamMembers.length == 1 && (
+        <div className="flex justify-center mt-4 w-full">
+          <button
+            className="bg-red-600 text-white py-2 px-6 rounded-full font-semibold transition-colors duration-300 hover:bg-green-700 focus:outline-none shadow-lg text-[0.9rem] max-w-[150px]"
+            onClick={() => handleShowModal(null, "add")}
+          >
+            Delete Team
+          </button>
+        </div>
+      )}
+
+      {(showModal && teamMembers.length>1) ? (
         <MyModal
           isVisible={true}
           onClose={handleCloseModal}
@@ -189,6 +233,13 @@ export default function Home() {
               ? "Do you want to remove this member?"
               : "Do you want to add a member?"
           }
+        />
+      ):(
+        <MyModal
+          isVisible={true}
+          onClose={handleCloseModal}
+          onConfirm={deleteTeam}
+          text="Do you want to delete this team?"
         />
       )}
 
