@@ -22,3 +22,4 @@ module.exports = {
   variants: {},
   plugins: [],
 };
+

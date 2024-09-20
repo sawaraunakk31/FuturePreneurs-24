@@ -21,11 +21,11 @@ export default function Register() {
   };
 
   return (
-    <div style={styles.container}>
+    <div style={styles.container} className='bg-white text-black'>
       <h1>Register</h1>
       <form onSubmit={handleSubmit} style={styles.form}>
         <div style={styles.inputGroup}>
-          <label htmlFor="username">Username:</label>
+          <label htmlFor="username" className='text-black'>Username:</label>
           <input
             type="text"
             id="username"
@@ -37,7 +37,7 @@ export default function Register() {
         </div>
 
         <div style={styles.inputGroup}>
-          <label htmlFor="email">Email:</label>
+          <label htmlFor="email" className='text-black'>Email:</label>
           <input
             type="email"
             id="email"
@@ -49,7 +49,7 @@ export default function Register() {
         </div>
 
         <div style={styles.inputGroup}>
-          <label htmlFor="password">Password:</label>
+          <label htmlFor="password" className='text-black'>Password:</label>
           <input
             type="password"
             id="password"

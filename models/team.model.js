@@ -31,6 +31,7 @@ const teamSchema = mongoose.Schema(
     ],
     teamCode: {
       type: String,
+      sparse: true,
       unique: true, // Ensure the team code is unique
     },
     codeExpiry: {
