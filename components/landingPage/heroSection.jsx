@@ -54,7 +54,7 @@ return (
         <MyComponent6/></div>
         <div className='absolute top-[60%] left-[1%] z-0'>
         <MyComponent4/></div>
-        <div className='absolute bottom-[27%] left-[6%] z-30'><RegisterButton /></div>
+        <div className='absolute bottom-[27%] lg:left-[5%] md:left-[6%] z-30'><RegisterButton /></div>
         <div className='absolute top-[60%] left-[15vw] z-0'>
         <MyComponent2/></div>
         <div><CountdownTimer targetDate={targetDate} /></div>
