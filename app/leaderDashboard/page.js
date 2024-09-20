@@ -49,8 +49,10 @@ export default function Home() {
   const [showModal, setShowModal] = useState(false);
   const [modalMemberId, setModalMemberId] = useState(null);
   const [modalType, setModalType] = useState("");
-  const [leaveTeamModal, setLeaveTeamModal] = useState('');
+  const [leaveLeaderModal, setLeaveLeaderModal] = useState("");
   const [loading, setLoading] = useState(false);
+  const [num, setNum] = useState(null);
+
 
   const getData = async () => {
     setLoading(true);
@@ -63,6 +65,7 @@ export default function Home() {
       Authorization: `Bearer ${session?.accessTokenBackend}`,
       "Access-Control-Allow-Origin": "*",
     });
+
     const data = await res.json();
     setTeamName(data.team.teamName);
     setTeamMembers(data.members);
@@ -70,8 +73,12 @@ export default function Home() {
   };
 
   const handleShowModal = (id = null, type = "") => {
-    if (id == 0 && teamMembers.length>1) {
-      setLeaveTeamModal(true);
+    if (id === 0) {
+      if (teamMembers.length > 1) {
+        setLeaveLeaderModal(true);
+      } else {
+        toast.error("Delete the team");
+      }
     } else {
       setModalMemberId(id);
       setModalType(type);
@@ -91,11 +98,11 @@ export default function Home() {
     console.log(index);
     try {
       console.log("inside fetch");
-      const response = await fetch(`/api/removeMember`, {
+      const response = await fetch("/api/removeMember", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Authorization: "Bearer " + session?.accessTokenBackend,
+          Authorization: `Bearer ${session?.accessTokenBackend}`,
         },
         body: JSON.stringify({ index }),
       });
@@ -107,11 +114,11 @@ export default function Home() {
         setLoading(false);
         window.location.reload();
       } else {
-        showMessage("Team code not found. Please try again.");
+        toast.error("Team code not found. Please try again.");
         setLoading(false);
       }
     } catch (error) {
-      showMessage("An error occurred while fetching team name.");
+      toast.error("An error occurred while fetching team name.");
       setLoading(false);
     }
     // const updatedTeamMembers = teamMembers.filter((member) => member.id !== modalMemberId);
@@ -184,6 +191,23 @@ export default function Home() {
           }
         />
       )}
+
+      {/*  ye new leaader selection ka h  */}
+      {leaveLeaderModal && (
+        <ChangeLeaderModal
+          isOpen={leaveLeaderModal}
+          onClose={() => setLeaveLeaderModal(false)}
+          members={teamMembers}
+          onConfirm={(memberId) => {
+            if (memberId !== 0) {
+              setNum(memberId);
+              console.log("New leader ID:", memberId);
+            }
+            setLeaveLeaderModal(false);
+          }}
+        />
+      )}
+
 
       <Toaster />
     </div>

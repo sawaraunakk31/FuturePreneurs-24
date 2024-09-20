@@ -39,6 +39,7 @@ const Page = () => {
        <br></br>
        <br></br>
        <Header/>
+       <SignInBtn/>
       <RegisterButton />
       <Footer/>
       <CountdownTimer targetDate={targetDate} />

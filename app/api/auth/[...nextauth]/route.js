@@ -60,7 +60,7 @@ const authOptions = {
               }
             );
             if (res.ok) {
-              <Link href={'/userDetails'}/>
+              window.location.assign('/userDetails');
               return user;
             }
           } else {
