@@ -1,4 +1,3 @@
-'use client';
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import grad from "@/assests/assests/Ellipse 44.png";
@@ -21,6 +20,7 @@ export default function CountdownTimer({ targetDate }) {
 
     return timeLeft;
   };
+
 
   const [timeLeft, setTimeLeft] = useState(calculateTimeLeft());
 
@@ -47,7 +47,15 @@ export default function CountdownTimer({ targetDate }) {
     </style>
   );
 
-  return (
+  const fontStyle = {
+    fontFamily: "'GothamBlack', sans-serif",
+    background: 'white',
+    WebkitBackgroundClip: 'text',
+    WebkitTextFillColor: 'transparent',
+    opacity: 0.5, // Set opacity to 0.5 for translucency
+  };
+
+  return(
     <div className="fixed bottom-0 right-0 w-[50%] h-[40%]">
       <LoadFont />
 
@@ -60,39 +68,32 @@ export default function CountdownTimer({ targetDate }) {
           objectFit="cover"
           className="absolute inset-0 rounded-lg"
         />
-        <div
+        {/* <div
           className="absolute inset-0"
           style={{
             background:
               "linear-gradient(to left, rgba(255, 255, 255, 0) 100%, rgba(255, 255, 255, 0.5) 100%, rgba(255, 255, 255, 1) 100%)",
           }}
-        />
+        /> */}
       </div>
 
-      {/* Registration text */}
-      <div className="absolute bottom-[50%] right-[30%] text-xl font-bold text-transparent text-white ">
+      <div className="absolute bottom-44 right-56 text-xl font-bold text-white" style={{ textShadow: '0px 2px 8px 0px #00000040' }}>
         Registration Closes In:
       </div>
 
       {/* Flex container for counter */}
       <div className="flex absolute bottom-0 right-5 space-x-1 mb-5 mr-7">
 
-        {/* Days Section */}
-        <div className="flex flex-col items-center">
-          <div
-            style={{
-              fontFamily: "'GothamBlack', sans-serif",
-              background:
-                "linear-gradient(102deg, #E1ECF8 5.98%, rgba(255, 255, 255, 0.70) 34.07%)",
-              WebkitBackgroundClip: "text",
-              WebkitTextFillColor: "transparent",
-            }}
-            className="text-8xl font-bold text-white bg-clip-text text-transparent"
-          >
-            {formatNumber(timeLeft.days)}:
-          </div>
-          <span className="text-sm text-white ">DAYS</span>
+      {/* Days Section */}
+      <div
+        style={fontStyle}
+        className="fixed bottom-0 right-72 text-8xl font-bold mb-7 mr-7 text-white bg-clip-text text-transparent"
+      >
+        <div className="flex flex-col items-center justify-center">
+          {formatNumber(timeLeft.days)}:
+          <span className="text-sm">DAYS</span>
         </div>
+      </div>
 
         {/* Hours Section */}
         <div className="flex flex-col items-center">
@@ -111,23 +112,17 @@ export default function CountdownTimer({ targetDate }) {
           <span className="text-sm text-white ">HOURS</span>
         </div>
 
-        {/* Minutes Section */}
-        <div className="flex flex-col items-center">
-          <div
-            style={{
-              fontFamily: "'GothamBlack', sans-serif",
-              background:
-                "linear-gradient(81deg, rgba(255, 255, 255, 0.70) 69.39%, #F2CEFE 95.46%)",
-              WebkitBackgroundClip: "text",
-              WebkitTextFillColor: "transparent",
-            }}
-            className="text-8xl font-bold text-white bg-clip-text text-transparent "
-          >
-            :{formatNumber(timeLeft.minutes)}
-          </div>
-          <span className="text-sm text-white ">MINUTES</span>
+      {/* Minutes Section */}
+      <div
+        style={fontStyle}
+        className="fixed bottom-0 right-10 text-8xl font-bold mb-7 mr-7 text-white bg-clip-text text-transparent"
+      >
+        <div className="flex flex-col items-center justify-center">
+          {formatNumber(timeLeft.minutes)}
+          <span className="text-sm">MINUTES</span>
         </div>
       </div>
+    </div>
     </div>
   );
 }

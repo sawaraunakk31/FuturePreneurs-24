@@ -8,6 +8,10 @@ module.exports = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        anton: ['Anton','sans-serif'],
+        gotham:['Gotham Black','sans-serif'],
+      },
       colors: {
         'custom-blue-light': '#137FC1',
         'custom-blue-dark': '#0D70AD',
