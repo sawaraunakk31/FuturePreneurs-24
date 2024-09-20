@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useSession } from "next-auth/react";
 import LoadingScreen from "@/components/LoadingScreen";
+import toast, { Toaster } from 'react-hot-toast';
 
 export default function page() {
   const { data: session, status } = useSession();
@@ -14,28 +15,34 @@ export default function page() {
 
   const createTeam = async()=>{
     setLoading(true);
-    const res = await fetch("/api/createTeam", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${session?.accessTokenBackend}`,
-        "Access-Control-Allow-Origin": "*",
-      },
-      body: JSON.stringify({
-        teamName: teamName
-      }),
-    });
-  
-    if(res.status==400){
+    if(teamName.trim()!=''){
+      const res = await fetch("/api/createTeam", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${session?.accessTokenBackend}`,
+          "Access-Control-Allow-Origin": "*",
+        },
+        body: JSON.stringify({
+          teamName: teamName
+        }),
+      });
+    
+      if(res.status==400){
+        setLoading(false);
+        toast.error('Team name already exists');
+      } else if(res.status==401){
+        setLoading(false);
+        toast.error('You are already in a team');
+      }
+      if(res.status==200){
+        setLoading(false);
+        toast.success('Team has been created');
+        router.push('/leaderDashboard');
+      }
+    }else{
       setLoading(false);
-      alert("Team name already exists");
-    } else if(res.status==401){
-      setLoading(false);
-      alert("You are alredy in a team");
-    }
-    if(res.status==200){
-      setLoading(false);
-      router.push('/leaderDashboard');
+      toast.error('Enter a team name');
     }
   }
 
@@ -96,6 +103,7 @@ export default function page() {
           </div>
         </div>
       </div>
+      <Toaster/>
     </main>
   );
 }

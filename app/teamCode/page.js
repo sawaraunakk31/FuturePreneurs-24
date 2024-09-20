@@ -1,9 +1,9 @@
 "use client";
 
+import NavBar from "@/components/navbar";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import NavBar from "@/components/navbar";
 import toast from "react-hot-toast";
 import LoadingIcons from "react-loading-icons";
 
