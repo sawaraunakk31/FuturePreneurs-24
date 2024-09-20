@@ -9,7 +9,7 @@ import toast, { Toaster } from "react-hot-toast";
 
 export default function Home() {
   useEffect(() => {
-    getData();
+    getData()
   }, []);
   const router = useRouter();
   const { data: session, status } = useSession();
