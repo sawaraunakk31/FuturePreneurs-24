@@ -1,41 +1,41 @@
 .count {
-    width: 6rem;
-    height: 5rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    border-radius: 1rem;
-    background-color: #5e5b71;
-    color: #ffff;
-    padding: 0.8rem;
-    align-items: center;
-  }
-  
-  .CountdownTimer {
-    position: relative;
-    font-size: clamp(1rem, 4.8rem, 2rem);
-    color: #ffff;
-  }
-  .text {
-    font-size: clamp(0.75rem, 2.88rem, 1.25rem);
-    font-weight: 300;
-  }
-  
-  .countText {
-    font-size: 1.2rem;
-    font-weight: bold;
-    margin-left: 0.6rem;
-  }
-  
-  .countContainer {
-    position: relative;
-    font-size: 0.8rem;
-    margin-bottom: 8rem;
-    margin-left: 8rem;
-    display: flex;
-    justify-content: flex-end;
-    gap: 1rem;
-    margin-right: 1rem;
-    margin-top: -2rem;
-    text-align: center;
-  }
+  width: 6rem;
+  height: 5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-radius: 1rem;
+  background-color: #5e5b71;
+  color: #ffff;
+  padding: 0.8rem;
+  align-items: center;
+}
+
+.CountdownTimer {
+  position: relative;
+  font-size: clamp(1rem, 4.8rem, 2rem);
+  color: #ffff;
+}
+.text {
+  font-size: clamp(0.75rem, 2.88rem, 1.25rem);
+  font-weight: 300;
+}
+
+.countText {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-left: 0.6rem;
+}
+
+.countContainer {
+  position: relative;
+  font-size: 0.8rem;
+  margin-bottom: 8rem;
+  margin-left: 8rem;
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  margin-right: 1rem;
+  margin-top: -2rem;
+  text-align: center;
+}
