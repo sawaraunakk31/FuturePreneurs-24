@@ -33,37 +33,51 @@ export default function CountdownTimer({ targetDate }) {
   }, [targetDate]);
 
   const formatNumber = (number) => String(number).padStart(2, '0');
+
   const LoadFont = () => (
     <style>
       {`
         @font-face {
-          font-family: 'TrapBold';
-          src: url('../public/fonts/Trap-Bold.otf') format('opentype'),
+          font-family: ${"GothamBlack"};
+          src: url(${"../public/fonts/Gotham-Black.ttf"}) format(${"opentype"});
           font-weight: bold;
           font-style: normal;
         }
       `}
     </style>
   );
+
   const fontStyle = {
-    fontFamily: "'TrapBold',sans-serif",
+    fontFamily: "'GothamBlack', sans-serif",
     background: 'white',
     WebkitBackgroundClip: 'text',
     WebkitTextFillColor: 'transparent',
   };
 
+
   return (
     <div className="absolute bottom-0 right-0 w-[35rem] h-[25rem]">
-      <LoadFont/>
+      <LoadFont />
       {/* Background image with blur effect and gradient */}
-      <Image src={grad} alt="Background Image" layout="fill" objectFit="cover" className="absolute inset-0 rounded-lg w-full h-full" 
-        style={{
-          backgroundImage: `linear-gradient(to left, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.5) 50%, rgba(255, 255, 255, 1) 100%), url(${grad.src})`,
-          backgroundSize: "cover",
-          filter: "blur(2rem)", // Blur effect
-        }}
-      />
-      
+      <div className="relative w-full h-full">
+        <Image
+          src={grad}
+          alt="Background Image"
+          layout="fill"
+          objectFit="cover"
+          className="absolute inset-0 rounded-lg"
+          style={{
+            filter: "blur(2rem)",
+          }}
+        />
+        <div
+          className="absolute inset-0"
+          style={{
+            background: "linear-gradient(to left, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.5) 50%, rgba(255, 255, 255, 1) 100%)",
+          }}
+        />
+      </div>
+
       <div className="absolute bottom-44 right-56 text-xl font-bold text-white ">
         Registration Closes In:
       </div>

@@ -1,6 +1,6 @@
 'use client';
 import React from 'react';
-import Navbar from '@/components/Navbar'; // Ensure this import path is correct
+import Navbar from '@/components/navbar'; // Ensure this import path is correct
 import RegisterButton from '@/components/registerButton';
 import CountdownTimer from '@/components/counter';
 import Logo from "@/components/logo";
@@ -22,9 +22,10 @@ const HeroSection = () => {
     const res = await fetch("/api/userData", {
       method: "POST",
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
-      Authorization: `Bearer ${session.accessTokenBackend}`,
+      
+      Authorization: `Bearer ${session?.accessTokenBackend}`,
       "Access-Control-Allow-Origin": "*",
       body: JSON.stringify({
         "key": "value",

@@ -12,4 +12,3 @@ const MyComponent4 = () => (
   </svg>
   );
   export default MyComponent4;
-  
