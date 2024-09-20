@@ -1,8 +1,12 @@
+import { useSession } from 'next-auth/react';
+import { useRouter } from 'next/navigation';
 import React, { useState } from 'react';
+import toast from 'react-hot-toast';
+import LoadingScreen from './LoadingScreen';
 
 const MyModal = ({ isVisible, onClose, onConfirm, text }) => {
   if (!isVisible) return null;
-
+  
   return (
     <div
       className="fixed inset-0 bg-black bg-opacity-60 backdrop-blur-sm flex justify-center items-center z-50"
@@ -34,6 +38,40 @@ const MyModal = ({ isVisible, onClose, onConfirm, text }) => {
  const ChangeLeaderModal = ({ isOpen, onClose, members, onConfirm }) => {
   // Store the selected member's index
   const [selectedMemberIndex, setSelectedMemberIndex] = useState(null);
+  const [loading,setLoading] = useState(false);
+  const router = useRouter();
+  const {data:session} = useSession();
+
+
+  const leaveLeader = async(index)=>{
+    setLoading(true);
+    console.log("inside function");
+    try {
+      console.log("inside fetch");
+      const response = await fetch("/api/leaderLeave", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${session?.accessTokenBackend}`,
+        },
+        body: JSON.stringify({ index }),
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        console.log(data);
+        toast.success("New Leader is assigned");
+        router.push('/join&createTeam');
+        setLoading(false);
+      } else {
+        toast.error("New Leader can't be assigned");
+        setLoading(false);
+      }
+    } catch (error) {
+      toast.error("An error occurred while fetching team name.");
+      setLoading(false);
+    }
+  }
 
   if (!isOpen) return null;
 
@@ -43,6 +81,7 @@ const MyModal = ({ isVisible, onClose, onConfirm, text }) => {
       id="wrapper"
       onClick={onClose}
     >
+    {loading&&<LoadingScreen/>}
       <div
         className="bg-white p-6 rounded-lg shadow-xl w-[90%] max-w-md flex flex-col items-center relative"
         onClick={(e) => e.stopPropagation()} // Prevent closing when clicking inside the modal
@@ -71,7 +110,7 @@ const MyModal = ({ isVisible, onClose, onConfirm, text }) => {
         <div className="flex justify-center space-x-4 mt-4">
           <button
             onClick={() => {
-              onConfirm(selectedMemberIndex); // Pass the selected index
+              leaveLeader(selectedMemberIndex); // Pass the selected index
               onClose(); // Close the modal
             }}
             disabled={selectedMemberIndex === null} // Disable if no member is selected
