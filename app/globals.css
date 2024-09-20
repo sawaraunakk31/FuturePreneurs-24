@@ -8,6 +8,16 @@
   font-weight: bold;
   font-style: normal;
 }
+@font-face {
+  font-family: 'Whyte-Inktrap';
+  src: url('/fonts/WhyteInktrap-Black.eot'); /* For older IE browsers */
+  src: url('/fonts/WhyteInktrap-Black.woff2') format('woff2'),
+       url('/fonts/WhyteInktrap-Black.woff') format('woff'),
+       url('/fonts/WhyteInktrap-Black.ttf') format('truetype');
+  font-weight: bold;
+  font-style: normal;
+}
+
 
 :root {
   --background: #ffffff;
