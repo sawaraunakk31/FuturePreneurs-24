@@ -1,53 +1,80 @@
 'use client';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
+import { useSession } from "next-auth/react";
+import LoadingScreen from '@/components/LoadingScreen';
 import img1 from '@/assests/assests/teammember.jpg';
 import Modal from '@/components/Modal';
 import MyModal from '@/components/Modal';
+import toast, { Toaster } from 'react-hot-toast';
 
 export default function Home() {
+  const { data: session, status } = useSession();
+  const [teamName,setTeamName] = useState();
   const router = useRouter();
-  
-  const teamLeader = [
-    { id: 1, name: 'Full Name', registrationNumber: '2XXXXXXXX', mobileNumber: 'XXXXXXXXXX' },
-  ];
+  const [loading, setLoading] = useState(false);
+  const [teamMembers, setTeamMembers] = useState([]);
+  const [showModal,setShowModal]=useState(false);
 
-  const [teamMembers, setTeamMembers] = useState([
-    { id: 1, name: 'Full Name', registrationNumber: '2XXXXXXXX', mobileNumber: 'XXXXXXXXXX' },
-    { id: 2, name: 'Full Name', registrationNumber: '2XXXXXXXX', mobileNumber: 'XXXXXXXXXX' },
-    { id: 3, name: 'Full Name', registrationNumber: '2XXXXXXXX', mobileNumber: 'XXXXXXXXXX' }
-  ]);
-  const [showModal,setShowModal]=useState(false)
   const handleShowModal=()=>{
     setShowModal(!showModal)
   }
-  const handleLeave = () => {
-    if (teamMembers.length > 0) {
-      const updatedTeamMembers = teamMembers.slice(1);
-      setTeamMembers(updatedTeamMembers);
+
+  useEffect(()=>{
+    getData();
+  },[]);
+
+  const getData = async()=>{
+    setLoading(true);
+    const res = await fetch('/api/userDataGet',{
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      
+      Authorization: `Bearer ${session?.accessTokenBackend}`,
+      "Access-Control-Allow-Origin": "*",
+    })
+    if (res.ok){
+      const data = await res.json();
+      setTeamName(data.team.teamName);
+      setTeamMembers(data.members);
+      setLoading(false);
+    } else {
+      toast.error('Error occured');
+    }
+  }
+
+  const handleLeave = async()=>{
+    setLoading(true);
+    const res = await fetch("/api/leaveTeam", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${session?.accessTokenBackend}`,
+        "Access-Control-Allow-Origin": "*",
+      },
+      body: JSON.stringify({
+        // teamName: teamName
+      }),
+    });
+  
+    if (res.status==200){
+      setLoading(false);
+      toast.success('Left the team successfully');
       router.push('/join&createTeam');
     } else {
-      alert("No more members to remove!");
+      setLoading(false);
+      toast.error("Error while leaving the team, please try again");
     }
-  };
+  }
 
   return (
     <div className="bg-white bg-cover bg-center min-h-screen flex flex-col items-center justify-center p-5 text-black">
-      <h1 className="text-4xl sm:text-5xl font-extrabold mb-8 text-center drop-shadow-lg">Your Team</h1>
+      {loading && <LoadingScreen/>}
+      <h1 className="text-4xl sm:text-5xl font-extrabold mb-8 text-center drop-shadow-lg">{teamName}</h1>
       
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 w-full max-w-screen-lg px-4">
-        {teamLeader.map((leader) => (
-          <div
-            key={leader.id}
-            className="bg-[#141B2B] rounded-lg p-6 text-center shadow-lg transform hover:scale-105 transition-transform duration-300 flex flex-col items-center justify-between"
-          >
-            <img src={img1.src} alt="Team Leader" className="w-24 h-24 mb-4 rounded-full shadow-md" />
-            <h2 className="text-2xl font-bold mb-2">{leader.name}</h2>
-            <p className="text-sm mb-1">Registration Number: {leader.registrationNumber}</p>
-            <p className="text-sm">Mobile Number: {leader.mobileNumber}</p>
-          </div>
-        ))}
-
         {teamMembers.map((member) => (
           <div
             key={member.id}
@@ -55,8 +82,8 @@ export default function Home() {
           >
             <img src={img1.src} alt="Team Member" className="w-24 h-24 mb-4 rounded-full shadow-md" />
             <h2 className="text-2xl font-bold mb-2">{member.name}</h2>
-            <p className="text-sm mb-1">Registration Number: {member.registrationNumber}</p>
-            <p className="text-sm">Mobile Number: {member.mobileNumber}</p>
+            <p className="text-sm mb-1">Registration Number: {member.regNo}</p>
+            <p className="text-sm">Mobile Number: {member.mobNo}</p>
           </div>
         ))}
       </div>
@@ -67,12 +94,13 @@ export default function Home() {
         Leave
       </button>
       {showModal&&<MyModal
-  isVisible={showModal}
-  onClose={handleShowModal}  // Closes the modal on "No" or background click
-  onConfirm={handleLeave}    // Calls handleLeave when "Yes" is clicked
-  text="Do you want to leave this team?"
-/>
-}
+        isVisible={showModal}
+        onClose={handleShowModal}  // Closes the modal on "No" or background click
+        onConfirm={handleLeave}    // Calls handleLeave when "Yes" is clicked
+        text="Do you want to leave this team?"
+      />
+      }
+      <Toaster/>
     </div>
   );
 }

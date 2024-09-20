@@ -1,5 +1,6 @@
 "use client";
 
+import NavBar from "@/components/navbar";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -32,15 +33,15 @@ const JoinTeam = ({ teamCode: propTeamCode }) => {
 
   useEffect(()=>{
     getUserData();
-  })
+  },[])
 
   const getUserData = () => {
-    fetch(`/api/userDetails`, {
+    fetch(`/api/userInfo`, {
       content: "application/json",
       method: "GET",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${session.accessTokenBackend}`,
+        Authorization: `Bearer ${session?.accessTokenBackend}`,
         "Access-Control-Allow-Origin": "*",
       },
     })
@@ -79,16 +80,18 @@ const JoinTeam = ({ teamCode: propTeamCode }) => {
     // }, 800);
   };
 
-  const fetchTeamName = async () => {
+  const fetchTeamName = async (e) => {
+    e.preventDefault();
     setLoading(true);
     try {
-      const response = await fetch(`/api/getTeamViaToken`, {
+      console.log("inside fetch");
+      const response = await fetch(`/api/joinTeamViaToken`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
           Authorization: "Bearer " + session?.accessTokenBackend,
         },
-        body: JSON.stringify({ teamCode: teamCode }),
+        body: JSON.stringify({ teamCode }),
       });
 
       if (response.ok) {
@@ -160,8 +163,12 @@ const JoinTeam = ({ teamCode: propTeamCode }) => {
             <input 
               type="text" 
               placeholder="Enter Team Code" 
-              className="w-[53vw] md:w-[30vw] lg:w-[15vw] focus:font-bold active:scale-95 transition-all duration-300 rounded-md p-2 text-black"/>
-            <button type="Submit" className=" items-center md-7 rounded-3xl w-[30vw] md:w-[20vw] lg:w-[11vw] bg-gradient-to-b from-[#FF7E7E] to-[#FFEF99] transition-transform ease-in-out duration-300 hover:scale-110 active:scale-95 bg-blue-500 text-white p-2 border">
+              className="w-[53vw] md:w-[30vw] lg:w-[15vw] focus:font-bold active:scale-95 transition-all duration-300 rounded-md p-2 text-black"
+              value={teamCode}
+              onChange={(e)=>{setTeamCode(e.target.value)}}
+              />
+            <button className=" items-center md-7 rounded-3xl w-[30vw] md:w-[20vw] lg:w-[11vw] bg-gradient-to-b from-[#FF7E7E] to-[#FFEF99] transition-transform ease-in-out duration-300 hover:scale-110 active:scale-95 bg-blue-500 text-white p-2 border"
+            onClick = {fetchTeamName}>
               Join Team
             </button>
           </form>
