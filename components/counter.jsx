@@ -1,3 +1,4 @@
+'use client';
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import grad from "@/assests/assests/Ellipse 44.png";
@@ -47,20 +48,12 @@ export default function CountdownTimer({ targetDate }) {
     </style>
   );
 
-  const fontStyle = {
-    fontFamily: "'GothamBlack', sans-serif",
-    background: 'white',
-    WebkitBackgroundClip: 'text',
-    WebkitTextFillColor: 'transparent',
-    opacity: 0.5, // Set opacity to 0.5 for translucency
-  };
-
-  return(
-    <div className="fixed bottom-0 right-0 w-[50%] h-[40%]">
+  return (
+    <div className="bottom-0 right-0 w-[50%] h-[40%] sm:w-[90%] sm:h-[30%] md:w-[70%] md:h-[35%]">
       <LoadFont />
 
       {/* Background image with blur effect and gradient */}
-      <div className="relative w-full h-full">
+      <div className="bottom-0 right-0 absolute w-[50%] h-[50%]">
         <Image
           src={grad}
           alt="Background Image"
@@ -77,52 +70,68 @@ export default function CountdownTimer({ targetDate }) {
         /> */}
       </div>
 
-      <div className="absolute bottom-44 right-56 text-xl font-bold text-white" style={{ textShadow: '0px 2px 8px 0px #00000040' }}>
-        Registration Closes In:
-      </div>
-
-      {/* Flex container for counter */}
-      <div className="flex absolute bottom-0 right-5 space-x-1 mb-5 mr-7">
-
-      {/* Days Section */}
-      <div
-        style={fontStyle}
-        className="fixed bottom-0 right-72 text-8xl font-bold mb-7 mr-7 text-white bg-clip-text text-transparent"
-      >
-        <div className="flex flex-col items-center justify-center">
-          {formatNumber(timeLeft.days)}:
-          <span className="text-sm">DAYS</span>
+      {/* Registration text and timer container */}
+      <div className="absolute bottom-0 right-0 mr-9 mb-7 flex flex-col items-center space-y-4">
+        {/* Registration Text */}
+        <div className="text-xl font-bold text-white sm:text-lg md:text-xl">
+          Registration Closes In:
         </div>
-      </div>
 
-        {/* Hours Section */}
-        <div className="flex flex-col items-center">
-          <div
-            style={{
-              fontFamily: "'GothamBlack', sans-serif",
-              background:
-                "linear-gradient(75deg, rgba(255, 255, 255, 0.70) 40.83%, #D48CFB 97.96%)",
-              WebkitBackgroundClip: "text",
-              WebkitTextFillColor: "transparent",
-            }}
-            className="text-8xl font-bold text-white bg-clip-text text-transparent "
-          >
-            {formatNumber(timeLeft.hours)}
+        {/* Timer */}
+        <div className="flex space-x-1">
+
+          {/* Days Section */}
+          <div className="flex flex-col items-center">
+            <div
+              style={{
+                fontFamily: "'GothamBlack', sans-serif",
+                background:
+                  "linear-gradient(102deg, #E1ECF8 5.98%, rgba(255, 255, 255, 0.70) 34.07%)",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+              }}
+              className="text-8xl font-bold text-white bg-clip-text text-transparent sm:text-4xl md:text-6xl"
+            >
+              {formatNumber(timeLeft.days)}:
+            </div>
+            <span className="text-sm text-white sm:text-xs md:text-sm">DAYS</span>
           </div>
-          <span className="text-sm text-white ">HOURS</span>
-        </div>
 
-      {/* Minutes Section */}
-      <div
-        style={fontStyle}
-        className="fixed bottom-0 right-10 text-8xl font-bold mb-7 mr-7 text-white bg-clip-text text-transparent"
-      >
-        <div className="flex flex-col items-center justify-center">
-          {formatNumber(timeLeft.minutes)}
-          <span className="text-sm">MINUTES</span>
+          {/* Hours Section */}
+          <div className="flex flex-col items-center">
+            <div
+              style={{
+                fontFamily: "'GothamBlack', sans-serif",
+                background:
+                  "linear-gradient(75deg, rgba(255, 255, 255, 0.70) 40.83%, #D48CFB 97.96%)",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+              }}
+              className="text-8xl font-bold text-white bg-clip-text text-transparent sm:text-4xl md:text-6xl"
+            >
+              {formatNumber(timeLeft.hours)}
+            </div>
+            <span className="text-sm text-white sm:text-xs md:text-sm">HOURS</span>
+          </div>
+
+          {/* Minutes Section */}
+          <div className="flex flex-col items-center">
+            <div
+              style={{
+                fontFamily: "'GothamBlack', sans-serif",
+                background:
+                  "linear-gradient(81deg, rgba(255, 255, 255, 0.70) 69.39%, #F2CEFE 95.46%)",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+              }}
+              className="text-8xl font-bold text-white bg-clip-text text-transparent sm:text-4xl md:text-6xl"
+            >
+              :{formatNumber(timeLeft.minutes)}
+            </div>
+            <span className="text-sm text-white sm:text-xs md:text-sm">MINUTES</span>
+          </div>
         </div>
       </div>
-    </div>
     </div>
   );
 }

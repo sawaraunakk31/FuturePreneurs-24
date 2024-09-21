@@ -16,7 +16,7 @@ const VideoBackground = () => {
             loop
             muted
             playsInline
-            className="absolute top-1/2 left-1/2 min-w-full min-h-full w-auto h-auto transform -translate-x-1/2 -translate-y-1/2 object-cover mix-blend-lighten blur-3xl"
+            className="absolute top-1/2 left-1/2 min-w-full min-h-full w-auto h-auto transform -translate-x-1/2 -translate-y-1/2 object-cover mix-blend-lighten blur-2xl opacity-50"
         >
             <source src={vid_bg} type="video/mp4" />
             Your browser does not support the video tag.
