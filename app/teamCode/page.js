@@ -157,7 +157,7 @@ const JoinTeam = ({ teamCode: propTeamCode }) => {
         </div>
         <div className="flex flex-col gap-4 w-[inherit] justify-around content-center">
           <div className="flex flex-col justify-center items-center gap-8">
-          <form>
+          <form className="flex flex-col justify-center items-center gap-8">
             <input 
               type="text" 
               placeholder="Enter Team Code" 
@@ -165,7 +165,7 @@ const JoinTeam = ({ teamCode: propTeamCode }) => {
               value={teamCode}
               onChange={(e)=>{setTeamCode(e.target.value)}}
               />
-            <button className=" items-center md-7 rounded-3xl w-[30vw] md:w-[20vw] lg:w-[11vw] bg-gradient-to-b from-[#FF7E7E] to-[#FFEF99] transition-transform ease-in-out duration-300 hover:scale-110 active:scale-95 bg-blue-500 text-white p-2 border"
+            <button className=" items-center md-7 rounded-3xl w-[30vw] md:w-[20vw] lg:w-[11vw] bg-gradient-to-b from-[#FF7E7E] to-[#FFEF99] transition-transform ease-in-out duration-300 hover:scale-110 active:scale-95 bg-blue-500 text-white p-2 border-black"
             onClick = {fetchTeamName}>
               Join Team
             </button>
