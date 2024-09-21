@@ -36,7 +36,7 @@ const TeamDetails = () => {
 
   const getUserData = () => {
     setLoading(true);
-    fetch(`/api/userDataGet`, {
+    fetch(`/api/userInfo`, {
       content: "application/json",
       method: "GET",
       headers: {
@@ -82,7 +82,7 @@ const TeamDetails = () => {
             setLoading(true);
           });
       });
-  };
+    };
 
   return (
     <div className="h-[100vh] flex items-center justify-center text-white font-sans bg-[url('../assests/assests/background_image.jpg')] bg-cover bg-center">
@@ -116,5 +116,6 @@ const TeamDetails = () => {
     </div>
   );
 };
+
 
 export default TeamDetails;
