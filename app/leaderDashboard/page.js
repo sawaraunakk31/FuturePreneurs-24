@@ -2,14 +2,14 @@
 import React, { useEffect, useState } from "react";
 import img1 from "@/assests/assests/teammember.jpg";
 import { useRouter } from "next/navigation";
-import MyModal from "@/Components/Modal";
+import {MyModal,ChangeLeaderModal} from "@/Components/Modal";
 import { useSession } from "next-auth/react";
 import LoadingScreen from "@/components/LoadingScreen";
 import toast, { Toaster } from "react-hot-toast";
 
 export default function Home() {
   useEffect(() => {
-    getData();
+    getData()
   }, []);
   const router = useRouter();
   const { data: session, status } = useSession();
@@ -49,8 +49,12 @@ export default function Home() {
   const [showModal, setShowModal] = useState(false);
   const [modalMemberId, setModalMemberId] = useState(null);
   const [modalType, setModalType] = useState("");
-  const [leaveTeamModal, setLeaveTeamModal] = useState('');
+  const [leaveLeaderModal, setLeaveLeaderModal] = useState("");
   const [loading, setLoading] = useState(false);
+  const [num, setNum] = useState(null);
+  const [handleDeleteModal, setHandleDeleteModal] = useState(false);
+  const [deleteText,setDeleteText] = useState('');
+
 
   const getData = async () => {
     setLoading(true);
@@ -63,6 +67,7 @@ export default function Home() {
       Authorization: `Bearer ${session?.accessTokenBackend}`,
       "Access-Control-Allow-Origin": "*",
     });
+
     const data = await res.json();
     setTeamName(data.team.teamName);
     setTeamMembers(data.members);
@@ -70,8 +75,15 @@ export default function Home() {
   };
 
   const handleShowModal = (id = null, type = "") => {
-    if (id == 0 && teamMembers.length>1) {
-      setLeaveTeamModal(true);
+    if (id === 0) {
+      if (teamMembers.length > 1) {
+        console.log('hello inside add')
+      } else {
+        console.log('hello inside delete');
+        setHandleDeleteModal(true);
+        setDeleteText("Do you want to delete the Team?");
+        // toast.error("Delete the team");
+      }
     } else {
       setModalMemberId(id);
       setModalType(type);
@@ -91,11 +103,11 @@ export default function Home() {
     console.log(index);
     try {
       console.log("inside fetch");
-      const response = await fetch(`/api/removeMember`, {
+      const response = await fetch("/api/removeMember", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Authorization: "Bearer " + session?.accessTokenBackend,
+          Authorization: `Bearer ${session?.accessTokenBackend}`,
         },
         body: JSON.stringify({ index }),
       });
@@ -107,11 +119,44 @@ export default function Home() {
         setLoading(false);
         window.location.reload();
       } else {
-        showMessage("Team code not found. Please try again.");
+        toast.error("Team code not found. Please try again.");
         setLoading(false);
       }
     } catch (error) {
-      showMessage("An error occurred while fetching team name.");
+      toast.error("An error occurred while fetching team name.");
+      setLoading(false);
+    }
+    // const updatedTeamMembers = teamMembers.filter((member) => member.id !== modalMemberId);
+    // setTeamMembers(updatedTeamMembers);
+    handleCloseModal();
+  };
+
+  const deleteTeam = async () => {
+    setLoading(true);
+    console.log("team delete");
+    try {
+      console.log("inside delete");
+      const response = await fetch("/api/deleteTeam", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${session?.accessTokenBackend}`,
+        },
+        body: JSON.stringify({  }),
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        console.log(data);
+        toast.success("Team is deleted");
+        setLoading(false);
+        router.push('/join&createTeam');
+      } else {
+        toast.error("Team can't be deleted");
+        setLoading(false);
+      }
+    } catch (error) {
+      toast.error("An error occurred while fetching team name.");
       setLoading(false);
     }
     // const updatedTeamMembers = teamMembers.filter((member) => member.id !== modalMemberId);
@@ -144,12 +189,12 @@ export default function Home() {
             <h2 className="text-lg font-bold mb-1">{member.name}</h2>
             <p className="text-xs mb-1">Reg. No.: {member.regNo}</p>
             <p className="text-xs">Mobile No.: {member.mobNo}</p>
-            <button
+            {teamMembers.length>1 && <button
               className="bg-blue-600 text-white py-1 px-4 rounded-full mt-2 font-semibold transition-colors duration-300 hover:bg-[#1e5db8] focus:outline-none text-sm"
               onClick={() => handleShowModal(index, "remove")}
             >
               {index == 0 ? "Leave" : "Remove"}
-            </button>
+            </button>}
           </div>
         ))}
       </div>
@@ -165,6 +210,17 @@ export default function Home() {
         </div>
       )}
 
+      {teamMembers.length == 1 && (
+        <div className="flex justify-center mt-4 w-full">
+          <button
+            className="bg-red-600 text-white py-2 px-6 rounded-full font-semibold transition-colors duration-300 hover:bg-red-700 focus:outline-none shadow-lg text-[0.9rem] max-w-[150px]"
+            onClick={() => handleShowModal(null, "")}
+          >
+            Delete Team
+          </button>
+        </div>
+      )}
+
       {showModal && (
         <MyModal
           isVisible={true}
@@ -173,17 +229,50 @@ export default function Home() {
             if (modalType == "remove") {
               console.log(modalMemberId);
               handleRemove(modalMemberId);
-            } else {
+            } else if(modalType=="add") {
               handleAddTeamMember();
+            }else{
+              console.log('inside  delete team');
+
+              deleteTeam();
             }
           }}
           text={
             modalType === "remove"
               ? "Do you want to remove this member?"
-              : "Do you want to add a member?"
+              : modalType ==="add" ? "Do you want to add a member?"
+              :"Do you want to delete the team?"
           }
         />
       )}
+      {handleDeleteModal && (
+        <MyModal
+        isVisible={true}
+        onClose={handleCloseModal}
+        onConfirm={deleteTeam}
+        text={deleteText}
+      />
+      )}
+        
+
+      {/*  ye new leaader selection ka h  */}
+     
+     {leaveLeaderModal && (
+      <ChangeLeaderModal
+        isOpen={leaveLeaderModal}
+        onClose={() => setLeaveLeaderModal(false)}
+        members={teamMembers}
+        onConfirm={(selectedMemberIndex) => {
+          if (selectedMemberIndex !== null) { // Check if a valid index is selected
+            setNum(selectedMemberIndex); // Store the selected member's index in `num`
+            console.log("New leader index:", selectedMemberIndex);
+          }
+          setLeaveLeaderModal(false); // Close the modal after confirmation
+        }}
+      />
+    )}
+    
+
 
       <Toaster />
     </div>

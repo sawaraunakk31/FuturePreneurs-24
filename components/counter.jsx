@@ -1,4 +1,3 @@
-"use client";
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import grad from "@/assests/assests/Ellipse 44.png";
@@ -52,6 +51,7 @@ export default function CountdownTimer({ targetDate }) {
     background: 'white',
     WebkitBackgroundClip: 'text',
     WebkitTextFillColor: 'transparent',
+    opacity: 0.5, // Set opacity to 0.5 for translucency
   };
 
 
@@ -70,15 +70,15 @@ export default function CountdownTimer({ targetDate }) {
             filter: "blur(2rem)",
           }}
         />
-        <div
+        {/* <div
           className="absolute inset-0"
           style={{
             background: "linear-gradient(to left, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.5) 50%, rgba(255, 255, 255, 1) 100%)",
           }}
-        />
+        /> */}
       </div>
 
-      <div className="absolute bottom-44 right-56 text-xl font-bold text-white ">
+      <div className="absolute bottom-44 right-56 text-xl font-bold text-white" style={{ textShadow: '0px 2px 8px 0px #00000040' }}>
         Registration Closes In:
       </div>
 
@@ -89,7 +89,7 @@ export default function CountdownTimer({ targetDate }) {
       >
         <div className="flex flex-col items-center justify-center">
           {formatNumber(timeLeft.days)}:
-          <span className="text-sm ">DAYS</span>
+          <span className="text-sm">DAYS</span>
         </div>
       </div>
 
@@ -111,7 +111,7 @@ export default function CountdownTimer({ targetDate }) {
       >
         <div className="flex flex-col items-center justify-center">
           {formatNumber(timeLeft.minutes)}
-          <span className="text-sm ">MINUTES</span>
+          <span className="text-sm">MINUTES</span>
         </div>
       </div>
     </div>
