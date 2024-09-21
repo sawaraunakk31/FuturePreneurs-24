@@ -18,7 +18,7 @@ const registerButton = () => {
       getData();
     } else {
     }
-  },[]);
+  },[status]);
 
   const getData = async () => {
     setLoading(true);

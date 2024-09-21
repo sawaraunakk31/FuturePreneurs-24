@@ -194,6 +194,7 @@ export default function UserDetail() {
                   name="number"
                   value={formData.number}
                   onChange={handleChange}
+                  onWheel={(e) => e.target.blur()}
                   className={`border rounded-md text-lg  text-black ${errors.number ? 'border-red-500 focus:ring-red-300' : 'border-gray-300 focus:ring-blue-200'} focus:outline-none focus:ring-2`}
                 />
                 {errors.number && <p className="text-red-500 text-sm">{errors.number}</p>}

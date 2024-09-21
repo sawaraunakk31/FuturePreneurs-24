@@ -54,7 +54,7 @@ export default function page() {
 
 const createTeam = async () => {
   setLoading(true);
-  if (teamName.trim() != '') {
+  if (teamName?.trim() != '') {
     const res = await fetch("/api/createTeam", {
       method: "POST",
       headers: {
