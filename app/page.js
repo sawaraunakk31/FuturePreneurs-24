@@ -6,7 +6,6 @@ import Timeline from '@/components/landingPage/timeline';
 export default function page() {
   return (
     <main className='min-h-screen'>
-
     <Animation/>
 
     <Timeline />

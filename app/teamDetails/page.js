@@ -4,18 +4,30 @@ import React, { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCopy } from "@fortawesome/free-solid-svg-icons";
 import LoadingScreen from "@/components/LoadingScreen";
+import toast, { Toaster } from 'react-hot-toast';
 import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 const TeamDetails = () => {
-  const { data: session } = useSession();
+  const { data: session, status} = useSession();
   const [teamCode, setTeamCode] = useState("ABC123");
   const [teamName, setTeamName] = useState("");
   const [loading, setLoading] = useState(false);
   const teamLink = `https://fp/${teamCode}`;
 
+  const router = useRouter();
+
   useEffect(() => {
-    getUserData();
-  }, []);
+    setLoading(true);
+    if (status == "unauthenticated") {
+      setLoading(false);
+      toast.error("Please Log in or Sign up");
+      router.push("/");
+    } else if (status == "authenticated") {
+      setLoading(false);
+      getUserData();
+    }
+  }, [status, router]);
 
   const handleCopy = (text) => {
     navigator.clipboard.writeText(text);
@@ -24,7 +36,7 @@ const TeamDetails = () => {
 
   const getUserData = () => {
     setLoading(true);
-    fetch(`/api/userDataGet`, {
+    fetch(`/api/userInfo`, {
       content: "application/json",
       method: "GET",
       headers: {
@@ -70,7 +82,7 @@ const TeamDetails = () => {
             setLoading(true);
           });
       });
-  };
+    };
 
   return (
     <div className="h-[100vh] flex items-center justify-center text-white font-sans bg-[url('../assests/assests/background_image.jpg')] bg-cover bg-center">
@@ -104,5 +116,6 @@ const TeamDetails = () => {
     </div>
   );
 };
+
 
 export default TeamDetails;

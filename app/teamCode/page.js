@@ -4,8 +4,9 @@ import NavBar from "@/components/navbar";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import toast from "react-hot-toast";
+import toast, { Toaster } from 'react-hot-toast';
 import LoadingIcons from "react-loading-icons";
+import LoadingScreen from "@/components/LoadingScreen";
 
 const JoinTeam = ({ teamCode: propTeamCode }) => {
   const [teamCode, setTeamCode] = useState(propTeamCode || "");
@@ -18,22 +19,17 @@ const JoinTeam = ({ teamCode: propTeamCode }) => {
   const router = useRouter();
   const { data: session, status } = useSession();
 
-  // useEffect(() => {
-  //   if (status === "unauthenticated") {
-  //     //Checks if session is not ready and redirects to root.
-
-  //     router.push("/");
-  //   } else if (status === "authenticated") {
-  //     router.push('/')
-  //     // toast.success("Logged In");
-  //     getUserData();
-  //     localStorage.setItem("asdf", "asdf");
-  //   }
-  // }, [status, router]);
-
-  useEffect(()=>{
-    getUserData();
-  },[])
+  useEffect(() => {
+    setLoading(true);
+    if (status == "unauthenticated") {
+      setLoading(false);
+      router.push("/");
+      toast.error("Please Log in or Sign up");
+    } else if (status == "authenticated") {
+      setLoading(false);
+      getUserData();
+    }
+  }, [status, router]);
 
   const getUserData = () => {
     fetch(`/api/userInfo`, {
@@ -62,11 +58,11 @@ const JoinTeam = ({ teamCode: propTeamCode }) => {
       });
   };
 
-  useEffect(() => {
-    if (propTeamCode) {
-      simulateTyping(propTeamCode);
-    }
-  }, [propTeamCode]);
+  // useEffect(() => {
+  //   if (propTeamCode) {
+  //     simulateTyping(propTeamCode);
+  //   }
+  // }, [propTeamCode]);
 
   const simulateTyping = async (code) => {
     for (let i = 0; i < code.length; i++) {
@@ -153,6 +149,7 @@ const JoinTeam = ({ teamCode: propTeamCode }) => {
   return (
     <div className="bg-white h-[100vh] w-[100vw] flex flex-col items-center justify-around">
       <NavBar/>
+      {loading && <LoadingScreen />}
       <div className="bg-[#141B2B] h-[45vh] w-[70vw] md:h-[57vh] md:w-[45vw] rounded-md flex flex-col justify-center">
         <div className="text-2xl lg:text-4xl font-bold text-center py-8 text-white">
           Enter Team Code
