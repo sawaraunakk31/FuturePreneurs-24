@@ -6,8 +6,11 @@ import FaqMainContent from "@/components/FAQcomp/FaqMainContent";
 export default function Page(){
     return(
         <>
+        <main className="overflow-auto">
+
         <FaqHeader/>
         <Footer/>
+        </main>
         </>
     )
 }
