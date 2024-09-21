@@ -77,7 +77,7 @@ const Navbar = () => {
 
         {/* Navigation Links */}
         <div className="flex space-x-12 z-20 p-4">
-          <Link href="#home">
+          <Link href="/">
             <div className="text-black text-lg uppercase hover:text-blue-400 transition duration-300 cursor-pointer">
               Home
             </div>
@@ -104,7 +104,7 @@ const Navbar = () => {
       {isMenuOpen && (
         <div className="fixed top-16 right-0 h-1/2 w-3/5 py-2 bg-black bg-opacity-40 z-40 transition-transform transform duration-300 ease-in-out md:hidden border-gray-300 rounded-[25px]">
           <div className="flex flex-col items-center space-y-10 py-12 pt-16">
-            <Link href="#home" onClick={closeMenu}>
+            <Link href="/" onClick={closeMenu}>
               <div className="text-white text-2xl font-bold uppercase hover:text-blue-400 active:text-blue-400 transition duration-300 cursor-pointer">
                 Home
               </div>

@@ -34,28 +34,27 @@ const registerButton = () => {
 
     const data = await res.json();
     setDetails(data);
-    setTeam(data.user.teamId);
     setLoading(false);
   };
 
   const handleClick = ()=>{
     setLoading(true);
-    if(details.user.teamId){
-        if(details.user.teamRole===0){
+    if(details?.user?.hasFilledDetails==true){
+        if(details?.user?.teamId){
+          if(details?.user?.teamRole==0){
+            setLoading(false)
             router.push('/leaderDashboard')
-            setLoading(false);
-        }else{
+          }else{
+            setLoading(false)
             router.push('/memberDashboard')
-            setLoading(false);
+          }
+        }else{
+          setLoading(false)
+          router.push('/join&createTeam');
         }
     }else{
-        if(details.user.hasFilledDetails){
-            router.push('/join&createTeam')
-            setLoading(false);
-        }else{
-            router.push('/userDetails')
-            setLoading(false);
-        }
+        setLoading(false);
+        router.push('/userDetails');
     }
   }
 
@@ -75,7 +74,7 @@ const registerButton = () => {
           className="bg-gradient-to-r from-purple-500 to-blue-500 text-white font-semibold py-3 px-10 rounded-lg shadow-lg hover:shadow-xl transition duration-300 hover:text-black"
           onClick={() => {handleClick()}}
         >
-          {loading ? <LoadingIcons.Oval/> : (team ? 'Dashboard' : 'Register!')}
+          {loading ? <LoadingIcons.Oval/> : (details?.user?.teamId ? 'Dashboard' : 'Register!')}
         </button>
       )
       }
