@@ -118,9 +118,8 @@ export default function Home() {
   const handleShowModal = (id = null, type = "") => {
     if (id === 0) {
       if (teamMembers.length > 1) {
-        console.log('hello inside add')
+        setLeaveLeaderModal(true);
       } else {
-        console.log('hello inside delete');
         setHandleDeleteModal(true);
         setDeleteText("Do you want to delete the Team?");
         // toast.error("Delete the team");
