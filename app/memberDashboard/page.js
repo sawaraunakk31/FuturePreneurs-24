@@ -49,12 +49,17 @@ export default function Home() {
         if (user.hasFilledDetails === true) {
           if (user.teamId) {
             if (user.teamRole == 0) {
+              setLoading(false);
               router.push("/leaderDashboard");
+            }else{
+              setLoading(false)
             }
           } else {
+            setLoading(false);
             router.push("/join&createTeam");
           }
         } else {
+          setLoading(false);
           router.push("/userDetails");
         }
         fetch(`/api/getTeamCode`, {

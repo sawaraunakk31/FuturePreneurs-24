@@ -95,6 +95,7 @@ const JoinTeam = ({ teamCode: propTeamCode }) => {
 
         setTeamName(data.teamDetails.teamName);
         setShowDialog(true); // Show the dialog box
+        setLoading(false);
       } else {
         showMessage("Team code not found. Please try again.");
         setLoading(false);
