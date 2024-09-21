@@ -7,7 +7,7 @@ import { useSession } from "next-auth/react";
 import LoadingScreen from "@/components/LoadingScreen";
 import toast, { Toaster } from "react-hot-toast";
 
-export default function Home() {
+export default function Page() {
   const router = useRouter();
   const { data: session, status } = useSession();
   const [check, setcheck] = useState(0);

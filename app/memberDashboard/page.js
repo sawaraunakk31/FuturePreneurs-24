@@ -4,19 +4,18 @@ import { useRouter } from 'next/navigation';
 import { useSession } from "next-auth/react";
 import LoadingScreen from '@/components/LoadingScreen';
 import img1 from '@/assests/assests/teammember.jpg';
-import Modal from '@/components/Modal';
-import MyModal from '@/components/Modal';
+import {MyModal} from '@/components/Modal';
 import toast, { Toaster } from 'react-hot-toast';
 
-export default function Home() {
+export default function Page() {
   const { data: session, status } = useSession();
-  const [teamName,setTeamName] = useState();
+  const [teamName, setTeamName] = useState();
   const router = useRouter();
   const [loading, setLoading] = useState(false);
   const [teamMembers, setTeamMembers] = useState([]);
-  const [showModal,setShowModal]=useState(false);
+  const [showModal, setShowModal] = useState(false);
 
-  const handleShowModal=()=>{
+  const handleShowModal = () => {
     setShowModal(!showModal)
   }
 
@@ -51,7 +50,7 @@ export default function Home() {
             if (user.teamRole == 0) {
               setLoading(false);
               router.push("/leaderDashboard");
-            }else{
+            } else {
               setLoading(false)
             }
           } else {
@@ -84,7 +83,7 @@ export default function Home() {
       });
   };
 
-  const handleLeave = async()=>{
+  const handleLeave = async () => {
     setLoading(true);
     const res = await fetch("/api/leaveTeam", {
       method: "POST",
@@ -97,8 +96,8 @@ export default function Home() {
         // teamName: teamName
       }),
     });
-  
-    if (res.status==200){
+
+    if (res.status == 200) {
       setLoading(false);
       toast.success('Left the team successfully');
       router.push('/join&createTeam');
@@ -110,37 +109,39 @@ export default function Home() {
 
   return (
     <div className="bg-white bg-cover bg-center min-h-screen flex flex-col items-center justify-center p-5 text-black">
-      {loading && <LoadingScreen/>}
+      {loading && <LoadingScreen />}
       <h1 className="text-4xl sm:text-5xl font-extrabold mb-8 text-center drop-shadow-lg">{teamName}</h1>
-      
+
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 w-full max-w-screen-lg px-4">
-        {teamMembers.map((member) => (
+        {teamMembers.map((member, index) => (
           <div
-            key={member.id}
+            key={index}
             className="bg-[#141B2B] rounded-lg p-6 text-center shadow-lg transform hover:scale-105 transition-transform duration-300 flex flex-col items-center justify-between"
           >
             <img src={img1.src} alt="Team Member" className="w-24 h-24 mb-4 rounded-full shadow-md" />
-            <h2 className="text-2xl text-white font-bold mb-2">{member.name}</h2>
-            <p className="text-xl text-white font-bold mb-2">{member.id===0?"Leader":"Member"}</p>
-            <p className="text-sm text-white mb-1">Registration Number: {member.regNo}</p>
-            <p className="text-sm text-white">Mobile Number: {member.mobNo}</p>
+            <h2 className="text-2xl text-white font-bold mb-2">{member?.name}</h2>
+            <p className="text-xl text-white font-bold mb-2">{index===0?"Leader":"Member"}</p>
+            <p className="text-sm text-white mb-1">Registration Number: {member?.regNo}</p>
+            <p className="text-sm text-white">Mobile Number: {member?.mobNo}</p>
           </div>
         ))}
       </div>
       <button
-        onClick={handleShowModal}
+        onClick={() => { 
+          console.log('not working');
+          handleShowModal(); }}
         className="bg-blue-600 text-white py-3 px-10 rounded-full mt-8 text-lg font-semibold transition-colors duration-300 hover:bg-[#1e5db8] focus:outline-none"
       >
         Leave
       </button>
-      {showModal&&<MyModal
+      {showModal && <MyModal
         isVisible={showModal}
         onClose={handleShowModal}  // Closes the modal on "No" or background click
         onConfirm={handleLeave}    // Calls handleLeave when "Yes" is clicked
         text="Do you want to leave this team?"
       />
       }
-      <Toaster/>
+      <Toaster />
     </div>
   );
 }
