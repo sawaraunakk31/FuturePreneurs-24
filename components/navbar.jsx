@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useSession } from "next-auth/react";
+import { signIn, signOut, useSession } from "next-auth/react";
 import { useRouter } from 'next/navigation';
 import ecellLogo from '/assests/assests/ecell.jpg'; // Ensure the path is correct
 import hamburgerIcon from '/assests/assests/hamburger.jpg'; // Path to hamburger image
@@ -15,9 +15,9 @@ const Navbar = () => {
 
   const handleLoginClick = () => {
     if (status === "authenticated") {
-      router.push("/dashboard"); // Redirect to dashboard if logged in
+      signIn('google'); // Redirect to dashboard if logged in
     } else {
-      router.push("/login"); // Redirect to login if not logged in
+      signOut(); // Redirect to login if not logged in
     }
   };
 
@@ -133,7 +133,7 @@ const Navbar = () => {
               }}
               className="px-6 py-2 bg-blue-500 text-white rounded-full hover:bg-blue-700 transition duration-300 cursor-pointer text-2xl"
             >
-              {status === "authenticated" ? "Dashboard" : "Login"}
+              {status === "authenticated" ? "LogOut" : "Login"}
             </button>
           </div>
         </div>
@@ -145,7 +145,7 @@ const Navbar = () => {
           onClick={handleLoginClick}
           className="px-6 py-2 bg-black text-white rounded-full hover:bg-blue-500 transition duration-300 cursor-pointer"
         >
-          {status === "authenticated" ? "Dashboard" : "Login"}
+          {status === "authenticated" ? "LogOut" : "Login"}
         </button>
       </div>
     </div>
