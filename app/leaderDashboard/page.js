@@ -226,9 +226,10 @@ export default function Home() {
               alt="Team Member"
               className="w-16 h-16 mb-3 rounded-full shadow-md"
             />
-            <h2 className="text-lg font-bold mb-1">{member.name}</h2>
-            <p className="text-xs mb-1">Reg. No.: {member.regNo}</p>
-            <p className="text-xs">Mobile No.: {member.mobNo}</p>
+            <h2 className="text-lg font-bold mb-1 text-white">{member?.name}</h2>
+            <h2 className="text-lg font-bold mb-1 text-white">Team Role: {member?.teamRole === 0 ? "Leader" : "Member"}</h2>
+            <p className="text-xs mb-1 text-white">Reg. No.: {member?.regNo}</p>
+            <p className="text-xs text-white">Mobile No.: {member?.mobNo}</p>
             {teamMembers.length>1 && <button
               className="bg-blue-600 text-white py-1 px-4 rounded-full mt-2 font-semibold transition-colors duration-300 hover:bg-[#1e5db8] focus:outline-none text-sm"
               onClick={() => handleShowModal(index, "remove")}
