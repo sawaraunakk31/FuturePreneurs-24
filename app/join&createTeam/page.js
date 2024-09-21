@@ -1,7 +1,7 @@
 "use client"
 import NavBar from "@/components/navbar";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useSession } from "next-auth/react";
 import LoadingScreen from "@/components/LoadingScreen";
 import toast, { Toaster } from 'react-hot-toast';
@@ -12,6 +12,17 @@ export default function page() {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
 
+  useEffect(() => {
+    setLoading(true);
+    if (status == "unauthenticated") {
+      setLoading(false);
+      toast.error("Please Log in or Sign up");
+      router.push("/");
+    } else if (status == "authenticated") {
+      setLoading(false);
+      getUserData();
+    }
+  }, [status, router]);
 
   const createTeam = async()=>{
     setLoading(true);

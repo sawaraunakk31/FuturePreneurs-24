@@ -1,7 +1,28 @@
 "use client";
-import { useState } from 'react';
+import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
+import toast, { Toaster } from 'react-hot-toast';
+import LoadingScreen from "@/components/LoadingScreen";
 
 export default function Register() {
+
+  const router = useRouter();
+  const { data: session, status } = useSession();
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    setLoading(true);
+    if (status == "unauthenticated") {
+      setLoading(false);
+      toast.error("Please Log in or Sign up");
+      router.push("/");
+    } else if (status == "authenticated") {
+      setLoading(false);
+      getUserData();
+    }
+  }, [status, router]);
+
   const [formData, setFormData] = useState({
     username: '',
     email: '',
@@ -22,6 +43,7 @@ export default function Register() {
 
   return (
     <div style={styles.container} className='bg-white text-black'>
+      {loading && <LoadingScreen />}
       <h1>Register</h1>
       <form onSubmit={handleSubmit} style={styles.form}>
         <div style={styles.inputGroup}>
