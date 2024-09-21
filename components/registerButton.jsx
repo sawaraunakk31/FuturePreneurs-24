@@ -17,7 +17,6 @@ const registerButton = () => {
       setLoading(true);
       getData();
     } else {
-        getData();
     }
   },[]);
 
