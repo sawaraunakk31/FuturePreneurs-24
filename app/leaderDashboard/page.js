@@ -52,6 +52,8 @@ export default function Home() {
   const [leaveLeaderModal, setLeaveLeaderModal] = useState("");
   const [loading, setLoading] = useState(false);
   const [num, setNum] = useState(null);
+  const [handleDeleteModal, setHandleDeleteModal] = useState(false);
+  const [deleteText,setDeleteText] = useState('');
 
 
   const getData = async () => {
@@ -75,9 +77,12 @@ export default function Home() {
   const handleShowModal = (id = null, type = "") => {
     if (id === 0) {
       if (teamMembers.length > 1) {
-        setLeaveLeaderModal(true);
+        console.log('hello inside add')
       } else {
-        toast.error("Delete the team");
+        console.log('hello inside delete');
+        setHandleDeleteModal(true);
+        setDeleteText("Do you want to delete the Team?");
+        // toast.error("Delete the team");
       }
     } else {
       setModalMemberId(id);
@@ -208,15 +213,15 @@ export default function Home() {
       {teamMembers.length == 1 && (
         <div className="flex justify-center mt-4 w-full">
           <button
-            className="bg-red-600 text-white py-2 px-6 rounded-full font-semibold transition-colors duration-300 hover:bg-green-700 focus:outline-none shadow-lg text-[0.9rem] max-w-[150px]"
-            onClick={() => handleShowModal(null, "add")}
+            className="bg-red-600 text-white py-2 px-6 rounded-full font-semibold transition-colors duration-300 hover:bg-red-700 focus:outline-none shadow-lg text-[0.9rem] max-w-[150px]"
+            onClick={() => handleShowModal(null, "")}
           >
             Delete Team
           </button>
         </div>
       )}
 
-      {(showModal && teamMembers.length>1) ? (
+      {showModal && (
         <MyModal
           isVisible={true}
           onClose={handleCloseModal}
@@ -224,24 +229,31 @@ export default function Home() {
             if (modalType == "remove") {
               console.log(modalMemberId);
               handleRemove(modalMemberId);
-            } else {
+            } else if(modalType=="add") {
               handleAddTeamMember();
+            }else{
+              console.log('inside  delete team');
+
+              deleteTeam();
             }
           }}
           text={
             modalType === "remove"
               ? "Do you want to remove this member?"
-              : "Do you want to add a member?"
+              : modalType ==="add" ? "Do you want to add a member?"
+              :"Do you want to delete the team?"
           }
         />
-      ):(
-        <MyModal
-          isVisible={true}
-          onClose={handleCloseModal}
-          onConfirm={deleteTeam}
-          text="Do you want to delete this team?"
-        />
       )}
+      {handleDeleteModal && (
+        <MyModal
+        isVisible={true}
+        onClose={handleCloseModal}
+        onConfirm={deleteTeam}
+        text={deleteText}
+      />
+      )}
+        
 
       {/*  ye new leaader selection ka h  */}
      
