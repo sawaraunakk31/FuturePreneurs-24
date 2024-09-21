@@ -33,8 +33,8 @@ export async function POST(req, { params }) {
     if (!team) {
       return NextResponse.json({ error: "Team not found" }, { status: 504});
     }
-    if (team.members.length === 4) {
-      return NextResponse.json({ error: "Team is Full" });
+    if (team.members.length == 4) {
+      return NextResponse.json({ error: "Team is Full" }, {status: 400 });
     }
     const teamToken = await TeamToken.findOne({ teamId: team._id });
     if (!teamToken) {

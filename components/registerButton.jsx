@@ -9,7 +9,6 @@ const registerButton = () => {
   const [loading, setLoading] = useState(false);
   const { data: session, status } = useSession();
   const [details, setDetails] = useState(null);
-  const [team,setTeam] = useState(null);
   const router = useRouter();
 
   useEffect(() => {
