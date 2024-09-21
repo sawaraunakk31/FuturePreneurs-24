@@ -84,6 +84,7 @@ export default function Register() {
 
         <button type="submit" style={styles.button}>Register</button>
       </form>
+      <Toaster/>
     </div>
   );
 }

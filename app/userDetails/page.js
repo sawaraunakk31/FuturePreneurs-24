@@ -17,7 +17,6 @@ export default function UserDetail() {
     regNo: '',
     number: '',
   });
-  const [submitMessage, setSubmitMessage] = useState('');
   const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
 
@@ -110,7 +109,7 @@ export default function UserDetail() {
 
       if (response.ok) {
         const data = await response.json();
-        setSubmitMessage(data.message);
+        toast.success(data.message);
         setFormData({ name: '', email: '', regNo: '', number: '' });
         setErrors({});
         setLoading(false);
@@ -118,11 +117,11 @@ export default function UserDetail() {
       } else {
         const errorData = await response.json();
         setLoading(false);
-        setSubmitMessage(`Form submission failed: ${errorData.error}`);
+        toast.error(`Form submission failed: ${errorData.error}`);
       }
     } catch (error) {
       console.error('Error:', error);
-      setSubmitMessage('Form submission failed: Network error');
+      toast.error('Form submission failed: Network error');
     }
   };
 
@@ -203,7 +202,6 @@ export default function UserDetail() {
                 Submit
               </button>
             </form>
-            {submitMessage && <p className="mt-4 text-lg text-gray-700 text-center">{submitMessage}</p>}
           </div>
         </div>
       </div>
@@ -214,6 +212,7 @@ export default function UserDetail() {
           }
         }
       `}</style>
+      <Toaster/>
     </div>
   );
 }

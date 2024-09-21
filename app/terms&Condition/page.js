@@ -75,6 +75,7 @@ export default function page() {
           </button>
         </div>
     </div>
+    <Toaster/>
     </main>
   );
 }

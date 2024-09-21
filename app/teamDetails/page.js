@@ -31,7 +31,7 @@ const TeamDetails = () => {
 
   const handleCopy = (text) => {
     navigator.clipboard.writeText(text);
-    alert("Copied to clipboard!");
+    toast.success("Copied to clipboard!");
   };
 
   const getUserData = () => {
@@ -113,6 +113,7 @@ const TeamDetails = () => {
           </h2>
         </div>
       </div>
+      <Toaster/>
     </div>
   );
 };
