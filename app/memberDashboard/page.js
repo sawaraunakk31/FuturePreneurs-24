@@ -119,9 +119,10 @@ export default function Page() {
             className="bg-[#141B2B] rounded-lg p-6 text-center shadow-lg transform hover:scale-105 transition-transform duration-300 flex flex-col items-center justify-between"
           >
             <img src={img1.src} alt="Team Member" className="w-24 h-24 mb-4 rounded-full shadow-md" />
-            <h2 className="text-2xl font-bold mb-2">{member?.name}</h2>
-            <p className="text-sm mb-1">Registration Number: {member?.regNo}</p>
-            <p className="text-sm">Mobile Number: {member?.mobNo}</p>
+            <h2 className="text-2xl text-white font-bold mb-2">{member?.name}</h2>
+            <p className="text-xl text-white font-bold mb-2">{index===0?"Leader":"Member"}</p>
+            <p className="text-sm text-white mb-1">Registration Number: {member?.regNo}</p>
+            <p className="text-sm text-white">Mobile Number: {member?.mobNo}</p>
           </div>
         ))}
       </div>
