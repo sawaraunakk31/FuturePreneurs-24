@@ -83,25 +83,6 @@ const Footer = () => {
     </div>
     </footer>
   );
-  
-
-          {/* <div className="social-links">
-            <div className="footer-right">
-              <div className="social-links">
-                <a href="https://www.facebook.com/ecellvit/" className="social-link" target="_blank" rel="noopener noreferrer">
-                  <FontAwesomeIcon icon={faFacebook} className="social-icon" />
-                </a>
-                <a href="https://x.com/i/flow/login?redirect_after_login=%2Fecell_vit" className="social-link" target="_blank" rel="noopener noreferrer">
-                  <FontAwesomeIcon icon={faTwitter} className="social-icon" />
-                </a>
-                <a href="https://www.instagram.com/ecell_vit/" className="social-link" target="_blank" rel="noopener noreferrer">
-                  <FontAwesomeIcon icon={faInstagram} className="social-icon" />
-                </a>
-                <a href="https://www.linkedin.com/company/ecellvitvellore" className="social-link" target="_blank" rel="noopener noreferrer">
-                  <FontAwesomeIcon icon={faLinkedinIn} className="social-icon" />
-                </a>
-              </div>
-            </div> */}
 }
 
 export default Footer;

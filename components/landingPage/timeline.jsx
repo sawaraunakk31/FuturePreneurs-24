@@ -149,13 +149,13 @@ export default function Timeline() {
 
           {/* Logo Circle - Positioned over the Timeline and Date Cards */}
           <div
-  className="absolute bg-black rounded-full border-[1rem] border-t-[1rem] border-b-[1rem] border-t-purple-300 border-b-white flex items-center justify-center text-white font-bold z-10
+  className="absolute bg-black rounded-full border-[1rem] border-t-[1rem] border-b-[1rem] border-t-purple-300 border-b-white flex items-center justify-center text-white font-bold z-00
               w-32 h-32 md:w-36 md:h-36 lg:w-48 lg:h-48 
               top-1/2 lg:left-[20%] md:left-[25%] translate-x-[-50%] translate-y-[-50%]"
 >
   <img 
     src={logoImg.src} 
-    className="object-contain max-w-full max-h-full md:w-20 md:h-20 lg:w-24 lg:h-24" 
+    className="object-contain max-w-full max-h-full md:w-20 md:h-20 lg:w-24 lg:h-24 " 
     alt="logo"
   />
 </div>
