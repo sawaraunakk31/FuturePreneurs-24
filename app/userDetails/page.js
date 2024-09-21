@@ -1,12 +1,16 @@
 "use client";
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from "next/link";
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import LoadingScreen from '@/components/LoadingScreen';
+import toast, { Toaster } from 'react-hot-toast';
+import { useSession } from "next-auth/react";
 
 export default function UserDetail() {
   const router = useRouter();
+  const { data: session, status } = useSession();
+
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -16,6 +20,18 @@ export default function UserDetail() {
   const [submitMessage, setSubmitMessage] = useState('');
   const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    setLoading(true);
+    if (status == "unauthenticated") {
+      setLoading(false);
+      toast.error("Please Log in or Sign up");
+      router.push("/");
+    } else if (status == "authenticated") {
+      setLoading(false);
+      getUserData();
+    }
+  }, [status, router]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
