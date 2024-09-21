@@ -12,6 +12,7 @@ export default function page() {
   const [teamName, setTeamName] = useState();
   const router = useRouter();
   const [loading, setLoading] = useState(false);
+  const [consent, setConsent] = useState();
   
   useEffect(() => {
     setLoading(true);
@@ -93,9 +94,37 @@ const handleJoinTeam = () => {
   setLoading(true);
   router.push('/teamCode');
 }
+
+useEffect(() => {
+  if (status === "authenticated") {
+    setLoading(true);
+    getData();
+  } else {
+  }
+},[status]);
+
+const getData = async () => {
+  setLoading(true);
+  const res = await fetch("/api/userInfo", {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+
+    Authorization: `Bearer ${session?.accessTokenBackend}`,
+    "Access-Control-Allow-Origin": "*",
+  });
+
+  const data = await res.json();
+  setConsent(data.user.consent);
+  setLoading(false);
+};
 const noTeam = () => {
   setLoading(true);
-  router.push('/terms&Condition');
+  if (!consent == false) {
+    router.push('/terms&Condition');
+  } else {
+  }
 }
 
 return (
@@ -148,12 +177,14 @@ return (
         <div className="lg:w-[30vw] md:w-[50vw] sm:w-[70vw] w-full border-2 border-[#D9D9D9] rounded-lg"></div>
         <div className="lg:h-[15vh] flex-col justify-center  content-center lg:w-[25vw]">
           <div className="flex flex-col justify-evenly items-center gap-5">
-            <button
-              className="mb-7 sm:landscape:w-[15vw]  rounded-3xl bg-gradient-to-b from-[#FF7E7E] to-[#FFEF99] text-center portrait:lg:w-[30vw]  md:max-w-[25vw] md:text-[1.6vh]  sm:landscape:md:text-[1.7vh] lg:w-[15vw] w-[50vw] h-[5vh] hover:scale-110 active:scale-95 transition-transform ease-in-out duration-300"
-              onClick={noTeam}
-            >
-              {loading ? <LoadingIcons.Oval/> :"I don't have a team"}
-            </button>
+          {!consent && (
+              <button
+                className="mb-7 sm:landscape:w-[15vw] rounded-3xl bg-gradient-to-b from-[#FF7E7E] to-[#FFEF99] text-center portrait:lg:w-[30vw] md:max-w-[25vw] md:text-[1.6vh] sm:landscape:md:text-[1.7vh] lg:w-[15vw] w-[50vw] h-[5vh] hover:scale-110 active:scale-95 transition-transform ease-in-out duration-300"
+                onClick={noTeam}
+              >
+                {loading ? <LoadingIcons.Oval /> : "I don't have a team"}
+              </button>
+            )}
           </div>
         </div>
       </div>
