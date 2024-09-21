@@ -52,8 +52,7 @@ export default function CountdownTimer({ targetDate }) {
     <div className="bottom-0 right-0 w-[50%] h-[40%] sm:w-[90%] sm:h-[30%] md:w-[70%] md:h-[35%]">
       <LoadFont />
 
-      {/* Background image with blur effect and gradient */}
-      <div className="bottom-0 right-0 absolute w-[50%] h-[50%]">
+      <div className="bottom-0 right-0 absolute w-[80%] h-[50%] sm:w-[60%] sm:h-[40%] md:w-[50%] md:h-[35%] lg:w-[50%] lg:h-[50%]">
         <Image
           src={grad}
           alt="Background Image"
@@ -61,70 +60,54 @@ export default function CountdownTimer({ targetDate }) {
           objectFit="cover"
           className="absolute inset-0 rounded-lg"
         />
-        {/* <div
-          className="absolute inset-0"
-          style={{
-            background:
-              "linear-gradient(to left, rgba(255, 255, 255, 0) 100%, rgba(255, 255, 255, 0.5) 100%, rgba(255, 255, 255, 1) 100%)",
-          }}
-        /> */}
       </div>
 
-      {/* Registration text and timer container */}
-      <div className="absolute bottom-0 right-0 mr-9 mb-7 flex flex-col items-center space-y-4">
-        {/* Registration Text */}
-        <div className="text-xl font-bold text-white sm:text-lg md:text-xl">
+      <div className="absolute bottom-0 right-0 lg:mr-7 lg:mb-7 md:mr-5 md:mb-5 sm:mr-6 sm:mb-6 flex flex-col text-bold space-y-2 sm:mr-6 sm:mb-6">
+        <div className="text-lg font-bold text-white sm:text-sm md:text-xl">
           Registration Closes In:
         </div>
 
-        {/* Timer */}
         <div className="flex space-x-1">
 
-          {/* Days Section */}
           <div className="flex flex-col items-center">
             <div
               style={{
                 fontFamily: "'GothamBlack', sans-serif",
-                background:
-                  "linear-gradient(102deg, #E1ECF8 5.98%, rgba(255, 255, 255, 0.70) 34.07%)",
+                background: "linear-gradient(102deg, #E1ECF8 5.98%, rgba(255, 255, 255, 0.70) 34.07%)",
                 WebkitBackgroundClip: "text",
                 WebkitTextFillColor: "transparent",
               }}
-              className="text-8xl font-bold text-white bg-clip-text text-transparent sm:text-4xl md:text-6xl"
+              className="text-6xl font-bold text-white bg-clip-text text-transparent sm:text-3xl md:text-8xl"
             >
               {formatNumber(timeLeft.days)}:
             </div>
             <span className="text-sm text-white sm:text-xs md:text-sm">DAYS</span>
           </div>
 
-          {/* Hours Section */}
           <div className="flex flex-col items-center">
             <div
               style={{
                 fontFamily: "'GothamBlack', sans-serif",
-                background:
-                  "linear-gradient(75deg, rgba(255, 255, 255, 0.70) 40.83%, #D48CFB 97.96%)",
+                background: "linear-gradient(75deg, rgba(255, 255, 255, 0.70) 40.83%, #D48CFB 97.96%)",
                 WebkitBackgroundClip: "text",
                 WebkitTextFillColor: "transparent",
               }}
-              className="text-8xl font-bold text-white bg-clip-text text-transparent sm:text-4xl md:text-6xl"
+              className="text-6xl font-bold text-white bg-clip-text text-transparent sm:text-3xl md:text-8xl"
             >
               {formatNumber(timeLeft.hours)}
             </div>
             <span className="text-sm text-white sm:text-xs md:text-sm">HOURS</span>
           </div>
 
-          {/* Minutes Section */}
           <div className="flex flex-col items-center">
             <div
               style={{
                 fontFamily: "'GothamBlack', sans-serif",
-                background:
-                  "linear-gradient(81deg, rgba(255, 255, 255, 0.70) 69.39%, #F2CEFE 95.46%)",
+                background: "linear-gradient(81deg, rgba(255, 255, 255, 0.70) 69.39%, #F2CEFE 95.46%)",
                 WebkitBackgroundClip: "text",
                 WebkitTextFillColor: "transparent",
               }}
-              className="text-8xl font-bold text-white bg-clip-text text-transparent sm:text-4xl md:text-6xl"
+              className="text-6xl font-bold text-white bg-clip-text text-transparent sm:text-3xl md:text-8xl"
             >
               :{formatNumber(timeLeft.minutes)}
             </div>
@@ -132,6 +115,7 @@ export default function CountdownTimer({ targetDate }) {
           </div>
         </div>
       </div>
+
     </div>
   );
 }
