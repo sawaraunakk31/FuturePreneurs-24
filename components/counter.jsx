@@ -22,6 +22,7 @@ export default function CountdownTimer({ targetDate }) {
     return timeLeft;
   };
 
+
   const [timeLeft, setTimeLeft] = useState(calculateTimeLeft());
 
   useEffect(() => {
@@ -59,9 +60,6 @@ export default function CountdownTimer({ targetDate }) {
           layout="fill"
           objectFit="cover"
           className="absolute inset-0 rounded-lg"
-          style={{
-            filter: "blur(2rem)",
-          }}
         />
         {/* <div
           className="absolute inset-0"
