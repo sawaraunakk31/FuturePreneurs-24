@@ -62,7 +62,7 @@ export default function Home() {
           setLoading(false);
           router.push("/userDetails");
         }
-        fetch(`/api/getTeamCode`, {
+        fetch(`/api/userDataGet`, {
           content: "application/json",
           method: "GET",
           headers: {
@@ -73,11 +73,8 @@ export default function Home() {
         })
           .then((res) => res.json())
           .then((data) => {
-            
-            setTeamCode(data.teamCode);
-            console.log(data.teamCode);
-            setTeamName(data.teamName);
-            console.log(data.teamName);
+            setTeamName(data?.team?.teamName);
+            setTeamMembers(data?.members);
             setLoading(false);
           })
           .catch((err) => {
