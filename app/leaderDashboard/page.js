@@ -8,11 +8,21 @@ import LoadingScreen from "@/components/LoadingScreen";
 import toast, { Toaster } from "react-hot-toast";
 
 export default function Home() {
-  useEffect(() => {
-    getData()
-  }, []);
   const router = useRouter();
   const { data: session, status } = useSession();
+
+  useEffect(() => {
+    setLoading(true);
+    if (status == "unauthenticated") {
+      setLoading(false);
+      toast.error("Please Log in or Sign up");
+      router.push("/");
+    } else if (status == "authenticated") {
+      setLoading(false);
+      getData();
+    }
+  }, [status, router]);
+
 
   const [teamMembers, setTeamMembers] = useState([
     {
