@@ -33,6 +33,37 @@ export default function UserDetail() {
     }
   }, [status, router]);
 
+  const getUserData = async () => {
+    const res = await fetch("/api/userInfo", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+  
+      Authorization: `Bearer ${session?.accessTokenBackend}`,
+      "Access-Control-Allow-Origin": "*",
+    });
+    
+    const data = await res.json();
+  
+    if(data.user.hasFilledDetails==true){
+      if(data.user.teamId){
+        if(data.user.teamRole==0){
+          setLoading(false);
+          router.push('/leaderDashboard')
+        }else{
+          setLoading(false);
+          router.push('/memberDashboard')
+        }
+      }else{
+        setLoading(false);
+        router.push('/join&createTeam');
+      }
+    }else{
+      setLoading(false);
+    }
+  }
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({

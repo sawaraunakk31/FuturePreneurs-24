@@ -10,6 +10,7 @@ import toast, { Toaster } from "react-hot-toast";
 export default function Home() {
   const router = useRouter();
   const { data: session, status } = useSession();
+  const [check, setcheck] = useState(0);
 
   useEffect(() => {
     setLoading(true);
@@ -19,6 +20,7 @@ export default function Home() {
       router.push("/");
     } else if (status == "authenticated") {
       setLoading(false);
+      getUserData();
       getData();
     }
   }, [status, router]);
@@ -65,6 +67,34 @@ export default function Home() {
   const [handleDeleteModal, setHandleDeleteModal] = useState(false);
   const [deleteText,setDeleteText] = useState('');
 
+  const getUserData = async () => {
+    const res = await fetch("/api/userInfo", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+  
+      Authorization: `Bearer ${session?.accessTokenBackend}`,
+      "Access-Control-Allow-Origin": "*",
+    });
+    
+    const data = await res.json();
+  
+    if(data.user.hasFilledDetails){
+      if(data.user.teamId){
+        if(data.user.teamRole==0){
+          setLoading(false);
+        }else{
+          setLoading(false);
+          router.push('/memberDashboard')
+        }
+      }else{
+        router.push('/join&createTeam');
+      }
+    }else{
+      router.push('/userDetails')
+    }
+  }
 
   const getData = async () => {
     setLoading(true);
@@ -81,6 +111,7 @@ export default function Home() {
     const data = await res.json();
     setTeamName(data.team.teamName);
     setTeamMembers(data.members);
+    setcheck(data.user.teamRole);
     setLoading(false);
   };
 

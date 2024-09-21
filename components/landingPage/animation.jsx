@@ -5,7 +5,7 @@ import Navbar from '/components/Navbar'; // Ensure this import path is correct
 import RegisterButton from '@/components/registerButton';
 import CountdownTimer from '@/components/counter';
 import Header from '/components/Header/Header';
-import vid_bg from '/assests/assests/vid_bg.mp4';
+import vid_bg from '@/assests/assests/vid_bg.mp4';
 import HeroSection from './heroSection';
 import noiseTexture from '/assests/assests/noiseTexture.png';
 const VideoBackground = () => {
