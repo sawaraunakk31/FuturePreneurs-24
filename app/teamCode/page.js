@@ -217,6 +217,7 @@ const JoinTeam = ({ teamCode: propTeamCode }) => {
         </div>
       </div>
     </div>
+    <Toaster/>
     </div>
   );
 };
