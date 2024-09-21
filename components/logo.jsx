@@ -11,9 +11,6 @@ const Logo = () => {
         font-weight: 800; /* Adjust weight as needed */
         font-style: normal;
       }
-      body {
-        overflow: hidden; /* Disable scrolling */
-      }
     `;
     document.head.appendChild(style);
     return () => {

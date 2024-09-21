@@ -52,6 +52,8 @@ export default function Home() {
   const [leaveLeaderModal, setLeaveLeaderModal] = useState("");
   const [loading, setLoading] = useState(false);
   const [num, setNum] = useState(null);
+  const [handleDeleteModal, setHandleDeleteModal] = useState(false);
+  const [deleteText,setDeleteText] = useState('');
 
 
   const getData = async () => {
@@ -75,9 +77,12 @@ export default function Home() {
   const handleShowModal = (id = null, type = "") => {
     if (id === 0) {
       if (teamMembers.length > 1) {
-        setLeaveLeaderModal(true);
+        console.log('hello inside add')
       } else {
-        toast.error("Delete the team");
+        console.log('hello inside delete');
+        setHandleDeleteModal(true);
+        setDeleteText("Do you want to delete the Team?");
+        // toast.error("Delete the team");
       }
     } else {
       setModalMemberId(id);
@@ -126,6 +131,39 @@ export default function Home() {
     handleCloseModal();
   };
 
+  const deleteTeam = async () => {
+    setLoading(true);
+    console.log("team delete");
+    try {
+      console.log("inside delete");
+      const response = await fetch("/api/deleteTeam", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${session?.accessTokenBackend}`,
+        },
+        body: JSON.stringify({  }),
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        console.log(data);
+        toast.success("Team is deleted");
+        setLoading(false);
+        router.push('/join&createTeam');
+      } else {
+        toast.error("Team can't be deleted");
+        setLoading(false);
+      }
+    } catch (error) {
+      toast.error("An error occurred while fetching team name.");
+      setLoading(false);
+    }
+    // const updatedTeamMembers = teamMembers.filter((member) => member.id !== modalMemberId);
+    // setTeamMembers(updatedTeamMembers);
+    handleCloseModal();
+  };
+
   const handleAddTeamMember = () => {
     router.push("/teamDetails");
   };
@@ -151,12 +189,12 @@ export default function Home() {
             <h2 className="text-lg font-bold mb-1">{member.name}</h2>
             <p className="text-xs mb-1">Reg. No.: {member.regNo}</p>
             <p className="text-xs">Mobile No.: {member.mobNo}</p>
-            <button
+            {teamMembers.length>1 && <button
               className="bg-blue-600 text-white py-1 px-4 rounded-full mt-2 font-semibold transition-colors duration-300 hover:bg-[#1e5db8] focus:outline-none text-sm"
               onClick={() => handleShowModal(index, "remove")}
             >
               {index == 0 ? "Leave" : "Remove"}
-            </button>
+            </button>}
           </div>
         ))}
       </div>
@@ -172,6 +210,17 @@ export default function Home() {
         </div>
       )}
 
+      {teamMembers.length == 1 && (
+        <div className="flex justify-center mt-4 w-full">
+          <button
+            className="bg-red-600 text-white py-2 px-6 rounded-full font-semibold transition-colors duration-300 hover:bg-red-700 focus:outline-none shadow-lg text-[0.9rem] max-w-[150px]"
+            onClick={() => handleShowModal(null, "")}
+          >
+            Delete Team
+          </button>
+        </div>
+      )}
+
       {showModal && (
         <MyModal
           isVisible={true}
@@ -180,17 +229,31 @@ export default function Home() {
             if (modalType == "remove") {
               console.log(modalMemberId);
               handleRemove(modalMemberId);
-            } else {
+            } else if(modalType=="add") {
               handleAddTeamMember();
+            }else{
+              console.log('inside  delete team');
+
+              deleteTeam();
             }
           }}
           text={
             modalType === "remove"
               ? "Do you want to remove this member?"
-              : "Do you want to add a member?"
+              : modalType ==="add" ? "Do you want to add a member?"
+              :"Do you want to delete the team?"
           }
         />
       )}
+      {handleDeleteModal && (
+        <MyModal
+        isVisible={true}
+        onClose={handleCloseModal}
+        onConfirm={deleteTeam}
+        text={deleteText}
+      />
+      )}
+        
 
       {/*  ye new leaader selection ka h  */}
      

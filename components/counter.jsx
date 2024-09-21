@@ -54,6 +54,7 @@ export default function CountdownTimer({ targetDate }) {
     opacity: 0.5, // Set opacity to 0.5 for translucency
   };
 
+
   return (
     <div className="absolute bottom-0 right-0 w-[35rem] h-[25rem]">
       <LoadFont />
