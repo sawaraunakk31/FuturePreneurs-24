@@ -20,9 +20,17 @@ export default function Home() {
     setShowModal(!showModal)
   }
 
-  useEffect(()=>{
-    getUserData();
-  },[]);
+  useEffect(() => {
+    setLoading(true);
+    if (status == "unauthenticated") {
+      setLoading(false);
+      toast.error("Please Log in or Sign up");
+      router.push("/");
+    } else if (status == "authenticated") {
+      setLoading(false);
+      getUserData();
+    }
+  }, [status, router]);
 
   const getUserData = () => {
     setLoading(true);
@@ -40,9 +48,7 @@ export default function Home() {
         const user = data.user;
         if (user.hasFilledDetails === true) {
           if (user.teamId) {
-            if (user.teamRole !== 0) {
-              router.push("/memberDashboard");
-            } else {
+            if (user.teamRole == 0) {
               router.push("/leaderDashboard");
             }
           } else {
