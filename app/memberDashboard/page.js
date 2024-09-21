@@ -21,29 +21,60 @@ export default function Home() {
   }
 
   useEffect(()=>{
-    getData();
+    getUserData();
   },[]);
 
-  const getData = async()=>{
+  const getUserData = () => {
     setLoading(true);
-    const res = await fetch('/api/userDataGet',{
-      method: 'GET',
+    fetch(`/api/userInfo`, {
+      content: "application/json",
+      method: "GET",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${session?.accessTokenBackend}`,
+        "Access-Control-Allow-Origin": "*",
       },
-      
-      Authorization: `Bearer ${session?.accessTokenBackend}`,
-      "Access-Control-Allow-Origin": "*",
     })
-    if (res.ok){
-      const data = await res.json();
-      setTeamName(data.team.teamName);
-      setTeamMembers(data.members);
-      setLoading(false);
-    } else {
-      toast.error('Error occured');
-    }
-  }
+      .then((res) => res.json())
+      .then((data) => {
+        const user = data.user;
+        if (user.hasFilledDetails === true) {
+          if (user.teamId) {
+            if (user.teamRole !== 0) {
+              router.push("/memberDashboard");
+            } else {
+              router.push("/leaderDashboard");
+            }
+          } else {
+            router.push("/join&createTeam");
+          }
+        } else {
+          router.push("/userDetails");
+        }
+        fetch(`/api/getTeamCode`, {
+          content: "application/json",
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${session?.accessTokenBackend}`,
+            "Access-Control-Allow-Origin": "*",
+          },
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            
+            setTeamCode(data.teamCode);
+            console.log(data.teamCode);
+            setTeamName(data.teamName);
+            console.log(data.teamName);
+            setLoading(false);
+          })
+          .catch((err) => {
+            console.log("err", err);
+            setLoading(true);
+          });
+      });
+  };
 
   const handleLeave = async()=>{
     setLoading(true);
