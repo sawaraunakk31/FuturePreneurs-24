@@ -19,7 +19,7 @@ const handleLoginClick = () => {
 };
 
 return (
-    <div className="w-full h-[10vh] bg-transparent fixed top-0 z-50 flex items-center px-10 justify-between">
+  <div className="w-full h-[10vh] bg-white bg-opacity-85 fixed top-0 left-0 right-0 z-50 flex items-center px-10 justify-between">
       {/* ECELL Logo */}
     <div className="flex items-center lg:px-12">
         <Image
