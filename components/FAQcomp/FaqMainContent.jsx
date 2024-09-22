@@ -91,6 +91,9 @@
 
 // export default FaqMainContent;
 
+"use client";
+
+import { useState } from "react";
 import Dropdownlogo from "../dropdownlogo";
 
 const FaqMainContent = () => {
@@ -105,14 +108,14 @@ const FaqMainContent = () => {
     { id: 8, q: "I still have some doubts regarding the event. How can I get them resolved?", ans: `Contact: Anuj Khokhar: +91 8827995405 \n Yashita Jindal: +91 7696780371` },
   ];
 
-  const Dropdown = () => {
-    document.addEventListener("click", (e) => {
-      const dropdownLogo = e.target.closest("Dropdownlogo");
-      if (dropdownLogo) {
-        dropdownLogo.nextElementSibling.style.display = "block";
-      }
-    });
-  }
+  const [visibleFaqs, setVisibleFaqs] = useState({});
+
+  const toggleDropdown = (id) => {
+    setVisibleFaqs((prevVisibleFaqs) => ({
+      ...prevVisibleFaqs,
+      [id]: !prevVisibleFaqs[id],
+    }));
+  };
 
   return (
     <main className="m-12">
@@ -120,10 +123,10 @@ const FaqMainContent = () => {
         <div className="flex flex-col gap-10">
           {faqs.slice(0, 4).map((faq) => (
             <div key={faq.id} className="flex items-center gap-5">
-              <Dropdownlogo onClick={Dropdown} id={faq.id} />
+              <Dropdownlogo onClick={() => toggleDropdown(faq.id)} />
               <div className="flex flex-col">
                 <p className="text-2xl w-[fit-content]">{faq.q}</p>
-                <p className="hidden">{faq.ans}</p>
+                <p className={visibleFaqs[faq.id] ? 'block' : 'hidden'}>{faq.ans}</p>
               </div>
             </div>
           ))}
@@ -131,10 +134,10 @@ const FaqMainContent = () => {
         <div className="flex flex-col gap-10">
           {faqs.slice(4).map((faq) => (
             <div key={faq.id} className="flex items-center gap-5">
-              <Dropdownlogo onClick={Dropdown} id={faq.id} />
+              <Dropdownlogo onClick={() => toggleDropdown(faq.id)} />
               <div className="flex flex-col">
                 <p className="text-2xl w-[fit-content]">{faq.q}</p>
-                <p className="hidden">{faq.ans}</p>
+                <p className={visibleFaqs[faq.id] ? 'block' : 'hidden'}>{faq.ans}</p>
               </div>
             </div>
           ))}
@@ -144,4 +147,4 @@ const FaqMainContent = () => {
   );
 };
 
-export default FaqMainContent;
+export default FaqMainContent;  
