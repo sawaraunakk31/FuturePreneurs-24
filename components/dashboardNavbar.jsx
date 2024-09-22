@@ -5,10 +5,10 @@ import Link from 'next/link';
 import { signIn, signOut, useSession } from "next-auth/react";
 import { useRouter } from 'next/navigation';
 import ecellLogo from '/assests/assests/ecell.jpg'; // Ensure the path is correct
-import hamburgerIcon from '/assests/assests/Hamburger.jpg'; // Path to hamburger image
+import hamburgerIcon from '/assests/assests/hamburger.jpg'; // Path to hamburger image
 import closeIcon from '/assests/assests/close.jpg'; // Path to close image
 
-const Navbar = () => {
+const dashboardNavbar = () => {
   const { data: session, status } = useSession();
   const router = useRouter();
   const [isMenuOpen, setIsMenuOpen] = useState(false); // State to control mobile menu
@@ -97,6 +97,11 @@ const Navbar = () => {
               Contact Us
             </div>
           </Link>
+          <Link href="/leaderDashboard">
+            <div className="text-black text-lg uppercase hover:text-blue-400 transition duration-300 cursor-pointer">
+              Dashboard
+            </div>
+          </Link>
         </div>
       </div>
 
@@ -122,6 +127,11 @@ const Navbar = () => {
             <Link href="#contact" onClick={closeMenu}>
               <div className="text-white text-2xl font-bold uppercase hover:text-blue-400 active:text-blue-400 transition duration-300 cursor-pointer">
                 Contact Us
+              </div>
+            </Link>
+            <Link href="/leaderDashboard" onClick={closeMenu}>
+              <div className="text-white text-2xl font-bold uppercase hover:text-blue-400 active:text-blue-400 transition duration-300 cursor-pointer">
+                Dashboard
               </div>
             </Link>
 
@@ -152,4 +162,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+export default dashboardNavbar;
