@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import img1 from "@/assests/assests/teammember.jpg";
 import { useRouter } from "next/navigation";
-import {MyModal,ChangeLeaderModal} from "@/Components/Modal";
+import {MyModal,ChangeLeaderModal} from "@/components/Modal";
 import { useSession } from "next-auth/react";
 import LoadingScreen from "@/components/LoadingScreen";
 import toast, { Toaster } from "react-hot-toast";
