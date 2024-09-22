@@ -101,7 +101,7 @@ const TeamDetails = () => {
             {teamCode}
           </span>
           <button
-            className="text-[1rem] sm:text-[1.8rem] md:text-[2rem] text-gray-400 hover:text-white flex items-center ml-auto md:ml-0 mr-[0.5rem]"
+            className="text-[1rem] sm:text-[1.3rem] md:text-[1.5rem] text-gray-400 hover:text-white flex items-center ml-auto md:ml-0 mr-[0.5rem]"
             onClick={() => handleCopy(teamCode)} 
           >
             <FontAwesomeIcon className="mr-[0.5rem]" icon={faCopy} />
