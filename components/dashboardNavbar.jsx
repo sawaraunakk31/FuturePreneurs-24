@@ -73,7 +73,7 @@ const dashboardNavbar = () => {
       {/* Navigation Links for desktop */}
       <div className="hidden md:flex relative items-center justify-center">
         {/* Box around navigation links */}
-        <div className="absolute w-[80vh] h-[7vh] bg-transparent border-[2px] border-gray-300 rounded-[25px] opacity-100 z-10"></div>
+        <div className="absolute w-[40vw] h-[7vh] bg-transparent border-[2px] border-gray-300 rounded-[25px] opacity-100 z-10"></div>
 
         {/* Navigation Links */}
         <div className="flex space-x-12 z-20 p-4">
