@@ -80,7 +80,6 @@ const JoinTeam = ({ teamCode: propTeamCode }) => {
     e.preventDefault();
     setLoading(true);
     try {
-      console.log("inside fetch");
       const response = await fetch(`/api/joinTeamViaToken`, {
         method: "POST",
         headers: {
@@ -127,6 +126,21 @@ const JoinTeam = ({ teamCode: propTeamCode }) => {
         setTimeout(() => {
           window.location.href = "/memberDashboard";
         }, 1000);
+      }else if(response.status == 503){
+        showMessage(
+          "You are already a part of team.",
+          "error"
+        );
+      }else if(response.status == 400){
+        showMessage(
+          "Team is already full",
+          "error"
+        );
+      }else if(response.status == 506){
+        showMessage(
+          "Invalid Team token. Please ask the leader to regenerate the team code",
+          "error"
+        );
       } else {
         showMessage(
           "Failed to join the team. Please check the team code.",

@@ -7,15 +7,12 @@ export async function POST(req) {
   try {
     await connectMongo();
     const { teamCode } = await req.json();
-    console.log("ggggggggggggggg",teamCode);
     const team = await TeamToken.findOne({ token: teamCode });
-    console.log('tttttttttttttttt',team);
 
     if (!team) {
       return NextResponse.json({ error: "Token not found" });
     }
     const teamDetails = await TeamModel.findById(team.teamId);
-    console.log('mmmmmmmmmmmmmmmmmm',teamDetails);
     return NextResponse.json({
       message: "Team Details sent. ",
       status: 200,

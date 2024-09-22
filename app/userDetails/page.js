@@ -6,6 +6,7 @@ import { useRouter } from 'next/navigation';
 import LoadingScreen from '@/components/LoadingScreen';
 import toast, { Toaster } from 'react-hot-toast';
 import { useSession } from "next-auth/react";
+import Navbar from '@/components/navbar';
 
 export default function UserDetail() {
   const router = useRouter();
@@ -99,12 +100,16 @@ export default function UserDetail() {
     }
     try {
       setLoading(true);
+      const updatedFormData = {
+        ...formData,
+        regNo: formData.regNo.toUpperCase(), 
+      };
       const response = await fetch('/api/submit', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify(updatedFormData),
       });
 
       if (response.ok) {
@@ -114,6 +119,12 @@ export default function UserDetail() {
         setErrors({});
         setLoading(false);
         router.push('/join&createTeam')
+      }else if(response.status==401){
+          toast.error('Duplicate Registration Number')
+          setLoading(false);
+      }else if(response.status == 402){
+        toast.error('Duplicate Mobile Number')
+        setLoading(false);
       } else {
         const errorData = await response.json();
         setLoading(false);
@@ -128,12 +139,13 @@ export default function UserDetail() {
   return (
     <div className="bg-cover bg-center bg-no-repeat  bg-[url(../assests/assests/bg_website.png)]">
     {loading && <LoadingScreen/>}
-      <main className="p-4 md:p-8 lg:p-10">
-        <div className="text-2xl text-black font-bold mb-4 text-center">Futurepreneurs 10.0</div>
+    <Navbar/>
+      {/* <main className="p-4 md:p-8 lg:p-10">
+        <div className="text-2xl text-black font-bold mb-4 text-center">Futurepreneurs 10.0</div> */}
         {/* <Link href={'/userDetails'}>
           <a className="text-blue-600 hover:underline block text-center">Sign In</a>
         </Link> */}
-      </main>
+      {/* </main> */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 p-4 md:p-8 lg:p-10 ">
         <div className="logo-container bg-transparent p-4 sm:border border-gray-600 rounded-3xl flex justify-center items-center">
           <img

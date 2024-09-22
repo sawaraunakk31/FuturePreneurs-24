@@ -22,7 +22,7 @@ export async function POST(req, { params }) {
 
     const user = await Users.findById({ _id: userId });
 
-    if (user.TeamId) {
+    if (user.teamId) {
       return NextResponse.json({
         message: "User is already a part of team",
       }, { status:503 });
@@ -71,7 +71,7 @@ export async function POST(req, { params }) {
     );
     return NextResponse.json({
       message: "You have joined the team!",
-    });
+    },{status:200});
   } catch (error) {
     return NextResponse.json({
       message: "Error occurred" }, {status:500});
