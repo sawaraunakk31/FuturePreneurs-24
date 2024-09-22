@@ -42,7 +42,7 @@ export default function Register() {
   };
 
   return (
-    <div style={styles.container} className='bg-white text-black'>
+    <div style={styles.container} className=' bg-[url(../assests/assests/bg_website.png)] text-black'>
       {loading && <LoadingScreen />}
       <h1>Register</h1>
       <form onSubmit={handleSubmit} style={styles.form}>
