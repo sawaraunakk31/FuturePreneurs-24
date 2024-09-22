@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { signIn, signOut, useSession } from "next-auth/react";
 import { useRouter } from 'next/navigation';
 import ecellLogo from '/assests/assests/ecell.jpg'; // Ensure the path is correct
-import hamburgerIcon from '/assests/assests/hamburger.jpg'; // Path to hamburger image
+import hamburgerIcon from '/assests/assests/Hamburger.jpg'; // Path to hamburger image
 import closeIcon from '/assests/assests/close.jpg'; // Path to close image
 
 const dashboardNavbar = () => {
