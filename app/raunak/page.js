@@ -1,7 +1,8 @@
-import Timeline from "@/components/landingPage/timeline";
+import Logo2 from "@/components/logo2";
+
 
 export default function Page(){
     return(
-        <Timeline/>
+        <Logo2/>
     )
 }
