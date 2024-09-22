@@ -126,7 +126,7 @@ export default function UserDetail() {
   };
 
   return (
-    <div className="bg-cover bg-center bg-no-repeat bg-white">
+    <div className="bg-cover bg-center bg-no-repeat  bg-[url(../assests/assests/bg_website.png)]">
     {loading && <LoadingScreen/>}
       <main className="p-4 md:p-8 lg:p-10">
         <div className="text-2xl text-black font-bold mb-4 text-center">Futurepreneurs 10.0</div>
