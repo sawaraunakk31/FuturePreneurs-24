@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import grad from "@/assests/assests/Ellipse 44.png";
+/*import grad from "@/assests/assests/timerbg.svg";*/
 import '../app/globals.css';
 
 export default function CountdownTimer({ targetDate }) {
