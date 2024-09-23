@@ -4,7 +4,7 @@ import vid_bg from '@/assests/assests/vid_bg.mp4';
 import HeroSection from './heroSection';
 const VideoBackground = () => {
     return (
-        <div className="relative w-full h-screen overflow-hidden">
+        <div className="relative w-full h-screen overflow-hidden" id='heroSection'>
         <video
             autoPlay
             loop

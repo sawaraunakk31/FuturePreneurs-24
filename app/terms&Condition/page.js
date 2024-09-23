@@ -62,7 +62,7 @@ export default function page() {
     <main className="h-[100vh] w-[100vw] flex items-center justify-center  bg-[url(../assests/assests/bg_website.png)]">
     <NavBar />
       {loading && <LoadingScreen/>}
-      <div className="bg-[#141B2B] h-[80vh] w-[90vw] md:h-[80vh] md:w-[80vw] lg:h-[50vh] lg:w-[50vw] rounded-md flex justify-around  content-around flex-col portrait:lg:w-[90vw] portrait:lg:h-[70vh]">
+      <div className="bg-[#141B2B] opacity-[85%] h-[80vh] w-[90vw] md:h-[80vh] md:w-[80vw] lg:h-[50vh] lg:w-[50vw] rounded-md flex justify-around  content-around flex-col portrait:lg:w-[90vw] portrait:lg:h-[70vh]">
         <div className="text-white hidden md:block lg:block text-center font-bold text-[4vh] lg:text-[5vh]  ">
           Agreement!
         </div>
@@ -70,7 +70,7 @@ export default function page() {
             I understand that if I do not create a team or join an existing team before the end of registrations, I would be added to a random team.
         </p>
         <div className="mt-3 flex flex-col justify-evenly items-center gap-5">
-          <button onClick={() => { consent() }} className="sm:landscape:w-[15vw]  mb-7 rounded-3xl bg-gradient-to-r from-[#03A3FE] to-[#00FFA3] text-center portrait:lg:w-[30vw]  md:max-w-[25vw] md:text-[20px] landscape:md:text-[1.6vh] lg:w-[15vw] w-[50vw] h-[5vh] hover:scale-110 active:scale-95 transition-transform ease-in-out duration-300">
+          <button onClick={() => { consent() }} className="sm:landscape:w-[15vw]  mb-7 rounded-3xl bg-gradient-to-b from-[#FF7E7E] to-[#FFEF99] text-center portrait:lg:w-[30vw]  md:max-w-[25vw] md:text-[20px] landscape:md:text-[1.6vh] lg:w-[15vw] w-[50vw] h-[5vh] hover:scale-110 active:scale-95 transition-transform ease-in-out duration-300">
             I Agree
           </button>
         </div>

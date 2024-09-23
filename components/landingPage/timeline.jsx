@@ -34,7 +34,7 @@ export default function Timeline() {
   
 
   return (
-    <>
+    <div id='timeline'>
       <div className="hidden md:flex min-h-screen justify-center items-center bg-gradient-to-b from-blue-100 to-white relative overflow-hidden">
         <div className="grid lg:grid-cols-5 md:grid-cols-4 gap-5 p-6 lg:max-w-[90%] md:max-w-[95%] relative">
           {/* Timeline Box (Excluded from effect) */}
@@ -272,6 +272,6 @@ export default function Timeline() {
     </div>
   </div>
 </div>
-    </>
+    </div>
   );
 }

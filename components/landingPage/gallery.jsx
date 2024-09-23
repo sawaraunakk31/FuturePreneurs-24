@@ -56,6 +56,7 @@ const LegacyComponent = () => {
   return (
     <div 
       className="relative flex flex-col items-center justify-center h-screen bg-gray-100  overflow-hidden" 
+      id='gallery'
       ref={componentRef}
     >
       <motion.div
