@@ -1,15 +1,14 @@
-'use client';
-import React, { useEffect } from 'react';
-import Navbar from './navbar';
+"use client";
+import { useEffect } from "react";
 
-const Logo = () => {
+export default function Logo2() {
   useEffect(() => {
-    const style = document.createElement('style');
+    const style = document.createElement("style");
     style.innerHTML = `
       @font-face {
         font-family: 'TrapBlack';
         src: url('/fonts/Trap-Black.otf') format('opentype');
-        font-weight: 800; /* Adjust weight as needed */
+        font-weight: 800;
         font-style: normal;
       }
     `;
@@ -20,63 +19,54 @@ const Logo = () => {
   }, []);
 
   return (
-    <div className="flex flex-row items-center justify-center space-x-[0.75rem] py-[23%]">
-      <div className="text-left text-black">
-        <Navbar/>
-        {/* FUTURE Text */}
-        <h1 className="text-5 
-          text-[2rem]       /* Small */
-          sm:text-[4rem]    /* Medium */
-          md:text-[6rem]    /* Large */
-          lg:text-[8.125rem] /* Extra Large */
-          font-bold leading-none mt-[-1.875rem] mb-[3rem] mr-[2rem]" 
-          style={{ fontFamily: 'TrapBlack', fontWeight: '800' }}>
-          FUTURE
-        </h1>
-        {/* PRENEURS Text */}
-        <h1 className="text-5 
-          text-[2rem]       /* Small */
-          sm:text-[4rem]    /* Medium */
-          md:text-[6rem]    /* Large */
-          lg:text-[8.125rem] /* Extra Large */
-          font-bold leading-none mt-[-1.875rem] mb-[3rem] mr-[2rem]" 
-          style={{ fontFamily: 'TrapBlack', fontWeight: '800' }}>
-          PRENEURS
-        </h1>
-      </div>
-
-      {/* Xth Edition Section */}
-      <div className="flex items-center text-black mb-[5rem]"> 
-        {/* X Text */}
-        <h1 className="ml-[1.25rem] 
-          text-[5rem]        /* Small */
-          sm:text-[7rem]     /* Medium */
-          md:text-[10rem]    /* Large */
-          lg:text-[17.5rem]  /* Extra Large */
-          font-bold leading-none relative" 
-          style={{ fontFamily: 'TrapBlack', fontWeight: '800' }}>
-          X
-        </h1>
-        {/* "th" Superscript */}
-        <div className="absolute -top-[1rem] 
-          left-[4rem] sm:left-[6rem] md:left-[8rem] lg:left-[11.25rem] 
-          bottom-[5rem] mt-[2.1875rem] text-[0.75rem] font-bold text-white z-1" 
-          style={{ fontFamily: 'TrapBlack', fontWeight: '800' }}>
-          <span>th</span>
+    <main className="flex ">
+      <div className="md:flex  w-full  md:justify-between items-center ml-12 md:flex-row">
+        <div
+          className="flex flex-col  md:justify-center 7xl pn:text-7xl sm:text-9xl"
+          style={{
+            fontFamily: "TrapBlack",
+            fontWeight: "800",
+            lineHeight: "1",
+          }}
+        >
+          <div>FUTURE</div>
+          <div>PRENEURS</div>
         </div>
-        {/* EDITION Text */}
-        <span className="
-          text-[1rem]        /* Small */
-          sm:text-[1.5rem]   /* Medium */
-          md:text-[2rem]     /* Large */
-          lg:text-[2rem]     /* Extra Large */
-          font-semibold tracking-widest transform -rotate-90 mb-[4.0625rem] ml-[-2rem] md:ml-[-3rem] lg:ml-[-5.625rem]" 
-          style={{ fontFamily: 'TrapBlack', fontWeight: '800', letterSpacing: '0.75rem' }}>
-          EDITION
-        </span>
-      </div>
-    </div>
-  );
-};
+        <div className=" flex flex-row md:justify-around items-center">
+          <div
+            style={{ fontFamily: "TrapBlack", fontWeight: "800" }}
+            className="relative flex flex-row md:justify-center"
+          >
+            {/* Relative container for X and TH */}
+            <div className="text-[20rem] leading-none relative items-center align-middle mt-6">
+              X{/* "TH" positioned on top-right inside "X" */}
+              <span
+                className="
+                absolute top-0 right-0 
+                text-white 
+                text-sm
+                transform -translate-x-[150%] translate-y-[85%] 
+                md:-translate-x-[250%] md:translate-y-[75%]"
+              >
+                th
+              </span>
+            </div>
+          </div>
 
-export default Logo;
+          <div
+            className="text-[rem] md:text-10rem] font-semibold flex flex-wrap transform -rotate-90 -ml-16 -mt-14"   
+            style={{
+              fontFamily: "TrapBlack",
+              fontWeight: "800",
+              letterSpacing: "1.2rem",
+        
+              display: "inline-block", // Ensures the span takes only the size of the content
+            }}
+          >
+            EDITION
+          </div>
+        </div>
+      </div>
+    </main>
+  );
+}
