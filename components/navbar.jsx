@@ -30,9 +30,10 @@ const Navbar = () => {
 
   const handleLoginClick = () => {
     if (status === "authenticated") {
-      signIn('google'); // Redirect to dashboard if logged in
+      signOut();
+      router.push('/') // Redirect to dashboard if logged in
     } else {
-      signOut(); // Redirect to login if not logged in
+      signIn('google'); // Redirect to login if not logged in
     }
   };
 
