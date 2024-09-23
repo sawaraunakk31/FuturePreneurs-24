@@ -81,9 +81,9 @@ export default function Page() {
     
     const data = await res.json();
   
-    if(data.user.hasFilledDetails){
-      if(data.user.teamId){
-        if(data.user.teamRole==0){
+    if(data?.user?.hasFilledDetails){
+      if(data?.user?.teamId){
+        if(data?.user?.teamRole==0){
           setLoading(false);
         }else{
           setLoading(false);
@@ -91,9 +91,11 @@ export default function Page() {
         }
       }else{
         router.push('/join&createTeam');
+        setLoading(false);
       }
     }else{
       router.push('/userDetails')
+      setLoading(false)
     }
   }
 
@@ -110,9 +112,9 @@ export default function Page() {
     });
 
     const data = await res.json();
-    setTeamName(data.team.teamName);
-    setTeamMembers(data.members);
-    setcheck(data.user.teamRole);
+    setTeamName(data?.team?.teamName);
+    setTeamMembers(data?.members);
+    setcheck(data?.user?.teamRole);
     setLoading(false);
   };
 
@@ -140,8 +142,6 @@ export default function Page() {
 
   const handleRemove = async (index) => {
     setLoading(true);
-    console.log("clicked");
-    console.log(index);
     try {
       console.log("inside fetch");
       const response = await fetch("/api/removeMember", {
@@ -155,7 +155,6 @@ export default function Page() {
 
       if (response.ok) {
         const data = await response.json();
-        console.log(data);
         toast.success("Team Member is removed");
         setLoading(false);
         window.location.reload();

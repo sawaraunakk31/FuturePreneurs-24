@@ -13,7 +13,36 @@ export default function Page() {
   const [teamName, setTeamName] = useState();
   const router = useRouter();
   const [loading, setLoading] = useState(true);
-  const [teamMembers, setTeamMembers] = useState([]);
+  const [teamMembers, setTeamMembers] = useState([
+    {
+      id: 1,
+      name: "Full Name 1",
+      regNo: "2XXXXXXXX",
+      mobNo: "XXXXXXXXXX",
+      buttonLabel: "Leave",
+    },
+    {
+      id: 2,
+      name: "Full Name 2",
+      regNo: "2XXXXXXXX",
+      mobNo: "XXXXXXXXXX",
+      buttonLabel: "Remove",
+    },
+    {
+      id: 3,
+      name: "Full Name 3",
+      regNo: "2XXXXXXXX",
+      mobNo: "XXXXXXXXXX",
+      buttonLabel: "Remove",
+    },
+    {
+      id: 4,
+      name: "Full Name 4",
+      regNo: "2XXXXXXXX",
+      mobNo: "XXXXXXXXXX",
+      buttonLabel: "Remove",
+    },
+  ]);
   const [showModal, setShowModal] = useState(false);
 
   const handleShowModal = () => {
@@ -46,9 +75,9 @@ export default function Page() {
       .then((res) => res.json())
       .then((data) => {
         const user = data.user;
-        if (user.hasFilledDetails === true) {
-          if (user.teamId) {
-            if (user.teamRole == 0) {
+        if (user?.hasFilledDetails === true) {
+          if (user?.teamId) {
+            if (user?.teamRole == 0) {
               setLoading(false);
               router.push("/leaderDashboard");
             } else {
@@ -79,7 +108,7 @@ export default function Page() {
           })
           .catch((err) => {
             console.log("err", err);
-            setLoading(true);
+            setLoading(false);
           });
       });
   };
