@@ -73,30 +73,30 @@ const Navbar = () => {
       {/* Navigation Links for desktop */}
       <div className="hidden md:flex relative items-center justify-center">
         {/* Box around navigation links */}
-        <div className="absolute w-[80vh] h-[7vh] bg-transparent border-[2px] border-gray-300 rounded-[25px] opacity-100 z-10"></div>
-
-        {/* Navigation Links */}
-        <div className="flex space-x-12 z-20 p-4">
-          <Link href="/">
-            <div className="text-black text-lg uppercase hover:text-blue-400 transition duration-300 cursor-pointer">
-              Home
-            </div>
-          </Link>
-          <Link href="#timeline">
-            <div className="text-black text-lg uppercase hover:text-blue-400 transition duration-300 cursor-pointer">
-              Timeline
-            </div>
-          </Link>
-          <Link href="#about">
-            <div className="text-black text-lg uppercase hover:text-blue-400 transition duration-300 cursor-pointer">
-              About
-            </div>
-          </Link>
-          <Link href="#contact">
-            <div className="text-black text-lg uppercase hover:text-blue-400 transition duration-300 cursor-pointer">
-              Contact Us
-            </div>
-          </Link>
+        <div className="relative align-middle w-[60vw] lg:w-[70vw] h-[7vh] bg-transparent border-[3px] border-gray-300 rounded-[25px] opacity-100 z-10">
+          {/* Navigation Links */}
+          <div className="flex items-center align-middle justify-center h-full">
+            <Link href="/">
+              <div className="text-black text-lg uppercase hover:text-blue-400 transition duration-300 cursor-pointer px-[1vw] md:px-[2vw] lg:px-[3vw]">
+                Home
+              </div>
+            </Link>
+            <Link href="#timeline">
+              <div className="text-black text-lg uppercase hover:text-blue-400 transition duration-300 cursor-pointer px-[1vw] md:px-[2vw] lg:px-[3vw]">
+                Timeline
+              </div>
+            </Link>
+            <Link href="#about">
+              <div className="text-black text-lg uppercase hover:text-blue-400 transition duration-300 cursor-pointer px-[1vw] md:px-[2vw] lg:px-[3vw]">
+                About
+              </div>
+            </Link>
+            <Link href="#contact">
+              <div className="text-black text-lg uppercase hover:text-blue-400 transition duration-300 cursor-pointer px-[1vw] md:px-[2vw] lg:px-[3vw]">
+                Contact Us
+              </div>
+            </Link>
+          </div>
         </div>
       </div>
 
