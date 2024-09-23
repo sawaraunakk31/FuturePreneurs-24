@@ -88,19 +88,18 @@ const Navbar = () => {
       {/* Navigation Links for desktop */}
       <div className="hidden md:flex relative items-center justify-center">
         {/* Box around navigation links */}
-        <div className="absolute w-[80vh] h-[7vh] bg-transparent border-[2px] border-gray-300 rounded-[25px] opacity-100 z-10"></div>
-
-        {/* Navigation Links */}
-        <div className="flex space-x-12 z-20 p-4">
-          <Link href="/" scroll={false}>
-            <div className="text-black text-lg uppercase hover:text-blue-400 transition duration-300 cursor-pointer">
-              Home
-            </div>
-          </Link>
-          <Link href="/#timeline" scroll={false}>
-            <div
+        <div className="relative align-middle w-[60vw] lg:w-[70vw] h-[7vh] bg-transparent border-[3px] border-gray-300 rounded-[25px] opacity-100 z-10">
+          {/* Navigation Links */}
+          <div className="flex items-center align-middle justify-center h-full">
+            <Link href="/" scroll={false}>
+              <div className="text-black text-lg uppercase hover:text-blue-400 transition duration-300 cursor-pointer px-[1vw] md:px-[2vw] lg:px-[3vw]">
+                Home
+              </div>
+            </Link>
+            <Link href="/#timeline" scroll={false}>
+              <div
               ref={timelineRef}
-              className="text-black text-lg uppercase hover:text-blue-400 transition duration-300 cursor-pointer"
+              className="text-black text-lg uppercase hover:text-blue-400 transition duration-300 cursor-pointer px-[1vw] md:px-[2vw] lg:px-[3vw]"
               onClick={() => {
                 const timeline = document.querySelector('#timeline');
                 if (timeline) {
@@ -108,13 +107,13 @@ const Navbar = () => {
                 }
               }}
             >
-              Timeline
-            </div>
-          </Link>
-          <Link href="/#gallery" scroll={false}>
-            <div
+                Timeline
+              </div>
+            </Link>
+            <Link href="/#gallery" scroll={false}>
+              <div
               ref={galleryRef}
-              className="text-black text-lg uppercase hover:text-blue-400 transition duration-300 cursor-pointer"
+              className="text-black text-lg uppercase hover:text-blue-400 transition duration-300 cursor-pointer px-[1vw] md:px-[2vw] lg:px-[3vw]"
               onClick={() => {
                 const gallery = document.querySelector('#gallery');
                 if (gallery) {
@@ -122,13 +121,13 @@ const Navbar = () => {
                 }
               }}
             >
-              About
-            </div>
-          </Link>
-          <Link href="/#footer" scroll={false}>
-            <div
+                About
+              </div>
+            </Link>
+            <Link href="/#footer" scroll={false}>
+              <div
               ref={footerRef}
-              className="text-black text-lg uppercase hover:text-blue-400 transition duration-300 cursor-pointer"
+              className="text-black text-lg uppercase hover:text-blue-400 transition duration-300 cursor-pointer px-[1vw] md:px-[2vw] lg:px-[3vw]"
               onClick={() => {
                 const footer = document.querySelector('#footer');
                 if (footer) {
@@ -136,9 +135,10 @@ const Navbar = () => {
                 }
               }}
             >
-              Contact Us
-            </div>
-          </Link>
+                Contact Us
+              </div>
+            </Link>
+          </div>
         </div>
       </div>
 
