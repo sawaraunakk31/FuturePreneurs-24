@@ -73,8 +73,8 @@ const Footer = () => {
             <h1 className='text-[#FFFFFF] text-xl pl-2 items-center pt-2'>X</h1>
           </div>
           <div className='flex flex-row justify-around gap-5 pl-5 border-2 rounded-xl border-t-0 pt-5 pr-5 pb-2'>
-          <a href="https://x.com/i/flow/login?redirect_after_login=%2Fecell_vit" className='text-[#FFFFFF] underline text-sm flex items-center' target="_blank" >Ideas in real time</a>
-          <a href="https://x.com/i/flow/login?redirect_after_login=%2Fecell_vit" className="p-1 border-2 border-[#FFFFFF] rounded-xl flex items-center" style={{Image:'url("./socialmedia.jsx")'}} target="_blank" rel="noopener noreferrer">
+          <a href="https://twitter.com/ecell_vit" className='text-[#FFFFFF] underline text-sm flex items-center' target="_blank" >Ideas in real time</a>
+          <a href="https://twitter.com/ecell_vit" className="p-1 border-2 border-[#FFFFFF] rounded-xl flex items-center" style={{Image:'url("./socialmedia.jsx")'}} target="_blank" rel="noopener noreferrer">
                   <FontAwesomeIcon icon={faXTwitter} className="invert w-10 h-10 "/>
           </a>  
             </div>
