@@ -1,5 +1,5 @@
 'use client';
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { signIn, signOut, useSession } from "next-auth/react";
@@ -12,6 +12,21 @@ const Navbar = () => {
   const { data: session, status } = useSession();
   const router = useRouter();
   const [isMenuOpen, setIsMenuOpen] = useState(false); // State to control mobile menu
+  const timelineRef = useRef(null);
+  const galleryRef = useRef(null);
+  const footerRef = useRef(null);
+
+  useEffect(() => {
+    const currentUrl = window.location.href;
+
+    if (currentUrl.endsWith('/#timeline') && timelineRef.current) {
+      timelineRef.current.click();
+    } else if (currentUrl.endsWith('/#gallery') && galleryRef.current) {
+      galleryRef.current.click();
+    } else if (currentUrl.endsWith('/#footer') && footerRef.current) {
+      footerRef.current.click();
+    }
+  }, []);
 
   const handleLoginClick = () => {
     if (status === "authenticated") {
@@ -76,23 +91,50 @@ const Navbar = () => {
         <div className="relative align-middle w-[60vw] lg:w-[70vw] h-[7vh] bg-transparent border-[3px] border-gray-300 rounded-[25px] opacity-100 z-10">
           {/* Navigation Links */}
           <div className="flex items-center align-middle justify-center h-full">
-            <Link href="/">
+            <Link href="/" scroll={false}>
               <div className="text-black text-lg uppercase hover:text-blue-400 transition duration-300 cursor-pointer px-[1vw] md:px-[2vw] lg:px-[3vw]">
                 Home
               </div>
             </Link>
-            <Link href="#timeline">
-              <div className="text-black text-lg uppercase hover:text-blue-400 transition duration-300 cursor-pointer px-[1vw] md:px-[2vw] lg:px-[3vw]">
+            <Link href="/#timeline" scroll={false}>
+              <div
+              ref={timelineRef}
+              className="text-black text-lg uppercase hover:text-blue-400 transition duration-300 cursor-pointer px-[1vw] md:px-[2vw] lg:px-[3vw]"
+              onClick={() => {
+                const timeline = document.querySelector('#timeline');
+                if (timeline) {
+                  timeline.scrollIntoView({ behavior: 'smooth' });
+                }
+              }}
+            >
                 Timeline
               </div>
             </Link>
-            <Link href="#about">
-              <div className="text-black text-lg uppercase hover:text-blue-400 transition duration-300 cursor-pointer px-[1vw] md:px-[2vw] lg:px-[3vw]">
+            <Link href="/#gallery" scroll={false}>
+              <div
+              ref={galleryRef}
+              className="text-black text-lg uppercase hover:text-blue-400 transition duration-300 cursor-pointer px-[1vw] md:px-[2vw] lg:px-[3vw]"
+              onClick={() => {
+                const gallery = document.querySelector('#gallery');
+                if (gallery) {
+                  gallery.scrollIntoView({ behavior: 'smooth' });
+                }
+              }}
+            >
                 About
               </div>
             </Link>
-            <Link href="#contact">
-              <div className="text-black text-lg uppercase hover:text-blue-400 transition duration-300 cursor-pointer px-[1vw] md:px-[2vw] lg:px-[3vw]">
+            <Link href="/#footer" scroll={false}>
+              <div
+              ref={footerRef}
+              className="text-black text-lg uppercase hover:text-blue-400 transition duration-300 cursor-pointer px-[1vw] md:px-[2vw] lg:px-[3vw]"
+              onClick={() => {
+                const footer = document.querySelector('#footer');
+                if (footer) {
+                  footer.scrollIntoView({ behavior: 'smooth' });
+                }
+              }}
+            >
                 Contact Us
               </div>
             </Link>
@@ -128,7 +170,7 @@ const Navbar = () => {
             {/* Sign-in Button */}
             <button
               onClick={() => {
-                closeMenu(); // Close the menu when signing in
+                closeMenu();
                 handleLoginClick();
               }}
               className="px-6 py-2 bg-blue-500 text-white rounded-full hover:bg-blue-700 transition duration-300 cursor-pointer text-2xl"
