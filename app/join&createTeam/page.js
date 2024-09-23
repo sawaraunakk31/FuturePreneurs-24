@@ -124,7 +124,9 @@ const noTeam = () => {
   setLoading(true);
   if (!consent == false) {
     router.push('/terms&Condition');
+    setLoading(false);
   } else {
+    setLoading(false);
   }
 }
 
@@ -132,34 +134,34 @@ return (
   <main className="h-[100vh] w-[100vw] flex items-center justify-center bg-[url(../assests/assests/bg_website.png)]">
     <NavBar />
     {loading && <LoadingScreen />}
-    <div className="bg-[#141B2B] h-[80vh] w-[90vw] md:h-[80vh] md:w-[80vw] lg:h-[80vh] lg:w-[40vw] rounded-md flex justify-around  content-around flex-col portrait:lg:w-[90vw] portrait:lg:h-[70vh]">
-      <div className=" hidden md:block lg:block text-center font-bold  text-[4vh] lg:text-[5vh]  ">
+    <div className="bg-[#141B2B] opacity-[85%] h-[80vh] w-[90vw] md:h-[80vh] md:w-[80vw] lg:h-[80vh] lg:w-[40vw] rounded-md flex justify-around  content-around flex-col portrait:lg:w-[90vw] portrait:lg:h-[70vh]">
+      <div className=" hidden md:block lg:block text-center font-bold text-white text-[4vh] lg:text-[5vh]  ">
         Join a Team or Create a Team
       </div>
-      <div className=" lg:hidden md:hidden text-center font-bold  text-[4vh] lg:text-[4vw] ">
+      <div className=" lg:hidden md:hidden text-center font-bold text-white text-[4vh] lg:text-[4vw] ">
         Join a Team{" "}
       </div>
-      <div className=" lg:hidden md:hidden text-center font-bold  text-[4vh] lg:text-[4vw] ">
+      <div className=" lg:hidden md:hidden text-center font-bold text-white text-[4vh] lg:text-[4vw] ">
         or
       </div>
-      <div className=" lg:hidden md:hidden text-center font-bold  text-[4vh] lg:text-[4vw] pb-2">
+      <div className=" lg:hidden md:hidden text-center font-bold text-white  text-[4vh] lg:text-[4vw] pb-2">
         Create a Team
       </div>
       <div className="bg-[#141B2B] p-4 rounded-lg flex flex-col lg:gap-4 lg:content-around items-center justify-around ">
         <div className="lg:h-[20vh] flex-col justify-evenly  content-center lg:w-[25vw]">
-          <h1 className="text-center text-[4vh] py-5">Join your team</h1>
+          <h1 className="text-center text-white text-[4vh] py-5">Join your team</h1>
           <div className="flex flex-col  items-center gap-5">
             <button
               className=" sm:landscape:w-[15vw]  mb-7 rounded-3xl bg-gradient-to-r from-[#FF7E7E] to-[#FFEF99] text-center portrait:lg:w-[30vw]  md:max-w-[25vw] md:text-[20px] landscape:md:text-[1.6vh] lg:w-[15vw] w-[50vw] h-[5vh] hover:scale-110 active:scale-95 transition-transform ease-in-out duration-300 "
               onClick={handleJoinTeam}
             >
-              {loading ? <LoadingIcons.Oval/> :'Find team to join'}
+              {loading ? 'Find team to join' :'Find team to join'}
             </button>
           </div>
         </div>
         <div className="lg:w-[30vw] md:w-[50vw] sm:w-[70vw] w-full border-2 border-[#D9D9D9] rounded-lg"></div>
         <div className="lg:h-[30vh] flex-col justify-center  content-center lg:w-[25vw]">
-          <h1 className="text-center text-[4vh] py-5">Create your team</h1>
+          <h1 className="text-center text-white text-[4vh] py-5">Create your team</h1>
           <div className="flex flex-col justify-evenly items-center gap-5">
             <input
               type="text"
@@ -171,7 +173,7 @@ return (
               className="mb-7 sm:landscape:w-[15vw]  rounded-3xl bg-gradient-to-b from-[#FF7E7E] to-[#FFEF99] text-center portrait:lg:w-[30vw]  md:max-w-[25vw] md:text-[1.6vh]  sm:landscape:md:text-[1.7vh] lg:w-[15vw] w-[50vw] h-[5vh] hover:scale-110 active:scale-95 transition-transform ease-in-out duration-300"
               onClick={createTeam}
             >
-              {loading ? <LoadingIcons.Oval/> :'Create your own team'}
+              {loading ? 'Create your own team' :'Create your own team'}
             </button>
           </div>
         </div>
@@ -183,7 +185,7 @@ return (
                 className="mb-7 sm:landscape:w-[15vw] rounded-3xl bg-gradient-to-b from-[#FF7E7E] to-[#FFEF99] text-center portrait:lg:w-[30vw] md:max-w-[25vw] md:text-[1.6vh] sm:landscape:md:text-[1.7vh] lg:w-[15vw] w-[50vw] h-[5vh] hover:scale-110 active:scale-95 transition-transform ease-in-out duration-300"
                 onClick={noTeam}
               >
-                {loading ? <LoadingIcons.Oval /> : "I don't have a team"}
+                {loading ? "I don't have a team" : "I don't have a team"}
               </button>
             )}
           </div>
