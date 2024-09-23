@@ -176,7 +176,7 @@ const Navbar = () => {
               }}
               className="px-6 py-2 bg-blue-500 text-white rounded-full hover:bg-blue-700 transition duration-300 cursor-pointer text-2xl"
             >
-              {status === "authenticated" ? "LogOut" : "Login"}
+              {status === "authenticated" ? "Logout" : "Login"}
             </button>
           </div>
         </div>
