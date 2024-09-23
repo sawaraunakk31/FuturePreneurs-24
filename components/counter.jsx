@@ -57,8 +57,7 @@ export default function CountdownTimer({ targetDate }) {
           src={grad}
           alt="Background Image"
           layout="fill"
-          objectFit="cover"
-          className="absolute inset-0 rounded-lg"
+          className="absolute inset-0 rounded-lg blur-lg"
         />
       </div>
 
