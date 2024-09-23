@@ -162,7 +162,7 @@ const JoinTeam = ({ teamCode: propTeamCode }) => {
   };
 
   return (
-    <div className=" bg-[url(../assests/assests/bg_website.png)] h-[100vh] w-[100vw] flex flex-col items-center justify-around">
+    <div className=" bg-[url(../assests/assests/bg_website.png)] h-[100vh] w-[100vw] opacity-[85%] flex flex-col items-center justify-around">
       <NavBar/>
       {loading && <LoadingScreen />}
       <div className="bg-[#141B2B] h-[45vh] w-[70vw] md:h-[57vh] md:w-[45vw] rounded-md flex flex-col justify-center">

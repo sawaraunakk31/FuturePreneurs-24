@@ -1,7 +1,7 @@
 
 'use client';
 import React from 'react';
-import Navbar from '@/components/navbar'; // Ensure this import path is correct
+import Navbar from '@/components/navbar'; 
 import RegisterButton from '@/components/registerButton';
 import CountdownTimer from '@/components/counter';
 import Logo from "@/components/logo";
@@ -35,16 +35,16 @@ const HeroSection = () => {
 
   return (
     <main className='p-5'>
-      <div className='w-[100vw] h-[100vh]'>
+      <div className='w-[100vw]  min-h-screen'>
         <div className='z-1 absolute h-[10vh] w-[100vw]'><Navbar /></div>
         <div className='h-[100vh]'>
-          <div className='left-[15vw] bottom-[100%] z-0 absolute lg:h-[10%] lg:w-[10vw] hidden md:block'>
+          <div>
             <MyComponent />
           </div>
           <div>
 
             {/* Gradient lines as divs */}
-            <div style={{
+            {/* <div style={{
               position: 'absolute',
               top: '26%',
               left: 0,
@@ -52,13 +52,15 @@ const HeroSection = () => {
               height: '4px',
               background: 'linear-gradient(to right, #B9B7B7 17%, #D1CECE 73%, #FEFEFE 100%)',
               zIndex: 0
-            }} />
+            }} /> */}
 
-            <div className='absolute top-[3%] left-[5%] h-[12vh] z-0'>
+            <div  style={{border: "4px solid grey",borderImageSource:
+          "linear-gradient(252.97deg, #FEFEFE -0.39%, #ECEAEA 31.09%, #D1CECE 97.59%)", // Apply gradient to the border
+        borderImageSlice: 1}}>
               <Logo />
             </div>
 
-            <div style={{
+            {/* <div style={{
               position: 'absolute',
               top: '60%',
               left: 0,
@@ -66,10 +68,10 @@ const HeroSection = () => {
               height: '4px',
               background: 'linear-gradient(to right, #B9B7B7 17%, #D1CECE 73%, #FEFEFE 100%)',
               zIndex: 0
-            }} />
+            }} /> */}
           </div>
 
-          <div className='absolute top-[60%] left-[1%] z-0 hidden md:block'>
+          <div >
             <MyComponent4 />
           </div>
 
@@ -77,17 +79,11 @@ const HeroSection = () => {
             <RegisterButton />
           </div>
 
-          <div className='absolute top-[60%] left-[15vw] z-0 hidden md:block'>
-            <MyComponent2 />
-          </div>
-
           <div>
             <CountdownTimer targetDate={targetDate} />
           </div>
 
-          <div className='absolute bottom-[73%] left-[70%] z-0 hidden md:block'>
-            <MyComponent3 />
-          </div>
+        
         </div>
       </div>
     </main>

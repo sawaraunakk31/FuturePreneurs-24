@@ -8,10 +8,10 @@ import PhoneIcon from './phoneicon';
 import MailIcon from './mailicon';
 import Youtubelogo from './youtubelogo';
 
-const Footer = () => {
+const Footer = () =>{
   return (
-    <footer className="bg-[#000000]  box-sizing">
-    <div className="flex flex-col gap-10">
+    <footer className="bg-[#000000]  box-sizing ">
+    <div className="flex flex-col gap-10 sm:hidden md:flex ">
       <div className="flex flex-row text-white flex-grow flex-1">
         <div className=" flex flex-col gap-5 pl-5 pr-5 w-[50vw]">
           <h1 className='pl-10 text-[5vw] text-[#F79D68] font-[700]  after:content-["We_Breed_Business"] after:text-[1vw] after:text-[#FFFFFF] flex flex-col gap-0 after:static leading-[60%] after:pl-[0.4vw] mt-[2vh]'>
@@ -73,16 +73,36 @@ const Footer = () => {
             <h1 className='text-[#FFFFFF] text-xl pl-2 items-center pt-2'>X</h1>
           </div>
           <div className='flex flex-row justify-around gap-5 pl-5 border-2 rounded-xl border-t-0 pt-5 pr-5 pb-2'>
-          <a href="https://x.com/i/flow/login?redirect_after_login=%2Fecell_vit" className='text-[#FFFFFF] underline text-sm flex items-center' target="_blank" >Ideas in real time</a>
-          <a href="https://x.com/i/flow/login?redirect_after_login=%2Fecell_vit" className="p-1 border-2 border-[#FFFFFF] rounded-xl flex items-center" style={{Image:'url("./socialmedia.jsx")'}} target="_blank" rel="noopener noreferrer">
+          <a href="https://twitter.com/ecell_vit" className='text-[#FFFFFF] underline text-sm flex items-center' target="_blank" >Ideas in real time</a>
+          <a href="https://twitter.com/ecell_vit" className="p-1 border-2 border-[#FFFFFF] rounded-xl flex items-center" style={{Image:'url("./socialmedia.jsx")'}} target="_blank" rel="noopener noreferrer">
                   <FontAwesomeIcon icon={faXTwitter} className="invert w-10 h-10 "/>
           </a>  
             </div>
         </div>
       </div>
     </div>
+    <div className="sm:flex md:hidden flex flex-col">
+      <div className="flex">
+        <div>
+          <h1 className='pl-10 text-[5vw] text-[#F79D68] font-[700]  after:content-["We_Breed_Business"] after:text-[1vw] after:text-[#FFFFFF] flex flex-col gap-0 after:static leading-[60%] after:pl-[0.4vw] mt-[2vh]'>
+            E-CELL
+          </h1>
+          </div>
+          <div className="pl-10 ">
+            <div className='flex items-center gap-2'>
+              <p><PhoneIcon /></p>
+              <a href="tel:+91 87777 93331">+91 87777 93331</a>
+            </div>
+            <div className='flex items-center gap-2 '>
+              <p className=' pt-[0.8vh]'><MailIcon /></p>
+              <a href="mailto:helloecellvit@gmail.com">helloecellvit@gmail.com</a>
+            </div>
+      </div>
+      <div className="flex"></div>
+    </div>
+    </div>
     </footer>
-  );
+);
 }
 
 export default Footer;
