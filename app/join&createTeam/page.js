@@ -122,7 +122,7 @@ const getData = async () => {
 };
 const noTeam = () => {
   setLoading(true);
-  if (!consent == false) {
+  if (!consent) {
     router.push('/terms&Condition');
     setLoading(false);
   } else {
@@ -152,10 +152,10 @@ return (
           <h1 className="text-center text-white text-[4vh] py-5">Join your team</h1>
           <div className="flex flex-col  items-center gap-5">
             <button
-              className=" sm:landscape:w-[15vw]  mb-7 rounded-3xl bg-gradient-to-r from-[#FF7E7E] to-[#FFEF99] text-center portrait:lg:w-[30vw]  md:max-w-[25vw] md:text-[20px] landscape:md:text-[1.6vh] lg:w-[15vw] w-[50vw] h-[5vh] hover:scale-110 active:scale-95 transition-transform ease-in-out duration-300 "
+              className=" sm:landscape:w-[15vw]  mb-7 rounded-3xl bg-gradient-to-b from-[#FF7E7E] to-[#FFEF99] text-center portrait:lg:w-[30vw]  md:max-w-[25vw] md:text-[20px] landscape:md:text-[1.6vh] lg:w-[15vw] w-[50vw] h-[5vh] hover:scale-110 active:scale-95 transition-transform ease-in-out duration-300 "
               onClick={handleJoinTeam}
             >
-              {loading ? 'Find team to join' :'Find team to join'}
+              Find team to join
             </button>
           </div>
         </div>
@@ -173,11 +173,12 @@ return (
               className="mb-7 sm:landscape:w-[15vw]  rounded-3xl bg-gradient-to-b from-[#FF7E7E] to-[#FFEF99] text-center portrait:lg:w-[30vw]  md:max-w-[25vw] md:text-[1.6vh]  sm:landscape:md:text-[1.7vh] lg:w-[15vw] w-[50vw] h-[5vh] hover:scale-110 active:scale-95 transition-transform ease-in-out duration-300"
               onClick={createTeam}
             >
-              {loading ? 'Create your own team' :'Create your own team'}
+              Create your own team
             </button>
           </div>
         </div>
-        <div className="lg:w-[30vw] md:w-[50vw] sm:w-[70vw] w-full border-2 border-[#D9D9D9] rounded-lg"></div>
+        {!consent && (
+        <div className="lg:w-[30vw] md:w-[50vw] sm:w-[70vw] w-full border-2 border-[#D9D9D9] rounded-lg"></div>)}
         <div className="lg:h-[15vh] flex-col justify-center  content-center lg:w-[25vw]">
           <div className="flex flex-col justify-evenly items-center gap-5">
           {!consent && (
@@ -185,7 +186,7 @@ return (
                 className="mb-7 sm:landscape:w-[15vw] rounded-3xl bg-gradient-to-b from-[#FF7E7E] to-[#FFEF99] text-center portrait:lg:w-[30vw] md:max-w-[25vw] md:text-[1.6vh] sm:landscape:md:text-[1.7vh] lg:w-[15vw] w-[50vw] h-[5vh] hover:scale-110 active:scale-95 transition-transform ease-in-out duration-300"
                 onClick={noTeam}
               >
-                {loading ? "I don't have a team" : "I don't have a team"}
+                I don't have a team
               </button>
             )}
           </div>
