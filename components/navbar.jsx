@@ -15,10 +15,9 @@ const Navbar = () => {
 
   const handleLoginClick = () => {
     if (status === "authenticated") {
-      signOut(); // Log out if already authenticated
-      router.push('/');
+      signIn('google'); // Redirect to dashboard if logged in
     } else {
-      signIn('google'); // Log in if not authenticated
+      signOut(); // Redirect to login if not logged in
     }
   };
 
@@ -31,7 +30,7 @@ const Navbar = () => {
   };
 
   return (
-    <div className="flex w-full h-[10vh] bg-white bg-opacity-85 fixed top-0 left-0 right-0 z-50 items-center px-10 justify-between">
+    <div className="flex w-full h-[10vh] bg-white bg-opacity-85 fixed top-0 left-0 right-0 z-50  items-center px-10 justify-between">
 
       {/* ECELL Logo */}
       <div className="flex items-center">
@@ -48,20 +47,33 @@ const Navbar = () => {
       {/* Hamburger icon for mobile view */}
       <div className="md:hidden">
         <button onClick={toggleMenu} className="focus:outline-none">
-          <Image
-            src={isMenuOpen ? closeIcon : hamburgerIcon}
-            alt="Menu Icon"
-            width={40}
-            height={40}
-            className="cursor-pointer"
-          />
+          {!isMenuOpen ? (
+            // Hamburger icon when the menu is closed
+            <Image
+              src={hamburgerIcon}
+              alt="Hamburger Icon"
+              width={40}
+              height={40}
+              className="cursor-pointer"
+            />
+          ) : (
+            // Close icon when the menu is open
+            <Image
+              src={closeIcon}
+              alt="Close Icon"
+              width={40}
+              height={40}
+              className="cursor-pointer"
+              onClick={closeMenu} // Ensure close button closes the menu
+            />
+          )}
         </button>
       </div>
 
       {/* Navigation Links for desktop */}
       <div className="hidden md:flex relative items-center justify-center">
         {/* Box around navigation links */}
-        <div className="absolute w-[35vw] h-[7vh] bg-transparent border-[2px] border-gray-300 rounded-[25px] opacity-100 z-10"></div>
+        <div className="absolute w-[80vh] h-[7vh] bg-transparent border-[2px] border-gray-300 rounded-[25px] opacity-100 z-10"></div>
 
         {/* Navigation Links */}
         <div className="flex space-x-12 z-20 p-4">
@@ -90,25 +102,25 @@ const Navbar = () => {
 
       {/* Mobile Menu (only when isMenuOpen is true) */}
       {isMenuOpen && (
-        <div className="fixed top-16 right-0 w-3/5 bg-black bg-opacity-40 z-40 transition-transform transform duration-300 ease-in-out md:hidden rounded-[25px] h-auto">
-          <div className="flex flex-col items-center space-y-6 py-6">
+        <div className="fixed top-16 right-0 h-1/2 w-3/5 py-2 bg-black bg-opacity-40 z-40 transition-transform transform duration-300 ease-in-out md:hidden border-gray-300 rounded-[25px]">
+          <div className="flex flex-col items-center space-y-10 py-12 pt-16">
             <Link href="/" onClick={closeMenu}>
-              <div className="text-white text-xl font-bold uppercase hover:text-blue-400 transition duration-300 cursor-pointer">
+              <div className="text-white text-2xl font-bold uppercase hover:text-blue-400 active:text-blue-400 transition duration-300 cursor-pointer">
                 Home
               </div>
             </Link>
             <Link href="#about" onClick={closeMenu}>
-              <div className="text-white text-xl font-bold uppercase hover:text-blue-400 transition duration-300 cursor-pointer">
+              <div className="text-white text-2xl font-bold uppercase hover:text-blue-400 active:text-blue-400 transition duration-300 cursor-pointer">
                 About
               </div>
             </Link>
             <Link href="#timeline" onClick={closeMenu}>
-              <div className="text-white text-xl font-bold uppercase hover:text-blue-400 transition duration-300 cursor-pointer">
+              <div className="text-white text-2xl font-bold uppercase hover:text-blue-400 active:text-blue-400 transition duration-300 cursor-pointer">
                 Timeline
               </div>
             </Link>
             <Link href="#contact" onClick={closeMenu}>
-              <div className="text-white text-xl font-bold uppercase hover:text-blue-400 transition duration-300 cursor-pointer">
+              <div className="text-white text-2xl font-bold uppercase hover:text-blue-400 active:text-blue-400 transition duration-300 cursor-pointer">
                 Contact Us
               </div>
             </Link>
@@ -119,9 +131,9 @@ const Navbar = () => {
                 closeMenu(); // Close the menu when signing in
                 handleLoginClick();
               }}
-              className="px-6 py-2 bg-blue-500 text-white rounded-full hover:bg-blue-700 transition duration-300 cursor-pointer text-xl"
+              className="px-6 py-2 bg-blue-500 text-white rounded-full hover:bg-blue-700 transition duration-300 cursor-pointer text-2xl"
             >
-              {status === "authenticated" ? "Logout" : "Login"}
+              {status === "authenticated" ? "LogOut" : "Login"}
             </button>
           </div>
         </div>
@@ -133,7 +145,7 @@ const Navbar = () => {
           onClick={handleLoginClick}
           className="px-6 py-2 bg-black text-white rounded-full hover:bg-blue-500 transition duration-300 cursor-pointer"
         >
-          {status === "authenticated" ? "Logout" : "Login"}
+          {status === "authenticated" ? "LogOut" : "Login"}
         </button>
       </div>
     </div>
