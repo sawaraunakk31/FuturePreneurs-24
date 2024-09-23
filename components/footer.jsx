@@ -10,7 +10,7 @@ import Youtubelogo from './youtubelogo';
 
 const Footer = () =>{
   return (
-    <footer className="bg-[#000000]  box-sizing ">
+    <footer className="bg-[#000000]  box-sizing " id='footer'>
     <div className="flex flex-col gap-10 sm:hidden md:flex ">
       <div className="flex flex-row text-white flex-grow flex-1">
         <div className=" flex flex-col gap-5 pl-5 pr-5 w-[50vw]">
