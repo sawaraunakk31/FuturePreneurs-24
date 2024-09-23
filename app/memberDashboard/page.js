@@ -12,7 +12,7 @@ export default function Page() {
   const { data: session, status } = useSession();
   const [teamName, setTeamName] = useState();
   const router = useRouter();
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [teamMembers, setTeamMembers] = useState([]);
   const [showModal, setShowModal] = useState(false);
 
@@ -118,7 +118,7 @@ export default function Page() {
         {teamMembers.map((member, index) => (
           <div
             key={index}
-            className="bg-[#141B2B] rounded-lg p-6 text-center shadow-lg transform hover:scale-105 transition-transform duration-300 flex flex-col items-center justify-between"
+            className="bg-[#141B2B] opacity-85 rounded-lg p-6 text-center shadow-lg transform hover:scale-105 transition-transform duration-300 flex flex-col items-center justify-between"
           >
             <img src={img1.src} alt="Team Member" className="w-24 h-24 mb-4 rounded-full shadow-md" />
             <h2 className="text-2xl text-white font-bold mb-2">{member?.name}</h2>

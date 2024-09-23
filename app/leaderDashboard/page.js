@@ -63,7 +63,7 @@ export default function Page() {
   const [modalMemberId, setModalMemberId] = useState(null);
   const [modalType, setModalType] = useState("");
   const [leaveLeaderModal, setLeaveLeaderModal] = useState("");
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [num, setNum] = useState(null);
   const [handleDeleteModal, setHandleDeleteModal] = useState(false);
   const [deleteText,setDeleteText] = useState('');
@@ -221,7 +221,7 @@ export default function Page() {
         {teamMembers.map((member, index) => (
           <div
             key={index}
-            className="bg-[#141B2B] rounded-lg p-3 text-center shadow-lg transform hover:scale-105 transition-transform duration-300 flex flex-col items-center justify-between"
+            className="bg-[#141B2B] opacity-85 rounded-lg p-3 text-center shadow-lg transform hover:scale-105 transition-transform duration-300 flex flex-col items-center justify-between"
           >
             <img
               src={img1.src}
