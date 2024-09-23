@@ -50,7 +50,7 @@ export default function CountdownTimer({ targetDate }) {
   );
 
   return (
-    <div className="bottom-0 right-0 w-[50%] h-[40%] sm:w-[90%] sm:h-[30%] md:w-[70%] md:h-[35%]">
+    <div >
       <LoadFont />
 
       <div className="bottom-0 right-0 absolute w-[80%] h-[50%] sm:w-[60%] sm:h-[40%] md:w-[50%] md:h-[35%] lg:w-[50%] lg:h-[50%]">
@@ -63,7 +63,7 @@ export default function CountdownTimer({ targetDate }) {
       </div>
 
       <div className="absolute bottom-0 right-0 lg:mr-7 lg:mb-7 md:mr-5 md:mb-5 sm:mr-6 sm:mb-6 flex flex-col text-bold space-y-2 sm:mr-6 sm:mb-6">
-        <div className="text-lg font-bold text-white sm:text-sm md:text-xl">
+        <div className="text-md font-bold text-white sm:text-sm md:text-xl">
           Registration Closes In:
         </div>
 
@@ -77,7 +77,7 @@ export default function CountdownTimer({ targetDate }) {
                 WebkitBackgroundClip: "text",
                 WebkitTextFillColor: "transparent",
               }}
-              className="text-6xl font-bold text-white bg-clip-text text-transparent sm:text-3xl md:text-8xl"
+              className="text-2xl font-bold text-white bg-clip-text text-transparent sm:text-6xl md:text-8xl"
             >
               {formatNumber(timeLeft.days)}:
             </div>
@@ -92,7 +92,7 @@ export default function CountdownTimer({ targetDate }) {
                 WebkitBackgroundClip: "text",
                 WebkitTextFillColor: "transparent",
               }}
-              className="text-6xl font-bold text-white bg-clip-text text-transparent sm:text-3xl md:text-8xl"
+              className="text-2xl font-bold text-white bg-clip-text text-transparent sm:text-6xl md:text-8xl"
             >
               {formatNumber(timeLeft.hours)}
             </div>
@@ -107,7 +107,7 @@ export default function CountdownTimer({ targetDate }) {
                 WebkitBackgroundClip: "text",
                 WebkitTextFillColor: "transparent",
               }}
-              className="text-6xl font-bold text-white bg-clip-text text-transparent sm:text-3xl md:text-8xl"
+              className="text-2xl font-bold text-white bg-clip-text text-transparent sm:text-6xl md:text-8xl"
             >
               :{formatNumber(timeLeft.minutes)}
             </div>

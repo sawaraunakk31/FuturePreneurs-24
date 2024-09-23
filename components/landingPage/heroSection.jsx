@@ -71,18 +71,15 @@ const HeroSection = () => {
             }} /> */}
           </div>
 
+          <div className='flex'>
           <div >
-            <MyComponent4 />
-          </div>
-
-          <div className='absolute bottom-[27%] left-[5%] md:left-[6%] z-30'>
-            <RegisterButton />
+            <MyComponent4 Button={RegisterButton} />
           </div>
 
           <div>
             <CountdownTimer targetDate={targetDate} />
           </div>
-
+          </div>
         
         </div>
       </div>

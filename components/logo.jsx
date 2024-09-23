@@ -19,10 +19,10 @@ export default function Logo2() {
   }, []);
 
   return (
-    <main className="flex ">
-      <div className="md:flex  w-full  md:justify-between items-center ml-12 md:flex-row">
+    <main className="flex" style={{marginLeft:"5%"}}>
+      <div className="sm:flex  w-full  sm:justify-between items-center  sm:flex-row" style={{left:"12%"}}>
         <div
-          className="flex flex-col  md:justify-center 7xl pn:text-7xl sm:text-9xl"
+          className="flex flex-col  md:justify-center text-6xl pn:text-7xl md:text-9xl"
           style={{
             fontFamily: "TrapBlack",
             fontWeight: "800",
@@ -38,7 +38,7 @@ export default function Logo2() {
             className="relative flex flex-row md:justify-center"
           >
             {/* Relative container for X and TH */}
-            <div className="text-[20rem] leading-none relative items-center align-middle mt-6">
+            <div className="md:text-[20rem] text-[12rem] leading-none relative items-center align-middle mt-6">
               X{/* "TH" positioned on top-right inside "X" */}
               <span
                 className="
