@@ -6,6 +6,7 @@ import {MyModal,ChangeLeaderModal} from "@/components/Modal";
 import { useSession } from "next-auth/react";
 import LoadingScreen from "@/components/LoadingScreen";
 import toast, { Toaster } from "react-hot-toast";
+import Navbar from "@/components/navbar";
 
 export default function Page() {
   const router = useRouter();
@@ -209,13 +210,14 @@ export default function Page() {
   };
 
   return (
-    <div className="bg-white bg-cover bg-center min-h-screen flex flex-col items-center justify-center p-4 text-black">
+    <div className=" bg-[url(../assests/assests/bg_website.png)] bg-cover bg-center min-h-screen flex flex-col items-center justify-center p-4 text-black">
       {loading && <LoadingScreen />}
+      <Navbar/>
       <h1 className="text-2xl sm:text-3xl font-extrabold mb-4 text-center drop-shadow-lg">
         {teamName}
       </h1>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full max-w-2xl px-4 py-6 bg-black bg-opacity-50 rounded-lg shadow-lg">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full max-w-2xl px-4 py-6  ">
         {teamMembers.map((member, index) => (
           <div
             key={index}

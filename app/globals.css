@@ -3,9 +3,9 @@
 @tailwind utilities;
 
  @font-face {
-   font-family: 'GothamBlack';
+   font-family: 'Gotham Black';
    src: url('../public/fonts/Gotham-Black.ttf') format('truetype');
-   font-weight:bold;
+   font-weight:400;
    font-style: normal;
  }
  @font-face {

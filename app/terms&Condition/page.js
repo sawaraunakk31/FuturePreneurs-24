@@ -59,7 +59,7 @@ export default function page() {
   }, [status, router]);
 
   return (
-    <main className="h-[100vh] w-[100vw] flex items-center justify-center bg-white">
+    <main className="h-[100vh] w-[100vw] flex items-center justify-center  bg-[url(../assests/assests/bg_website.png)]">
     <NavBar />
       {loading && <LoadingScreen/>}
       <div className="bg-[#141B2B] h-[80vh] w-[90vw] md:h-[80vh] md:w-[80vw] lg:h-[50vh] lg:w-[50vw] rounded-md flex justify-around  content-around flex-col portrait:lg:w-[90vw] portrait:lg:h-[70vh]">

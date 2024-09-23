@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const fixedPositions = [
@@ -11,7 +11,7 @@ const fixedPositions = [
   { top: '35%', left: '15%' },
   { top: '65%', left: '45%' },
   { top: '70%', left: '40%' },
-  { top: '15%', left: '75%' },
+  { top: '15%', left: '55%' },
   { top: '35%', left: '15%' },
 ];
 
@@ -22,92 +22,81 @@ const imageSets = [
 ];
 
 const LegacyComponent = () => {
-  const [showIntro, setShowIntro] = useState(true);
   const [activeSet, setActiveSet] = useState(0);
+  const [scale, setScale] = useState(1);
+  const [overlayImage, setOverlayImage] = useState('/imgs/10-Years-Of-FP.png');
+  const componentRef = useRef(null);
 
   useEffect(() => {
-    const introTimer = setTimeout(() => {
-      setShowIntro(false);
-    }, 1000);
+    const handleScroll = (event) => {
+      if (componentRef.current && componentRef.current.contains(event.target)) {
+        const deltaY = event.deltaY;
+        setScale((prevScale) => {
+          const newScale = prevScale - Math.abs(deltaY) * 0.02;
+          if (newScale <= 0.25) {
+            setOverlayImage('/imgs/10_Years_Of_FP.png');
+          }
+          return Math.max(Math.min(newScale, 1), 0.25);
+        });
+      }
+    };
+
+    window.addEventListener('wheel', handleScroll, { passive: false });
 
     const interval = setInterval(() => {
       setActiveSet((prevSet) => (prevSet + 1) % imageSets.length);
-    }, 3000); // Change set every 3 seconds
+    }, 3000);
 
     return () => {
+      window.removeEventListener('wheel', handleScroll);
       clearInterval(interval);
-      clearTimeout(introTimer);
     };
   }, []);
 
   return (
-    <div className="relative flex flex-col items-center justify-center min-h-screen bg-gray-100">
+    <div 
+      className="relative flex flex-col items-center justify-center h-screen bg-gray-100  overflow-hidden" 
+      ref={componentRef}
+    >
+      <motion.div
+        className="absolute inset-0 z-10"
+        style={{ scale }}
+        initial={{ scale: 1 }}
+        animate={{ scale }}
+        transition={{ ease: 'easeInOut' }}
+      >
+        <img
+          src={overlayImage}
+          alt="Overlay"
+          className="w-full h-full object-contain"
+        />
+      </motion.div>
+
       <AnimatePresence>
-        {showIntro && (
-          <motion.div
-            key="intro"
-            className="absolute inset-0 flex flex-col items-center justify-center bg-white z-30"
-            initial={{ opacity: 1 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.5 }}
-          >
-            <div className="font-serif text-black text-9xl">10 Years</div>
-            <div className="flex items-center my-4">
-              <hr className="border-t border-black w-32" />
-              <span className="mx-4 font-sans text-black text-4xl">Of</span>
-              <hr className="border-t border-black w-32" />
-            </div>
-            <div className="font-mono text-black text-9xl">FuturePreneurs</div>
-          </motion.div>
-        )}
+        {imageSets[activeSet].map((image, index) => {
+          const positionIndex = activeSet * 3 + index;
+          return (
+            <motion.div
+              key={image}
+              className="absolute w-[130px] h-[100px] md:w-[300px] md:h-[200px] overflow-hidden rounded-lg will-change-transform"
+              style={{
+                top: fixedPositions[positionIndex]?.top,
+                left: fixedPositions[positionIndex]?.left,
+              }}
+              initial={{ opacity: 0, scale: 0.75 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.75 }}
+              transition={{ duration: 1.5, ease: 'easeInOut' }}
+            >
+              <img
+                src={image}
+                alt={`Image ${index + 1}`}
+                className="w-full h-full object-contain"
+              />
+            </motion.div>
+          );
+        })}
       </AnimatePresence>
-
-      {!showIntro && (
-        <>
-          <motion.h1
-            key="heading"
-            initial={{ opacity: 0, y: -50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="relative flex flex-col items-center justify-center z-10"
-          >
-            <div className="font-serif text-black text-4xl">10 Years</div>
-            <div className="flex items-center my-4">
-              <hr className="border-t border-black w-32" />
-              <span className="mx-4 font-sans text-black text-2xl">Of</span>
-              <hr className="border-t border-black w-32" />
-            </div>
-            <div className="font-mono text-black text-4xl">FuturePreneurs</div>
-          </motion.h1>
-
-          <AnimatePresence>
-            {imageSets[activeSet].map((image, index) => {
-              const positionIndex = activeSet * 3 + index;
-              return (
-                <motion.div
-                  key={image}
-                  className="absolute w-[300px] h-[200px] overflow-hidden rounded-lg will-change-transform"
-                  style={{
-                    top: fixedPositions[positionIndex]?.top,
-                    left: fixedPositions[positionIndex]?.left,
-                  }}
-                  initial={{ opacity: 0, scale: 0.75 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.75 }}
-                  transition={{ duration: 1.5, ease: 'easeInOut' }}
-                >
-                  <img
-                    src={image}
-                    alt={`Image ${index + 1}`}
-                    className="w-full h-full object-contain"
-                  />
-                </motion.div>
-              );
-            })}
-          </AnimatePresence>
-        </>
-      )}
     </div>
   );
 };

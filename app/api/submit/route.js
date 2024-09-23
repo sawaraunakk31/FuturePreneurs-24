@@ -3,6 +3,7 @@ import { z } from 'zod';
 import { Users } from '@/models/user.model';
 import { getTokenDetails } from '@/utils/getTokenDetails';
 import { getToken } from 'next-auth/jwt';
+import { NextResponse } from 'next/server';
 
 // Define validation schema using Zod
 const userSchema = z.object({
@@ -35,6 +36,16 @@ export async function POST(req) {
     userSchema.parse(parsedData);
     const { regNo, number } = parsedData;  // Destructure the parsed data properly
     console.log("Validated regNo and number:", regNo, number);  // Debug log
+
+    const duplicateRegNo = await Users.findOne({regNo:regNo});
+    if(duplicateRegNo){
+      return NextResponse.json({message:"Duplicate Registration Number"} , {status:401})
+    }
+
+    const duplicateMobNo = await Users.findOne({mobNo:number});
+    if(duplicateMobNo){
+      return NextResponse.json({message:"Duplicate Mobile Number"} , {status:402})
+    }
 
     // Update user information
     const updateResult = await Users.findByIdAndUpdate(userId, {

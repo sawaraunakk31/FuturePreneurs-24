@@ -6,6 +6,7 @@ import LoadingScreen from '@/components/LoadingScreen';
 import img1 from '@/assests/assests/teammember.jpg';
 import {MyModal} from '@/components/Modal';
 import toast, { Toaster } from 'react-hot-toast';
+import Navbar from '@/components/navbar';
 
 export default function Page() {
   const { data: session, status } = useSession();
@@ -108,8 +109,9 @@ export default function Page() {
   }
 
   return (
-    <div className="bg-white bg-cover bg-center min-h-screen flex flex-col items-center justify-center p-5 text-black">
+    <div className=" bg-[url(../assests/assests/bg_website.png)] bg-cover bg-center min-h-screen flex flex-col items-center justify-center p-5 text-black">
       {loading && <LoadingScreen />}
+      <Navbar/>
       <h1 className="text-4xl sm:text-5xl font-extrabold mb-8 text-center drop-shadow-lg">{teamName}</h1>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 w-full max-w-screen-lg px-4">

@@ -37,6 +37,11 @@ const authOptions = {
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+      authorization: {
+        params: {
+          scope: 'openid profile email',
+        },
+      },
     }),
   ],
   callbacks: {
@@ -45,6 +50,14 @@ const authOptions = {
       if (account.provider === 'google') {
         try {
           await connectMongo();
+          const ticket = await client.verifyIdToken({
+            idToken: account.id_token,
+            audience: process.env.GOOGLE_CLIENT_ID,
+          });
+          // Check if verification was successful using ticket object
+          if (!ticket) {
+            throw new Error('Google authentication failed');
+          }
           const userExists = await Users.findOne({ email });
           if (!userExists) {
             const res = await fetch(`${process.env.NEXTAUTH_URL}/api/register`,
@@ -60,7 +73,6 @@ const authOptions = {
               }
             );
             if (res.ok) {
-              window.location.assign('/userDetails');
               return user;
             }
           } else {
@@ -69,7 +81,8 @@ const authOptions = {
               status: 200,
             });
           }
-        } catch ({error}) {
+        } catch (error) {
+          console.error("Google sign-in error:", error);
         }
       }
     },
