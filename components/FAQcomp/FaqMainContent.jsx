@@ -177,7 +177,7 @@ const FaqMainContent = () => {
   };
 
   return (
-    <main className="m-12">
+    <main className="m-16">
       <div className="flex flex-col gap-10 lg:flex-row lg:gap-20 justify-around">
         <div className="flex flex-col gap-10">
           {faqs.slice(0, 4).map((faq) => (
