@@ -3,7 +3,7 @@
 @tailwind utilities;
 
  @font-face {
-   font-family: 'Gotham Black';
+   font-family: 'GothamBlack';
    src: url('../public/fonts/Gotham-Black.ttf') format('truetype');
    font-weight:400;
    font-style: normal;
@@ -12,6 +12,13 @@
   font-family: 'Anton';
   src: url('../public/fonts/Anton-Regular.ttf') format('truetype');
   font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Freeman';
+  src: url('../public/fonts/Freeman/Freeman-Regular.ttf') format('truetype');
+  font-weight: bold;
   font-style: normal;
 }
 
