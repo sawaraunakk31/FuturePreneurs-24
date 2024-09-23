@@ -17,7 +17,7 @@ const registerButton = () => {
       getData();
     } else {
     }
-  },[status]);
+  }, [status]);
 
   const getData = async () => {
     setLoading(true);
@@ -36,26 +36,26 @@ const registerButton = () => {
     setLoading(false);
   };
 
-  const handleClick = ()=>{
+  const handleClick = () => {
     setLoading(true);
-    if(details?.user?.hasFilledDetails==true){
-        if(details?.user?.teamId){
-          if(details?.user?.teamRole==0){
-            setLoading(false)
-            router.push('/leaderDashboard')
-          }else{
-            setLoading(false)
-            router.push('/memberDashboard')
-          }
-        }else{
-          setLoading(false)
-          router.push('/join&createTeam');
+    if (details?.user?.hasFilledDetails == true) {
+      if (details?.user?.teamId) {
+        if (details?.user?.teamRole == 0) {
+          setLoading(false);
+          router.push("/leaderDashboard");
+        } else {
+          setLoading(false);
+          router.push("/memberDashboard");
         }
-    }else{
+      } else {
         setLoading(false);
-        router.push('/userDetails');
+        router.push("/join&createTeam");
+      }
+    } else {
+      setLoading(false);
+      router.push("/userDetails");
     }
-  }
+  };
 
   return (
     <>
@@ -66,17 +66,26 @@ const registerButton = () => {
             signIn("google");
           }}
         >
-          {loading ? <LoadingIcons.Oval/> :'Register!'}
+          {loading ? <LoadingIcons.Oval /> : "Register!"}
         </button>
       ) : (
         <button
           className="bg-gradient-to-r from-purple-500 to-blue-500 text-white font-semibold py-3 px-10 rounded-lg shadow-lg hover:shadow-xl transition duration-300 hover:text-black"
-          onClick={() => {handleClick()}}
+          onClick={() => {
+            handleClick();
+          }}
         >
-          {loading ? <LoadingIcons.Oval/> : (details?.user?.teamId ? 'Dashboard' : 'Register!')}
+          {loading ? (
+            <LoadingIcons.Oval />
+          ) : !details?.user?.hasFilledDetails ? (
+            "Get Started"
+          ) : !details?.user?.teamId ? (
+            "Create Team"
+          ) : (
+            "Dashboard"
+          )}
         </button>
-      )
-      }
+      )}
     </>
   );
 };

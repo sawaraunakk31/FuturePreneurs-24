@@ -36,7 +36,7 @@ export default function Timeline() {
   return (
     <>
       <div className="hidden md:flex min-h-screen justify-center items-center bg-gradient-to-b from-blue-100 to-white relative overflow-hidden">
-        <div className="grid lg:grid-cols-5 md:grid-cols-4 gap-5 p-6 lg:max-w-[85%] md:max-w-[95%] relative">
+        <div className="grid lg:grid-cols-5 md:grid-cols-4 gap-5 p-6 lg:max-w-[90%] md:max-w-[95%] relative">
           {/* Timeline Box (Excluded from effect) */}
           <div className="lg:col-span-3 md:col-span-2 bg-gradient-to-t from-purple-400 to-[#8055E0] rounded-2xl text-white p-5 flex flex-col justify-center items-center relative h-[18rem]">
             <h1 className="text-xl font-bold">Futurepreneurs 10.0</h1>
@@ -149,16 +149,14 @@ export default function Timeline() {
 
           {/* Logo Circle - Positioned over the Timeline and Date Cards */}
           <div
-  className="absolute bg-black rounded-full border-[1rem] border-t-[1rem] border-b-[1rem] border-t-purple-300 border-b-white flex items-center justify-center text-white font-bold z-00
-              w-32 h-32 md:w-36 md:h-36 lg:w-48 lg:h-48 
-              top-1/2 lg:left-[20%] md:left-[25%] translate-x-[-50%] translate-y-[-50%]"
->
-  <img 
-    src={logoImg.src} 
-    className="object-contain max-w-full max-h-full md:w-20 md:h-20 lg:w-24 lg:h-24 " 
-    alt="logo"
-  />
-</div>
+            className="absolute bg-black rounded-full border-[1rem] border-t-[1rem] border-b-[1rem] border-t-purple-300 border-b-white flex items-center justify-center text-white font-bold z-00
+              w-32 h-32 md:w-36 md:h-36 lg:w-44 lg:h-44 
+              top-1/2 lg:left-[20%] md:left-[25%] translate-x-[-50%] translate-y-[-50%]">
+              <img 
+              src={logoImg.src} 
+              className="object-contain max-w-full max-h-full md:w-20 md:h-20 lg:w-24 lg:h-24 " 
+              alt="logo"/>
+         </div>
 
           {/* Torch-like Glow Effect (Following Cursor) */}
           {isHovering && (
@@ -178,96 +176,99 @@ export default function Timeline() {
       </div>
       {/* Layout for Small Devices */}
 <div className="md:hidden flex flex-col items-center min-h-screen bg-gradient-to-b from-blue-100 to-white p-4">
+<div className="grid grid-cols-2 gap-2 p-1 max-w-[95%] relative">
   {/* Timeline Box */}
-  <div className="w-full bg-gradient-to-t from-purple-400 to-[#8055E0] rounded-2xl text-white p-5 flex flex-col justify-center items-center mb-4 h-[18rem]">
+  <div className="col-span-2 bg-gradient-to-t from-purple-400 to-[#8055E0] rounded-2xl text-white p-5 flex flex-col justify-center items-center mb-1 h-[12rem]">
     <h1 className="text-xl font-bold">Futurepreneurs 10.0</h1>
-    <p className="text-6xl font-extrabold mt-1 mb-16">TIMELINE</p>
+    <p className="text-5xl font-extrabold mt-1 mb-16">TIMELINE</p>
   </div>
 
   {/* 2 OCT */}
   <div 
-    className="w-full bg-[#191934] rounded-2xl text-white p-6 flex flex-col items-start mb-4 h-[18rem] relative"
-    onMouseEnter={() => handleMouseEnterDate('02')}
-    onMouseLeave={handleMouseLeaveDate}
+    className="col-span-1 bg-[#191934] rounded-2xl text-white p-6 flex flex-col items-start mb-1 h-[15rem] relative"
   >
     <div className="flex flex-col items-start mt-10">
-      <p className={"text-7xl font-extrabold text-left " + (hoveredDate === '02' ? 'text-orange-400' : 'text-[#C1B7FC]')}>02</p>
-      <p className="text-3xl text-[#C1B7FC] font-bold mb-5">OCT</p>
+      <p className={"text-5xl font-extrabold text-[#C1B7FC] font-anton text-left " }>02</p>
+      <p className="text-2xl font-gotham text-[#C1B7FC] font-bold mb-5">OCT</p>
     </div>
-    <h2 className="text-2xl font-bold">Registration Starts</h2>
-    <div className={"absolute inset-0 border-4 border-orange-400 rounded-2xl " + (hoveredDate === '02' ? 'opacity-100' : 'opacity-0')} />
-    <div className="absolute top-4 left-4 w-10 h-10 bg-gradient-to-tr from-[#563EEA] to-[#BBA5F4] rounded-full flex items-center justify-center">
+    <h2 className="text-xl font-bold">Registration Starts</h2>
+    <div className={"absolute inset-0 rounded-2xl "} />
+    <div className="absolute top-4 left-4 w-7 h-7 bg-gradient-to-tr from-[#563EEA] to-[#BBA5F4] rounded-full flex items-center justify-center">
       <span className="text-[#C1B7FC] text-2xl font-bold">1</span>
     </div>
   </div>
 
   {/* 6 OCT */}
   <div 
-    className="w-full bg-[#191934] rounded-2xl text-white p-6 flex flex-col items-end mb-4 h-[18rem] relative"
-    onMouseEnter={() => handleMouseEnterDate('06')}
-    onMouseLeave={handleMouseLeaveDate}
+    className="col-span-1 bg-[#191934] rounded-2xl text-white p-6 flex flex-col items-end mb-1 h-[15rem] relative"
   >
     <div className="flex flex-col items-end mt-10">
-      <p className={"text-7xl font-extrabold text-right " + (hoveredDate === '06' ? 'text-orange-400' : 'text-[#C1B7FC]')}>06</p>
-      <p className="text-3xl text-[#C1B7FC] font-bold mb-5">OCT</p>
+      <p className={"text-5xl font-anton text-[#C1B7FC] font-extrabold text-right " }>06</p>
+      <p className="text-2xl font-gotham text-[#C1B7FC] font-bold mb-5">OCT</p>
     </div>
-    <h2 className="text-2xl font-bold text-right">Registration Closes</h2>
-    <div className={"absolute inset-0 border-4 border-orange-400 rounded-2xl " + (hoveredDate === '06' ? 'opacity-100' : 'opacity-0')} />
-    <div className="absolute top-4 right-4 w-10 h-10 bg-gradient-to-tr from-[#563EEA] to-[#BBA5F4] rounded-full flex items-center justify-center">
+    <h2 className="text-xl font-bold text-right">Registration Closes</h2>
+    <div className={"absolute inset-0 rounded-2xl "} />
+    <div className="absolute top-4 right-4 w-7 h-7 bg-gradient-to-tr from-[#563EEA] to-[#BBA5F4] rounded-full flex items-center justify-center">
       <span className="text-[#C1B7FC] text-2xl font-bold">2</span>
     </div>
   </div>
 
   {/* 8 OCT */}
   <div 
-    className="w-full bg-[#191934] rounded-2xl text-white p-6 flex flex-col items-start mb-4 h-[18rem] relative"
-    onMouseEnter={() => handleMouseEnterDate('08')}
-    onMouseLeave={handleMouseLeaveDate}
+    className="col-span-1 bg-[#191934] rounded-2xl text-white p-6 flex flex-col items-start mb-1 h-[15rem] relative"
   >
-    <h2 className="text-2xl font-bold">Qualifier Starts</h2>
+    <h2 className="text-xl font-bold">Qualifier Starts</h2>
     <div className="flex flex-col items-start mt-4">
-      <p className={"text-7xl font-extrabold text-left " + (hoveredDate === '08' ? 'text-orange-400' : 'text-[#C1B7FC]')}>08</p>
-      <p className="text-3xl text-[#C1B7FC] font-bold">OCT</p>
+      <p className={"text-5xl font-anton text-[#C1B7FC] font-extrabold text-left "}>08</p>
+      <p className="text-2xl font-gotham text-[#C1B7FC] font-bold">OCT</p>
     </div>
-    <div className={"absolute inset-0 border-4 border-orange-400 rounded-2xl " + (hoveredDate === '08' ? 'opacity-100' : 'opacity-0')} />
-    <div className="absolute bottom-4 right-4 w-10 h-10 bg-gradient-to-tr from-[#563EEA] to-[#BBA5F4] rounded-full flex items-center justify-center">
+    <div className={"absolute inset-0 rounded-2xl "} />
+    <div className="absolute bottom-4 right-4 w-7 h-7 bg-gradient-to-tr from-[#563EEA] to-[#BBA5F4] rounded-full flex items-center justify-center">
       <span className="text-[#C1B7FC] text-2xl font-bold">3</span>
     </div>
   </div>
 
   {/* 12 OCT */}
   <div 
-    className="w-full bg-[#191934] rounded-2xl text-white p-6 flex flex-col items-start mb-4 h-[18rem] relative"
-    onMouseEnter={() => handleMouseEnterDate('12')}
-    onMouseLeave={handleMouseLeaveDate}
+    className="col-span-1 bg-[#191934] rounded-2xl text-white p-6 flex flex-col items-start mb-1 h-[15rem] relative"
   >
-    <h2 className="text-2xl font-bold">Qualifier Closes</h2>
+    <h2 className="text-xl font-bold">Qualifier Closes</h2>
     <div className="flex flex-col items-start mt-4">
-      <p className={"text-7xl font-extrabold text-left " + (hoveredDate === '12' ? 'text-orange-400' : 'text-[#C1B7FC]')}>12</p>
-      <p className="text-3xl text-[#C1B7FC] font-bold">OCT</p>
+      <p className={"text-5xl font-anton text-[#C1B7FC] font-extrabold text-left " }>12</p>
+      <p className="text-2xl font-gotham text-[#C1B7FC] font-bold">OCT</p>
     </div>
-    <div className={"absolute inset-0 border-4 border-orange-400 rounded-2xl " + (hoveredDate === '12' ? 'opacity-100' : 'opacity-0')} />
-    <div className="absolute bottom-4 right-4 w-10 h-10 bg-gradient-to-tr from-[#563EEA] to-[#BBA5F4] rounded-full flex items-center justify-center">
+    <div className={"absolute inset-0  rounded-2xl "} />
+    <div className="absolute bottom-4 right-4 w-7 h-7 bg-gradient-to-tr from-[#563EEA] to-[#BBA5F4] rounded-full flex items-center justify-center">
       <span className="text-[#C1B7FC] text-2xl font-bold">4</span>
     </div>
   </div>
 
   {/* D-Day Box */}
   <div 
-    className="w-full bg-[#191934] rounded-2xl text-white p-6 flex flex-col items-start mb-4 h-[18rem] relative"
-    onMouseEnter={() => handleMouseEnterDate('16')}
-    onMouseLeave={handleMouseLeaveDate}
+    className="col-span-2 bg-[#191934] rounded-2xl text-white p-6 flex flex-col items-start mb-1 h-[13rem] relative"
   >
-    <p className="text-3xl font-bold">The</p>
-    <h2 className="text-5xl font-extrabold text-orange-400">D Day</h2>
-    <p className="text-3xl font-bold">Is Here</p>
-    <div className="flex flex-col items-start mt-4">
-      <p className={"text-7xl font-extrabold text-left " + (hoveredDate === '16' ? 'text-orange-400' : 'text-[#C1B7FC]')}>16</p>
-      <p className="text-3xl text-[#C1B7FC] font-bold">OCT</p>
+    <p className="text-xl font-bold">The</p>
+    <h2 className="text-3xl font-extrabold text-orange-400">D Day</h2>
+    <p className="text-xl font-bold">Is Here</p>
+    <div className="flex flex-col items-start mt-2">
+      <p className={"text-4xl font-anton text-[#C1B7FC] font-extrabold text-left "}>16</p>
+      <p className="text-2xl font-gotham text-[#C1B7FC] font-bold">OCT</p>
     </div>
-    <div className={"absolute inset-0 border-4 border-orange-400 rounded-2xl " + (hoveredDate === '16' ? 'opacity-100' : 'opacity-0')} />
-    <div className="absolute top-4 right-4 w-10 h-10 bg-gradient-to-tr from-[#563EEA] to-[#BBA5F4] rounded-full flex items-center justify-center">
+    <div className="absolute top-10 left-[8.3125rem] w-[40%]  max-w-[100%] h-[8.75rem] object-contain rounded-lg flex items-center justify-center">
+       <img className="bg-transparent "src={clockImg.src}></img>
+     </div>
+    <div className={"absolute inset-0 rounded-2xl " } />
+    <div className="absolute top-4 right-4 w-7 h-7 bg-gradient-to-tr from-[#563EEA] to-[#BBA5F4] rounded-full flex items-center justify-center">
       <span className="text-[#C1B7FC] text-2xl font-bold">5</span>
+    </div>
+  </div>
+  <div
+      className="absolute bg-black rounded-full border-[1rem] border-t-[1rem] border-b-[1rem] border-t-purple-300 border-b-white flex items-center justify-center text-white font-bold z-00 w-32 h-32  
+      top-[22%] left-1/2 translate-x-[-50%] translate-y-[-50%]">
+      <img 
+      src={logoImg.src} 
+      className="object-contain max-w-full max-h-full w-16 h-16 " 
+      alt="logo"/>
     </div>
   </div>
 </div>

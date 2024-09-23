@@ -7,6 +7,7 @@ import LoadingScreen from "@/components/LoadingScreen";
 import toast, { Toaster } from 'react-hot-toast';
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import DashboardNavbar from "@/components/dashboardNavbar";
 
 const TeamDetails = () => {
   const { data: session, status} = useSession();
@@ -85,8 +86,9 @@ const TeamDetails = () => {
     };
 
   return (
-    <div className="h-[100vh] w-full flex flex-col items-center justify-center text-white font-sans bg-white bg-cover bg-center">
+    <div className="h-[100vh] w-full flex flex-col items-center justify-center text-white font-sans  bg-[url(../assests/assests/bg_website.png)] bg-cover bg-center">
       {loading && <LoadingScreen />}
+      <DashboardNavbar />
       <div className="w-[90%] max-w-[20rem] md:w-[95%] md:max-w-[32rem] lg:max-w-[32rem] p-[1.5rem] md:p-[2rem] bg-gray-800 rounded-lg shadow-lg flex flex-col justify-center md:h-[20rem] lg:h-[18rem] sm:max-w-[20rem] items-centre">
         <div className="text-center mb-[1.5rem]">
           <h1 className="text-[1.75rem] md:text-[2.5rem] lg:text-[3rem] font-bold pb-[0.5rem]">
@@ -99,7 +101,7 @@ const TeamDetails = () => {
             {teamCode}
           </span>
           <button
-            className="text-[1rem] sm:text-[1.8rem] md:text-[2rem] text-gray-400 hover:text-white flex items-center ml-auto md:ml-0 mr-[0.5rem]"
+            className="text-[1rem] sm:text-[1.3rem] md:text-[1.5rem] text-gray-400 hover:text-white flex items-center ml-auto md:ml-0 mr-[0.5rem]"
             onClick={() => handleCopy(teamCode)} 
           >
             <FontAwesomeIcon className="mr-[0.5rem]" icon={faCopy} />
