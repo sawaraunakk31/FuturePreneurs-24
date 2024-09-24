@@ -55,7 +55,7 @@ const LegacyComponent = () => {
 
   return (
     <div 
-      className="relative flex flex-col items-center justify-center h-screen bg-gray-100  overflow-hidden" 
+      className="relative flex flex-col items-center justify-center h-screen bg-gray-100 overflow-hidden" 
       id='gallery'
       ref={componentRef}
     >
@@ -74,7 +74,7 @@ const LegacyComponent = () => {
       </motion.div>
 
       <AnimatePresence>
-        {imageSets[activeSet].map((image, index) => {
+        {imageSets[activeSet].slice(0, 3).map((image, index) => {
           const positionIndex = activeSet * 3 + index;
           return (
             <motion.div
