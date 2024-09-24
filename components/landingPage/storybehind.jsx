@@ -67,7 +67,7 @@ export default function Home() {
           <div className="absolute -top-8 -left-[0.1rem] transform">
             <div className="bg-white mt-[1.9rem] border-r-2 border-r-purple-400 border-b-2 border-b-purple-400 pr-2 pt-4 pb-2 rounded-br-lg">
               <div className="bg-white mt-[-2.6rem] px-4 py-2 border-2 border-black rounded-t-lg rounded-b-lg">
-                <h2 className="text-lg font-outfit font-bold">CHALLENGE YOURSELF</h2>
+                <h2 className="text-lg font-outfit font-bold">Challenge Yourself</h2>
               </div>
             </div>
           </div>
@@ -103,9 +103,9 @@ export default function Home() {
       {/* Header Section */}
       <div className="relative bg-gradient-to-r bg-gradient from-[#BFB4FF69] via-[#E6FCFF5A] to-[#A1EEFF69] p-8 rounded-xl shadow-lg w-full max-w-4xl mx-auto mt-[4rem] border-2 border-purple-400">
         <div className="absolute -top-8 left-1/2 transform -translate-x-1/2">
-          <div className="flex w-[15rem] bg-white border-b-2 border-b-purple-400 border-r-2 border-r-purple-400 border-l-2 border-l-purple-400 px-4 py-4 rounded-b-lg mt-[1.9rem]">
+          <div className="flex w-[15rem] bg-white border-b-2 border-b-purple-400 border-r-2 border-r-purple-400 border-l-2 border-l-purple-400 px-4 py-4 rounded-b-lg mt-[1.9rem] ">
             <div className="flex items-center justify-center w-[14rem] bg-white px-4 py-2 rounded-t-lg rounded-b-lg mb-[-0.6rem] mr-[-0.5rem] ml-[-0.5rem] border-2 border-black mt-[-2.9rem]">
-              <h1 className="text-lg font-extrabold font-outfit ">PROBLEM SOLVING</h1>
+              <h1 className="text-lg font-extrabold font-outfit ">Problem Solving </h1>
              
             </div>
           </div>
@@ -120,7 +120,7 @@ export default function Home() {
         <div className="absolute -top-8 left-1/2 transform -translate-x-1/2">
         <div className="flex w-[15rem] bg-white border-b-2 border-b-purple-400 border-r-2 border-r-purple-400 border-l-2 border-l-purple-400 px-4 py-4 rounded-b-lg mt-[1.9rem]">
         <div className="flex items-center justify-center w-[14rem] bg-white px-4 py-2 rounded-t-lg rounded-b-lg mb-[-0.6rem] mr-[-0.5rem] ml-[-0.5rem] border-2 border-black mt-[-2.9rem]">
-              <h1 className="text-lg font-extrabold font-outfit ">SKILL TESTING</h1>
+              <h1 className="text-lg font-extrabold font-outfit ">Skill Testing </h1>
              
             </div>
           </div>
@@ -135,7 +135,7 @@ export default function Home() {
         <div className="absolute -top-8 left-1/2 transform -translate-x-1/2">
         <div className="flex w-[15rem] bg-white border-b-2 border-b-purple-400 border-r-2 border-r-purple-400 border-l-2 border-l-purple-400 px-4 py-4 rounded-b-lg mt-[1.9rem]">
         <div className="flex items-center justify-center w-[14rem] bg-white px-4 py-2 rounded-t-lg rounded-b-lg mb-[-0.6rem] mr-[-0.5rem] ml-[-0.5rem] border-2 border-black mt-[-2.9rem]">
-              <h1 className="text-md font-extrabold font-outfit ">CHALLENGE YOURSELF</h1>
+              <h1 className="text-md font-extrabold font-outfit ">Challenge Yourself</h1>
              
             </div>
           </div>
