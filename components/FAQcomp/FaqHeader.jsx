@@ -9,7 +9,7 @@ export default function FaqHeader(){
             WebkitBackgroundClip: "text",
             WebkitTextFillColor: "transparent", 
           }}>
-            <h1 className="text-left text-[15vw] leading-[30vh] ">FAQs</h1>
+            <h1 className="text-left text-[10vh] sm:text-[15vw] leading-[30vh] ">FAQs</h1>
         </div>
         </>
     )
