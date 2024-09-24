@@ -9,6 +9,12 @@
    font-style: normal;
  }
  @font-face {
+  font-family: 'Gotham Black';
+  src: url('../public/fonts/Gotham-Black.ttf') format('truetype');
+  font-weight:bold;
+  font-style: normal;
+}
+ @font-face {
   font-family: 'Anton';
   src: url('../public/fonts/Anton-Regular.ttf') format('truetype');
   font-weight: 400;

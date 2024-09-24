@@ -24,6 +24,7 @@ module.exports = {
       fontFamily: {
         anton: ['Anton','sans-serif'],
         gotham:['Gotham Black','sans-serif'],
+        gotham:['GothamBlack','sans-serif'],
         outfit:['Outfit Black','sans-serif'],
         almarai:['Almarai','sans-serif'],
       },
