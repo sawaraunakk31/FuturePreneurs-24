@@ -90,7 +90,7 @@ const Navbar = () => {
       {/* Navigation Links for desktop */}
       <div className="hidden md:flex relative items-center justify-center">
         {/* Box around navigation links */}
-        <div className="relative align-middle w-[60vw] lg:w-[70vw] h-[7vh] bg-transparent border-[3px] border-gray-300 rounded-[25px] opacity-100 z-10">
+        <div className="relative align-middle w-[60vw] max-w-[800px] lg:w-[70vw] h-[7vh] bg-transparent border-[3px] border-gray-300 rounded-[25px] opacity-100 z-10">
 
           {/* Navigation Links */}
           <div className="flex items-center align-middle justify-center h-full">
@@ -156,7 +156,7 @@ const Navbar = () => {
 
       {/* Mobile Menu (only when isMenuOpen is true) */}
 {isMenuOpen && (
-  <div className="fixed inset-0 bg-black bg-opacity-85 backdrop-blur-sm z-40 transition-transform transform duration-300 ease-in-out md:hidden h-full w-full">
+  <div className="fixed inset-0 bg-black bg-opacity-85 backdrop-blur-sm transition-transform transform duration-300 ease-in-out md:hidden h-full w-full z-100">
     <div className="flex flex-col items-center space-y-10 py-12 pt-16 h-full justify-center relative">
   {/* Close Button */}
   <button
