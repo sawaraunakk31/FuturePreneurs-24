@@ -34,14 +34,14 @@ const Navbar = () => {
   const handleLoginClick = () => {
     if (status === "authenticated") {
       signOut();
-      router.push('/') // Redirect to dashboard if logged in
+      // router.push('/') // Redirect to dashboard if logged in
     } else {
       signIn('google'); // Redirect to login if not logged in
     }
   };
 
   const toggleMenu = () => {
-    setIsMenuOpen((prev) => !prev); // Toggle menu open/close
+    setIsMenuOpen(!isMenuOpen); // Toggle between open and close
   };
 
   const closeMenu = () => {
@@ -49,7 +49,7 @@ const Navbar = () => {
   };
 
   return (
-    <div className="flex w-full h-[10vh] bg-white bg-opacity-85 fixed top-0 left-0 right-0 z-50  items-center px-10 justify-between">
+    <div className="flex w-full h-[10vh] bg-white fixed top-0 left-0 right-0 z-50  items-center px-10 justify-between">
 
       {/* ECELL Logo */}
       <div className="flex items-center">
@@ -157,7 +157,7 @@ const Navbar = () => {
 
       {/* Mobile Menu (only when isMenuOpen is true) */}
       {isMenuOpen && (
-        <div className="fixed top-16 right-0 h-1/2 w-3/5 py-2 bg-black bg-opacity-40 z-40 transition-transform transform duration-300 ease-in-out md:hidden border-gray-300 rounded-[25px]">
+        <div className="fixed top-16 right-0 w-3/5 py-2 bg-black bg-opacity-40 z-40 transition-transform transform duration-300 ease-in-out md:hidden border-gray-300 rounded-[25px] h-auto">
           <div className="flex flex-col items-center space-y-10 py-12 pt-16">
             <Link href="/" onClick={closeMenu}>
               <div className="text-white text-2xl font-bold uppercase hover:text-blue-400 active:text-blue-400 transition duration-300 cursor-pointer">
@@ -200,7 +200,7 @@ const Navbar = () => {
           onClick={handleLoginClick}
           className="px-6 py-2 bg-black text-white rounded-full hover:bg-blue-500 transition duration-300 cursor-pointer"
         >
-          {status === "authenticated" ? "LogOut" : "Login"}
+          {status === "authenticated" ? "Logout" : "Login"}
         </button>
       </div>
     </div>

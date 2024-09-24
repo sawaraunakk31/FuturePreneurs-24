@@ -7,11 +7,13 @@ import { useRouter } from 'next/navigation';
 import ecellLogo from '/assests/assests/ecell.jpg'; // Ensure the path is correct
 import hamburgerIcon from '/assests/assests/Hamburger.jpg'; // Path to hamburger image
 import closeIcon from '/assests/assests/close.jpg'; // Path to close image
+import LoadingScreen from './LoadingScreen';
 
 const DashboardNavbar = () => {
   const { data: session, status } = useSession();
   const router = useRouter();
   const [isMenuOpen, setIsMenuOpen] = useState(false); // State to control mobile menu
+  const [loading,setLoading] = useState(false)
   const heroSectionRef = useRef(null);
   const timelineRef = useRef(null);
   const galleryRef = useRef(null);
@@ -32,11 +34,14 @@ const DashboardNavbar = () => {
   }, []);
 
   const handleLoginClick = () => {
+    setLoading(true)
     if (status === "authenticated") {
       signOut(); // Log out if already authenticated
+      // router.push('/')
+      setLoading(false)
     } else {
       signIn("google"); // Log in if not authenticated
-      router.push('/')
+      setLoading(false)
     }
   };
 
@@ -49,8 +54,8 @@ const DashboardNavbar = () => {
   };
 
   return (
-    <div className="flex w-full h-[10vh] bg-white bg-opacity-85 fixed top-0 left-0 right-0 z-50 items-center px-10 justify-between">
-
+    <div className="flex w-full h-[10vh] bg-white fixed top-0 left-0 right-0 z-50 items-center px-10 justify-between">
+      {loading && <LoadingScreen/>}
       {/* ECELL Logo */}
       <div className="flex items-center">
         <Image
