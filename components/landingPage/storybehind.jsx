@@ -103,7 +103,7 @@ export default function Home() {
       {/* Header Section */}
       <div className="relative bg-gradient-to-r bg-gradient from-[#BFB4FF69] via-[#E6FCFF5A] to-[#A1EEFF69] p-8 rounded-xl shadow-lg w-full max-w-4xl mx-auto mt-[4rem] border-2 border-purple-400">
         <div className="absolute -top-8 left-1/2 transform -translate-x-1/2">
-          <div className="flex w-[15rem] bg-white border-b-2 border-b-purple-400 border-r-2 border-r-purple-400 border-l-2 border-l-purple-400 px-4 py-4 rounded-b-lg mt-[1.9rem] ">
+        <div className="flex w-[15rem] bg-white border-t-2 border-t-transparent border-b-2 border-b-purple-400 border-r-2 border-r-purple-400 border-l-2 border-l-purple-400 px-4 py-4 rounded-b-lg mt-[1.9rem] ">
             <div className="flex items-center justify-center w-[14rem] bg-white px-4 py-2 rounded-t-lg rounded-b-lg mb-[-0.6rem] mr-[-0.5rem] ml-[-0.5rem] border-2 border-black mt-[-2.9rem]">
               <h1 className="text-lg font-extrabold font-outfit ">Problem Solving </h1>
              
@@ -118,7 +118,7 @@ export default function Home() {
       </div>
       <div className="relative bg-gradient-to-r bg-gradient from-[#BFB4FF69] via-[#E6FCFF5A] to-[#A1EEFF69] p-8 rounded-xl shadow-lg w-full max-w-4xl mx-auto mt-[4rem] border-2 border-purple-400">
         <div className="absolute -top-8 left-1/2 transform -translate-x-1/2">
-        <div className="flex w-[15rem] bg-white border-b-2 border-b-purple-400 border-r-2 border-r-purple-400 border-l-2 border-l-purple-400 px-4 py-4 rounded-b-lg mt-[1.9rem]">
+        <div className="flex w-[15rem] bg-white border-b-2 border-t-2 border-t-transparent border-b-purple-400 border-r-2 border-r-purple-400 border-l-2 border-l-purple-400 px-4 py-4 rounded-b-lg mt-[1.9rem]">
         <div className="flex items-center justify-center w-[14rem] bg-white px-4 py-2 rounded-t-lg rounded-b-lg mb-[-0.6rem] mr-[-0.5rem] ml-[-0.5rem] border-2 border-black mt-[-2.9rem]">
               <h1 className="text-lg font-extrabold font-outfit ">Skill Testing </h1>
              
@@ -133,7 +133,7 @@ export default function Home() {
       </div>
       <div className="relative bg-gradient-to-r bg-gradient from-[#BFB4FF69] via-[#E6FCFF5A] to-[#A1EEFF69] p-8 rounded-xl shadow-lg  max-w-3xl mx-auto mt-[4rem] border-2 border-purple-400">
         <div className="absolute -top-8 left-1/2 transform -translate-x-1/2">
-        <div className="flex w-[15rem] bg-white border-b-2 border-b-purple-400 border-r-2 border-r-purple-400 border-l-2 border-l-purple-400 px-4 py-4 rounded-b-lg mt-[1.9rem]">
+        <div className="flex w-[15rem] bg-white border-b-2 border-t-2 border-t-transparent border-b-purple-400 border-r-2 border-r-purple-400 border-l-2 border-l-purple-400 px-4 py-4 rounded-b-lg mt-[1.9rem]">
         <div className="flex items-center justify-center w-[14rem] bg-white px-4 py-2 rounded-t-lg rounded-b-lg mb-[-0.6rem] mr-[-0.5rem] ml-[-0.5rem] border-2 border-black mt-[-2.9rem]">
               <h1 className="text-md font-extrabold font-outfit ">Challenge Yourself</h1>
              
