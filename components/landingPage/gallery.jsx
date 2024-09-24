@@ -16,9 +16,9 @@ const fixedPositions = [
 ];
 
 const imageSets = [
-  ['/imgs/active/img1.jpg', '/imgs/active/img2.jpg', '/imgs/active/img3.jpg'],
-  ['/imgs/active/img4.jpg', '/imgs/active/img5.jpeg', '/imgs/active/img6.jpeg'],
-  ['/imgs/active/img7.jpeg', '/imgs/active/img8.jpeg', '/imgs/active/img9.jpeg'],
+  ['/imgs/active/IMG_2112.jpg', '/imgs/active/IMG_2171.jpg', '/imgs/active/IMG_2577.jpg'],
+  ['/imgs/active/IMG_4066.jpg', '/imgs/active/IMG_6157.jpg', '/imgs/active/IMG_6216.jpg'],
+  ['/imgs/active/IMG_6245.jpg', '/imgs/active/new.jpg', '/imgs/active/new2.jpg'],
 ];
 
 const LegacyComponent = () => {
