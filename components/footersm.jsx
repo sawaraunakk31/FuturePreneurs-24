@@ -24,12 +24,12 @@ const Footersm=()=>{
                 <div className='flex  items-center justify-start text-[#FFFFFF] gap-2'>
                     <p className='block sm:hidden'><PhoneIconsm  /></p>
                     <p className='hidden sm:block' ><PhoneIcon /></p>
-                  <a href="tel:+91 87777 93331" className="text-white text-[2vw]">+91 87777 93331</a>
+                  <a href="tel:+91 87777 93331" className="text-white text-[3vw]">+91 87777 93331</a>
                 </div>
                 <div className='flex items-centre gap-2 justify-start'>
-                    <p className='pt-[0.5vh] block sm:hidden'><MailIconsm /></p>
-                    <p className='pt-[0.5vh] hidden sm:block'><MailIcon /></p>
-                  <a href="mailto:helloecellvit@gmail.com" className='text-[#FFFFFF] text-[2vw]'>helloecellvit@gmail.com</a>
+                    <p className='pt-[0.8vh] block sm:hidden'><MailIconsm /></p>
+                    <p className='pt-[1.5vh] hidden sm:block'><MailIcon /></p>
+                  <a href="mailto:helloecellvit@gmail.com" className='text-[#FFFFFF] text-[3vw]'>helloecellvit@gmail.com</a>
                 </div>
           </div>
         </div>
