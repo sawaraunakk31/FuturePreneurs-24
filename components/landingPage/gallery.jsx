@@ -11,18 +11,48 @@ const fixedPositions = [
   { top: '35%', left: '15%' },
   { top: '65%', left: '45%' },
   { top: '70%', left: '40%' },
-  { top: '15%', left: '55%' },
+  { top: '15%', left: '65%' },
   { top: '35%', left: '15%' },
+  { top: '50%', left: '30%' },
+  { top: '80%', left: '20%' },
+  { top: '45%', left: '70%' },
+  { top: '15%', left: '10%' },
+  { top: '55%', left: '20%' },
+  { top: '30%', left: '65%' },
+  { top: '65%', left: '25%' },
+  { top: '10%', left: '10%' },
+  { top: '35%', left: '65%' },
+  { top: '20%', left: '20%' },
+  { top: '40%', left: '60%' },
+  { top: '65%', left: '25%' }
 ];
 
 const imageSets = [
-  ['/imgs/active/IMG_2112.jpg', '/imgs/active/IMG_2171.jpg', '/imgs/active/IMG_2577.jpg'],
-  ['/imgs/active/IMG_4066.jpg', '/imgs/active/IMG_6157.jpg', '/imgs/active/IMG_6216.jpg'],
-  ['/imgs/active/IMG_6245.jpg', '/imgs/active/new.jpg', '/imgs/active/new2.jpg'],
+  '/imgs/active/IMG_2112.jpg',
+  '/imgs/active/IMG_2171.jpg',
+  '/imgs/active/IMG_2577.jpg',
+  '/imgs/active/IMG_4066.jpg',
+  '/imgs/active/IMG_6157.jpg',
+  '/imgs/active/IMG_6216.jpg',
+  '/imgs/active/IMG_6245.jpg',
+  '/imgs/active/new.jpg',
+  '/imgs/active/new2.jpg',
+  '/imgs/active/IMG_2084(1).jpg',
+  '/imgs/active/IMG_2103.jpg',
+  '/imgs/active/IMG_2119.jpg',
+  '/imgs/active/IMG_2122.jpg',
+  '/imgs/active/IMG_2133.jpg',
+  '/imgs/active/IMG_2166.jpg',
+  '/imgs/active/IMG_2507.jpg',
+  '/imgs/active/IMG_2570.jpg',
+  '/imgs/active/IMG_2258.jpg',
+  '/imgs/active/WhatsApp Image 2024-09-24 at 21.53.56 (1).jpg',
+  '/imgs/active/WhatsApp Image 2024-09-24 at 21.53.56.jpg',
+  '/imgs/active/IMG_6245.jpg'
 ];
 
 const LegacyComponent = () => {
-  const [activeSet, setActiveSet] = useState(0);
+  const [activeSet, setActiveSet] = useState(0); // Tracks which set of 3 images is active
   const [scale, setScale] = useState(1);
   const [overlayImage, setOverlayImage] = useState('/imgs/10-Years-Of-FP.png');
   const componentRef = useRef(null);
@@ -44,7 +74,7 @@ const LegacyComponent = () => {
     window.addEventListener('wheel', handleScroll, { passive: false });
 
     const interval = setInterval(() => {
-      setActiveSet((prevSet) => (prevSet + 1) % imageSets.length);
+      setActiveSet((prevSet) => (prevSet + 1) % 7); // 7 sets of 3 images (21 images total)
     }, 3000);
 
     return () => {
@@ -52,6 +82,11 @@ const LegacyComponent = () => {
       clearInterval(interval);
     };
   }, []);
+
+  const getCurrentImages = () => {
+    const startIndex = activeSet * 3;
+    return imageSets.slice(startIndex, startIndex + 3); // Get the current set of 3 images
+  };
 
   return (
     <div 
@@ -74,8 +109,8 @@ const LegacyComponent = () => {
       </motion.div>
 
       <AnimatePresence>
-        {imageSets[activeSet].slice(0, 3).map((image, index) => {
-          const positionIndex = activeSet * 3 + index;
+        {getCurrentImages().map((image, index) => {
+          const positionIndex = activeSet * 3 + index; // Calculate the position for each image in the current set
           return (
             <motion.div
               key={image}
