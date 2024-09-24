@@ -39,6 +39,15 @@
   font-weight: bold;
   font-style: normal;
 }
+.gantari-bold {
+  font-family: "Gantari", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 600;
+  font-style: normal;
+}
+
+
+
 
 :root {
   --background: #ffffff;

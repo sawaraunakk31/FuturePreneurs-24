@@ -187,14 +187,18 @@ const FaqMainContent = () => {
                 <p
                   className={`text-xl md:text-2xl w-[fit-content] relative after:transition-all after:duration-300 after:ease-in-out after:absolute after:bottom-[-2px] after:left-0 after:h-[2px] after:bg-[#000000] ${
                     visibleFaqs[faq.id] ? 'after:w-full' : 'after:w-0'
-                  }`}
+                  }`} style={{
+                    fontFamily: "'Almarai', sans-serif"
+                  }} 
                 >
                   {faq.q}
                 </p>
                 <p
                   className={`transition-transform duration-300 ease-in-out transform text-l md:text-xl ${
                     visibleFaqs[faq.id] ? 'translate-y-0 opacity-100 max-h-full' : 'translate-y-[-20px] opacity-0 max-h-0'
-                  } overflow-hidden`}
+                  } overflow-hidden`} style={{
+                    fontFamily: "'Almarai', sans-serif"
+                  }}
                 >
                   {faq.ans}
                 </p>
