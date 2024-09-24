@@ -13,8 +13,6 @@ export default function page() {
     <InfoSection/>
     <Timeline />
     <Home/>
-
-
     <LegacyComponent/>
     <Faqpage/>
     </main>

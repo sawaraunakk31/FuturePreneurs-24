@@ -2,7 +2,7 @@
 
 import React from 'react';
 import Image from 'next/image';
-import logoFP from '@/assests/assests/fp_logo_new.png';
+import logoFP from '@/assests/assests/fp_logo_new.svg';
 
 export default function InfoSection() {
   return (
