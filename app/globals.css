@@ -3,9 +3,9 @@
 @tailwind utilities;
 
  @font-face {
-   font-family: 'Gotham Black';
+   font-family: 'GothamBlack';
    src: url('../public/fonts/Gotham-Black.ttf') format('truetype');
-   font-weight:400;
+   font-weight:bold;
    font-style: normal;
  }
  @font-face {
@@ -39,6 +39,15 @@
   font-weight: bold;
   font-style: normal;
 }
+.gantari-bold {
+  font-family: "Gantari", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 600;
+  font-style: normal;
+}
+
+
+
 
 :root {
   --background: #ffffff;
