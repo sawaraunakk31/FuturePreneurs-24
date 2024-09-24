@@ -72,7 +72,7 @@ const HeroSection = () => {
           </div>
 
           <div className='flex'>
-          <div >
+          <div className='z-50'>
             <MyComponent4 Button={RegisterButton} />
           </div>
 
