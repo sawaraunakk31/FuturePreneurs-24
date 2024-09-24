@@ -24,6 +24,8 @@ module.exports = {
       fontFamily: {
         anton: ['Anton','sans-serif'],
         gotham:['Gotham Black','sans-serif'],
+        outfit:['Outfit Black','sans-serif'],
+        almarai:['Almarai','sans-serif'],
       },
       colors: {
         'custom-blue-light': '#137FC1',

@@ -12,6 +12,7 @@ const Navbar = () => {
   const { data: session, status } = useSession();
   const router = useRouter();
   const [isMenuOpen, setIsMenuOpen] = useState(false); // State to control mobile menu
+  const heroSectionRef = useRef(null);
   const timelineRef = useRef(null);
   const galleryRef = useRef(null);
   const footerRef = useRef(null);
@@ -25,6 +26,8 @@ const Navbar = () => {
       galleryRef.current.click();
     } else if (currentUrl.endsWith('/#footer') && footerRef.current) {
       footerRef.current.click();
+    } else {
+      heroSectionRef.current.scrollIntoView({ behavior:'smooth' }); // Scroll to hero section on page load
     }
   }, []);
 
@@ -93,7 +96,16 @@ const Navbar = () => {
           {/* Navigation Links */}
           <div className="flex items-center align-middle justify-center h-full">
             <Link href="/" scroll={false}>
-              <div className="text-black text-lg uppercase hover:text-blue-400 transition duration-300 cursor-pointer px-[1vw] md:px-[2vw] lg:px-[3vw]">
+              <div 
+              ref={heroSectionRef}
+              className="text-black text-lg uppercase hover:text-blue-400 transition duration-300 cursor-pointer px-[1vw] md:px-[2vw] lg:px-[3vw]"
+              onClick={() => {
+                const heroSection = document.querySelector('#heroSection');
+                if (heroSection) {
+                  heroSection.scrollIntoView({ behavior: 'smooth' });
+                }
+              }}
+            >
                 Home
               </div>
             </Link>
