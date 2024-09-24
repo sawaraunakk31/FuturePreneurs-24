@@ -157,14 +157,21 @@ import Dropdownlogo from "../dropdownlogo";
 
 const FaqMainContent = () => {
   const faqs = [
-    { id: 1, q: "Is it compulsory to participate in a team?", ans: `Yes, it is compulsory to participate as a team.` },
-    { id: 2, q: "What is the team size?", ans: `Team can consist of 3 to 4 members.` },
-    { id: 3, q: "I’m interested in participating but I’m unable to find a team. What should I do?", ans: `You can register without a team; we will provide a team for you.` },
-    { id: 4, q: "Will there be any registration fees?", ans: `No, the event is free of cost.` },
-    { id: 5, q: "Do I need to have a business idea ready?", ans: `No, we provide support for idea development throughout the event - just bring your enthusiasm!` },
-    { id: 6, q: "What is the duration of the event?", ans: `The event will be conducted from 10:00 AM to 5:00 PM.` },
-    { id: 7, q: "Will ODs be provided for the event?", ans: `Yes, ODs will be provided for the duration of the event.` },
-    { id: 8, q: "I still have some doubts regarding the event. How can I get them resolved?", ans: `Contact: Anuj Khokhar: +91 8827995405 , Yashita Jindal: +91 7696780371` },
+    { id: 1, q: "Who is eligible to participate in the competition?", ans: `Students of all years are eligible to participate in Futurepreneurs 10.0.` },
+    { id: 2, q: "Is there any registration fee?", ans: `The event is absolutely free of cost.` },
+    { id: 3, q: "What is the duration of the event?", ans: `The event will take place from 9:00 am to 7:00 pm.` },
+    { id: 4, q: "Will ODs be provided for the event?", ans: `Yes, ODs will be provided for the duration of the event.` },
+    { id: 5, q: "How many members can be in a team?", ans: `A team consists of 3-4 people.` },
+    { id: 6, q: "Will there be any prize pool for the event?", ans: `Yes, an enticing prize pool awaits you. All the details will be shared on our social media platforms.` },
+    { id: 7, q: "Can I participate individually?", ans: `Registrations can be made individually, but participants are required to join a team to be a part of the event.` },
+    { id: 8, q: "I still have some doubts regarding the event. How can I get them resolved?", ans:( <>
+      For any further queries, you can contact the following POCs:
+      <br />
+      <strong>1. Shantanu Bhagwat:</strong> +91 9167117310
+      <br />
+      <strong>2. Siddhi J Salunkhe:</strong> +91 8484996634
+    </>
+  ) },
   ];
 
   const [visibleFaqs, setVisibleFaqs] = useState({});
@@ -177,9 +184,9 @@ const FaqMainContent = () => {
   };
 
   return (
-    <main className="m-16">
-      <div className="flex flex-col gap-10 lg:flex-row lg:gap-20 justify-around">
-        <div className="flex flex-col gap-10">
+    <main className=" mt-0 p-20 pt-0 lg:max-h-[55vh]">
+      <div className="flex flex-col gap-10 lg:flex-row lg:gap-20 justify-around text-wrap">
+        <div className="flex flex-col gap-10 lg:w-[45vw]">
           {faqs.slice(0, 4).map((faq) => (
             <div key={faq.id} className="flex items-center gap-5">
               <Dropdownlogo onClick={() => toggleDropdown(faq.id)} />
@@ -206,7 +213,7 @@ const FaqMainContent = () => {
             </div>
           ))}
         </div>
-        <div className="flex flex-col gap-10">
+        <div className="flex flex-col gap-10 lg:w-[45vw]">
           {faqs.slice(4).map((faq) => (
             <div key={faq.id} className="flex items-center gap-5">
               <Dropdownlogo onClick={() => toggleDropdown(faq.id)} />
