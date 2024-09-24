@@ -2,7 +2,7 @@
 import Head from 'next/head';
 import React, { useState, useEffect } from 'react';
 import logoImg from '@/assests/assests/fp_logo_new.svg';
-import clockImg from '@/assests/assests/clock_new.png';
+import clockImg from '@/assests/assests/timer_clock.png';
 
 export default function Timeline() {
   const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 });
