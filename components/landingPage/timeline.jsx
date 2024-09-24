@@ -191,7 +191,7 @@ export default function Timeline() {
       <p className={"text-5xl font-extrabold text-[#C1B7FC] font-anton text-left " }>24</p>
       <p className="text-2xl font-gotham text-[#C1B7FC] font-bold mb-5">SEPT</p>
     </div>
-    <h2 className="text-xl font-gotham font-bold">Registration Starts</h2>
+    <h2 className="text-lg font-gotham font-bold">Registration Starts</h2>
     <div className={"absolute inset-0 rounded-2xl "} />
     <div className="absolute top-4 left-4 w-7 h-7 bg-gradient-to-tr from-[#563EEA] to-[#BBA5F4] rounded-full flex items-center justify-center">
       <span className="text-[#C1B7FC] text-2xl font-bold">1</span>
@@ -206,7 +206,7 @@ export default function Timeline() {
       <p className={"text-5xl font-anton text-[#C1B7FC] font-extrabold text-right " }>01</p>
       <p className="text-2xl font-gotham text-[#C1B7FC] font-bold mb-5">OCT</p>
     </div>
-    <h2 className="text-xl font-bold font-gotham text-right">Registration Closes</h2>
+    <h2 className="text-lg font-bold font-gotham text-right">Registration Closes</h2>
     <div className={"absolute inset-0 rounded-2xl "} />
     <div className="absolute top-4 right-4 w-7 h-7 bg-gradient-to-tr from-[#563EEA] to-[#BBA5F4] rounded-full flex items-center justify-center">
       <span className="text-[#C1B7FC] text-2xl font-bold">2</span>
