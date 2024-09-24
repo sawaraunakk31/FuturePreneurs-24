@@ -36,7 +36,7 @@ const HeroSection = () => {
   return (
     <main className='p-5'>
       <div className='w-[100vw]  min-h-screen'>
-        <div className='z-1 absolute h-[10vh] w-[100vw]'><Navbar /></div>
+        <div className='z-[9999] absolute h-[10vh] w-[100vw]'><Navbar /></div>
         <div className='h-[100vh]'>
           <div>
             <MyComponent />
