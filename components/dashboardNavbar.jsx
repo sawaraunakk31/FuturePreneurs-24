@@ -1,5 +1,5 @@
 'use client';
-import React, { useState } from 'react';
+import React, { useState,useRef } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { signIn, signOut, useSession } from "next-auth/react";
@@ -12,6 +12,24 @@ const DashboardNavbar = () => {
   const { data: session, status } = useSession();
   const router = useRouter();
   const [isMenuOpen, setIsMenuOpen] = useState(false); // State to control mobile menu
+  const heroSectionRef = useRef(null);
+  const timelineRef = useRef(null);
+  const galleryRef = useRef(null);
+  const footerRef = useRef(null);
+
+  useEffect(() => {
+    const currentUrl = window.location.href;
+
+    if (currentUrl.endsWith('/#timeline') && timelineRef.current) {
+      timelineRef.current.click();
+    } else if (currentUrl.endsWith('/#gallery') && galleryRef.current) {
+      galleryRef.current.click();
+    } else if (currentUrl.endsWith('/#footer') && footerRef.current) {
+      footerRef.current.click();
+    } else {
+      heroSectionRef.current.scrollIntoView({ behavior:'smooth' }); // Scroll to hero section on page load
+    }
+  }, []);
 
   const handleLoginClick = () => {
     if (status === "authenticated") {
@@ -65,23 +83,59 @@ const DashboardNavbar = () => {
 
         {/* Navigation Links */}
         <div className="flex items-center space-x-6 z-20 p-4">
-          <Link href="/" onClick={closeMenu}>
-            <div className="text-black text-sm md:text-base lg:text-lg uppercase hover:text-blue-400 transition duration-300 cursor-pointer">
+          <Link href="/" onClick={closeMenu} scroll={false}>
+            <div 
+            ref={heroSectionRef}
+            className="text-black text-sm md:text-base lg:text-lg uppercase hover:text-blue-400 transition duration-300 cursor-pointer"
+            onClick={()=>{
+              const heroSection = document.querySelector('#heroSection');
+              if (heroSection) {
+                heroSection.scrollIntoView({ behavior:'smooth' });
+              }
+            }}
+            >
               Home
             </div>
           </Link>
-          <Link href="#timeline" onClick={closeMenu}>
-            <div className="text-black text-sm md:text-base lg:text-lg uppercase hover:text-blue-400 transition duration-300 cursor-pointer">
+          <Link href="#timeline" onClick={closeMenu} scroll={false}>
+            <div 
+            ref={timelineRef}
+            className="text-black text-sm md:text-base lg:text-lg uppercase hover:text-blue-400 transition duration-300 cursor-pointer"
+            onClick={()=>{
+              const timeline = document.querySelector('#timeline');
+              if (timeline) {
+                timeline.scrollIntoView({ behavior:'smooth' });
+              }
+            }}
+            >
               Timeline
             </div>
           </Link>
-          <Link href="#about" onClick={closeMenu}>
-            <div className="text-black text-sm md:text-base lg:text-lg uppercase hover:text-blue-400 transition duration-300 cursor-pointer">
+          <Link href="#gallery" onClick={closeMenu} scroll={false}>
+            <div 
+            ref={galleryRef}
+            className="text-black text-sm md:text-base lg:text-lg uppercase hover:text-blue-400 transition duration-300 cursor-pointer"
+            onClick={()=>{
+              const gallery = document.querySelector('#gallery');
+              if (gallery) {
+                gallery.scrollIntoView({ behavior:'smooth' });
+              }
+            }}
+            >
               About
             </div>
           </Link>
-          <Link href="#contact" onClick={closeMenu}>
-            <div className="text-black text-sm md:text-base lg:text-lg uppercase hover:text-blue-400 transition duration-300 cursor-pointer">
+          <Link href="#footer" onClick={closeMenu} scroll={false}>
+            <div 
+            ref={footerRef}
+            className="text-black text-sm md:text-base lg:text-lg uppercase hover:text-blue-400 transition duration-300 cursor-pointer"
+            onClick={() => {
+              const footer = document.querySelector('#footer');
+              if (footer) {
+                footer.scrollIntoView({ behavior: 'smooth' });
+              }
+            }}
+            >
               Contact Us
             </div>
           </Link>
