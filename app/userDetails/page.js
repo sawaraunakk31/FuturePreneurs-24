@@ -154,9 +154,9 @@ export default function UserDetail() {
             className=""
           />
         </div>
-        <div className="col-span-1 sm:col-span-2 lg:col-span-2 flex items-center justify-center p-4 lg:p-8 bg-cover bg-center sm:border border-gray-600 rounded-3xl overflow-hidden">
+        <div className="col-span-1 sm:col-span-2 lg:col-span-2 flex items-center justify-center px-4 py-3 lg:p-8 bg-cover bg-center sm:border border-gray-600 rounded-3xl overflow-hidden">
           <div className="w-full max-w-md lg:max-w-lg">
-            <form onSubmit={handleSubmit} className="flex flex-col gap-10 bg-transparent p-2 rounded-lg shadow-none min-w-[full] min-h-[full] text-3xl">
+            <form onSubmit={handleSubmit} className="flex flex-col gap-10 bg-transparent p-1 rounded-lg shadow-none min-w-[full] min-h-[full] text-3xl">
               <div className="flex flex-col gap-2 ">
                 <label htmlFor="name" className="font-bold text-black text-md">Full Name:</label>
                 <input
@@ -167,7 +167,7 @@ export default function UserDetail() {
                   value={formData.name}
                   onChange={handleChange}
                   onKeyPress={handleKeyPress}
-                  className={`border rounded-md text-2xl   text-black ${errors.name ? 'border-red-500 focus:ring-red-300' : 'border-gray-300 focus:ring-blue-200'} focus:outline-none focus:ring-2`}
+                  className={`border rounded-md text-xl px-3 py-1 text-black ${errors.name ? 'border-red-500 focus:ring-red-300' : 'border-gray-300 focus:ring-blue-200'} focus:outline-none focus:ring-2`}
                 />
                 {errors.name && <p className="text-red-500 text-sm">{errors.name}</p>}
               </div>
@@ -180,7 +180,7 @@ export default function UserDetail() {
                   name="email"
                   value={formData.email}
                   onChange={handleChange}
-                  className={`border rounded-md text-2xl text-black ${errors.email ? 'border-red-500 focus:ring-red-300' : 'border-gray-300 focus:ring-blue-200'} focus:outline-none focus:ring-2`}
+                  className={`border rounded-md text-xl px-3 py-1 text-black ${errors.email ? 'border-red-500 focus:ring-red-300' : 'border-gray-300 focus:ring-blue-200'} focus:outline-none focus:ring-2`}
                 />
                 {errors.email && <p className="text-red-500 text-sm">{errors.email}</p>}
               </div>
@@ -193,7 +193,7 @@ export default function UserDetail() {
                   name="regNo"
                   value={formData.regNo}
                   onChange={handleChange}
-                  className={`border rounded-md text-2xl text-black ${errors.regNo ? 'border-red-500 focus:ring-red-300' : 'border-gray-300 focus:ring-blue-200'} focus:outline-none focus:ring-2`}
+                  className={`border rounded-md text-xl px-3 py-1 text-black ${errors.regNo ? 'border-red-500 focus:ring-red-300' : 'border-gray-300 focus:ring-blue-200'} focus:outline-none focus:ring-2`}
                 />
                 {errors.regNo && <p className="text-red-500 text-sm">{errors.regNo}</p>}
               </div>
@@ -207,11 +207,11 @@ export default function UserDetail() {
                   value={formData.number}
                   onChange={handleChange}
                   onWheel={(e) => e.target.blur()}
-                  className={`border rounded-md text-2xl  text-black ${errors.number ? 'border-red-500 focus:ring-red-300' : 'border-gray-300 focus:ring-blue-200'} focus:outline-none focus:ring-2`}
+                  className={`border rounded-md text-xl px-3 py-1  text-black ${errors.number ? 'border-red-500 focus:ring-red-300' : 'border-gray-300 focus:ring-blue-200'} focus:outline-none focus:ring-2`}
                 />
                 {errors.number && <p className="text-red-500 text-sm">{errors.number}</p>}
               </div>
-              <button type="submit" className="p-2 rounded-3xl bg-blue-600 text-white text-2xl hover:bg-blue-700 active:transform transition duration-200 w-full h-auto text-center">
+              <button type="submit" className="p-2 rounded-3xl bg-blue-600 text-white text-xl px-3 py-1 hover:bg-blue-700 active:transform transition duration-200 w-full h-auto text-center">
                 Submit
               </button>
             </form>
