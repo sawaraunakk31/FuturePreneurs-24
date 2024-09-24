@@ -18,7 +18,7 @@ export const metadata = {
   title: "FUTUREPRENEURS 10.0",
   description: "FUTUREPRENEURS 10.0",
   icons:{
-    icon:["../public/assests/assests/fp_logo_new.svg?v=4"],
+    icon:["/favicon.ico"],
   }
 };
 
@@ -26,7 +26,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <Head>
-      <link rel="icon" type="image/svg+xml" href="/assets/fp_logo_new.svg" />
+      <link rel="icon" type="image/svg+xml" href="/favicon.ico" />
         <title>{metadata.title}</title>
         <meta name="description" content={metadata.description} />
       </Head>
