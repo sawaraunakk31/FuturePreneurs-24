@@ -31,34 +31,7 @@ export default function InfoSection() {
         <div className="marquee text-black text-lg md:text-2xl font-bold py-4">
           <div className="marquee-content">
             {/* Duplicating enough to ensure no gap */}
-            <span>FUTUREPRENEURS 10.0 • WE BREED BUSINESS •</span>
-            <span>FUTUREPRENEURS 10.0 • WE BREED BUSINESS •</span>
-            <span>FUTUREPRENEURS 10.0 • WE BREED BUSINESS •</span>
-            <span>FUTUREPRENEURS 10.0 • WE BREED BUSINESS •</span>
-            <span>FUTUREPRENEURS 10.0 • WE BREED BUSINESS •</span>
-            <span>FUTUREPRENEURS 10.0 • WE BREED BUSINESS •</span>
-            <span>FUTUREPRENEURS 10.0 • WE BREED BUSINESS •</span>
-            <span>FUTUREPRENEURS 10.0 • WE BREED BUSINESS •</span>
-            <span>FUTUREPRENEURS 10.0 • WE BREED BUSINESS •</span>
-            <span>FUTUREPRENEURS 10.0 • WE BREED BUSINESS •</span>
-            <span>FUTUREPRENEURS 10.0 • WE BREED BUSINESS •</span>
-            <span>FUTUREPRENEURS 10.0 • WE BREED BUSINESS •</span>
-            <span>FUTUREPRENEURS 10.0 • WE BREED BUSINESS •</span>
-            <span>FUTUREPRENEURS 10.0 • WE BREED BUSINESS •</span>
-            <span>FUTUREPRENEURS 10.0 • WE BREED BUSINESS •</span>
-            <span>FUTUREPRENEURS 10.0 • WE BREED BUSINESS •</span>
-            <span>FUTUREPRENEURS 10.0 • WE BREED BUSINESS •</span>
-            <span>FUTUREPRENEURS 10.0 • WE BREED BUSINESS •</span>
-            <span>FUTUREPRENEURS 10.0 • WE BREED BUSINESS •</span>
-            <span>FUTUREPRENEURS 10.0 • WE BREED BUSINESS •</span>
-            <span>FUTUREPRENEURS 10.0 • WE BREED BUSINESS •</span>
-            <span>FUTUREPRENEURS 10.0 • WE BREED BUSINESS •</span>
-            <span>FUTUREPRENEURS 10.0 • WE BREED BUSINESS •</span>
-            <span>FUTUREPRENEURS 10.0 • WE BREED BUSINESS •</span>
-            <span>FUTUREPRENEURS 10.0 • WE BREED BUSINESS •</span>
-            <span>FUTUREPRENEURS 10.0 • WE BREED BUSINESS •</span>
-            <span>FUTUREPRENEURS 10.0 • WE BREED BUSINESS •</span>
-            <span>FUTUREPRENEURS 10.0 • WE BREED BUSINESS •</span>
+            <p>FUTUREPRENEURS 10.0 • WE BREED BUSINESS • FUTUREPRENEURS 10.0 • WE BREED BUSINESS • FUTUREPRENEURS 10.0 • WE BREED BUSINESS • FUTUREPRENEURS 10.0 • WE BREED BUSINESS •</p>
           </div>
         </div>
       </div>
