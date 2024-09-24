@@ -31,6 +31,17 @@ const Navbar = () => {
     }
   }, []);
 
+  useEffect(() => {
+    if (isMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'auto';
+    }
+    return () => {
+      document.body.style.overflow = 'auto';
+    };
+  }, [isMenuOpen]);
+
   const handleLoginClick = () => {
     if (status === "authenticated") {
       signOut();
@@ -155,49 +166,49 @@ const Navbar = () => {
       </div>
 
       {/* Mobile Menu (only when isMenuOpen is true) */}
-{isMenuOpen && (
-  <div className="fixed inset-0 bg-black bg-opacity-85 backdrop-blur-sm transition-transform transform duration-300 ease-in-out md:hidden h-full w-full z-100">
+      {isMenuOpen && (
+  <div className="fixed inset-0 bg-black bg-opacity-85 backdrop-blur-sm transition-transform transform duration-300 ease-in-out md:hidden h-full w-full z-[9999]">
     <div className="flex flex-col items-center space-y-10 py-12 pt-16 h-full justify-center relative">
-  {/* Close Button */}
-  <button
-    onClick={closeMenu}
-    className="text-white text-3xl font-bold uppercase hover:text-blue-400 active:text-blue-400 transition duration-300 cursor-pointer"
-  >
-    &times;
-  </button>
+      {/* Close Button */}
+      <button
+        onClick={closeMenu}
+        className="text-white text-3xl font-bold uppercase hover:text-blue-400 active:text-blue-400 transition duration-300 cursor-pointer"
+      >
+        &times;
+      </button>
 
-  <Link href="/" onClick={closeMenu}>
-    <div className="text-white text-2xl font-bold uppercase hover:text-blue-400 active:text-blue-400 transition duration-300 cursor-pointer">
-      Home
-    </div>
-  </Link>
-  <Link href="#about" onClick={closeMenu}>
-    <div className="text-white text-2xl font-bold uppercase hover:text-blue-400 active:text-blue-400 transition duration-300 cursor-pointer">
-      About
-    </div>
-  </Link>
-  <Link href="#timeline" onClick={closeMenu}>
-    <div className="text-white text-2xl font-bold uppercase hover:text-blue-400 active:text-blue-400 transition duration-300 cursor-pointer">
-      Timeline
-    </div>
-  </Link>
-  <Link href="#contact" onClick={closeMenu}>
-    <div className="text-white text-2xl font-bold uppercase hover:text-blue-400 active:text-blue-400 transition duration-300 cursor-pointer">
-      Contact Us
-    </div>
-  </Link>
+      <Link href="/" onClick={closeMenu}>
+        <div className="text-white text-2xl font-bold uppercase hover:text-blue-400 active:text-blue-400 transition duration-300 cursor-pointer">
+          Home
+        </div>
+      </Link>
+      <Link href="#about" onClick={closeMenu}>
+        <div className="text-white text-2xl font-bold uppercase hover:text-blue-400 active:text-blue-400 transition duration-300 cursor-pointer">
+          About
+        </div>
+      </Link>
+      <Link href="#timeline" onClick={closeMenu}>
+        <div className="text-white text-2xl font-bold uppercase hover:text-blue-400 active:text-blue-400 transition duration-300 cursor-pointer">
+          Timeline
+        </div>
+      </Link>
+      <Link href="#contact" onClick={closeMenu}>
+        <div className="text-white text-2xl font-bold uppercase hover:text-blue-400 active:text-blue-400 transition duration-300 cursor-pointer">
+          Contact Us
+        </div>
+      </Link>
 
-  {/* Sign-in Button */}
-  <button
-    onClick={() => {
-      closeMenu();
-      handleLoginClick();
-    }}
-    className="px-6 py-2 bg-blue-500 text-white rounded-full hover:bg-blue-700 transition duration-300 cursor-pointer text-2xl"
-  >
-    {status === "authenticated" ? "Logout" : "Login"}
-  </button>
-</div>
+      {/* Sign-in Button */}
+      <button
+        onClick={() => {
+          closeMenu();
+          handleLoginClick();
+        }}
+        className="px-6 py-2 bg-blue-500 text-white rounded-full hover:bg-blue-700 transition duration-300 cursor-pointer text-2xl"
+      >
+        {status === "authenticated" ? "Logout" : "Login"}
+      </button>
+    </div>
   </div>
 )}
 
