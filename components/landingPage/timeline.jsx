@@ -52,7 +52,7 @@ export default function Timeline() {
             <h2 className="md:text-3xl sm:text-2xl lg:text-3xl font-gotham font-bold text-left">Qualifier Starts</h2>
             <div className="flex flex-col items-start mt-4">
               <p className={"date-number text-7xl font-extrabold font-anton leading none text-left " + (hoveredDate === '08' ? 'text-orange-400' : 'text-[#C1B7FC]')}
-                        >08</p>
+                        >03</p>
               <p className="text-3xl text-[#C1B7FC] font-gotham font-bold text-left" >OCT</p>
             </div>
             {/* Orange Border on Hover */}
@@ -70,9 +70,9 @@ export default function Timeline() {
             onMouseEnter={() => handleMouseEnterDate('12')}
             onMouseLeave={handleMouseLeaveDate}
           > 
-            <h2 className="md:text-3xl sm:text-2xl lg:3xl font-bold font-gotham text-left">Qualifier Closes</h2>
+            <h2 className="md:text-3xl sm:text-2xl lg:3xl font-bold font-gotham text-left">Qualifier Results</h2>
             <div className="flex flex-col items-start mt-4">
-              <p className={"date-number font-anton text-7xl font-extrabold text-left " + (hoveredDate === '12' ? 'text-orange-400' : 'text-[#C1B7FC]')}>12</p>
+              <p className={"date-number font-anton text-7xl font-extrabold text-left " + (hoveredDate === '12' ? 'text-orange-400' : 'text-[#C1B7FC]')}>04</p>
               <p className="text-3xl text-[#C1B7FC] font-gotham font-bold text-left">OCT</p>
             </div>
             {/* Orange Border on Hover */}
@@ -91,8 +91,8 @@ export default function Timeline() {
             onMouseLeave={handleMouseLeaveDate}
           > 
             <div className="flex flex-col items-start mt-10">
-              <p className={"date-number text-7xl font-anton font-extrabold text-left " + (hoveredDate === '02' ? 'text-orange-400' : 'text-[#C1B7FC]')}>02</p>
-              <p className="text-3xl text-[#C1B7FC] font-bold font-gotham mb-5 text-left">OCT</p>
+              <p className={"date-number text-7xl font-anton font-extrabold text-left " + (hoveredDate === '02' ? 'text-orange-400' : 'text-[#C1B7FC]')}>24</p>
+              <p className="text-3xl text-[#C1B7FC] font-bold font-gotham mb-5 text-left">SEPT</p>
             </div>
             <h2 className="md:text-xl sm:text-xl lg:text-2xl font-bold font-gotham text-left">Registration Starts</h2>
             {/* Orange Border on Hover */}
@@ -110,7 +110,7 @@ export default function Timeline() {
             onMouseLeave={handleMouseLeaveDate}
           >
             <div className="flex flex-col items-end mt-10">
-              <p className={"date-number text-7xl font-extrabold font-anton text-right " + (hoveredDate === '06' ? 'text-orange-400' : 'text-[#C1B7FC]')}>06</p>
+              <p className={"date-number text-7xl font-extrabold font-anton text-right " + (hoveredDate === '06' ? 'text-orange-400' : 'text-[#C1B7FC]')}>01</p>
               <p className="text-3xl text-[#C1B7FC] font-bold font-gotham mb-5 text-right">OCT</p>
             </div>
             <h2 className="lg:text-2xl sm:text-xl md:text-xl font-bold font-gotham text-right">Registration Closes</h2>
@@ -133,7 +133,7 @@ export default function Timeline() {
             <h2 className="text-5xl font-extrabold font-gotham text-orange-400 text-left">D Day</h2>
             <p className="text-3xl text-white font-gotham font-bold text-left">Is Here</p>
             <div className="flex flex-col items-start mt-4">
-              <p className={"date-number text-7xl font-extrabold font-anton text-left " + (hoveredDate === '16' ? 'text-orange-400' : 'text-[#C1B7FC]')}>16</p>
+              <p className={"date-number text-7xl font-extrabold font-anton text-left " + (hoveredDate === '16' ? 'text-orange-400' : 'text-[#C1B7FC]')}>05</p>
               <p className="text-3xl text-[#C1B7FC] font-gotham font-bold ">OCT</p>
             </div>
             <div className="absolute lg:top-10 md:top-14 lg:left-[15.3125rem] md:left-[11.3125rem] w-[40%]  max-w-[100%] h-[10.75rem] object-contain rounded-lg flex items-center justify-center">
@@ -188,10 +188,10 @@ export default function Timeline() {
     className="col-span-1 bg-[#191934] rounded-2xl text-white p-6 flex flex-col items-start mb-1 h-[15rem] relative"
   >
     <div className="flex flex-col items-start mt-10">
-      <p className={"text-5xl font-extrabold text-[#C1B7FC] font-anton text-left " }>02</p>
-      <p className="text-2xl font-gotham text-[#C1B7FC] font-bold mb-5">OCT</p>
+      <p className={"text-5xl font-extrabold text-[#C1B7FC] font-anton text-left " }>24</p>
+      <p className="text-2xl font-gotham text-[#C1B7FC] font-bold mb-5">SEPT</p>
     </div>
-    <h2 className="text-xl font-bold">Registration Starts</h2>
+    <h2 className="text-lg font-gotham font-bold">Registration Starts</h2>
     <div className={"absolute inset-0 rounded-2xl "} />
     <div className="absolute top-4 left-4 w-7 h-7 bg-gradient-to-tr from-[#563EEA] to-[#BBA5F4] rounded-full flex items-center justify-center">
       <span className="text-[#C1B7FC] text-2xl font-bold">1</span>
@@ -203,10 +203,10 @@ export default function Timeline() {
     className="col-span-1 bg-[#191934] rounded-2xl text-white p-6 flex flex-col items-end mb-1 h-[15rem] relative"
   >
     <div className="flex flex-col items-end mt-10">
-      <p className={"text-5xl font-anton text-[#C1B7FC] font-extrabold text-right " }>06</p>
+      <p className={"text-5xl font-anton text-[#C1B7FC] font-extrabold text-right " }>01</p>
       <p className="text-2xl font-gotham text-[#C1B7FC] font-bold mb-5">OCT</p>
     </div>
-    <h2 className="text-xl font-bold text-right">Registration Closes</h2>
+    <h2 className="text-lg font-bold font-gotham text-right">Registration Closes</h2>
     <div className={"absolute inset-0 rounded-2xl "} />
     <div className="absolute top-4 right-4 w-7 h-7 bg-gradient-to-tr from-[#563EEA] to-[#BBA5F4] rounded-full flex items-center justify-center">
       <span className="text-[#C1B7FC] text-2xl font-bold">2</span>
@@ -217,9 +217,9 @@ export default function Timeline() {
   <div 
     className="col-span-1 bg-[#191934] rounded-2xl text-white p-6 flex flex-col items-start mb-1 h-[15rem] relative"
   >
-    <h2 className="text-xl font-bold">Qualifier Starts</h2>
+    <h2 className="text-xl font-gotham font-bold">Qualifier Starts</h2>
     <div className="flex flex-col items-start mt-4">
-      <p className={"text-5xl font-anton text-[#C1B7FC] font-extrabold text-left "}>08</p>
+      <p className={"text-5xl font-anton text-[#C1B7FC] font-extrabold text-left "}>03</p>
       <p className="text-2xl font-gotham text-[#C1B7FC] font-bold">OCT</p>
     </div>
     <div className={"absolute inset-0 rounded-2xl "} />
@@ -232,9 +232,9 @@ export default function Timeline() {
   <div 
     className="col-span-1 bg-[#191934] rounded-2xl text-white p-6 flex flex-col items-start mb-1 h-[15rem] relative"
   >
-    <h2 className="text-xl font-bold">Qualifier Closes</h2>
+    <h2 className="text-xl font-gotham font-bold">Qualifier Results</h2>
     <div className="flex flex-col items-start mt-4">
-      <p className={"text-5xl font-anton text-[#C1B7FC] font-extrabold text-left " }>12</p>
+      <p className={"text-5xl font-anton text-[#C1B7FC] font-extrabold text-left " }>04</p>
       <p className="text-2xl font-gotham text-[#C1B7FC] font-bold">OCT</p>
     </div>
     <div className={"absolute inset-0  rounded-2xl "} />
@@ -247,11 +247,11 @@ export default function Timeline() {
   <div 
     className="col-span-2 bg-[#191934] rounded-2xl text-white p-6 flex flex-col items-start mb-1 h-[13rem] relative"
   >
-    <p className="text-xl font-bold">The</p>
-    <h2 className="text-3xl font-extrabold text-orange-400">D Day</h2>
-    <p className="text-xl font-bold">Is Here</p>
+    <p className="text-xl font-gotham font-bold">The</p>
+    <h2 className="text-3xl font-gotham font-extrabold text-orange-400">D Day</h2>
+    <p className="text-xl font-gotham font-bold">Is Here</p>
     <div className="flex flex-col items-start mt-2">
-      <p className={"text-4xl font-anton text-[#C1B7FC] font-extrabold text-left "}>16</p>
+      <p className={"text-4xl font-anton text-[#C1B7FC] font-extrabold text-left "}>05</p>
       <p className="text-2xl font-gotham text-[#C1B7FC] font-bold">OCT</p>
     </div>
     <div className="absolute top-10 left-[8.3125rem] w-[40%]  max-w-[100%] h-[8.75rem] object-contain rounded-lg flex items-center justify-center">
