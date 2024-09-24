@@ -1,7 +1,7 @@
 'use client'
 import Head from 'next/head';
 import React, { useState, useEffect } from 'react';
-import logoImg from '@/assests/assests/fp_logo_new.png';
+import logoImg from '@/assests/assests/fp_logo_new.svg';
 import clockImg from '@/assests/assests/clock_new.png';
 
 export default function Timeline() {
