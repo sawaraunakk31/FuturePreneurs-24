@@ -38,11 +38,11 @@ export default function Logo2() {
             className="relative flex flex-row md:justify-center"
           >
             {/* Relative container for X and TH */}
-            <div className="md:text-[20rem] text-[12rem] leading-none relative items-center align-middle mt-6">
+            <div className="relative md:text-[20rem] text-[12rem] leading-none  items-center align-middle mt-6">
               X{/* "TH" positioned on top-right inside "X" */}
               <span
                 className="
-                absolute top-0 right-0 
+                absolute -top-2 md:top-0 right-0 
                 text-white 
                 text-sm
                 transform -translate-x-[150%] translate-y-[85%] 
