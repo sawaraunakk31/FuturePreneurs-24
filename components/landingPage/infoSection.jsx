@@ -17,11 +17,8 @@ export default function InfoSection() {
           <Image src={logoFP} alt="FuturePreneurs Logo" width={350} height={350} className="max-w-full h-auto" />
         </div>
         <div className="w-full md:w-1/2 text-center md:text-left md:pl-8">
-          <p className="text-lg md:text-3xl mb-6 text-gray-700">
-            Can you demonstrate a vision, which would allow you to navigate through the ebbing and flowing challenges of the event? Enroll in the crew, where discovery meets competition!
-          </p>
-          <p className="text-lg md:text-3xl text-gray-700">
-            Entrepreneurship Cell, VIT proudly presents Futurepreneurs 10.0, a dynamic Business Simulation Event! Elevate your business acumen by staying tuned to consumer preferences and current trends.
+          <p className="text-lg md:text-2xl mb-6 text-gray-700 pb-7 md:pb-0 text-left">
+          Propelled by the passion and hard work of E-Cell, VIT, we are elated to bring you the 10th edition of Futurepreneurs. The flagship event of E-Cell, VIT, reflecting its dedication to promoting innovation and entrepreneurship.This event is designed to offer to all contestants, a hands-on experience with business simulations. Participants will be presented with challenging scenarios and situations that mirror real-life dilemmas, formulated to test their management and decision-making abilities. Every contestant is bound to leave the event better equipped to tackle real-world problems and make informed business decisions in the future. Futurepreneurs 10.0 promises to be an engaging and enriching experience for all who are a part of it. Futurepreneurs 10.0 is set to deliver a captivating and rewarding experience for everyone involved.
           </p>
         </div>
       </div>
