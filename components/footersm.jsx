@@ -16,7 +16,7 @@ const Footersm=()=>{
         <div className="sm:flex md:hidden flex flex-col gap-10 justify-around">
           <div className="flex mt-10 justify-around gap-10">
             <div >
-              <h1 className='text-[5vh] sm:text-[7vw] text-[#F79D68] font-[700]  after:content-["We_Breed_Business"] after:text-[2vw] after:font-normal after:sm:text-[2vh] after:text-[#FFFFFF] flex flex-col gap-0 after:static leading-[60%] after:pl-[0.4vw]'>
+              <h1 className='text-[5vh] sm:text-[7vw]  font-[700]  after:content-["We_Breed_Business"] after:text-[2vw] after:font-normal after:sm:text-[2vh] after:text-[#FFFFFF] flex flex-col gap-0 after:static leading-[60%] after:pl-[0.4vw]'>
                 E-CELL
               </h1>
             </div>
