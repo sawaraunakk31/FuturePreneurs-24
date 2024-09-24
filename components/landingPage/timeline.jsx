@@ -223,7 +223,7 @@ export default function Timeline() {
       <p className="text-2xl font-gotham text-[#C1B7FC] font-bold">OCT</p>
     </div>
     <div className={"absolute inset-0 rounded-2xl "} />
-    <div className="absolute bottom-4 right-4 w-7 h-7 bg-gradient-to-tr from-[#563EEA] to-[#BBA5F4] rounded-full flex items-center justify-center">
+    <div className="absolute bottom-4 left-4 w-7 h-7 bg-gradient-to-tr from-[#563EEA] to-[#BBA5F4] rounded-full flex items-center justify-center">
       <span className="text-[#C1B7FC] text-2xl font-bold">3</span>
     </div>
   </div>
