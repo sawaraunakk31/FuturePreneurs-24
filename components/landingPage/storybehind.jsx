@@ -39,7 +39,7 @@ export default function Home() {
 
   <img src={problemsolving.src} alt="Problem Solving" className="float-right  h-32 w-32 m-2" />
   <p className="text-black font-almarai mt-12  overflow-wrap break-words max-w-full">
-  The goal is visible, but are you willing to tread the waters? Let your knowledge and will steer you forward towards your destination. 
+  The goal is visible, but are you willing to tread the waters? Let your knowledge, wit and will steer you forward towards your goals and destination. 
   </p>
 
         </div>
@@ -57,7 +57,7 @@ export default function Home() {
          
   <img src={skilltest.src} alt="Problem Solving" className="float-right  h-32 w-32 m-2" />
   <p className="text-black font-almarai mt-12  overflow-wrap break-words max-w-full">
-  Prepare yourself to test your entrepreneurial mettle as you navigate challenges, innovate solutions, and forge the businesses of tomorrow.
+  Prepare yourself to test your mettle as you navigate various entrepreneurial challenges, find innovative solutions, and bring ideas to life.
 
   </p>
         </div>
@@ -75,7 +75,7 @@ export default function Home() {
          
   <img src={selfanalysis.src} alt="Problem Solving" className="float-right  h-32 w-32 m-2" />
   <p className="text-black font-almarai mt-12  overflow-wrap break-words max-w-full">
-  Test if your ship can blaze through the storm without sinking. Unlock your true capabilities, outthink your rivals, and discover your potential to emerge victorious in the event's toughest challenges.
+  Test if your ship can blaze through the storm without sinking. Unlock your true capabilities, outwit your opponents, and discover your team's potential to emerge victorious in the event's toughest trials.
 
   </p>
         </div>
@@ -111,8 +111,8 @@ export default function Home() {
           </div>
         </div>
         <img src={problemsolving.src} alt="" className=" h-32 w-AUTO mx-auto mt-2" />
-            <p className="text-black font-almarai mt-3 text-justify">
-            The goal is visible, but are you willing to tread the waters? Let your knowledge and will steer you forward towards your destination. 
+            <p className="text-black font-almarai mt-3 text-justify ">
+            The goal is visible, but are you willing to tread the waters? Let your knowledge, wit and will steer you forward towards your goals and destination. 
 
             </p>
       </div>
@@ -127,7 +127,7 @@ export default function Home() {
         </div>
         <img src={skilltest.src} alt="" className=" h-32 w-AUTO mx-auto mt-2" />
             <p className="text-black font-almarai mt-3 text-justify">
-            Prepare yourself to test your entrepreneurial mettle as you navigate challenges, innovate solutions, and forge the businesses of tomorrow.
+            Prepare yourself to test your mettle as you navigate entrepreneurial challenges, find innovative solutions, and bring ideas to life.
 
             </p>
       </div>
@@ -142,7 +142,7 @@ export default function Home() {
         </div>
         <img src={selfanalysis.src} alt="" className=" h-32 w-AUTO mx-auto mt-2" />
             <p className="text-black font-almarai mt-3 text-justify">
-            Test if your ship can blaze through the storm without sinking. Unlock your true capabilities, outthink your rivals, and discover your potential to emerge victorious in the event's toughest challenges.
+            Test if your ship can blaze through the storm without sinking. Unlock your true capabilities, outwit your opponents, and discover your team's potential to emerge victorious in the event's toughest trials.
             </p>
       </div>
       </div>
