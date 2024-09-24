@@ -20,15 +20,15 @@ const Footersm=()=>{
                 E-CELL
               </h1>
             </div>
-            <div className="flex">
-                <div className='flex flex-col items-center justify-centre text-[#FFFFFF] gap-[1.25vh]'>
+            <div className="flex flex-col gap-3">
+                <div className='flex  items-center justify-start text-[#FFFFFF] gap-2'>
                     <p className='block sm:hidden'><PhoneIconsm  /></p>
                     <p className='hidden sm:block' ><PhoneIcon /></p>
+                  <a href="tel:+91 87777 93331" className="text-white text-[2vw]">+91 87777 93331</a>
+                </div>
+                <div className='flex items-centre gap-2 justify-start'>
                     <p className='pt-[0.5vh] block sm:hidden'><MailIconsm /></p>
                     <p className='pt-[0.5vh] hidden sm:block'><MailIcon /></p>
-                </div>
-                <div className='flex flex-col items-start gap-2 '>
-                  <a href="+91 87777 93331" className="text-white text-[2vw]">+91 87777 93331</a>
                   <a href="mailto:helloecellvit@gmail.com" className='text-[#FFFFFF] text-[2vw]'>helloecellvit@gmail.com</a>
                 </div>
           </div>
