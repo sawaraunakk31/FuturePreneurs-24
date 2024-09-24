@@ -52,6 +52,14 @@
   font-style: normal;
 }
 
+.custom-faq-bg {
+  @media screen and (min-width: 1000px) {
+    background-image: url('../public/assests/assests/FAQs_background.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+}
 
 
 

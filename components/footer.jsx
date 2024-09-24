@@ -31,8 +31,8 @@ const Footer = () =>{
           </div>
         </div>
         <div className="flex flex-col flex-1 justify-center items-center  pl-5 pr-5 w-[50vw]">
-          <p className='text-sm justify-center items-center  flex w-[40vw] text-justify pt-10'>
-            Entrepreneurship Cell is a Student based Club functioning under Office of Students' Welfare, VIT Vellore which aims at fostering entrepreneurial spirit amongst young aspirants by providing them with a platform and required resources for actuating their ideas into successful business ventures. E-Cell strives to attain an entrepreneurial environment in the campus and believes in taking strides towards establishing an ever-growing, ever-improving Start-Up environment. Our sole approach is to magnify the reach and set up a diverse pool of investors, evaluators, and mentors.
+          <p className='text-sm justify-center items-center  flex w-[40vw] text-[rgba(255,255,255,0.61)] text-justify pt-10'>
+          The Entrepreneurship Cell, VIT Vellore, is a student-led organization established to promote the spirit of entrepreneurship among young innovators. E-Cell aims to provide students with a platform along with the necessary tools to convert their ideas into successful business ventures. The club’s mission is to create an engaging entrepreneurial culture within the institution while establishing a network of various investors, mentors, and evaluators to enhance the startup ecosystem for the future. 
           </p>
         </div>
       </div>

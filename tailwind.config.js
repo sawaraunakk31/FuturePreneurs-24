@@ -42,3 +42,13 @@ module.exports = {
   variants: {},
   plugins: [],
 };
+
+// module.exports = {
+//   theme: {
+//     extend: {
+//       backgroundImage: {
+//         'custom-faq-background': "url('../FuturePreneurs-24/assests/assests/FAQs.png')",
+//       }
+//     }
+//   }
+// }

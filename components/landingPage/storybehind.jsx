@@ -13,11 +13,9 @@ export default function Home() {
       <div className="relative bg-gradient-to-r bg-gradient from-[#BFB4FF69] via-[#E6FCFF5A] to-[#A1EEFF69] p-8 rounded-xl shadow-lg w-full max-w-4xl mx-auto border-2 border-purple-400">
         <div className="absolute -top-8 left-1/2 transform -translate-x-1/2">
           <div className="flex w-[24.2rem] bg-white border-b-2 border-b-purple-400 border-r-2 border-r-purple-400 border-l-2 border-l-purple-400 px-4 py-4 rounded-b-lg mt-[1.9rem]">
-            <div className="flex items-center w-[23rem] bg-white px-6 py-2 rounded-t-lg rounded-b-lg mb-[-0.5rem] mr-[-0.5rem] ml-[-0.5rem] border-2 border-black mt-[-3.2rem]">
-              <h1 className="text-2xl font-extrabold font-outfit">STORY BEHIND...</h1>
-              <button className="ml-[4.5rem] bg-black text-white p-2 rounded-full flex items-center justify-center w-10 h-10">
-              ➔
-</button>
+            <div className="flex items-center justify-center w-[23rem] bg-white px-6 py-2 rounded-t-lg rounded-b-lg mb-[-0.5rem] mr-[-0.5rem] ml-[-0.5rem] border-2 border-black mt-[-3.2rem]">
+              <h1 className="text-2xl font-extrabold font-outfit">STORY BEHIND</h1>
+    
 
             </div>
           </div>
@@ -41,8 +39,7 @@ export default function Home() {
 
   <img src={problemsolving.src} alt="Problem Solving" className="float-right  h-32 w-32 m-2" />
   <p className="text-black font-almarai mt-12  overflow-wrap break-words max-w-full">
-  The goal is visible, but are you willing to tread the waters? Let your knowledge and will steer you forward towards your destination. Challenge yourself in a bid to achieve glory.
-
+  The goal is visible, but are you willing to tread the waters? Let your knowledge and will steer you forward towards your destination. 
   </p>
 
         </div>
@@ -70,7 +67,7 @@ export default function Home() {
           <div className="absolute -top-8 -left-[0.1rem] transform">
             <div className="bg-white mt-[1.9rem] border-r-2 border-r-purple-400 border-b-2 border-b-purple-400 pr-2 pt-4 pb-2 rounded-br-lg">
               <div className="bg-white mt-[-2.6rem] px-4 py-2 border-2 border-black rounded-t-lg rounded-b-lg">
-                <h2 className="text-lg font-outfit font-bold">Self Analysis</h2>
+                <h2 className="text-lg font-outfit font-bold">CHALLENGE YOURSELF</h2>
               </div>
             </div>
           </div>
@@ -91,11 +88,9 @@ export default function Home() {
     <div className="relative bg-gradient-to-r bg-gradient from-[#540FFE29] via-[#D7C6FF29] to-[#A96CFF29] p-8 rounded-xl shadow-lg w-full max-w-4xl mx-auto mt-[4rem] border-2 border-gray-400">
         <div className="absolute top-16 left-1/2 transform -translate-x-1/2">
           
-            <div className="flex items-center w-[17rem] bg-gradient-to-r bg-gradient from-[#D7C6FF29] to-[#A96CFF29] px-6 py-2 rounded-t-lg rounded-b-lg border-2 border-gray-400 mt-[-3.2rem]">
-              <h1 className="text-xl font-extrabold font-outfit">STORY BEHIND...</h1>
-              <button className="ml-[1rem] bg-black text-white p-2 rounded-full flex items-center justify-center w-8 h-8">
-              ➔
-</button>
+            <div className="flex items-center justify-center w-[17rem] bg-gradient-to-r bg-gradient from-[#D7C6FF29] to-[#A96CFF29] px-6 py-2 rounded-t-lg rounded-b-lg border-2 border-gray-400 mt-[-3.2rem]">
+              <h1 className="text-xl font-extrabold font-outfit">STORY BEHIND</h1>
+             
             
           </div>
         </div>
@@ -117,7 +112,7 @@ export default function Home() {
         </div>
         <img src={problemsolving.src} alt="" className=" h-32 w-AUTO mx-auto mt-2" />
             <p className="text-black font-almarai mt-3 text-justify">
-            The goal is visible, but are you willing to tread the waters? Let your knowledge and will steer you forward towards your destination. Challenge yourself in a bid to achieve glory.
+            The goal is visible, but are you willing to tread the waters? Let your knowledge and will steer you forward towards your destination. 
 
             </p>
       </div>
@@ -140,7 +135,7 @@ export default function Home() {
         <div className="absolute -top-8 left-1/2 transform -translate-x-1/2">
         <div className="flex w-[15rem] bg-white border-b-2 border-b-purple-400 border-r-2 border-r-purple-400 border-l-2 border-l-purple-400 px-4 py-4 rounded-b-lg mt-[1.9rem]">
         <div className="flex items-center justify-center w-[14rem] bg-white px-4 py-2 rounded-t-lg rounded-b-lg mb-[-0.6rem] mr-[-0.5rem] ml-[-0.5rem] border-2 border-black mt-[-2.9rem]">
-              <h1 className="text-lg font-extrabold font-outfit ">SELF ANALYSIS</h1>
+              <h1 className="text-md font-extrabold font-outfit ">CHALLENGE YOURSELF</h1>
              
             </div>
           </div>
