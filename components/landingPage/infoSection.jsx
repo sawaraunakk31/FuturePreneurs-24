@@ -2,11 +2,11 @@
 
 import React from 'react';
 import Image from 'next/image';
-import logoFP from '@/assests/assests/fp_logo_new.svg';
+import logoFP from '@/assests/assests/fp logo _ about us(4X).png';
 
 export default function InfoSection() {
   return (
-    <div className="flex flex-col min-h-screen bg-gradient-to-br from-[#f5f7fa] to-[#c3cfe2] p-10 md:p-20 font-sans relative">
+    <div className="flex flex-col min-h-screen bg-white p-10 md:p-20 font-sans relative">
       <div className="flex-grow flex flex-col justify-center items-center text-center mb-8">
         <h2 className="text-xl md:text-4xl mb-2 text-gray-700">THE ULTIMATE</h2>
         <h1 className="text-3xl md:text-7xl font-bold mb-6 text-black">Business Simulation Game</h1>
@@ -14,17 +14,17 @@ export default function InfoSection() {
       
       <div className="flex flex-col md:flex-row items-center justify-center max-w-6xl mx-auto flex-grow">
         <div className="w-full md:w-1/2 mb-8 md:mb-0 flex justify-center">
-          <Image src={logoFP} alt="FuturePreneurs Logo" width={350} height={350} className="max-w-full h-auto" />
+          <Image src={logoFP} alt="FuturePreneurs Logo" width={550} height={575} className="max-w-full h-auto" />
         </div>
         <div className="w-full md:w-1/2 text-center md:text-left md:pl-8">
-          <p className="text-lg md:text-2xl mb-6 text-gray-700 pb-7 md:pb-0 text-left">
+          <p className="text-lg md:text-2xl mb-6 text-gray-700 pb-7 md:pb-0 text-justify">
           Propelled by the passion and hard work of E-Cell, VIT, we are elated to bring you the 10th edition of Futurepreneurs. The flagship event of E-Cell, VIT, reflecting its dedication to promoting innovation and entrepreneurship.This event is designed to offer to all contestants, a hands-on experience with business simulations. Participants will be presented with challenging scenarios and situations that mirror real-life dilemmas, formulated to test their management and decision-making abilities. Every contestant is bound to leave the event better equipped to tackle real-world problems and make informed business decisions in the future. Futurepreneurs 10.0 promises to be an engaging and enriching experience for all who are a part of it. Futurepreneurs 10.0 is set to deliver a captivating and rewarding experience for everyone involved.
           </p>
         </div>
       </div>
 
       {/* Marquee Section */}
-      <div className="marquee-container overflow-hidden bg-white absolute bottom-0 left-0 w-full">
+      <div className="marquee-container overflow-hidden bg-white absolute bottom-0 left-0 w-full border-t border-b border-black border-25px z-40">
         <div className="marquee text-black text-lg md:text-2xl font-bold py-4">
           <div className="marquee-content">
             {/* Duplicating enough to ensure no gap */}
