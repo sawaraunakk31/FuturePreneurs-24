@@ -15,7 +15,7 @@ export default function InfoSection() {
       <div className="flex flex-col md:flex-row items-center justify-center max-w-8xl mx-auto flex-grow px-4 md:px-8">
 
         <div className="w-full md:w-1/2 mb-8 md:mb-0 flex justify-center">
-          <Image src={logoFP} alt="FuturePreneurs Logo" width={550} height={570}  className="max-w-full h-auto" />
+          <Image src={logoFP} alt="FuturePreneurs Logo" width={500} height={570}  className="max-w-full h-auto" />
         </div>
         <div className="w-full md:w-1/2 text-center md:text-left md:pl-8">
           <p className="text-lg md:text-2xl mb-6 text-gray-700 pb-7 md:pb-0 text-justify">
