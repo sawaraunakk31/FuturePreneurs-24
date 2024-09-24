@@ -184,9 +184,9 @@ const FaqMainContent = () => {
   };
 
   return (
-    <main className=" mt-0 p-20 pt-0 lg:max-h-[55vh]">
-      <div className="flex flex-col gap-10 lg:flex-row lg:gap-20 justify-around text-wrap">
-        <div className="flex flex-col gap-10 lg:w-[45vw]">
+    <main className=" mt-0 md:pl-20 md:pr-20 p-10 pt-0 lg:max-h-[55vh]">
+      <div className="flex flex-col gap-5  lg:flex-row lg:gap-20 justify-around text-wrap">
+        <div className="flex flex-col gap-2 md:gap-5  lg:w-[45vw]">
           {faqs.slice(0, 4).map((faq) => (
             <div key={faq.id} className="flex items-center gap-5">
               <Dropdownlogo onClick={() => toggleDropdown(faq.id)} />
@@ -213,7 +213,7 @@ const FaqMainContent = () => {
             </div>
           ))}
         </div>
-        <div className="flex flex-col gap-10 lg:w-[45vw]">
+        <div className="flex flex-col gap-2 md:gap-5 lg:w-[45vw]">
           {faqs.slice(4).map((faq) => (
             <div key={faq.id} className="flex items-center gap-5">
               <Dropdownlogo onClick={() => toggleDropdown(faq.id)} />
