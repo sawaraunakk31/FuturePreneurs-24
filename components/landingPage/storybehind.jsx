@@ -7,7 +7,7 @@ import selfanalysis from '@/assests/assests/selfanalysis.png'
 
 export default function Home() {
   return (
-    <>
+    <div  id="storyBehind" className='min-h-screen flex place-items-center'>
     <div className=" hidden md:block bg-white py-12 px-4">
       {/* Header Section */}
       <div className="relative bg-gradient-to-r bg-gradient from-[#BFB4FF69] via-[#E6FCFF5A] to-[#A1EEFF69] p-8 rounded-xl shadow-lg w-full max-w-4xl mx-auto border-2 border-purple-400">
@@ -152,6 +152,6 @@ export default function Home() {
 
 
 
-    </>
+    </div>
   );
 }

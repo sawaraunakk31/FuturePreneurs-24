@@ -12,7 +12,7 @@ import MailIcon from './mailicon';
 const Footersm=()=>{
 
     return(
-        <footer className='bg-[#000000]  md:hidden text-[#FFFFFF]'>
+        <footer className='bg-[#000000]  md:hidden text-[#FFFFFF]' id='footer'>
         <div className="sm:flex md:hidden flex flex-col gap-10 justify-around">
           <div className="flex mt-10 justify-around gap-10">
             <div >
