@@ -81,7 +81,7 @@ export default function Page() {
     
     const data = await res.json();
   
-    if(data?.user?.hasFilledDetails){
+    if(data?.user?.hasFilledDetails==true){
       if(data?.user?.teamId){
         if(data?.user?.teamRole==0){
           setLoading(false);
@@ -90,12 +90,12 @@ export default function Page() {
           router.push('/memberDashboard')
         }
       }else{
-        router.push('/join&createTeam');
         setLoading(false);
+        router.push('/join&createTeam');
       }
     }else{
-      router.push('/userDetails')
-      setLoading(false)
+      setLoading(false);
+      router.push('/userDetails');
     }
   }
 
@@ -209,7 +209,7 @@ export default function Page() {
   };
 
   return (
-    <div className=" bg-[url(../assests/assests/bg_website.png)] bg-cover bg-center min-h-screen flex flex-col items-center justify-center p-4 text-black">
+    <div className=" bg-[url(../assests/assests/bg_website.png)] bg-cover bg-center min-h-screen flex flex-col items-center justify-center p-4 text-black pt-[12vh]">
       {loading && <LoadingScreen />}
       <Navbar/>
       <h1 className="text-2xl sm:text-3xl font-extrabold mb-4 text-center drop-shadow-lg">
