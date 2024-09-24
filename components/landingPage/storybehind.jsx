@@ -23,14 +23,14 @@ export default function Home() {
           </div>
         </div>
         <p className="text-black font-almarai mt-10 text-justify">
-          Born from E-Cell’s fiery spirit, we are ready to bring Futurepreneurs 10.0, to converse unique ideas. This event was meticulously crafted with the prime objective of delivering first-hand experiences of a business simulation event right to the participants' desks. Students from diverse backgrounds have established names for themselves by solving real-life problems with dedication, commitment, and analytical skills amongst their peers. These challenges have helped them to move forward with success, showing them the importance of initiation and working together.
+        Futurepreneurs was built from the ground up by E-Cell, VIT, with the aim of delivering real-world experiences directly to the participants’ desks. This event offers a glimpse into the challenges of the professional world, providing participants with the chance to test and refine their analytical and problem-solving skills alongside their peers. Over the years, innumerable participants from various fields have contributed to the success and lasting impact of the event.
         </p>
       </div>
 
       {/* Cards Section */}
       <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8 max-w-[90%] mx-auto">
         {/* Problem Solving Card */}
-        <div className="relative bg-gradient-to-r bg-gradient from-[#BFB4FF69] via-[#E6FCFF5A] to-[#A1EEFF69] p-6 rounded-xl max-h-fit max-w-fit border-2 border-purple-400 hidden md:block"> {/* Visible only on medium and large devices */}
+        <div className="relative bg-gradient-to-r bg-gradient from-[#BFB4FF69] via-[#E6FCFF5A] to-[#A1EEFF69] p-6 rounded-xl h-[15.2rem] max-w-fit border-2 border-purple-400 hidden md:block"> {/* Visible only on medium and large devices */}
           <div className="absolute -top-8 -left-[0.1rem] transform">
             <div className="bg-white mt-[1.9rem] border-r-2 border-r-purple-400 border-b-2 border-b-purple-400 pr-2 pt-4 pb-2 rounded-br-lg">
               <div className="bg-white mt-[-2.6rem] px-4 py-2 border-2 border-black rounded-t-lg rounded-b-lg">
@@ -41,13 +41,14 @@ export default function Home() {
 
   <img src={problemsolving.src} alt="Problem Solving" className="float-right  h-32 w-32 m-2" />
   <p className="text-black font-almarai mt-12  overflow-wrap break-words max-w-full">
-  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque congue massa justo, ut cursus leo fringilla tempus. Sed tempus bibendum..
+  The goal is visible, but are you willing to tread the waters? Let your knowledge and will steer you forward towards your destination. Challenge yourself in a bid to achieve glory.
+
   </p>
 
         </div>
 
         {/* Skill Testing Card */}
-        <div className="relative bg-gradient-to-r bg-gradient from-[#BFB4FF69] via-[#E6FCFF5A] to-[#A1EEFF69] p-6 rounded-xl max-h-fit border-2 border-purple-400 hidden md:block"> {/* Visible only on medium and large devices */}
+        <div className="relative bg-gradient-to-r bg-gradient from-[#BFB4FF69] via-[#E6FCFF5A] to-[#A1EEFF69] p-6 rounded-xl h-[15.2rem] border-2 border-purple-400 hidden md:block"> {/* Visible only on medium and large devices */}
           <div className="absolute -top-8 -left-[0.1rem] transform">
             <div className="bg-white mt-[1.9rem] border-r-2 border-r-purple-400 border-b-2 border-b-purple-400 pr-2 pt-4 pb-2 rounded-br-lg">
               <div className="bg-white mt-[-2.6rem] px-4 py-2 border-2 border-black rounded-t-lg rounded-b-lg">
@@ -59,12 +60,13 @@ export default function Home() {
          
   <img src={skilltest.src} alt="Problem Solving" className="float-right  h-32 w-32 m-2" />
   <p className="text-black font-almarai mt-12  overflow-wrap break-words max-w-full">
-  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque congue massa justo, ut cursus leo fringilla tempus. Sed tempus bibendum...
+  Prepare yourself to test your entrepreneurial mettle as you navigate challenges, innovate solutions, and forge the businesses of tomorrow.
+
   </p>
         </div>
 
         {/* Self Analysis Card */}
-        <div className="relative bg-gradient-to-r bg-gradient from-[#BFB4FF69] via-[#E6FCFF5A] to-[#A1EEFF69] p-6 rounded-xl max-h-fit border-2 border-purple-400 hidden md:block"> {/* Visible only on medium and large devices */}
+        <div className="relative bg-gradient-to-r bg-gradient from-[#BFB4FF69] via-[#E6FCFF5A] to-[#A1EEFF69] p-6 rounded-xl h-[15.2rem] border-2 border-purple-400 hidden md:block"> {/* Visible only on medium and large devices */}
           <div className="absolute -top-8 -left-[0.1rem] transform">
             <div className="bg-white mt-[1.9rem] border-r-2 border-r-purple-400 border-b-2 border-b-purple-400 pr-2 pt-4 pb-2 rounded-br-lg">
               <div className="bg-white mt-[-2.6rem] px-4 py-2 border-2 border-black rounded-t-lg rounded-b-lg">
@@ -76,7 +78,8 @@ export default function Home() {
          
   <img src={selfanalysis.src} alt="Problem Solving" className="float-right  h-32 w-32 m-2" />
   <p className="text-black font-almarai mt-12  overflow-wrap break-words max-w-full">
-  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque congue massa justo, ut cursus leo fringilla tempus. Sed tempus bibendum...
+  Test if your ship can blaze through the storm without sinking. Unlock your true capabilities, outthink your rivals, and discover your potential to emerge victorious in the event's toughest challenges.
+
   </p>
         </div>
       </div>
@@ -97,7 +100,8 @@ export default function Home() {
           </div>
         </div>
         <p className="text-black font-almarai mt-16 text-justify">
-          Born from E-Cell’s fiery spirit, we are ready to bring Futurepreneurs 10.0, to converse unique ideas. This event was meticulously crafted with the prime objective of delivering first-hand experiences of a business simulation event right to the participants' desks. Students from diverse backgrounds have established names for themselves by solving real-life problems with dedication, commitment, and analytical skills amongst their peers. These challenges have helped them to move forward with success, showing them the importance of initiation and working together.
+        Futurepreneurs was built from the ground up by E-Cell, VIT, with the aim of delivering real-world experiences directly to the participants’ desks. This event offers a glimpse into the challenges of the professional world, providing participants with the chance to test and refine their analytical and problem-solving skills alongside their peers. Over the years, innumerable participants from various fields have contributed to the success and lasting impact of the event.
+
         </p>
       </div>
 
@@ -106,42 +110,44 @@ export default function Home() {
         <div className="absolute -top-8 left-1/2 transform -translate-x-1/2">
           <div className="flex w-[15rem] bg-white border-b-2 border-b-purple-400 border-r-2 border-r-purple-400 border-l-2 border-l-purple-400 px-4 py-4 rounded-b-lg mt-[1.9rem]">
             <div className="flex items-center justify-center w-[14rem] bg-white px-4 py-2 rounded-t-lg rounded-b-lg mb-[-0.6rem] mr-[-0.5rem] ml-[-0.5rem] border-2 border-black mt-[-2.9rem]">
-              <h1 className="text-xl font-extrabold font-outfit ">EXPLORE</h1>
-             
-            </div>
-          </div>
-        </div>
-        <img src={selfanalysis.src} alt="" className=" h-32 w-AUTO mx-auto mt-2" />
-            <p className="text-black font-almarai mt-3 text-justify">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque congue massa justo, ut cursus leo fringilla tempus. Sed tempus bibendum...
-            </p>
-      </div>
-      <div className="relative bg-gradient-to-r bg-gradient from-[#BFB4FF69] via-[#E6FCFF5A] to-[#A1EEFF69] p-8 rounded-xl shadow-lg w-full max-w-4xl mx-auto mt-[4rem] border-2 border-purple-400">
-        <div className="absolute -top-8 left-1/2 transform -translate-x-1/2">
-        <div className="flex w-[15rem] bg-white border-b-2 border-b-purple-400 border-r-2 border-r-purple-400 border-l-2 border-l-purple-400 px-4 py-4 rounded-b-lg mt-[1.9rem]">
-        <div className="flex items-center justify-center w-[14rem] bg-white px-4 py-2 rounded-t-lg rounded-b-lg mb-[-0.6rem] mr-[-0.5rem] ml-[-0.5rem] border-2 border-black mt-[-2.9rem]">
-              <h1 className="text-xl font-extrabold font-outfit ">CREATE</h1>
-             
-            </div>
-          </div>
-        </div>
-        <img src={skilltest.src} alt="" className=" h-32 w-AUTO mx-auto mt-2" />
-            <p className="text-black font-almarai mt-3 text-justify">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque congue massa justo, ut cursus leo fringilla tempus. Sed tempus bibendum...
-            </p>
-      </div>
-      <div className="relative bg-gradient-to-r bg-gradient from-[#BFB4FF69] via-[#E6FCFF5A] to-[#A1EEFF69] p-8 rounded-xl shadow-lg  max-w-3xl mx-auto mt-[4rem] border-2 border-purple-400">
-        <div className="absolute -top-8 left-1/2 transform -translate-x-1/2">
-        <div className="flex w-[15rem] bg-white border-b-2 border-b-purple-400 border-r-2 border-r-purple-400 border-l-2 border-l-purple-400 px-4 py-4 rounded-b-lg mt-[1.9rem]">
-        <div className="flex items-center justify-center w-[14rem] bg-white px-4 py-2 rounded-t-lg rounded-b-lg mb-[-0.6rem] mr-[-0.5rem] ml-[-0.5rem] border-2 border-black mt-[-2.9rem]">
-              <h1 className="text-xl font-extrabold font-outfit ">TRIUMPH</h1>
+              <h1 className="text-lg font-extrabold font-outfit ">PROBLEM SOLVING</h1>
              
             </div>
           </div>
         </div>
         <img src={problemsolving.src} alt="" className=" h-32 w-AUTO mx-auto mt-2" />
             <p className="text-black font-almarai mt-3 text-justify">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque congue massa justo, ut cursus leo fringilla tempus. Sed tempus bibendum...
+            The goal is visible, but are you willing to tread the waters? Let your knowledge and will steer you forward towards your destination. Challenge yourself in a bid to achieve glory.
+
+            </p>
+      </div>
+      <div className="relative bg-gradient-to-r bg-gradient from-[#BFB4FF69] via-[#E6FCFF5A] to-[#A1EEFF69] p-8 rounded-xl shadow-lg w-full max-w-4xl mx-auto mt-[4rem] border-2 border-purple-400">
+        <div className="absolute -top-8 left-1/2 transform -translate-x-1/2">
+        <div className="flex w-[15rem] bg-white border-b-2 border-b-purple-400 border-r-2 border-r-purple-400 border-l-2 border-l-purple-400 px-4 py-4 rounded-b-lg mt-[1.9rem]">
+        <div className="flex items-center justify-center w-[14rem] bg-white px-4 py-2 rounded-t-lg rounded-b-lg mb-[-0.6rem] mr-[-0.5rem] ml-[-0.5rem] border-2 border-black mt-[-2.9rem]">
+              <h1 className="text-lg font-extrabold font-outfit ">SKILL TESTING</h1>
+             
+            </div>
+          </div>
+        </div>
+        <img src={skilltest.src} alt="" className=" h-32 w-AUTO mx-auto mt-2" />
+            <p className="text-black font-almarai mt-3 text-justify">
+            Prepare yourself to test your entrepreneurial mettle as you navigate challenges, innovate solutions, and forge the businesses of tomorrow.
+
+            </p>
+      </div>
+      <div className="relative bg-gradient-to-r bg-gradient from-[#BFB4FF69] via-[#E6FCFF5A] to-[#A1EEFF69] p-8 rounded-xl shadow-lg  max-w-3xl mx-auto mt-[4rem] border-2 border-purple-400">
+        <div className="absolute -top-8 left-1/2 transform -translate-x-1/2">
+        <div className="flex w-[15rem] bg-white border-b-2 border-b-purple-400 border-r-2 border-r-purple-400 border-l-2 border-l-purple-400 px-4 py-4 rounded-b-lg mt-[1.9rem]">
+        <div className="flex items-center justify-center w-[14rem] bg-white px-4 py-2 rounded-t-lg rounded-b-lg mb-[-0.6rem] mr-[-0.5rem] ml-[-0.5rem] border-2 border-black mt-[-2.9rem]">
+              <h1 className="text-lg font-extrabold font-outfit ">SELF ANALYSIS</h1>
+             
+            </div>
+          </div>
+        </div>
+        <img src={selfanalysis.src} alt="" className=" h-32 w-AUTO mx-auto mt-2" />
+            <p className="text-black font-almarai mt-3 text-justify">
+            Test if your ship can blaze through the storm without sinking. Unlock your true capabilities, outthink your rivals, and discover your potential to emerge victorious in the event's toughest challenges.
             </p>
       </div>
       </div>
