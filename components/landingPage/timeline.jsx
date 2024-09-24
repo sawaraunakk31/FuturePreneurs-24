@@ -1,7 +1,6 @@
 'use client'
-import Head from 'next/head';
 import React, { useState, useEffect } from 'react';
-import logoImg from '@/assests/assests/fp_logo_new.svg';
+import logoImg from '../../public/assests/assests/fp_logo_new.svg';
 import clockImg from '@/assests/assests/timer_clock.png';
 
 export default function Timeline() {
@@ -91,7 +90,7 @@ export default function Timeline() {
             onMouseLeave={handleMouseLeaveDate}
           > 
             <div className="flex flex-col items-start mt-10">
-              <p className={"date-number text-7xl font-anton font-extrabold text-left " + (hoveredDate === '02' ? 'text-orange-400' : 'text-[#C1B7FC]')}>24</p>
+              <p className={"date-number text-7xl font-anton font-extrabold text-left " + (hoveredDate === '02' ? 'text-orange-400' : 'text-[#C1B7FC]')}>25</p>
               <p className="text-3xl text-[#C1B7FC] font-bold font-gotham mb-5 text-left">SEPT</p>
             </div>
             <h2 className="md:text-xl sm:text-xl lg:text-2xl font-bold font-gotham text-left">Registration Starts</h2>
@@ -188,7 +187,7 @@ export default function Timeline() {
     className="col-span-1 bg-[#191934] rounded-2xl text-white p-6 flex flex-col items-start mb-1 h-[15rem] relative"
   >
     <div className="flex flex-col items-start mt-10">
-      <p className={"text-5xl font-extrabold text-[#C1B7FC] font-anton text-left " }>24</p>
+      <p className={"text-5xl font-extrabold text-[#C1B7FC] font-anton text-left " }>25</p>
       <p className="text-2xl font-gotham text-[#C1B7FC] font-bold mb-5">SEPT</p>
     </div>
     <h2 className="text-lg font-gotham font-bold">Registration Starts</h2>
@@ -223,7 +222,7 @@ export default function Timeline() {
       <p className="text-2xl font-gotham text-[#C1B7FC] font-bold">OCT</p>
     </div>
     <div className={"absolute inset-0 rounded-2xl "} />
-    <div className="absolute bottom-4 right-4 w-7 h-7 bg-gradient-to-tr from-[#563EEA] to-[#BBA5F4] rounded-full flex items-center justify-center">
+    <div className="absolute bottom-4 left-4 w-7 h-7 bg-gradient-to-tr from-[#563EEA] to-[#BBA5F4] rounded-full flex items-center justify-center">
       <span className="text-[#C1B7FC] text-2xl font-bold">3</span>
     </div>
   </div>

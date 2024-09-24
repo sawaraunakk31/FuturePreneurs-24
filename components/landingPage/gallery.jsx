@@ -55,12 +55,12 @@ const LegacyComponent = () => {
 
   return (
     <div 
-      className="relative flex flex-col items-center justify-center h-screen bg-gray-100 overflow-hidden" 
+      className="relative flex flex-col items-center justify-center h-screen bg-white overflow-hidden z-1" 
       id='gallery'
       ref={componentRef}
     >
       <motion.div
-        className="absolute inset-0 z-10"
+        className="absolute inset-0 z-2"
         style={{ scale }}
         initial={{ scale: 1 }}
         animate={{ scale }}
@@ -69,7 +69,7 @@ const LegacyComponent = () => {
         <img
           src={overlayImage}
           alt="Overlay"
-          className="w-full h-full object-contain"
+          className="w-full h-full object-contain z-1"
         />
       </motion.div>
 
