@@ -7,6 +7,7 @@ import LoadingScreen from "@/components/LoadingScreen";
 import toast, { Toaster } from "react-hot-toast";
 import { useSession } from "next-auth/react";
 import Navbar from "@/components/navbar";
+import fpLogo from "@/assests/assests/changed.png"
 
 export default function UserDetail() {
   const router = useRouter();
@@ -151,7 +152,7 @@ export default function UserDetail() {
       {/* </main> */}
       <div className="grid grid-cols-1 lg:grid-cols-3 min-h-screen gap-4 p-4 md:p-8 lg:p-10 ">
         <div className="logo-container bg-transparent p-4 sm:border border-gray-600 rounded-3xl flex justify-center items-center">
-          <img src="/assets/FP.png" alt="FP" className="" />
+          <img src={fpLogo.src} alt="FP" className="" />
         </div>
         <div className="col-span-1 sm:col-span-2 lg:col-span-2 flex items-center justify-center p-4 lg:p-8 bg-cover bg-center sm:border border-gray-600 rounded-3xl overflow-hidden">
           <div className="w-full max-w-md lg:max-w-lg">
