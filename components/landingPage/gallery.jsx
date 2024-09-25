@@ -4,48 +4,60 @@ import React, { useEffect, useState, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const fixedPositions = [
-  { top: '15%', left: '25%' },
-  { top: '65%', left: '15%' },
-  { top: '55%', left: '65%' },
   { top: '15%', left: '60%' },
-  { top: '35%', left: '15%' },
-  { top: '65%', left: '45%' },
+  { top: '70%', left: '40%' },
+  { top: '30%', left: '15%' },
+
+  { top: '15%', left: '60%' },
+  { top: '30%', left: '15%' },
+  { top: '70%', left: '45%' },
+
   { top: '70%', left: '40%' },
   { top: '15%', left: '65%' },
   { top: '35%', left: '15%' },
-  { top: '30%', left: '20%' },
-  { top: '80%', left: '20%' },
-  { top: '45%', left: '70%' },
-  { top: '15%', left: '10%' },
-  { top: '55%', left: '20%' },
-  { top: '30%', left: '65%' },
+
+  { top: '40%', left: '65%' },
   { top: '65%', left: '25%' },
-  { top: '10%', left: '10%' },
-  { top: '35%', left: '65%' },
+  { top: '15%', left: '20%' },
+
+  { top: '15%', left: '20%' },
+  { top: '70%', left: '40%' },
+  { top: '20%', left: '65%' },
+
+  { top: '70%', left: '30%' },
   { top: '20%', left: '20%' },
-  { top: '40%', left: '60%' },
-  { top: '65%', left: '25%' }
+  { top: '35%', left: '65%' },
+
+  { top: '15%', left: '20%' },
+  { top: '35%', left: '70%' },
+  { top: '70%', left: '30%' }
 ];
 
 const imageSets = [
   '/imgs/active/IMG_2112.jpg',
   '/imgs/active/IMG_2171.jpg',
   '/imgs/active/IMG_2577.jpg',
+
   '/imgs/active/IMG_4066.jpg',
   '/imgs/active/IMG_6157.jpg',
   '/imgs/active/IMG_6216.jpg',
+
   '/imgs/active/IMG_6245.jpg',
   '/imgs/active/new.jpg',
   '/imgs/active/new2.jpg',
+
   '/imgs/active/IMG_4066.jpg',
   '/imgs/active/IMG_2103.jpg',
   '/imgs/active/IMG_2119.jpg',
+
   '/imgs/active/IMG_2122.jpg',
   '/imgs/active/IMG_2133.jpg',
   '/imgs/active/IMG_2166.jpg',
+
   '/imgs/active/IMG_2577.jpg',
   '/imgs/active/IMG_2570.jpg',
   '/imgs/active/IMG_2258.jpg',
+
   '/imgs/active/WhatsApp Image 2024-09-24 at 21.53.56 (1).jpg',
   '/imgs/active/WhatsApp Image 2024-09-24 at 21.53.56.jpg',
   '/imgs/active/IMG_6245.jpg'
