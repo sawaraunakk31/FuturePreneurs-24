@@ -62,8 +62,8 @@ export default function CountdownTimer({ targetDate }) {
         />
       </div>
 
-      <div className="absolute bottom-0 right-0 lg:mr-7 lg:mb-7 md:mr-5 md:mb-5 sm:mr-6 sm:mb-6 flex flex-col text-bold space-y-2 sm:mr-6 sm:mb-6">
-        <div className="text-md font-bold text-white sm:text-sm md:text-xl">
+      <div className="absolute bottom-0 right-0 lg:mr-7 lg:mb-7 md:mr-5 md:mb-5 sm:mr-6 sm:mb-6 flex flex-col text-bold space-y-2">
+        <div className="text-md font-bold pr-2 text-white sm:text-sm md:text-xl">
           Registration Closes In:
         </div>
 
@@ -77,11 +77,11 @@ export default function CountdownTimer({ targetDate }) {
                 WebkitBackgroundClip: "text",
                 WebkitTextFillColor: "transparent",
               }}
-              className="text-2xl font-bold text-white bg-clip-text text-transparent sm:text-6xl md:text-8xl"
+              className="text-4xl font-bold text-white bg-clip-text text-transparent sm:text-6xl md:text-8xl"
             >
               {formatNumber(timeLeft.days)}:
             </div>
-            <span className="text-sm text-white sm:text-xs md:text-sm">DAYS</span>
+            <span className="text-sm text-white sm:text-xs md:text-lg">DAYS</span>
           </div>
 
           <div className="flex flex-col items-center">
@@ -92,11 +92,11 @@ export default function CountdownTimer({ targetDate }) {
                 WebkitBackgroundClip: "text",
                 WebkitTextFillColor: "transparent",
               }}
-              className="text-2xl font-bold text-white bg-clip-text text-transparent sm:text-6xl md:text-8xl"
+              className="text-4xl font-bold text-white bg-clip-text text-transparent sm:text-6xl md:text-8xl"
             >
               {formatNumber(timeLeft.hours)}
             </div>
-            <span className="text-sm text-white sm:text-xs md:text-sm">HOURS</span>
+            <span className="text-xs text-white sm:text-xs md:text-lg">HOURS</span>
           </div>
 
           <div className="flex flex-col items-center">
@@ -107,11 +107,11 @@ export default function CountdownTimer({ targetDate }) {
                 WebkitBackgroundClip: "text",
                 WebkitTextFillColor: "transparent",
               }}
-              className="text-2xl font-bold text-white bg-clip-text text-transparent sm:text-6xl md:text-8xl"
+              className="text-4xl font-bold text-white bg-clip-text text-transparent sm:text-6xl md:text-8xl"
             >
               :{formatNumber(timeLeft.minutes)}
             </div>
-            <span className="text-sm text-white sm:text-xs md:text-sm">MINUTES</span>
+            <span className="text-xs text-white sm:text-xs md:text-lg">MINUTES</span>
           </div>
         </div>
       </div>
