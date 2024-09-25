@@ -145,6 +145,14 @@ const DashboardNavbar = () => {
                 Contact Us
               </div>
             </Link>
+            
+            <Link href="/leaderDashboard">
+              <div
+                className="text-black text-lg uppercase hover:text-blue-400 transition duration-300 cursor-pointer px-[1vw] md:px-[2vw]"
+              >
+                Dashboard
+              </div>
+            </Link>
           </div>
         </div>
       </div>
@@ -208,7 +216,7 @@ const DashboardNavbar = () => {
           About
         </div>
       </Link>
-      <Link href="#contact" onClick={closeMenu} scroll={false}>
+      <Link href="#footer" onClick={closeMenu} scroll={false}>
         <div
           ref={footerRef}
           className="text-white text-2xl font-bold uppercase hover:text-blue-400 active:text-blue-400 transition duration-300 cursor-pointer"
@@ -221,6 +229,17 @@ const DashboardNavbar = () => {
           }}
         >
           Contact Us
+        </div>
+      </Link>
+      
+      <Link href="/leaderDashboard" onClick={closeMenu}>
+        <div
+          className="text-white text-2xl font-bold uppercase hover:text-blue-400 active:text-blue-400 transition duration-300 cursor-pointer"
+          onClick={() => {
+            closeMenu();
+          }}
+        >
+          Dashboard
         </div>
       </Link>
 
