@@ -1,6 +1,6 @@
 // pages/api/admin/teamStats.js
 import { connectMongo } from '@/libs/mongodb';
-import { Users } from '@/models/Users.model';
+import { Users } from '@/models/user.model';
 import { TeamModel } from '@/models/team.model';
 import { NextResponse } from 'next/server';
 
@@ -62,4 +62,13 @@ export async function GET() {
     console.error(error);
     return NextResponse.json({message:'Internal Server Error'},{status:500})
   }
+}
+
+export async function POST({req}) {
+  try{
+    return NextResponse.json({message:"Success"},{status:200})
+  }catch(error){
+    return NextResponse.json({message:"Internal Server Error"},{status:500})
+  }
+  
 }
