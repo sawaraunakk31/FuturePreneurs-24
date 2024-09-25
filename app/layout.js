@@ -29,6 +29,7 @@ export default function RootLayout({ children }) {
       <link rel="icon" type="image/svg+xml" href="/favicon.ico" />
         <title>{metadata.title}</title>
         <meta name="description" content={metadata.description} />
+        <meta name="keywords" content="FuturePreneurs,Futurepreneus 10.0,FuturePreneurs 10.0, Entrepreneurs, Innovation, VIT, Ecell" />
       </Head>
       <AuthProvider>
         <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
