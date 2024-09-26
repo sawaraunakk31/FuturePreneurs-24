@@ -63,37 +63,7 @@ const Navbar = () => {
   return (
     <div className="flex w-full h-[10vh] bg-white fixed top-0 left-0 right-0 z-50 items-center px-10 justify-between bg-opacity-100 md:bg-opacity-0 ">
       {/* ECELL Logo */}
-      <div className="flex flex-row items-center h-fit w-fit pt-2">
-        {/* <div className="flex flex-row"> */}
-          <Image
-            src={ecellLogo}
-            alt="ECELL Logo"
-            width={100}
-            height={50}
-            className="cursor-pointer pr-2"
-            onClick={() => router.push("/")}
-          />
-          
-          <Image
-            src={vitLogo}
-            alt="VIT Logo"
-            width={150}
-            height={50}
-            className="pl-2"
-          />
-        
-          <Image
-            src={swLogo}
-            alt="Student Welfare Logo"
-            width={150}
-            height={550}
-            className="pl-2"
-          />
-        {/* </div> */}
-        {/* <div className="pt-1 w-full">
-          
-        </div> */}
-      </div>
+      
 
       {/* Hamburger icon for mobile view */}
       <div className="md:hidden">
@@ -272,6 +242,37 @@ const Navbar = () => {
           </div>
         </div>
       )}
+
+      <div className="flex flex-col items-center h-fit w-1/2 md:w-fit md:pt-8">
+        {/* <div className="flex flex-col"> */}
+          
+          
+          <Image
+            src={vitLogo}
+            alt="VIT Logo"
+            width={250}
+            height={150}
+            className="pl-2"
+          />
+        
+          <Image
+            src={swLogo}
+            alt="Student Welfare Logo"
+            width={250}
+            height={550}
+            className="pt-2"
+          />
+        {/* </div> */}
+      </div>
+
+      <Image
+            src={ecellLogo}
+            alt="ECELL Logo"
+            width={100}
+            height={50}
+            className="cursor-pointer pl-2"
+            onClick={() => router.push("/")}
+          />
 
       {/* Login Button for desktop */}
       <div className="hidden md:block">
