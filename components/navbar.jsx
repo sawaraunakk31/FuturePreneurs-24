@@ -223,7 +223,7 @@ const Navbar = () => {
           About
         </div>
       </Link>
-      <Link href="#contact" onClick={closeMenu} scroll={false}>
+      <Link href="#footer" onClick={closeMenu} scroll={false}>
         <div
           ref={footerRef}
           className="text-white text-2xl font-bold uppercase hover:text-blue-400 active:text-blue-400 transition duration-300 cursor-pointer"
