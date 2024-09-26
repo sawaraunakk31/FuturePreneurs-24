@@ -5,6 +5,8 @@ import Link from 'next/link';
 import { signIn, signOut, useSession } from "next-auth/react";
 import { useRouter } from 'next/navigation';
 import ecellLogo from '/assests/assests/ecell.jpg'; // Ensure the path is correct
+import vitLogo from "/assests/assests/vit logo.png";
+import swLogo from "/assests/assests/sw.png";
 import hamburgerIcon from '/assests/assests/Hamburger.jpg'; // Path to hamburger image
 import closeIcon from '/assests/assests/close.jpg'; // Path to close image
 import LoadingScreen from './LoadingScreen';
@@ -58,15 +60,36 @@ const DashboardNavbar = () => {
 
       {loading && <LoadingScreen/>}
       {/* ECELL Logo */}
-      <div className="flex items-center">
-        <Image
-          src={ecellLogo}
-          alt="ECELL Logo"
-          width={100}
-          height={50}
-          className="cursor-pointer"
-          onClick={() => router.push("/")}
-        />
+      <div className="flex flex-row items-center h-fit w-fit pt-2">
+        {/* <div className="flex flex-row"> */}
+          <Image
+            src={ecellLogo}
+            alt="ECELL Logo"
+            width={100}
+            height={50}
+            className="cursor-pointer pr-2"
+            onClick={() => router.push("/")}
+          />
+          
+          <Image
+            src={vitLogo}
+            alt="VIT Logo"
+            width={150}
+            height={50}
+            className="pl-2"
+          />
+        
+          <Image
+            src={swLogo}
+            alt="Student Welfare Logo"
+            width={150}
+            height={550}
+            className="pl-2"
+          />
+        {/* </div> */}
+        {/* <div className="pt-1 w-full">
+          
+        </div> */}
       </div>
 
       {/* Hamburger icon for mobile view */}
@@ -145,6 +168,14 @@ const DashboardNavbar = () => {
                 Contact Us
               </div>
             </Link>
+            
+            <Link href="/leaderDashboard">
+              <div
+                className="text-black text-lg uppercase hover:text-blue-400 transition duration-300 cursor-pointer px-[1vw] md:px-[2vw]"
+              >
+                Dashboard
+              </div>
+            </Link>
           </div>
         </div>
       </div>
@@ -178,7 +209,7 @@ const DashboardNavbar = () => {
           Home
         </div>
       </Link>
-      <Link href="#timeline" onClick={closeMenu} scroll={false}>
+      <Link href="/#timeline" onClick={closeMenu} scroll={false}>
         <div
           ref={timelineRef}
           className="text-white text-2xl font-bold uppercase hover:text-blue-400 active:text-blue-400 transition duration-300 cursor-pointer"
@@ -193,7 +224,7 @@ const DashboardNavbar = () => {
           Timeline
         </div>
       </Link>
-      <Link href="#about" onClick={closeMenu} scroll={false}>
+      <Link href="/#about" onClick={closeMenu} scroll={false}>
         <div
           ref={storyBehindRef}
           className="text-white text-2xl font-bold uppercase hover:text-blue-400 active:text-blue-400 transition duration-300 cursor-pointer"
@@ -208,7 +239,7 @@ const DashboardNavbar = () => {
           About
         </div>
       </Link>
-      <Link href="#contact" onClick={closeMenu} scroll={false}>
+      <Link href="/#footer" onClick={closeMenu} scroll={false}>
         <div
           ref={footerRef}
           className="text-white text-2xl font-bold uppercase hover:text-blue-400 active:text-blue-400 transition duration-300 cursor-pointer"
@@ -221,6 +252,17 @@ const DashboardNavbar = () => {
           }}
         >
           Contact Us
+        </div>
+      </Link>
+      
+      <Link href="/leaderDashboard" onClick={closeMenu}>
+        <div
+          className="text-white text-2xl font-bold uppercase hover:text-blue-400 active:text-blue-400 transition duration-300 cursor-pointer"
+          onClick={() => {
+            closeMenu();
+          }}
+        >
+          Dashboard
         </div>
       </Link>
 
