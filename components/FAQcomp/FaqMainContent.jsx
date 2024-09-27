@@ -160,11 +160,11 @@ const FaqMainContent = () => {
     { id: 1, q: "Who is eligible to participate in the competition?", ans: `Students of all years are eligible to participate in Futurepreneurs 10.0.` },
     { id: 2, q: "Is there any registration fee?", ans: `The event is absolutely free of cost.` },
     { id: 3, q: "What is the duration of the event?", ans: `The event will take place from 9:00 am to 7:00 pm.` },
-    { id: 4, q: "Will ODs be provided for the event?", ans: `Yes, ODs will be provided for the duration of the event.` },
-    { id: 5, q: "How many members can be in a team?", ans: `A team consists of 3-4 people.` },
-    { id: 6, q: "Will there be any prize pool for the event?", ans: `Yes, an enticing prize pool awaits you. All the details will be shared on our social media platforms.` },
-    { id: 7, q: "Can I participate individually?", ans: `Registrations can be made individually, but participants are required to join a team to be a part of the event.` },
-    { id: 8, q: "I still have some doubts regarding the event. How can I get them resolved?", ans:( <>
+    
+    { id: 4, q: "How many members can be in a team?", ans: `A team consists of 3-4 people.` },
+    { id: 5, q: "Will there be any prize pool for the event?", ans: `Yes, an enticing prize pool awaits you. All the details will be shared on our social media platforms.` },
+    { id: 6, q: "Can I participate individually?", ans: `Registrations can be made individually, but participants are required to join a team to be a part of the event.` },
+    { id: 7, q: "I still have some doubts regarding the event. How can I get them resolved?", ans:( <>
       For any further queries, you can contact the following POCs:
       <br />
       <strong>1. Shantanu Bhagwat:</strong> +91 9167117310
