@@ -71,8 +71,8 @@ const HeroSection = () => {
             }} /> */}
           </div>
 
-          <div className='flex'>
-          <div className='z-50'>
+          <div className='flex flex-col'>
+          <div className='z-50 '>
             <MyComponent4 Button={RegisterButton} />
           </div>
 
