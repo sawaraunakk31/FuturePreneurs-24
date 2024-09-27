@@ -15,8 +15,8 @@ export default function InfoSection() {
         </h1>
       </div>
 
-      <div className="flex flex-col md:flex-row items-center justify-center max-w-8xl mx-auto flex-grow px-4 md:px-8">
-        <div className="w-full md:w-1/2 mb-8 md:mb-0 flex justify-center">
+      <div className="flex flex-col md:flex-row items-center justify-center max-w-8xl mx-auto flex-grow px-2 md:pr-8">
+        <div className="w-full pl-9 md:w-1/2 mb-8 md:mb-2 flex">
           <Image
             src={logoFP}
             alt="FuturePreneurs Logo"
@@ -25,7 +25,7 @@ export default function InfoSection() {
             className="max-w-full h-auto"
           />
         </div>
-        <div className="w-full md:w-1/2 text-center md:text-left md:pl-8">
+        <div className="w-full md:w-1/2 text-center md:text-left md:pl-4">
           <p className="text-lg md:text-2xl mb-6 text-gray-700 pb-7 md:pb-0 text-justify">
             Propelled by the passion and hard work of E-Cell, VIT, we are elated
             to bring you the 10<sup>th</sup> edition of Futurepreneurs, the

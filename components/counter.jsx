@@ -62,14 +62,14 @@ export default function CountdownTimer({ targetDate }) {
         />
       </div>
 
-      <div className="absolute bottom-0 right-0 lg:mr-7 lg:mb-7 md:mr-5 md:mb-5 sm:mr-6 sm:mb-6 flex flex-col text-bold space-y-2">
+      <div className="absolute bottom-0 right-0 lg:mr-7 lg:mb-7 md:mr-5 md:mb-5 sm:mr-6 sm:mb-6 flex flex-col text-bold space-y-1">
         <div className="text-md font-bold pr-2 text-white sm:text-sm md:text-xl">
           Registration Closes In:
         </div>
 
-        <div className="flex space-x-1">
+        <div className="flex space-x-1 pr-4 pb-4 lg:pb-0 lg:pr-0 md:pb-0 md:pr-0 sm:pb-0 sm:pr-0">
 
-          <div className="flex flex-col items-center">
+          <div className="flex flex-col items-center ">
             <div
               style={{
                 fontFamily: "'GothamBlack', sans-serif",
@@ -81,7 +81,7 @@ export default function CountdownTimer({ targetDate }) {
             >
               {formatNumber(timeLeft.days)}:
             </div>
-            <span className="text-sm text-white sm:text-xs md:text-lg">DAYS</span>
+            <span className="text-xs text-white sm:text-xs md:text-lg">DAYS</span>
           </div>
 
           <div className="flex flex-col items-center">
