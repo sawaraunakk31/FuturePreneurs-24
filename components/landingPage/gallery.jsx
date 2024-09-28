@@ -17,14 +17,14 @@ const imageSets = [
 const LegacyComponent = () => {
   return (
     <div 
-      className="flex items-center justify-center h-fit bg-white"
+      className="flex items-center justify-center pb-12 h-fit bg-white"
       id="gallery"
     >
       {/* Grid Container */}
-      <div className="grid grid-cols-3 grid-rows-3 gap-1 w-full max-w-4xl p-2">
+      <div className="grid grid-cols-3 grid-rows-3 gap-1 w-full max-w-4xl mb-12">
         {/* Loop through the imageSets and place images around the center */}
         {imageSets.map((image, index) => (
-          <div key={image} className={`w-full h-36 md:h-44 p-2`}>
+          <div key={image} className={`w-full h-36 md:h-44 p-3`}>
             <img
               src={image}
               alt={`Image ${index + 1}`}
@@ -38,5 +38,3 @@ const LegacyComponent = () => {
 };
 
 export default LegacyComponent;
-
-

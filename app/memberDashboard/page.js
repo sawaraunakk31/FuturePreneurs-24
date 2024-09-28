@@ -161,7 +161,7 @@ export default function Page() {
         onClick={() => { 
           console.log('not working');
           handleShowModal(); }}
-        className="bg-blue-600 text-white py-3 px-10 rounded-full mt-8 text-lg font-semibold transition-colors duration-300 hover:bg-[#1e5db8] focus:outline-none"
+        className="bg-gradient-to-r from-purple-500 to-blue-500 text-white py-3 px-10 rounded-full mt-8 text-lg font-semibold transition-colors duration-300 hover:bg-[#1e5db8] focus:outline-none"
       >
         Leave
       </button>

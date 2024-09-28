@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { signIn, signOut, useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import { useMotionValue, useMotionValueEvent, useScroll } from "framer-motion";
 import ecellLogo from "/assests/assests/ecell.jpg"; // Ensure the path is correct
 import vitLogo from "/assests/assests/vit logo.png";
 import swLogo from "/assests/assests/sw.png";
@@ -14,6 +15,8 @@ const Navbar = () => {
   const { data: session, status } = useSession();
   const router = useRouter();
   const [isMenuOpen, setIsMenuOpen] = useState(false); // State to control mobile menu
+  const [visible, setVisible] = useState(true);
+  const { scrollYProgress } = useScroll(); 
   const heroSectionRef = useRef(null);
   const timelineRef = useRef(null);
   const storyBehindRef = useRef(null);
@@ -60,8 +63,25 @@ const Navbar = () => {
     setIsMenuOpen(false); // Close the menu
   };
 
+  useMotionValueEvent(scrollYProgress, "change", (current) => {
+    if (typeof current === "number") {
+      let direction = current - scrollYProgress.getPrevious();
+      if (scrollYProgress.get() < 0.05) {
+        setVisible(true); // Show navbar when at the top
+      } else {
+        if (direction < 0 || direction === 1) {
+          setVisible(true); // Show navbar when scrolling up
+        } else {
+          setVisible(false); // Hide navbar when scrolling down
+        }
+      }
+    }
+  });
+
   return (
-    <div className="flex w-full h-[10vh] bg-white fixed top-0 left-0 right-0 z-50 items-center px-10 justify-between bg-opacity-100 md:bg-opacity-0 ">
+    <div className={`flex w-full h-[10vh] bg-white fixed top-0 left-0 right-0 z-50 items-center px-10 justify-between bg-opacity-100 transition-transform duration-300 ${
+    visible?"translate-y-0":"-translate-y-full"
+    } `}>
       {/* ECELL Logo */}
       
 
@@ -90,7 +110,7 @@ const Navbar = () => {
       </div>
 
       {/* Navigation Links for desktop */}
-      <div className="hidden md:flex relative items-center justify-center">
+      <div className="hidden md:flex pl-4 relative items-center justify-center">
         {/* Box around navigation links */}
         <div className="relative align-middle w-[60vw] max-w-[600px] h-[7vh] bg-transparent border-[3px] border-gray-300 rounded-[25px] opacity-100 z-10 bg-white">
           {/* Navigation Links */}
@@ -243,23 +263,23 @@ const Navbar = () => {
         </div>
       )}
 
-      <div className="flex flex-col items-center h-fit w-1/2 md:w-fit md:pt-8">
+      <div className="flex flex-col items-center h-fit w-1/2 md:w-fit md:pt-1">
         {/* <div className="flex flex-col"> */}
           
           
           <Image
             src={vitLogo}
             alt="VIT Logo"
-            width={250}
-            height={150}
+            width={150}
+            height={100}
             className="pl-2"
           />
         
           <Image
             src={swLogo}
             alt="Student Welfare Logo"
-            width={250}
-            height={550}
+            width={150}
+            height={250}
             className="pt-2"
           />
         {/* </div> */}
