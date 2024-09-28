@@ -12,10 +12,10 @@ import toast, { Toaster } from "react-hot-toast";
 import LoadingIcons from "react-loading-icons";
 
 export default function Qualifier() {
-  const [questionCategory, setQuestionCategory] = useState("");
-  const [questionNumber, setQuestionNumber] = useState(0);
-  const [chronoNumber, setChronoNumber] = useState(0);
-  const [teamName, setTeamName] = useState("");
+  const [questionCategory, setQuestionCategory] = useState("easy");
+  const [questionNumber, setQuestionNumber] = useState(1);
+  const [chronoNumber, setChronoNumber] = useState(1);
+  const [teamName, setTeamName] = useState("ripun");
   const [finalAnswer, setFinalAnswer] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const { data: session, status } = useSession();
@@ -72,7 +72,7 @@ export default function Qualifier() {
 
   const getUserData = () => {
     console.log('hii');
-    setIsLoading(true);
+    setIsLoading(false);
     fetch(`/api/userInfo`, {
       content: 'application/json',
       method: 'GET',
@@ -88,7 +88,7 @@ export default function Qualifier() {
         // setIsLoading(false);
         if (user.hasFilledDetails) {
           if((user.events).includes(1)){
-            if (user.event1TeamId == null) {
+            if (user.teamId == null) {
               router.push('/');
             } else {
               if (user.event1TeamRole == 1) {
@@ -142,7 +142,7 @@ export default function Qualifier() {
 
   const getQuestionData = () => {
     console.log("hello");
-    setIsLoading(true);
+    setIsLoading(false);
 
     fetch(`/api/round0/getQuestion`, {
       content: "application/json",
@@ -172,7 +172,7 @@ export default function Qualifier() {
   return (
     <main className="min-h-screen pt-[5rem] bg-[#0e0e0e] p-6">
       <section>
-        {isLoading && <Loader />}
+        {/* {isLoading && <Loader />} */}
         <div className="gap-2">
           {questionCategory === "instruction" && <Instructions />}
           {questionCategory !== "instruction" &&
