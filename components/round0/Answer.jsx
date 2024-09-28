@@ -61,7 +61,11 @@ export default function AnswerForQualifier(props) {
         {props.questionCategory === "easy" && (
           <div className="flex text-xl">
             <ul className="grid grid-cols-2 gap-8">
-              {Object.keys(
+            {questions[props.questionCategory] &&
+              questions[props.questionCategory][props.questionNumber] &&
+              questions[props.questionCategory][props.questionNumber]?.ans
+                .optionsContent &&
+               Object.keys(
                 questions[props.questionCategory][props.questionNumber]?.ans
                   .optionsContent
               ).map((ele) => {
@@ -132,7 +136,11 @@ export default function AnswerForQualifier(props) {
         {props.questionCategory === "medium" && (
           <div className="flex text-xl">
             <ul className="grid grid-cols-2 gap-8">
-              {Object.keys(
+            {questions[props.questionCategory] &&
+              questions[props.questionCategory][props.questionNumber] &&
+              questions[props.questionCategory][props.questionNumber]?.ans
+                .optionsContent &&
+               Object.keys(
                 questions[props.questionCategory][props.questionNumber]?.ans
                   .optionsContent
               ).map((ele) => {
@@ -203,7 +211,11 @@ export default function AnswerForQualifier(props) {
         {props.questionCategory === "hard" && (
           <div className="flex text-xl">
             <ul className="grid grid-cols-2 gap-8">
-              {Object.keys(
+            {questions[props.questionCategory] &&
+              questions[props.questionCategory][props.questionNumber] &&
+              questions[props.questionCategory][props.questionNumber]?.ans
+                .optionsContent &&
+               Object.keys(
                 questions[props.questionCategory][props.questionNumber]?.ans
                   .optionsContent
               ).map((ele) => {
@@ -257,7 +269,11 @@ export default function AnswerForQualifier(props) {
         {props.questionCategory === "caseStudy" && (
           <div className="flex text-xl">
             <ul className="grid grid-cols-2 gap-8">
-              {Object.keys(
+            {questions[props.questionCategory] &&
+              questions[props.questionCategory][props.questionNumber] &&
+              questions[props.questionCategory][props.questionNumber]?.ans
+                .optionsContent &&
+               Object.keys(
                 questions[props.questionCategory][props.questionNumber]?.ans
                   .optionsContent
               ).map((ele) => {
