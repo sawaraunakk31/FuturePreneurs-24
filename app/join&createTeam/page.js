@@ -130,7 +130,7 @@ const noTeam = () => {
             </h1>
             <div className="flex flex-col  items-center gap-5">
               <button
-                className=" sm:landscape:w-[15vw]  mb-7 rounded-3xl bg-gradient-to-r from-[#FF7E7E] to-[#FFEF99] text-center portrait:lg:w-[30vw]  md:max-w-[25vw] md:text-[20px] landscape:md:text-[1.6vh] lg:w-[15vw] w-[50vw] h-[5vh] hover:scale-110 active:scale-95 transition-transform ease-in-out duration-300 "
+                className=" sm:landscape:w-[15vw]  mb-7 rounded-3xl bg-gradient-to-r from-purple-500 to-blue-500 text-center portrait:lg:w-[30vw]  md:max-w-[25vw] md:text-[20px] landscape:md:text-[1.6vh] lg:w-[15vw] w-[50vw] h-[5vh] hover:scale-110 active:scale-95 transition-transform ease-in-out duration-300 "
                 onClick={handleJoinTeam}
               >
                 Find team to join
@@ -151,7 +151,7 @@ const noTeam = () => {
                 onChange={(e) => setTeamName(e.target.value)}
               />
               <button
-                className="mb-7 sm:landscape:w-[15vw]  rounded-3xl bg-gradient-to-b from-[#FF7E7E] to-[#FFEF99] text-center portrait:lg:w-[30vw]  md:max-w-[25vw] md:text-[1.6vh]  sm:landscape:md:text-[1.7vh] lg:w-[15vw] w-[50vw] h-[5vh] hover:scale-110 active:scale-95 transition-transform ease-in-out duration-300"
+                className="mb-7 sm:landscape:w-[15vw]  rounded-3xl bg-gradient-to-r from-purple-500 to-blue-500 text-center portrait:lg:w-[30vw]  md:max-w-[25vw] md:text-[1.6vh]  sm:landscape:md:text-[1.7vh] lg:w-[15vw] w-[50vw] h-[5vh] hover:scale-110 active:scale-95 transition-transform ease-in-out duration-300"
                 onClick={createTeam}
               >
                 Create your own team
@@ -166,7 +166,7 @@ const noTeam = () => {
             <div className="flex flex-col justify-evenly items-center gap-5">
               {!consent && (
                 <button
-                  className="mb-7 sm:landscape:w-[15vw] rounded-3xl bg-gradient-to-b from-[#FF7E7E] to-[#FFEF99] text-center portrait:lg:w-[30vw] md:max-w-[25vw] md:text-[1.6vh] sm:landscape:md:text-[1.7vh] lg:w-[15vw] w-[50vw] h-[5vh] hover:scale-110 active:scale-95 transition-transform ease-in-out duration-300"
+                  className="mb-7 sm:landscape:w-[15vw] rounded-3xl bg-gradient-to-r from-purple-500 to-blue-500 text-center portrait:lg:w-[30vw] md:max-w-[25vw] md:text-[1.6vh] sm:landscape:md:text-[1.7vh] lg:w-[15vw] w-[50vw] h-[5vh] hover:scale-110 active:scale-95 transition-transform ease-in-out duration-300"
                   onClick={noTeam}
                 >
                   I don't have a team
