@@ -62,8 +62,10 @@ export default function Bidder() {
                     {items.map(item => (
                         <div
                             key={item.id}
-                            className={`bg-black opacity-75 text-white p-4 rounded-lg shadow-md transition-transform transform hover:scale-110 hover:opacity-100 text-center cursor-pointer ${selectedItem && selectedItem.id === item.id ? 'opacity-100 border-4 border-black' : ''}`}
-                            onClick={() => setSelectedItem(item)}
+                            className={`bg-black text-white p-4 rounded-lg shadow-md transition-transform transform text-center cursor-pointer ${
+                                selectedItem && selectedItem.id === item.id ? 'bg-black opacity-100 scale-105' : 'opacity-75 hover:opacity-90 hover:scale-105'
+                            }`}
+                            onClick={() => setSelectedItem(selectedItem && selectedItem.id === item.id ? null : item)}
                         >
                             <h2 className="text-lg pb-2">{item.name}</h2>
                             <p>Highest : ₹{item.price}/-</p>
