@@ -12,9 +12,9 @@ import toast, { Toaster } from "react-hot-toast";
 import LoadingIcons from "react-loading-icons";
 
 export default function Qualifier() {
-  const [questionCategory, setQuestionCategory] = useState("easy");
-  const [questionNumber, setQuestionNumber] = useState(1);
-  const [chronoNumber, setChronoNumber] = useState(1);
+  const [questionCategory, setQuestionCategory] = useState("instruction");
+  const [questionNumber, setQuestionNumber] = useState(-1);
+  const [chronoNumber, setChronoNumber] = useState(0);
   const [teamName, setTeamName] = useState("ripun");
   const [finalAnswer, setFinalAnswer] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -87,11 +87,10 @@ export default function Qualifier() {
         const user = data.user;
         // setIsLoading(false);
         if (user.hasFilledDetails) {
-          if((user.events).includes(1)){
             if (user.teamId == null) {
               router.push('/');
             } else {
-              if (user.event1TeamRole == 1) {
+              if (user.teamRole != 0) {
                 toast.error("Only leader's can access the quiz");
                 router.push('/');
               } else {
@@ -102,11 +101,8 @@ export default function Qualifier() {
             toast.error('Please register the Event first')
             router.push('/')
           }
-        } else {
-          toast.error('Please Fill your details first')
-          router.push('/');
-        }
-      });
+        } 
+      );
   };
 
   const handleSubmit = async() => {
