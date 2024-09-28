@@ -1,14 +1,14 @@
 import time from '@/constant/round0/time';
-import { connectMongoDB } from "@/lib/mongodb";
+import { connectMongo } from "@/libs/mongodb";
 import { Round0 } from "@/models/round0.model";
-import { Event1Test } from "@/models/event1Test.model";
-import { getTokenDetails } from "@/utils/authuser.js";
+import { Event1Test } from "@/models/user.model";
+import { getTokenDetails } from "@/utils/getTokenDetails";
 import { getToken } from "next-auth/jwt";
 import { NextResponse } from "next/server";
 
 export async function GET(req, res) {
 
-  await connectMongoDB();
+  await connectMongo();
   console.log('inside route')
   const token = await getToken({ req });
   const auth = token
