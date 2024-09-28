@@ -4,7 +4,7 @@ const Round0Schema = mongoose.Schema(
   {
     teamId: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "Event1",
+      ref: "Users",
     },
     teamName: {
       type: String,

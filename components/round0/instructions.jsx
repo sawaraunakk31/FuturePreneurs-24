@@ -12,7 +12,7 @@ const Instructions = () => {
 
   const { data: session, status } = useSession();
 
-  const calculateTimeRemaining = () => {
+  /* const calculateTimeRemaining = () => {
     const now = new Date().getTime();
 
     const targetTime = new Date(
@@ -59,7 +59,7 @@ const Instructions = () => {
 
     // Clear the interval when the component unmounts
     return () => clearInterval(intervalId);
-  }, []);
+  }, []); */
 
   const startQuiz = () => {
     console.log("inside");
