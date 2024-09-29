@@ -1,6 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import { FaUserCircle } from "react-icons/fa";
+import { socket } from "@/app/socket.js";
 
 export default function Bidder() {
     const [items, setItems] = useState([]);
@@ -17,23 +18,68 @@ export default function Bidder() {
     };
 
     useEffect(() => {
-        async function fetchData() {
-            const data = Array.from({ length: 25 }, (v, i) => ({
-                id: i + 1,
-                name: `Item ${i + 1}`,
-                price: (i + 1) * 10,
-            }));
-            setItems(data);
-            const wallet = { balance: 1000 };
-            setWalletBalance(wallet.balance);
+        const wallet = { balance: 1000 };
+        setWalletBalance(wallet.balance);
+        
+        if (socket.connected) {
+            onConnect();
         }
-        fetchData();
+        
+        function onConnect() {
+            socket.io.engine.on("upgrade", () => {
+                console.log("upgrade to websocket");
+            });
+        }
+        
+        function onDisconnect() {
+            console.log("user disconnected");
+        }
 
         const timer = setInterval(() => {
             setTimeLeft(prevTime => (prevTime > 0 ? prevTime - 1 : 0));
         }, 1000);
-        return () => clearInterval(timer);
+
+        socket.on("connect", onConnect);
+        socket.on("disconnect", onDisconnect);
+        socket.on("highestBids", setHighestBids);
+        socket.on("highestBid", handleNewHighestBid);
+        return () => {
+            socket.off("connect", onConnect);
+            socket.off("disconnect", onDisconnect);
+            socket.off("highestBids", setHighestBids);
+            socket.off("highestBid", handleNewHighestBid);
+            clearInterval(timer);
+        };
     }, []);
+
+    const setHighestBids = ({ highestBids }) => {
+        setItems(highestBids);
+    }
+
+    const handleNewHighestBid = ({highestBid, index}) => {
+        setItems(prevItems => {
+            const newItems = [...prevItems]; // Create a copy of the previous items array
+            newItems[index] = highestBid;    // Update the item at the specific index
+            return newItems;                 // Return the updated array
+        });
+    }
+
+    const handleNewBid = (ID, currentBid) => {
+        const index = ID-1;
+        if (currentBid<parseInt(price)) {
+            socket.emit("newBid", {newBid: parseInt(price), index});
+            // console.log("its me",label)
+            setItems(prevItems => {
+                const newItems = [...prevItems]; // Create a shallow copy of the items array
+                newItems[index] = parseInt(price); // Update the item at the specific index with the parsed integer value
+                return newItems; // Return the updated array
+            });
+            setPrice("");
+          } else {
+            alert("Your bid is lower than the current highest bid.");
+            setPrice("");
+          }
+    };
 
     const formatTime = (seconds) => {
         const mins = Math.floor(seconds / 60);
@@ -56,18 +102,21 @@ export default function Bidder() {
                 <div className="flex w-full h-full">
                     {/* Items Grid */}
                     <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 p-6 w-3/4 bg-gradient-to-br from-white via-purple-100 to-purple-300">
-                        {items.map(item => (
+                        {items.map((item, index) => (
                             <div
-                                key={item.id}
+                                key={index+1}
                                 className={`p-4 rounded-lg shadow-md transform transition-transform duration-300 ease-in-out text-center cursor-pointer ${
-                                    selectedItem && selectedItem.id === item.id 
+                                    selectedItem && selectedItem.id === index+1 
                                     ? 'bg-yellow-300 scale-105'
                                     : 'bg-purple-100 hover:bg-purple-200 hover:scale-105'
                                 }`}
-                                onClick={() => setSelectedItem(selectedItem && selectedItem.id === item.id ? null : item)}
+                                onClick={() => {
+                                    setPrice('');
+                                    setSelectedItem(selectedItem && selectedItem.id === item.id ? null : {id: index+1, name: `Item ${index + 1}`, highestBid: item })
+                                }}
                             >
-                                <h2 className="text-lg font-medium text-purple-800">{item.name}</h2>
-                                <p className="text-gray-700">Highest: ₹{item.price}/-</p>
+                                <h2 className="text-lg font-medium text-purple-800">{`Item ${index + 1}`}</h2>
+                                <p className="text-gray-700">Highest: ₹{item}/-</p>
                             </div>
                         ))}
                     </div>
@@ -83,7 +132,7 @@ export default function Bidder() {
                                     <ul className="list-disc list-inside text-gray-700">
                                         <li>ID: {selectedItem.id}</li>
                                         <li>Name: {selectedItem.name}</li>
-                                        <li>Price: ₹{selectedItem.price}/-</li>
+                                        <li>Price: ₹{selectedItem.highestBid}/-</li>
                                     </ul>
                                 </div>
                                 <div>
@@ -101,6 +150,9 @@ export default function Bidder() {
                                                 : 'bg-gray-400 cursor-not-allowed'
                                         }`}
                                         disabled={!price}
+                                        onClick={() => {
+                                            handleNewBid(selectedItem.id, selectedItem.highestBid);
+                                        }}
                                     >
                                         Submit
                                     </button>
