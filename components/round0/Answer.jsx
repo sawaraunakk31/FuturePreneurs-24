@@ -62,33 +62,33 @@ export default function AnswerForQualifier(props) {
           <div className="flex text-xl">
             <ul className="grid grid-cols-2 gap-8">
             {questions[props.questionCategory] &&
-              questions[props.questionCategory][props.chronoNumber + 1] &&
-              questions[props.questionCategory][props.chronoNumber + 1]?.ans
+              questions[props.questionCategory][props.questionNumber] &&
+              questions[props.questionCategory][props.questionNumber]?.ans
                 .optionsContent &&
                Object.keys(
-                questions[props.questionCategory][props.chronoNumber + 1]?.ans
+                questions[props.questionCategory][props.questionNumber]?.ans
                   .optionsContent
               ).map((ele) => {
                 return (
                   <div
                     key={ele}
                     onClick={() => {
-                      handleOptionChange(props.chronoNumber + 1, ele);
+                      handleOptionChange(props.questionNumber, ele);
                       storeAnswer(ele);
                     }}
                   >
-                    {questions[props.questionCategory][props.chronoNumber + 1]?.ans
+                    {questions[props.questionCategory][props.questionNumber]?.ans
                       .optionsType === "text" ? (
                       <div key={ele}>
                         <label>
                           <input
                             type="radio"
                             onChange={() => {
-                              handleOptionChange(props.chronoNumber + 1, ele);
+                              handleOptionChange(props.questionNumber, ele);
                               storeAnswer(ele);
                             }}
                             checked={
-                              selectedOptions[props.chronoNumber + 1]?.includes(
+                              selectedOptions[props.questionNumber]?.includes(
                                 ele
                               ) || false
                             }
@@ -96,7 +96,7 @@ export default function AnswerForQualifier(props) {
                           />
                           {
                             questions[props.questionCategory][
-                              props.chronoNumber + 1
+                              props.questionNumber
                             ]?.ans.optionsContent[ele]
                           }
                         </label>
@@ -106,11 +106,11 @@ export default function AnswerForQualifier(props) {
                         <input
                           type="radio"
                           onChange={() => {
-                            handleOptionChange(props.chronoNumber + 1, ele);
+                            handleOptionChange(props.questionNumber, ele);
                             storeAnswer(ele);
                           }}
                           checked={
-                            selectedOptions[props.chronoNumber + 1]?.includes(
+                            selectedOptions[props.questionNumber]?.includes(
                               ele
                             ) || false
                           }
@@ -119,7 +119,7 @@ export default function AnswerForQualifier(props) {
                         <img
                           src={
                             questions[props.questionCategory][
-                              props.chronoNumber + 1
+                              props.questionNumber
                             ]?.ans.optionsContent[ele]
                           }
                           className="w-[300px] h-auto "
@@ -137,33 +137,33 @@ export default function AnswerForQualifier(props) {
           <div className="flex text-xl">
             <ul className="grid grid-cols-2 gap-8">
             {questions[props.questionCategory] &&
-              questions[props.questionCategory][props.chronoNumber + 1] &&
-              questions[props.questionCategory][props.chronoNumber + 1]?.ans
+              questions[props.questionCategory][props.questionNumber] &&
+              questions[props.questionCategory][props.questionNumber]?.ans
                 .optionsContent &&
                Object.keys(
-                questions[props.questionCategory][props.chronoNumber + 1]?.ans
+                questions[props.questionCategory][props.questionNumber]?.ans
                   .optionsContent
               ).map((ele) => {
                 return (
                   <div
                     key={ele}
                     onClick={() => {
-                      handleOptionChange(props.chronoNumber + 1, ele);
+                      handleOptionChange(props.questionNumber, ele);
                       storeAnswer(ele);
                     }}
                   >
-                    {questions[props.questionCategory][props.chronoNumber + 1]?.ans
+                    {questions[props.questionCategory][props.questionNumber]?.ans
                       .optionsType === "text" ? (
                       <div key={ele}>
                         <label>
                           <input
                             type="radio"
                             onChange={() => {
-                              handleOptionChange(props.chronoNumber + 1, ele);
+                              handleOptionChange(props.questionNumber, ele);
                               storeAnswer(ele);
                             }}
                             checked={
-                              selectedOptions[props.chronoNumber + 1]?.includes(
+                              selectedOptions[props.questionNumber]?.includes(
                                 ele
                               ) || false
                             }
@@ -171,7 +171,7 @@ export default function AnswerForQualifier(props) {
                           />
                           {
                             questions[props.questionCategory][
-                              props.chronoNumber + 1
+                              props.questionNumber
                             ]?.ans.optionsContent[ele]
                           }
                         </label>
@@ -181,11 +181,11 @@ export default function AnswerForQualifier(props) {
                         <input
                           type="radio"
                           onChange={() => {
-                            handleOptionChange(props.chronoNumber + 1, ele);
+                            handleOptionChange(props.questionNumber, ele);
                             storeAnswer(ele);
                           }}
                           checked={
-                            selectedOptions[props.chronoNumber + 1]?.includes(
+                            selectedOptions[props.questionNumber]?.includes(
                               ele
                             ) || false
                           }
@@ -194,7 +194,7 @@ export default function AnswerForQualifier(props) {
                         <img
                           src={
                             questions[props.questionCategory][
-                              props.chronoNumber + 1
+                              props.questionNumber
                             ]?.ans.optionsContent[ele]
                           }
                           className="w-[300px] h-auto "
@@ -212,39 +212,39 @@ export default function AnswerForQualifier(props) {
           <div className="flex text-xl">
             <ul className="grid grid-cols-2 gap-8">
             {questions[props.questionCategory] &&
-              questions[props.questionCategory][props.chronoNumber + 1] &&
-              questions[props.questionCategory][props.chronoNumber + 1]?.ans
+              questions[props.questionCategory][props.questionNumber] &&
+              questions[props.questionCategory][props.questionNumber]?.ans
                 .optionsContent &&
                Object.keys(
-                questions[props.questionCategory][props.chronoNumber + 1]?.ans
+                questions[props.questionCategory][props.questionNumber]?.ans
                   .optionsContent
               ).map((ele) => {
                 return (
                   <div
                     key={ele}
                     onClick={() => {
-                      handleOptionChange(props.chronoNumber + 1, ele);
+                      handleOptionChange(props.questionNumber, ele);
                       storeAnswer(ele);
                     }}
                   >
                     <input
                       type="radio"
                       onChange={() => {
-                        handleOptionChange(props.chronoNumber + 1, ele);
+                        handleOptionChange(props.questionNumber, ele);
                         storeAnswer(ele);
                       }}
                       checked={
-                        selectedOptions[props.chronoNumber + 1]?.includes(ele) ||
+                        selectedOptions[props.questionNumber]?.includes(ele) ||
                         false
                       }
                       className="mr-2"
                     />
-                    {questions[props.questionCategory][props.chronoNumber + 1]?.ans
+                    {questions[props.questionCategory][props.questionNumber]?.ans
                       .optionsType === "text" ? (
                       <label>
                         {
                           questions[props.questionCategory][
-                            props.chronoNumber + 1
+                            props.questionNumber
                           ]?.ans.optionsContent[ele]
                         }
                       </label>
@@ -252,7 +252,7 @@ export default function AnswerForQualifier(props) {
                       <img
                         src={
                           questions[props.questionCategory][
-                            props.chronoNumber + 1
+                            props.questionNumber
                           ]?.ans.optionsContent[ele]
                         }
                         className="w-[300px] h-auto "
@@ -270,33 +270,33 @@ export default function AnswerForQualifier(props) {
           <div className="flex text-xl">
             <ul className="grid grid-cols-2 gap-8">
             {questions[props.questionCategory] &&
-              questions[props.questionCategory][props.chronoNumber + 1] &&
-              questions[props.questionCategory][props.chronoNumber + 1]?.ans
+              questions[props.questionCategory][props.questionNumber] &&
+              questions[props.questionCategory][props.questionNumber]?.ans
                 .optionsContent &&
                Object.keys(
-                questions[props.questionCategory][props.chronoNumber + 1]?.ans
+                questions[props.questionCategory][props.questionNumber]?.ans
                   .optionsContent
               ).map((ele) => {
                 return (
                   <div
                     key={ele}
                     onClick={() => {
-                      handleOptionChange(props.chronoNumber + 1, ele);
+                      handleOptionChange(props.questionNumber, ele);
                       storeAnswer(ele);
                     }}
                   >
-                    {questions[props.questionCategory][props.chronoNumber + 1]?.ans
+                    {questions[props.questionCategory][props.questionNumber]?.ans
                       .optionsType === "text" ? (
                       <div key={ele}>
                         <label>
                           <input
                             type="radio"
                             onChange={() => {
-                              handleOptionChange(props.chronoNumber + 1, ele);
+                              handleOptionChange(props.questionNumber, ele);
                               storeAnswer(ele);
                             }}
                             checked={
-                              selectedOptions[props.chronoNumber + 1]?.includes(
+                              selectedOptions[props.questionNumber]?.includes(
                                 ele
                               ) || false
                             }
@@ -304,7 +304,7 @@ export default function AnswerForQualifier(props) {
                           />
                           {
                             questions[props.questionCategory][
-                              props.chronoNumber + 1
+                              props.questionNumber
                             ]?.ans.optionsContent[ele]
                           }
                         </label>
@@ -314,11 +314,11 @@ export default function AnswerForQualifier(props) {
                         <input
                           type="radio"
                           onChange={() => {
-                            handleOptionChange(props.chronoNumber + 1, ele);
+                            handleOptionChange(props.questionNumber, ele);
                             storeAnswer(ele);
                           }}
                           checked={
-                            selectedOptions[props.chronoNumber + 1]?.includes(
+                            selectedOptions[props.questionNumber]?.includes(
                               ele
                             ) || false
                           }
@@ -327,7 +327,7 @@ export default function AnswerForQualifier(props) {
                         <img
                           src={
                             questions[props.questionCategory][
-                              props.chronoNumber + 1
+                              props.questionNumber
                             ]?.ans.optionsContent[ele]
                           }
                           className="w-[300px] h-auto "

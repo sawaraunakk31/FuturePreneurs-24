@@ -3,14 +3,14 @@ import { Round0 } from "@/models/round0.model";
 import { NextResponse } from "next/server";
 
 export async function GET({ req }) {
-  if (req.method !== "GET") {
-    return NextResponse.json(
-      { message: "Method not allowed" },
-      { status: 405 }
-    );
-  } else {
+  // if (req.method !== "GET") {
+  //   return NextResponse.json(
+  //     { message: "Method not allowed" },
+  //     { status: 405 }
+  //   );
+  // } else {
     try {
-      await connectMongo();
+      // await connectMongo();
 
       const qualTeams = await Round0.find();
       if (!qualTeams) {
@@ -101,4 +101,3 @@ export async function GET({ req }) {
       );
     }
   }
-}

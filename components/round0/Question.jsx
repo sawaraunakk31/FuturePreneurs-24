@@ -11,27 +11,27 @@ export default function QuestionForQualifier(props) {
             <div className="text-4xl align-top">Question {props.chronoNumber + 1}</div>
             <div className="select-none">
               {
-                questions[props.questionCategory][props.chronoNumber + 1]?.q.content
+                questions[props.questionCategory][props.questionNumber]?.q.content
               }
             </div>
-            {questions[props.questionCategory][props.chronoNumber + 1]?.q
-              .contentType === "image" && questions[props.questionCategory][props.chronoNumber + 1]?.q.contentLink ?(
+            {questions[props.questionCategory][props.questionNumber]?.q
+              .contentType === "image" && questions[props.questionCategory][props.questionNumber]?.q.contentLink ?(
               <img
-                key={questions[props.questionCategory][props.chronoNumber + 1]?.q.contentLink}
+                key={questions[props.questionCategory][props.questionNumber]?.q.contentLink}
                 src={
-                  questions[props.questionCategory][props.chronoNumber + 1]?.q.contentLink
+                  questions[props.questionCategory][props.questionNumber]?.q.contentLink
                 }
                alt="question image"
                 className="h-auto w-auto"
                />
             ) : (<p>No image available for this question</p>
           )}
-            {questions[props.questionCategory][props.chronoNumber + 1]?.q
+            {questions[props.questionCategory][props.questionNumber]?.q
               .contentType === "audio" && (
               <div>
                 
                 {typeof(
-                  questions[props.questionCategory][props.chronoNumber + 1]?.q
+                  questions[props.questionCategory][props.questionNumber]?.q
                     .contentLink
                 ) === "object" ? (
                   <div>
@@ -39,7 +39,7 @@ export default function QuestionForQualifier(props) {
                       <source
                         src={
                           questions[props.questionCategory][
-                            props.chronoNumber + 1
+                            props.questionNumber
                           ]?.q.contentLink[0]
                         }
                         type="audio/mpeg"
@@ -50,7 +50,7 @@ export default function QuestionForQualifier(props) {
                       <source
                         src={
                           questions[props.questionCategory][
-                            props.chronoNumber + 1
+                            props.questionNumber
                           ]?.q.contentLink[1]
                         }
                         type="audio/mpeg"
@@ -62,7 +62,7 @@ export default function QuestionForQualifier(props) {
                   <audio controls className="mb-2">
                     <source
                       src={
-                        questions[props.questionCategory][props.chronoNumber + 1]
+                        questions[props.questionCategory][props.questionNumber]
                           ?.q.contentLink
                       }
                       type="audio/mpeg"
@@ -79,27 +79,27 @@ export default function QuestionForQualifier(props) {
             <div className="text-4xl align-top">Question {props.chronoNumber + 11}</div>
             <div>
               {
-                questions[props.questionCategory][props.chronoNumber + 1]?.q
+                questions[props.questionCategory][props.questionNumber]?.q
                   .content
               }
             </div>
-            {questions[props.questionCategory][props.chronoNumber + 1]?.q
-              .contentType === "image" && questions[props.questionCategory][props.chronoNumber + 1]?.q.contentLink ?(
+            {questions[props.questionCategory][props.questionNumber]?.q
+              .contentType === "image" && questions[props.questionCategory][props.questionNumber]?.q.contentLink ?(
               <img
-                key={questions[props.questionCategory][props.chronoNumber + 1]?.q.contentLink}
+                key={questions[props.questionCategory][props.questionNumber]?.q.contentLink}
                 src={
-                  questions[props.questionCategory][props.chronoNumber + 1]?.q.contentLink
+                  questions[props.questionCategory][props.questionNumber]?.q.contentLink
                 }
                alt="question image"
                 className="h-auto w-auto"
                />
             ) : (<p>No image available for this question</p>
           )}
-            {questions[props.questionCategory][props.chronoNumber + 1]?.q
+            {questions[props.questionCategory][props.questionNumber]?.q
               .contentType === "audio" && (
               <div>
                 {typeof(
-                  questions[props.questionCategory][props.chronoNumber + 1]?.q
+                  questions[props.questionCategory][props.questionNumber]?.q
                     .contentLink
                 ) === "object" ? (
                   <div>
@@ -107,7 +107,7 @@ export default function QuestionForQualifier(props) {
                       <source
                         src={
                           questions[props.questionCategory][
-                            props.chronoNumber + 1
+                            props.questionNumber
                           ]?.q.contentLink[0]
                         }
                         type="audio/mpeg"
@@ -118,7 +118,7 @@ export default function QuestionForQualifier(props) {
                       <source
                         src={
                           questions[props.questionCategory][
-                            props.chronoNumber + 1
+                            props.questionNumber
                           ]?.q.contentLink[1]
                         }
                         type="audio/mpeg"
@@ -130,7 +130,7 @@ export default function QuestionForQualifier(props) {
                   <audio controls className="mb-2">
                     <source
                       src={
-                        questions[props.questionCategory][props.chronoNumber + 1]
+                        questions[props.questionCategory][props.questionNumber]
                           ?.q.contentLink
                       }
                       type="audio/mpeg"
@@ -150,27 +150,27 @@ export default function QuestionForQualifier(props) {
             <div className="text-4xl align-top select-none">Question {props.chronoNumber + 21}</div>
             <div>
               {
-                questions[props.questionCategory][props.chronoNumber + 1]?.q
+                questions[props.questionCategory][props.questionNumber]?.q
                   .content
               }
             </div>
-            {questions[props.questionCategory][props.chronoNumber + 1]?.q
-              .contentType === "image" && questions[props.questionCategory][props.chronoNumber + 1]?.q.contentLink ?(
+            {questions[props.questionCategory][props.questionNumber]?.q
+              .contentType === "image" && questions[props.questionCategory][props.questionNumber]?.q.contentLink ?(
               <img
-                key={questions[props.questionCategory][props.chronoNumber + 1]?.q.contentLink}
+                key={questions[props.questionCategory][props.questionNumber]?.q.contentLink}
                 src={
-                  questions[props.questionCategory][props.chronoNumber + 1]?.q.contentLink
+                  questions[props.questionCategory][props.questionNumber]?.q.contentLink
                 }
                alt="question image"
                 className="h-auto w-auto"
                />
             ) : (<p>No image available for this question</p>
           )}
-            {questions[props.questionCategory][props.chronoNumber + 1]?.q
+            {questions[props.questionCategory][props.questionNumber]?.q
               .contentType === "audio" && (
               <div>
                 {typeof(
-                  questions[props.questionCategory][props.chronoNumber + 1]?.q
+                  questions[props.questionCategory][props.questionNumber]?.q
                     .contentLink
                 ) === "object" ? (
                   <div>
@@ -179,7 +179,7 @@ export default function QuestionForQualifier(props) {
                       <source
                         src={
                           questions[props.questionCategory][
-                            props.chronoNumber + 1
+                            props.questionNumber
                           ]?.q.contentLink[0]
                         }
                         type="audio/mpeg"
@@ -191,7 +191,7 @@ export default function QuestionForQualifier(props) {
                       <source
                         src={
                           questions[props.questionCategory][
-                            props.chronoNumber + 1
+                            props.questionNumber
                           ]?.q.contentLink[1]
                         }
                         type="audio/mpeg"
@@ -203,7 +203,7 @@ export default function QuestionForQualifier(props) {
                   <audio controls className="mb-2">
                     <source
                       src={
-                        questions[props.questionCategory][props.chronoNumber + 1]
+                        questions[props.questionCategory][props.questionNumber]
                           ?.q.contentLink
                       }
                       type="audio/mpeg"
@@ -223,7 +223,7 @@ export default function QuestionForQualifier(props) {
             <div className="text-4xl align-top">Question {props.chronoNumber + 27}</div>
             <div>
               {
-                questions[props.questionCategory][props.chronoNumber + 1].q
+                questions[props.questionCategory][props.questionNumber].q
                   .content
               }
             </div>
