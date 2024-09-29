@@ -84,16 +84,17 @@ export default function QuestionForQualifier(props) {
               }
             </div>
             {questions[props.questionCategory][props.chronoNumber + 1]?.q
-              .contentType === "image" && (
+              .contentType === "image" && questions[props.questionCategory][props.chronoNumber + 1]?.q.contentLink ?(
               <img
                 key={questions[props.questionCategory][props.chronoNumber + 1]?.q.contentLink}
                 src={
-                  questions[props.questionCategory][props.chronoNumber + 1]?.q
-                    .contentLink
+                  questions[props.questionCategory][props.chronoNumber + 1]?.q.contentLink
                 }
-                className="w-auto h-auto"
-               alt="question image"/>
-            )}
+               alt="question image"
+                className="h-auto w-auto"
+               />
+            ) : (<p>No image available for this question</p>
+          )}
             {questions[props.questionCategory][props.chronoNumber + 1]?.q
               .contentType === "audio" && (
               <div>
@@ -154,17 +155,17 @@ export default function QuestionForQualifier(props) {
               }
             </div>
             {questions[props.questionCategory][props.chronoNumber + 1]?.q
-              .contentType === "image" && (
+              .contentType === "image" && questions[props.questionCategory][props.chronoNumber + 1]?.q.contentLink ?(
               <img
                 key={questions[props.questionCategory][props.chronoNumber + 1]?.q.contentLink}
                 src={
-                  questions[props.questionCategory][props.chronoNumber + 1]?.q
-                    .contentLink
+                  questions[props.questionCategory][props.chronoNumber + 1]?.q.contentLink
                 }
-              alt="question image"
-
-              />
-            )}
+               alt="question image"
+                className="h-auto w-auto"
+               />
+            ) : (<p>No image available for this question</p>
+          )}
             {questions[props.questionCategory][props.chronoNumber + 1]?.q
               .contentType === "audio" && (
               <div>
