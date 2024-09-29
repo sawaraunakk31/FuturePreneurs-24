@@ -177,19 +177,19 @@ export default function Qualifier() {
                 <QualifierTimer teamName={teamName} autoSubmit={autoSubmit}/>
                 <QuestionForQualifier
                   questionCategory={questionCategory}
-                  // questionNumber={questionNumber}
+                  questionNumber={questionNumber}
                   chronoNumber={chronoNumber}
                   setChronoNumber={setChronoNumber}
-                  // setQuestionNumber={setQuestionNumber}
+                  setQuestionNumber={setQuestionNumber}
                   className=""
                 />
                 <AnswerForQualifier
                   questionCategory={questionCategory}
-                  // questionNumber={questionNumber}
+                  questionNumber={questionNumber}
                   chronoNumber={chronoNumber}
                   finalAnswer={finalAnswer}
                   setChronoNumber={setChronoNumber}
-                  // setQuestionNumber={setQuestionNumber}
+                  setQuestionNumber={setQuestionNumber}
                   setFinalAnswer={setFinalAnswer}
                 />
                 <div className="w-full flex  justify-center items-center">
