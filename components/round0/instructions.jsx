@@ -9,57 +9,69 @@ import formLinks from "@/constant/round0/form";
 const Instructions = () => {
   const [buttonEnabled, setButtonEnabled] = useState(false);
   const [loading, setLoading] = useState(false);
-
+  const [timeRemaining, setTimeRemaining] = useState(60);
   const { data: session, status } = useSession();
 
-  /* const calculateTimeRemaining = () => {
-    const now = new Date().getTime();
+  // const calculateTimeRemaining = () => {
+  //   const now = new Date().getTime();
 
-    const targetTime = new Date(
-      2024,
-      3,
-      time.quizStartTime.day,
-      time.quizStartTime.hour,
-      time.quizStartTime.minute,
-      time.quizStartTime.second
-    );
-    const timeDiff = targetTime - now;
+  //   const targetTime = new Date(
+  //     2024,
+  //     3,
+  //     time.quizStartTime.day,
+  //     time.quizStartTime.hour,
+  //     time.quizStartTime.minute,
+  //     time.quizStartTime.second
+  //   );
+  //   const timeDiff = targetTime - now;
 
-    if (timeDiff <= 0) {
-      // Target date has passed
-      setButtonEnabled(true);
-      return { minutes: "00", seconds: "00", hours: "00" };
-    }
+  //   if (timeDiff <= 0) {
+  //     // Target date has passed
+  //     setButtonEnabled(true);
+  //     return { minutes: "00", seconds: "00", hours: "00" };
+  //   }
 
-    if (Math.floor(timeDiff / 1000) <= 0) {
-      console.log("asdf");
-    }
+  //   if (Math.floor(timeDiff / 1000) <= 0) {
+  //     console.log("asdf");
+  //   }
 
-    const hours = Math.floor(
-      (timeDiff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
-    );
-    const minutes = Math.floor((timeDiff % (1000 * 60 * 60)) / (1000 * 60));
-    const seconds = Math.floor((timeDiff % (1000 * 60)) / 1000);
-    return {
-      hours: hours.toString().padStart(2, "0"),
-      minutes: minutes.toString().padStart(2, "0"),
-      seconds: seconds.toString().padStart(2, "0"),
-    };
-  };
+  //   const hours = Math.floor(
+  //     (timeDiff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+  //   );
+  //   const minutes = Math.floor((timeDiff % (1000 * 60 * 60)) / (1000 * 60));
+  //   const seconds = Math.floor((timeDiff % (1000 * 60)) / 1000);
+  //   return {
+  //     hours: hours.toString().padStart(2, "0"),
+  //     minutes: minutes.toString().padStart(2, "0"),
+  //     seconds: seconds.toString().padStart(2, "0"),
+  //   };
+  // };
 
-  const [timeRemaining, setTimeRemaining] = useState(calculateTimeRemaining);
+  // const [timeRemaining, setTimeRemaining] = useState(calculateTimeRemaining);
 
-  
+
+  // useEffect(() => {
+  //   // if early then disable button
+
+  //   const intervalId = setInterval(() => {
+  //     setTimeRemaining(calculateTimeRemaining);
+  //   }, 1000);
+
+  //   // Clear the interval when the component unmounts
+  //   return () => clearInterval(intervalId);
+  // }, []);
+
   useEffect(() => {
-    // if early then disable button
+    if (timeRemaining > 0) {
+      const timerInterval = setInterval(() => {
+        setTimeRemaining((prev) => prev - 1);
+      }, 1000);
 
-    const intervalId = setInterval(() => {
-      setTimeRemaining(calculateTimeRemaining);
-    }, 1000);
-
-    // Clear the interval when the component unmounts
-    return () => clearInterval(intervalId);
-  }, []); */
+      return () => clearInterval(timerInterval); // Clear interval when component unmounts
+    } else if (timeRemaining == 0) {
+      setButtonEnabled(true); // Enable button when timer reaches 0
+    }
+  }, [timeRemaining]);
 
   const startQuiz = () => {
     console.log("inside");
@@ -68,9 +80,10 @@ const Instructions = () => {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${session.accessTokenBackend}`,
+        Authorization: session?.accessTokenBackend ? `Bearer ${session.accessTokenBackend}` : '', // Fallback if undefined
         "Access-Control-Allow-Origin": "*",
-      },
+      }
+
     })
       .then((res) => {
         console.log("inside response", res);
@@ -146,13 +159,16 @@ const Instructions = () => {
         </ul>
       </div>
       <div>
-            <button
-              className={`px-4 py-2 rounded-full text-black bg-gradient-to-br from-[#DCA64E] via-[#FEFAB7] to-[#D6993F] hover:bg-gradient-to-bl focus:ring-4 focus:outline-none m-4 w-full h-12 flex items-center justify-center font-bold hover:opacity-80 hover:cursor-pointer`}
-              onClick={() => startQuiz()}
-            >
-              {/* {loading ? <LoadingIcons.Oval height={"20px"} /> : "Start Quiz"} */}
-              {loading ? "Loading..." : "Start Quiz"}
-            </button>
+        <button
+          className={`px-4 py-2 rounded-full text-black bg-gradient-to-br from-[#DCA64E] via-[#FEFAB7] to-[#D6993F] hover:bg-gradient-to-bl focus:ring-4 focus:outline-none m-4 w-full h-12 flex items-center justify-center font-bold hover:opacity-80 hover:cursor-pointer`}
+          onClick={() => startQuiz()}
+        >
+          {/* {loading ? <LoadingIcons.Oval height={"20px"} /> : "Start Quiz"} */}
+          {loading ? "Loading..." : "Start Quiz"}
+        </button>
+        <div className="my-4">
+        <p className="text-lg">Time remaining: <span className="text-red-500">{`${Math.floor(timeRemaining / 60)}:${(timeRemaining % 60).toString().padStart(2, "0")}`}</span></p>
+      </div>
       </div>
       <Toaster />
     </main>
