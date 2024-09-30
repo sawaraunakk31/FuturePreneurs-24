@@ -4,8 +4,8 @@ import { TeamModel } from '@/models/team.model';
 import { NextResponse } from 'next/server';
 
 export async function GET() {
-  console.log("getCount");
-  try {
+    console.log("getCount");
+    try {
     await connectMongo();
 
     // Get total user count
@@ -16,7 +16,7 @@ export async function GET() {
 
     // Initialize teamStats for two-member teams
     const teamStats = {
-      twoMemberTeams: twoMemberTeams.length,
+        twoMemberTeams: twoMemberTeams.length,
     };
 
     // Check if the number of two-member teams is odd or even
@@ -24,9 +24,9 @@ export async function GET() {
 
     let firstTeamCount;
     if (isEven) {
-      firstTeamCount = teamStats.twoMemberTeams / 2;
+        firstTeamCount = teamStats.twoMemberTeams / 2;
     } else {
-      firstTeamCount = (teamStats.twoMemberTeams - 1) / 2;
+        firstTeamCount = (teamStats.twoMemberTeams - 1) / 2;
     }
 
     console.log("Total two-member teams:", teamStats.twoMemberTeams);
@@ -55,14 +55,14 @@ export async function GET() {
         const leaderId = firstTeam.teamLeaderId;  // Get the teamLeaderId of the firstTeam
         const firstTeamId = firstTeam._id;        // Get the firstTeam's teamId
         await Users.updateMany(
-          { _id: { $in: leftoverTeam.members } },  // Find all members of leftoverTeam
-          {
+            { _id: { $in: leftoverTeam.members } },  // Find all members of leftoverTeam
+            {
             $set: { 
               teamLeaderId: leaderId,             // Set teamLeaderId to firstTeam's leaderId
               teamRole: 1,                        // Set teamRole to 1 (as member)
               teamId: firstTeamId                 // Set teamId to firstTeam's ID
             }
-          }
+            }
         );
         console.log(`Updated teamLeaderId, teamRole, and teamId for leftover team members`);
 
@@ -72,17 +72,17 @@ export async function GET() {
         // Now delete the leftover team after updating users
         await TeamModel.deleteOne({ _id: leftoverTeam._id });
         console.log(`Deleted leftover team with ID: ${leftoverTeam._id}`);
-      }
+        }
     }
 
     // Return success response with total user count, team stats, and merged teams
     return NextResponse.json(
-      { message: 'success', totalUsers: totalUsers, teamStats: teamStats, mergedTeams: mergedTeams },
-      { status: 200 }
+        { message: 'success', totalUsers: totalUsers, teamStats: teamStats, mergedTeams: mergedTeams },
+        { status: 200 }
     );
 
-  } catch (error) {
+    } catch (error) {
     console.error(error);
     return NextResponse.json({ message: 'Internal Server Error' }, { status: 500 });
-  }
+    }
 }
