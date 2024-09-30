@@ -9,6 +9,7 @@ export default function Bidder() {
     const [walletBalance, setWalletBalance] = useState(0);
     const [timeLeft, setTimeLeft] = useState(900);
     const [selectedItem, setSelectedItem] = useState(null);
+    const [hold,setHold]=useState(0);
 
     const handlePriceChange = (e) => {
         const value = e.target.value;
@@ -18,8 +19,14 @@ export default function Bidder() {
     };
 
     useEffect(() => {
-        const wallet = { balance: 1000 };
-        setWalletBalance(wallet.balance);
+        const storedLoanAmount = localStorage.getItem('loanAmount');
+        if (storedLoanAmount) 
+        {
+            
+            const wallet = parseInt(storedLoanAmount)-parseInt(hold);
+            setWalletBalance(wallet);
+            
+        }
         
         if (socket.connected) {
             onConnect();
