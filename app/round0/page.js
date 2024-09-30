@@ -10,6 +10,7 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import LoadingIcons from "react-loading-icons";
+//import image from "../assests/assests/bg_website";
 
 export default function Qualifier() {
   const [questionCategory, setQuestionCategory] = useState("instruction");
@@ -222,6 +223,7 @@ export default function Qualifier() {
                       )}
                     </button>
                   )}
+                  
                 </div>
               </div>
             )}

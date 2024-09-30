@@ -1,10 +1,11 @@
 "use client";
-import time from "@/constant/round0/time";
+//import time from "@/constant/round0/time";
 import { useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
-import LoadingIcons from "react-loading-icons";
-import formLinks from "@/constant/round0/form";
+// import LoadingIcons from "react-loading-icons";
+// import formLinks from "@/constant/round0/form";
+import bgWebsite from "../../assests/assests/bg_website.png";
 
 const Instructions = () => {
   const [buttonEnabled, setButtonEnabled] = useState(false);
@@ -111,6 +112,7 @@ const Instructions = () => {
   return (
     <main className="min-h-[100vh] text-white flex flex-col items-center">
       <div className="flex flex-col items-start w-[90vw] px-8 py-4 border rounded-xl m-2">
+      <img src={bgWebsite.src} alt="Background" />
         <p>
           Welcome to the Qualifying round of Innoventure! The quiz is designed
           to assess your knowledge and skills. To successfully qualify, you must
@@ -123,15 +125,15 @@ const Instructions = () => {
         </p>
         <ul className="list-inside list-disc">
           <li>
-            The quiz is only <span className="text-red-400">16 mins</span> long
+            The quiz is only <span className="text-red-400">30 minutes</span> long
             and can only be accessed using the button given below.
           </li>
           <li>
             The Quiz will{" "}
             <span className="text-red-400">
-              stop accepting responses at 10:30 PM
+              stop accepting responses at 9:40 PM
             </span>
-            , and hence maximum you can start the quiz is by 10:10 PM.
+            , and hence maximum you can start the quiz is by 9:10 PM.
           </li>
           <li>
             The quiz contains{" "}
@@ -163,7 +165,7 @@ const Instructions = () => {
           className={`px-4 py-2 rounded-full text-black bg-gradient-to-br from-[#DCA64E] via-[#FEFAB7] to-[#D6993F] hover:bg-gradient-to-bl focus:ring-4 focus:outline-none m-4 w-full h-12 flex items-center justify-center font-bold hover:opacity-80 hover:cursor-pointer`}
           onClick={() => startQuiz()}
         >
-          {/* {loading ? <LoadingIcons.Oval height={"20px"} /> : "Start Quiz"} */}
+           {/* {loading ? <LoadingIcons.Oval height={"20px"} /> : "Start Quiz"}  */}
           {loading ? "Loading..." : "Start Quiz"}
         </button>
         <div className="my-4">

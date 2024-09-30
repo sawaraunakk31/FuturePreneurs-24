@@ -25,7 +25,16 @@ export async function GET(req, res) {
     if (!qualTeam) {
       return NextResponse.json({ message: "team not found" }, { status: 404 });
     }
-    console.log('hhhhhhhhhhhhhhhhh',qualTeam);
+    const quizStartTime = new Date("October 3, 2024 21:00:00");
+    const currentTime = new Date();
+    console.log('Current Time:', currentTime);
+    console.log('Quiz Start Time:', quizStartTime);
+    if (currentTime < quizStartTime) {
+      return NextResponse.json({
+        message: "Quiz has not started yet",
+        canStart: false, // Flag to indicate that the quiz cannot be started yet
+      }, { status: 403 });
+    } else{
     await Round0.findOneAndUpdate(
       { teamLeaderId: userId },
       {
@@ -35,7 +44,8 @@ export async function GET(req, res) {
         },
       }
     );
-    return NextResponse.json({message:'Round0 started'},{status:200});
+    return NextResponse.json({message:'Round0 started',canStart: true, },{status:200});
+  }
   }catch(error){
     return NextResponse.json({message:error},{status:500});
   }
@@ -55,16 +65,16 @@ export async function GET(req, res) {
 
   //   if (Math.abs(currentTime - startTime) <= 20 * 60 * 1000) {
   //     console.log('correct')
-      // await Round0.findOneAndUpdate(
-      //   { teamId: teamId },
-      //   {
-      //     $set: {
-      //       questionCategory: 'easy',
-      //       questionPointer: 0,
-      //     },
-      //   }
-      // );
-      // return NextResponse.json({message:'Round0 started'},{status:200});
+  //     await Round0.findOneAndUpdate(
+  //       { teamId: teamId },
+  //       {
+  //         $set: {
+  //           questionCategory: 'easy',
+  //           questionPointer: 0,
+  //         },
+  //       }
+  //     );
+  //     return NextResponse.json({message:'Round0 started'},{status:200});
       
   //   } else if (currentTime < startTime) {
   //     return NextResponse.json({

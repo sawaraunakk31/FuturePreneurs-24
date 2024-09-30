@@ -5,7 +5,7 @@ import questions from "@/constant/round0/questions.json";
 export default function QuestionForQualifier(props) {
   return (
     <main>
-      <section className="flex flex-col justify-center items-center px-4 select-none">
+      <section className="flex flex-col justify-center items-center px-4 py-9 select-none">
         {props.questionCategory === "easy" && (
           <div className="flex flex-col text-xl w-fit h-fit p-5 border border-white text-white rounded-lg">
             <div className="text-4xl align-top">Question {props.chronoNumber + 1}</div>
