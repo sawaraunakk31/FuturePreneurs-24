@@ -8,7 +8,7 @@ export default function Bidder() {
     const [price, setPrice] = useState("");
     const [walletBalance, setWalletBalance] = useState(0);
     const [timeLeft, setTimeLeft] = useState(900);
-    const [selectedItem, setSelectedItem] = useState(null);
+    const [selectedItem, setSelectedItem] = useState("");
 
     const handlePriceChange = (e) => {
         const value = e.target.value;
@@ -74,6 +74,13 @@ export default function Bidder() {
                 newItems[index] = parseInt(price); // Update the item at the specific index with the parsed integer value
                 return newItems; // Return the updated array
             });
+            // Update the selectedItem if the updated item is currently selected
+            if (selectedItem && selectedItem.id === index + 1) {
+                setSelectedItem({
+                    ...selectedItem,
+                    highestBid: parseInt(price)
+                });
+            }
             setPrice("");
           } else {
             alert("Your bid is lower than the current highest bid.");
@@ -132,7 +139,7 @@ export default function Bidder() {
                                     <ul className="list-disc list-inside text-gray-700">
                                         <li>ID: {selectedItem.id}</li>
                                         <li>Name: {selectedItem.name}</li>
-                                        <li>Price: ₹{selectedItem.highestBid}/-</li>
+                                        <li>Price: ₹{items[selectedItem.id-1]}/-</li>
                                     </ul>
                                 </div>
                                 <div>
