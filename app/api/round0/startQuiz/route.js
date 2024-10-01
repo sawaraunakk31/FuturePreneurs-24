@@ -25,7 +25,16 @@ export async function GET(req, res) {
     if (!qualTeam) {
       return NextResponse.json({ message: "team not found" }, { status: 404 });
     }
-    console.log('hhhhhhhhhhhhhhhhh',qualTeam);
+    const quizStartTime = new Date("October 1, 2024 21:30:00");
+    const currentTime = new Date();
+    console.log('Current Time:', currentTime);
+    console.log('Quiz Start Time:', quizStartTime);
+    if (currentTime < quizStartTime) {
+      return NextResponse.json({
+        message: "Quiz has not started yet",
+        canStart: false, // Flag to indicate that the quiz cannot be started yet
+      }, { status: 403 });
+    } else{
     await Round0.findOneAndUpdate(
       { teamLeaderId: userId },
       {
@@ -36,9 +45,11 @@ export async function GET(req, res) {
       }
     );
     return NextResponse.json({message:'Round0 started'},{status:200});
-  }catch(error){
+  }
+}catch(error){
     return NextResponse.json({message:error},{status:500});
   }
+}
 
   // try {
 
@@ -81,4 +92,4 @@ export async function GET(req, res) {
   // } catch (error) {
   //   return NextResponse.json({message:error.toString()},{status:500})
   // }
-}
+  

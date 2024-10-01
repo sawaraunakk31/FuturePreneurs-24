@@ -10,7 +10,7 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import LoadingIcons from "react-loading-icons";
-//import image from "../assests/assests/bg_website";
+import bgWebsite from "../../assests/assests/bg_website.png";
 
 export default function Qualifier() {
   const [questionCategory, setQuestionCategory] = useState("instruction");
@@ -167,14 +167,20 @@ export default function Qualifier() {
   };
 
   return (
-    <main className="min-h-screen pt-[5rem] bg-[#0e0e0e] p-6">
+    <main className="min-h-screen pt-[5rem] p-6"
+    style={{
+      backgroundImage: `url(${bgWebsite.src})`,
+      backgroundSize: 'fill',
+      backgroundPosition: 'center',
+      backgroundRepeat: 'no-repeat',
+    }}>
       <section>
         {/* {isLoading && <Loader />} */}
-        <div className="gap-2">
+        <div className="gap-2 z=1">
           {questionCategory === "instruction" && <Instructions />}
           {questionCategory !== "instruction" &&
             questionCategory !== "waiting" && (
-              <div className="bg-[#0e0e0e]">
+              <div className= "text-black">
                 <QualifierTimer teamName={teamName} autoSubmit={autoSubmit}/>
                 <QuestionForQualifier
                   questionCategory={questionCategory}
@@ -200,7 +206,7 @@ export default function Qualifier() {
                       type="submit"
                       disabled={isLoading}
                       onClick={handleSubmit}
-                      className="px-4 py-2  text-black rounded-full cursor-pointer bg-gradient-to-br from-[#DCA64E] via-[#FEFAB7] to-[#D6993F] mt-4 w-1/4 md:w-1/6 h-12 hover:scale-105 transition-all flex items-center justify-center font-bold"
+                      className="px-4 py-2  text-white rounded-full cursor-pointer bg-gradient-to-r from-purple-500 to-blue-500 mt-4 w-1/4 md:w-1/6 h-12 hover:scale-105 transition-all flex items-center justify-center font-bold"
                     >
                       {isLoading ? (
                         <LoadingIcons.Oval color="black" height="20px" />
@@ -214,7 +220,7 @@ export default function Qualifier() {
                       type="submit"
                       disabled={isLoading}
                       onClick={handleSubmit}
-                      className="px-4 py-2 text-black rounded-full cursor-pointer bg-gradient-to-br from-[#DCA64E] via-[#FEFAB7] to-[#D6993F] mt-4 w-1/4 md:w-1/6 h-12 hover:scale-105 transition-all flex items-center justify-center font-bold"
+                      className="px-4 py-2 text-white rounded-full cursor-pointer bg-gradient-to-r from-purple-500 to-blue-500 mt-4 w-1/4 md:w-1/6 h-12 hover:scale-105 transition-all flex items-center justify-center font-bold"
                     >
                       {isLoading ? (
                         <LoadingIcons.Oval color="black" height="20px" />

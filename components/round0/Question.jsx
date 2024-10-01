@@ -1,14 +1,22 @@
 'use client'
 import React from "react";
 import questions from "@/constant/round0/questions.json";
+import "@/app/globals.css"
 
 export default function QuestionForQualifier(props) {
   return (
     <main>
-      <section className="flex flex-col justify-center items-center px-4 py-9 select-none">
+      <section className="flex flex-col justify-center items-center px-4 pt-10  select-none">
         {props.questionCategory === "easy" && (
-          <div className="flex flex-col text-xl w-fit h-fit p-5 border border-white text-white rounded-lg">
-            <div className="text-4xl align-top">Question {props.chronoNumber + 1}</div>
+          <div 
+          style={{
+            fontFamily: "'GothamBlack', sans-serif",
+            background: "black",
+            WebkitBackgroundClip: "text",
+            WebkitTextFillColor: "transparent",
+          }}
+          className="flex flex-col text-xl w-fit h-fit p-5 border border-black text-black rounded-lg">
+            <div className="text-2xl align-top">Question {props.chronoNumber + 1}</div>
             <div className="select-none">
               {
                 questions[props.questionCategory][props.questionNumber]?.q.content
