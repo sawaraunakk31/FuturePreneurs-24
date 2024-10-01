@@ -31,11 +31,11 @@ app.prepare().then(async() => {
         return NextResponse.json({ message: "Bond Bidding Not found" });
     }
 
-    io.emit("highestBids", {highestBids: bondBidding.highestBids});
+    io.emit("highestBids", {highestBids: bondBidding.highestBids, allocatedBids: bondBidding.allocatedBids});
 
     socket.on("newBid", async({newBid, index})=>{
       console.log(`${index} - ${newBid}`)
-      if (newBid>bondBidding.highestBids[index]) {
+      if (newBid>bondBidding.highestBids[index] && bondBidding.allocatedBids[index]==false) {
         bondBidding.highestBids[index] = newBid;
         await bondBidding.save();
         io.emit("highestBid", {highestBid: newBid, index});
