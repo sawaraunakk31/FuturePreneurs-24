@@ -7,6 +7,11 @@ const bondBiddingSchema = mongoose.Schema(
       {
         type: Number //? Array of current highest bids, where (index+1) is the property number
       }
+    ],
+    allocatedBids: [
+      {
+        type: Boolean
+      }
     ]
   },
   { collection: 'BondBidding' }
