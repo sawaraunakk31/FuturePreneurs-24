@@ -111,8 +111,9 @@ const Instructions = () => {
 
   return (
     <main className="min-h-[100vh] text-white flex flex-col items-center">
-      <div className="flex flex-col items-start w-[90vw] px-8 py-4 border rounded-xl m-2">
       <img src={bgWebsite.src} alt="Background" />
+      <div className="flex flex-col items-start w-[90vw] px-8 py-4 border rounded-xl m-2">
+      
         <p>
           Welcome to the Qualifying round of Innoventure! The quiz is designed
           to assess your knowledge and skills. To successfully qualify, you must

@@ -333,16 +333,16 @@
         "q": {
           "questionType": "single",
           "contentType": "image",
-          "contentLink": "https://res.cloudinary.com/dfqhiggkp/image/upload/v1712745252/Screenshot_2024-04-10_160358_jskshq.png",
+          "contentLink": "https://res.cloudinary.com/dbflobzb2/image/upload/v1727754675/fp_10/n87xhijnrwr96zxfeulh.png",
           "content": ""
         },
         "ans": {
           "optionsType": "text",
           "optionsContent": [
-            "A",
-            "B",
-            "C",
-            "D"
+            "a",
+            "b",
+            "c",
+            "d"
           ]
         }
       },
@@ -351,7 +351,7 @@
         "q": {
           "questionType": "single",
           "contentType": "image",
-          "contentLink": "https://res.cloudinary.com/dfqhiggkp/image/upload/v1712745415/Screenshot_2024-04-10_160644_nj4y5f.png",
+          "contentLink": "https://res.cloudinary.com/dbflobzb2/image/upload/v1727754761/fp_10/o7qxoangly9xkq8m82wi.png",
           "content": ""
         },
         "ans": {
@@ -369,7 +369,7 @@
         "q": {
           "questionType": "single",
           "contentType": "image",
-          "contentLink": "https://res.cloudinary.com/dfqhiggkp/image/upload/v1712745577/Screenshot_2024-04-10_160743_we2asi.png",
+          "contentLink": "https://res.cloudinary.com/dbflobzb2/image/upload/v1727754770/fp_10/iqwzantvgfrwpwruodor.png",
           "content": ""
         },
         "ans": {
@@ -384,12 +384,12 @@
         "q": {
           "questionType": "single",
           "contentType": "image",
-          "contentLink": "https://res.cloudinary.com/dfqhiggkp/image/upload/v1712745658/Screenshot_2024-04-10_161036_nw2x0i.png",
+          "contentLink": "https://res.cloudinary.com/dbflobzb2/image/upload/v1727776426/fp_10/i4tn1n2mkv6zpgn2sib7.png",
           "content": ""
         },
         "ans": {
           "optionsType": "text",
-          "optionsContent": ["A","B","C","D"]
+          "optionsContent": ["a)45%","b)30%","c)25%","d)50%"]
         }
       },
       {
@@ -397,12 +397,12 @@
         "q": {
           "questionType": "single",
           "contentType": "image",
-          "contentLink": "https://res.cloudinary.com/dfqhiggkp/image/upload/v1712745727/Screenshot_2024-04-10_161147_tyu4yd.png",
+          "contentLink": "https://res.cloudinary.com/dbflobzb2/image/upload/v1727754878/fp_10/lty5cfmssnbzonlom8bn.png",
           "content": ""
         },
         "ans": {
           "optionsType": "text",
-          "optionsContent":["A","B","C","D"]
+          "optionsContent":["a","b","c","d"]
         }
       },
       {
@@ -410,12 +410,12 @@
         "q": {
           "questionType": "single",
           "contentType": "image",
-          "contentLink": "https://res.cloudinary.com/dfqhiggkp/image/upload/v1712745851/Screenshot_2024-04-10_161350_qvxfo1.png",
+          "contentLink": "https://res.cloudinary.com/dbflobzb2/image/upload/v1727754909/fp_10/xgttjgpsf2y2eaafllft.png",
           "content": ""
         },
         "ans": {
           "optionsType": "text",
-          "optionsContent":["A","B","C","D"]
+          "optionsContent":["a","b","c","d"]
         }
       },
       {
@@ -423,12 +423,12 @@
         "q": {
           "questionType": "single",
           "contentType": "image",
-          "contentLink": "https://res.cloudinary.com/dfqhiggkp/image/upload/v1712745932/Screenshot_2024-04-10_161520_sweiei.png",
+          "contentLink": "https://res.cloudinary.com/dbflobzb2/image/upload/v1727754910/fp_10/tfvya01sob4ruzetwu2l.png",
           "content": ""
         },
         "ans": {
           "optionsType": "text",
-          "optionsContent": ["A","B","C","D"]
+          "optionsContent": ["a","b","c","d"]
         }
       },
       {
@@ -436,12 +436,12 @@
         "q": {
           "questionType": "single",
           "contentType": "image",
-          "contentLink": "https://res.cloudinary.com/dfqhiggkp/image/upload/v1712746051/Screenshot_2024-04-10_161714_ohq86s.png",
+          "contentLink": "https://res.cloudinary.com/dbflobzb2/image/upload/v1727754927/fp_10/njjt8tdkwlgwvsw86c88.png",
           "content": ""
         },
         "ans": {
           "optionsType": "text",
-          "optionsContent":["A","B","C","D"]
+          "optionsContent":["a","b","c","d"]
         }
       },
       {
@@ -449,7 +449,7 @@
         "q": {
           "questionType": "single",
           "contentType": "image",
-          "contentLink": "https://res.cloudinary.com/dfqhiggkp/image/upload/v1712746122/Screenshot_2024-04-10_161821_iilr7p.png",
+          "contentLink": "https://res.cloudinary.com/dbflobzb2/image/upload/v1727754978/fp_10/ziunznqcyw686sf3uhr9.png",
           "content": ""
         },
         "ans": {
@@ -462,12 +462,12 @@
         "q": {
           "questionType": "single",
           "contentType": "image",
-          "contentLink": "https://res.cloudinary.com/dfqhiggkp/image/upload/v1712746336/Screenshot_2024-04-10_161951_hd3zlg.png",
+          "contentLink": "https://res.cloudinary.com/dbflobzb2/image/upload/v1727776589/w8gspxfekm97qgld9eqs.png",
           "content": ""
         },
         "ans": {
           "optionsType": "text",
-          "optionsContent": ["A","B","C","D"]
+          "optionsContent": ["a)C","b)A","c)B","d)D"]
         }
       },
       {
@@ -475,7 +475,7 @@
         "q": {
           "questionType": "single",
           "contentType": "image",
-          "contentLink": "https://res.cloudinary.com/dfqhiggkp/image/upload/v1712747118/Screenshot_2024-04-10_162211_r1ks47.png",
+          "contentLink": "https://res.cloudinary.com/dbflobzb2/image/upload/v1727755071/fp_10/f2hixwcujzajtstbzwrh.png",
           "content": ""
         },
         "ans": {
@@ -488,12 +488,12 @@
         "q": {
           "questionType": "single",
           "contentType": "image",
-          "contentLink": "https://res.cloudinary.com/dfqhiggkp/image/upload/v1712747274/Screenshot_2024-04-10_163740_hnjfdn.png",
+          "contentLink": "https://res.cloudinary.com/dbflobzb2/image/upload/v1727755073/fp_10/g1oikledly7avbmzoxvd.png",
           "content": ""
         },
         "ans": {
           "optionsType": "text",
-          "optionsContent":["i","ii","iii","iv"]
+          "optionsContent":["a","b","c","d"]
         }
       },
       {
@@ -501,17 +501,12 @@
         "q": {
           "questionType": "single",
           "contentType": "image",
-          "contentLink": "https://res.cloudinary.com/dfqhiggkp/image/upload/v1712747441/Screenshot_2024-04-10_164015_ycjmuv.png",
+          "contentLink": "https://res.cloudinary.com/dbflobzb2/image/upload/v1727756859/fp_10/vtk34o5phasl7knfjmkh.png",
           "content": ""
         },
         "ans": {
           "optionsType": "text",
-          "optionsContent": [
-            "A-II, B-I, C-IV, D-V, E-III",
-            "A-III, B-I, C-II, D-IV, E-II ",
-            "A-IV, B-I, C-V, D-II, E-III",
-            "A-II, B-IV, C-I, D-III, E-II"
-          ]
+          "optionsContent": ["a","b","c","d"]
         }
       },
       {
@@ -519,17 +514,12 @@
         "q": {
           "questionType": "single",
           "contentType": "image",
-          "contentLink": "https://res.cloudinary.com/dfqhiggkp/image/upload/v1712747685/Screenshot_2024-04-10_164422_uoifcr.png",
+          "contentLink": "https://res.cloudinary.com/dbflobzb2/image/upload/v1727756890/fp_10/qs4wvqdqfyepugnaeres.png",
           "content": ""
         },
         "ans": {
           "optionsType": "text",
-          "optionsContent": [
-            "A-IV, B-III, C-V, D-II, E-I",
-            "A-III, B-I, C-II, D-IV, E-I ",
-            "A-I, B-II, C-V, D-III, E-III",
-            "A-I, B-V, C-II, D-III, E-III"
-          ]
+          "optionsContent": ["a","b","c","d"]
         }
       },
       {
@@ -537,7 +527,7 @@
         "q": {
           "questionType": "single",
           "contentType": "image",
-          "contentLink": "https://res.cloudinary.com/dfqhiggkp/image/upload/v1712747736/Screenshot_2024-04-10_164519_mtyd4q.png",
+          "contentLink": "https://res.cloudinary.com/dbflobzb2/image/upload/v1727756914/fp_10/wewqjr8oiiewsdijfrbi.png",
           "content": ""
         },
         "ans": {
@@ -550,7 +540,7 @@
         "q": {
           "questionType": "single",
           "contentType": "image",
-          "contentLink": "https://res.cloudinary.com/dfqhiggkp/image/upload/v1712747822/Screenshot_2024-04-10_164637_pjh60m.png",
+          "contentLink": "https://res.cloudinary.com/dbflobzb2/image/upload/v1727756937/fp_10/yteiizchicd5utcdujmx.png",
           "content": ""
         },
         "ans": {
@@ -562,16 +552,16 @@
         "index": 16,
         "q": {
           "questionType": "single",
-          "contentType": "audio",
-          "contentLink": "https://utfs.io/f/b4c4c32a-1242-4882-b735-9e73a01aa9fc-dg16ui.mp3",
-          "content": "What is the key principle underlying the speaker's business technique?\n(If you given audio is same as of previous questions.Please reload the page!!)"
+          "contentType": "image",
+          "contentLink": "https://res.cloudinary.com/dbflobzb2/image/upload/v1727756959/fp_10/jdfy4isxttvbjxm1fjz8.png",
+          "content": ""
         },
         "ans": {
           "optionsType": "text",
-          "optionsContent":["A) Exclusively focusing on short-term profits.",
-          "B) Emphasising strict hierarchical structures within organisations.",
-          "C) Prioritising customer satisfaction and employee well-being.",
-          "D) Ignoring innovation and sticking to traditional methods."
+          "optionsContent":["A",
+          "B",
+          "C",
+          "D"
           ]
         }
       },
@@ -579,17 +569,17 @@
         "index": 17,
         "q": {
           "questionType": "single",
-          "contentType": "audio",
-          "contentLink": "https://utfs.io/f/c3f7cc3f-c111-43e3-a289-88478a548373-uvsloh.mp3",
-          "content": "The speaker, an inspiring women entrepreneur, employed which financial strategy to facilitate her company's growth and profitability\n(If you given audio is same as of previous questions.Please reload the page!!)"
+          "contentType": "image",
+          "contentLink": "https://res.cloudinary.com/dbflobzb2/image/upload/v1727776726/iuyhsygyefpsb0ildbku.png",
+          "content": ""
         },
         "ans": {
           "optionsType": "text",
           "optionsContent": [
-            "A) Taking on excessive debt to fuel expansion.",
-            "B) Implementing aggressive cost-cutting measures.",
-            "C) Investing heavily in research and development.",
-            "D) Conducting successful initial public offering (IPO) to raise capita"
+            "a)Kelloggs",
+            "b)Duracell",
+            "c)Michelin",
+            "d)Burger King"
           ]
         }
       },
@@ -598,12 +588,12 @@
         "q": {
           "questionType": "single",
           "contentType": "image",
-          "contentLink": "https://res.cloudinary.com/dfqhiggkp/image/upload/v1712748094/Screenshot_2024-04-10_165019_mnhqch.png",
+          "contentLink": "https://res.cloudinary.com/dbflobzb2/image/upload/v1727776852/yl9rdr9erj3ixd55sqpj.png",
           "content": ""
         },
         "ans": {
           "optionsType": "text",
-          "optionsContent": ["i","ii","iii","iv"]
+          "optionsContent": ["A)Product Inventor,Sales Targets","B)Key resources,Customer segments","C)Sales Targets,Key resources","D)Customer segment,Product Inventory"]
         }
       },
       {
@@ -611,14 +601,146 @@
         "q": {
           "questionType": "single",
           "contentType": "image",
-          "contentLink": "https://res.cloudinary.com/dfqhiggkp/image/upload/v1712748274/Screenshot_2024-04-10_165129_kjzppw.png",
+          "contentLink": "https://res.cloudinary.com/dbflobzb2/image/upload/v1727776985/zfzxkux0hqvmaihvsmkn.png",
           "content": ""
         },
         "ans": {
           "optionsType": "text",
-          "optionsContent": ["i", "ii", "iii", "iv"]
+          "optionsContent": ["A)Atal Incubation Scheme", "B)Atmanirbhar Bharat Scheme", "C)Production Linkes Incentive (PLI) Scheme", "D)Startup India Seed Fund Scheme"]
+        }
+      },
+      {
+        "index": 20,
+        "q": {
+          "questionType": "single",
+          "contentType": "image",
+          "contentLink": "https://res.cloudinary.com/dbflobzb2/image/upload/v1727777130/fp_10/vrfgd565qs098nqtttp2.png",
+          "content": ""
+        },
+        "ans": {
+          "optionsType": "text",
+          "optionsContent": ["A)How to get a loan", "B)Approach a well known businessman", "C)Financial status of the company", "D)Preference of target audience"]
+        }
+      },
+      {
+        "index": 21,
+        "q": {
+          "questionType": "single",
+          "contentType": "image",
+          "contentLink": "https://res.cloudinary.com/dbflobzb2/image/upload/v1727757069/fp_10/chpzlh7f6mrbyr75dzmt.png",
+          "content": ""
+        },
+        "ans": {
+          "optionsType": "text",
+          "optionsContent": ["A", "B", "C", "D"]
+        }
+      },
+      {
+        "index": 22,
+        "q": {
+          "questionType": "single",
+          "contentType": "image",
+          "contentLink": "https://res.cloudinary.com/dbflobzb2/image/upload/v1727757089/fp_10/hoeqlrqafkyjgaowidtd.png",
+          "content": ""
+        },
+        "ans": {
+          "optionsType": "text",
+          "optionsContent": ["a", "b", "c", "d"]
+        }
+      },
+      {
+        "index": 23,
+        "q": {
+          "questionType": "single",
+          "contentType": "image",
+          "contentLink": "https://res.cloudinary.com/dbflobzb2/image/upload/v1727757111/fp_10/eyrdw3rqriaa0gvgwki1.png",
+          "content": ""
+        },
+        "ans": {
+          "optionsType": "text",
+          "optionsContent": ["A", "B", "C", "D"]
+        }
+      },
+      {
+        "index": 24,
+        "q": {
+          "questionType": "single",
+          "contentType": "image",
+          "contentLink": "https://res.cloudinary.com/dbflobzb2/image/upload/v1727757135/fp_10/mepkn7ouz2tgzosspo0a.png",
+          "content": ""
+        },
+        "ans": {
+          "optionsType": "text",
+          "optionsContent": ["A", "B", "C", "D"]
         }
       }
+      , {
+        "index": 25,
+        "q": {
+          "questionType": "single",
+          "contentType": "image",
+          "contentLink": "https://res.cloudinary.com/dbflobzb2/image/upload/v1727757168/fp_10/c42oo4h7f9geymjxnlvy.png",
+          "content": ""
+        },
+        "ans": {
+          "optionsType": "text",
+          "optionsContent": ["A", "B", "C", "D"]
+        }
+      },
+      {
+        "index": 26,
+        "q": {
+          "questionType": "single",
+          "contentType": "image",
+          "contentLink": "https://res.cloudinary.com/dbflobzb2/image/upload/v1727777256/mftukkljy5kssahre83v.png",
+          "content": ""
+        },
+        "ans": {
+          "optionsType": "text",
+          "optionsContent": ["a)Company C", "b)Company D", "c)Company A", "d)Company B"]
+        }
+      },
+      {
+        "index": 27,
+        "q": {
+          "questionType": "single",
+          "contentType": "image",
+          "contentLink": "https://res.cloudinary.com/dbflobzb2/image/upload/v1727777362/nfwecocqxi5ctbxpwoez.png",
+          "content": ""
+        },
+        "ans": {
+          "optionsType": "text",
+          "optionsContent": ["A)Dabar", "B)Emami", "C)Patanjali", "D)Godej"]
+        }
+      },
+      {
+        "index": 28,
+        "q": {
+          "questionType": "single",
+          "contentType": "image",
+          "contentLink": "https://res.cloudinary.com/dbflobzb2/image/upload/v1727777485/fp_10/ayq6o7vq9okyadtofnqz.png",
+          "content": ""
+        },
+        "ans": {
+          "optionsType": "text",
+          "optionsContent": ["A)5", "B)3", "C)4", "D)6"]
+        }
+      },
+      {
+        "index": 29,
+        "q": {
+          "questionType": "single",
+          "contentType": "image",
+          "contentLink": "https://res.cloudinary.com/dbflobzb2/image/upload/v1727777570/fp_10/hhesyfibw3duyqf2n0zc.png",
+          "content": ""
+        },
+        "ans": {
+          "optionsType": "text",
+          "optionsContent": ["A", "B", "C", "D"]
+        }
+      }
+      
+
     ],
     "hard": [
       {
