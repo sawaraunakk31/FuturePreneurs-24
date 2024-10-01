@@ -44,15 +44,16 @@ export async function GET(req, res) {
         },
       }
     );
-    return NextResponse.json({message:'Round0 started',canStart: true, },{status:200});
+    return NextResponse.json({message:'Round0 started'},{status:200});
   }
-  }catch(error){
+}catch(error){
     return NextResponse.json({message:error},{status:500});
   }
+}
 
   // try {
 
-  //   let startTime = new Date(`January ${time.quizStartTime.day}, 2024 ${time.quizStartTime.hour}:${time.quizStartTime.minute}:${time.quizStartTime.second}`);
+  //   let startTime = new Date(January ${time.quizStartTime.day}, 2024 ${time.quizStartTime.hour}:${time.quizStartTime.minute}:${time.quizStartTime.second});
   //   startTime.toTimeString();
   //   startTime = startTime - 4;
   //   console.log(startTime);
@@ -65,16 +66,16 @@ export async function GET(req, res) {
 
   //   if (Math.abs(currentTime - startTime) <= 20 * 60 * 1000) {
   //     console.log('correct')
-  //     await Round0.findOneAndUpdate(
-  //       { teamId: teamId },
-  //       {
-  //         $set: {
-  //           questionCategory: 'easy',
-  //           questionPointer: 0,
-  //         },
-  //       }
-  //     );
-  //     return NextResponse.json({message:'Round0 started'},{status:200});
+      // await Round0.findOneAndUpdate(
+      //   { teamId: teamId },
+      //   {
+      //     $set: {
+      //       questionCategory: 'easy',
+      //       questionPointer: 0,
+      //     },
+      //   }
+      // );
+      // return NextResponse.json({message:'Round0 started'},{status:200});
       
   //   } else if (currentTime < startTime) {
   //     return NextResponse.json({
@@ -91,4 +92,4 @@ export async function GET(req, res) {
   // } catch (error) {
   //   return NextResponse.json({message:error.toString()},{status:500})
   // }
-}
+  
