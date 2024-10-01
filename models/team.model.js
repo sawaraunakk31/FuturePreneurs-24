@@ -62,6 +62,9 @@ const teamSchema = mongoose.Schema(
     amountOnHold: {
       type: Number, //? After placing a bid, amount on hold
     },
+    creditScore: {
+      type: Number, //After taking loan it will update
+    },
     bondsBidFor: [
       {
         type: Number //? Array of bond numbers the user has bid for
