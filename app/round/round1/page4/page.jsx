@@ -5,6 +5,7 @@ import { socket } from "@/app/socket.js";
 
 export default function Bidder() {
     const [items, setItems] = useState([]);
+    const [allocatedItems, setAllocatedItems] = useState([]);
     const [price, setPrice] = useState("");
     const [walletBalance, setWalletBalance] = useState(0);
     const [timeLeft, setTimeLeft] = useState(900);
@@ -62,8 +63,9 @@ export default function Bidder() {
         };
     }, []);
 
-    const setHighestBids = ({ highestBids }) => {
+    const setHighestBids = ({ highestBids, allocatedBids }) => {
         setItems(highestBids);
+        setAllocatedItems(allocatedBids);
     }
 
     const handleNewHighestBid = ({highestBid, index}) => {
@@ -127,9 +129,15 @@ export default function Bidder() {
                                     ? 'bg-yellow-300 scale-105'
                                     : 'bg-purple-100 hover:bg-purple-200 hover:scale-105'
                                 }`}
+                                disabled={allocatedItems[index]}
                                 onClick={() => {
-                                    setPrice('');
-                                    setSelectedItem(selectedItem && selectedItem.id === item.id ? null : {id: index+1, name: `Item ${index + 1}`, highestBid: item })
+                                    if (!allocatedItems[index]) {
+                                        setPrice('');
+                                        console.log(allocatedItems[index]);
+                                        setSelectedItem(selectedItem && selectedItem.id === item.id ? null : {id: index+1, name: `Item ${index + 1}`, highestBid: item })
+                                    } else {
+                                        alert("This item is already allocated to someone.");
+                                    }
                                 }}
                             >
                                 <h2 className="text-lg font-medium text-purple-800">{`Item ${index + 1}`}</h2>
@@ -166,7 +174,7 @@ export default function Bidder() {
                                                 ? 'bg-purple-700 hover:bg-purple-800 hover:scale-105'
                                                 : 'bg-gray-400 cursor-not-allowed'
                                         }`}
-                                        disabled={!price}
+                                        disabled={!price && allocatedItems[selectedItem.id-1]}
                                         onClick={() => {
                                             handleNewBid(selectedItem.id, selectedItem.highestBid);
                                         }}
