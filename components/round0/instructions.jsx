@@ -3,9 +3,8 @@
 import { useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
-// import LoadingIcons from "react-loading-icons";
-// import formLinks from "@/constant/round0/form";
-import bgWebsite from "../../assests/assests/bg_website.png";
+//import LoadingIcons from "react-loading-icons";
+//import formLinks from "@/constant/round0/form";
 
 const Instructions = () => {
   const [buttonEnabled, setButtonEnabled] = useState(false);
@@ -13,54 +12,54 @@ const Instructions = () => {
   const [timeRemaining, setTimeRemaining] = useState(60);
   const { data: session, status } = useSession();
 
-  // const calculateTimeRemaining = () => {
-  //   const now = new Date().getTime();
+  /* const calculateTimeRemaining = () => {
+    const now = new Date().getTime();
 
-  //   const targetTime = new Date(
-  //     2024,
-  //     3,
-  //     time.quizStartTime.day,
-  //     time.quizStartTime.hour,
-  //     time.quizStartTime.minute,
-  //     time.quizStartTime.second
-  //   );
-  //   const timeDiff = targetTime - now;
+    const targetTime = new Date(
+      2024,
+      3,
+      time.quizStartTime.day,
+      time.quizStartTime.hour,
+      time.quizStartTime.minute,
+      time.quizStartTime.second
+    );
+    const timeDiff = targetTime - now;
 
-  //   if (timeDiff <= 0) {
-  //     // Target date has passed
-  //     setButtonEnabled(true);
-  //     return { minutes: "00", seconds: "00", hours: "00" };
-  //   }
+    if (timeDiff <= 0) {
+      // Target date has passed
+      setButtonEnabled(true);
+      return { minutes: "00", seconds: "00", hours: "00" };
+    }
 
-  //   if (Math.floor(timeDiff / 1000) <= 0) {
-  //     console.log("asdf");
-  //   }
+    if (Math.floor(timeDiff / 1000) <= 0) {
+      console.log("asdf");
+    }
 
-  //   const hours = Math.floor(
-  //     (timeDiff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
-  //   );
-  //   const minutes = Math.floor((timeDiff % (1000 * 60 * 60)) / (1000 * 60));
-  //   const seconds = Math.floor((timeDiff % (1000 * 60)) / 1000);
-  //   return {
-  //     hours: hours.toString().padStart(2, "0"),
-  //     minutes: minutes.toString().padStart(2, "0"),
-  //     seconds: seconds.toString().padStart(2, "0"),
-  //   };
-  // };
+    const hours = Math.floor(
+      (timeDiff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+    );
+    const minutes = Math.floor((timeDiff % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((timeDiff % (1000 * 60)) / 1000);
+    return {
+      hours: hours.toString().padStart(2, "0"),
+      minutes: minutes.toString().padStart(2, "0"),
+      seconds: seconds.toString().padStart(2, "0"),
+    };
+  };
 
-  // const [timeRemaining, setTimeRemaining] = useState(calculateTimeRemaining);
+  const [timeRemaining, setTimeRemaining] = useState(calculateTimeRemaining);
 
+  
+  useEffect(() => {
+    // if early then disable button
 
-  // useEffect(() => {
-  //   // if early then disable button
+    const intervalId = setInterval(() => {
+      setTimeRemaining(calculateTimeRemaining);
+    }, 1000);
 
-  //   const intervalId = setInterval(() => {
-  //     setTimeRemaining(calculateTimeRemaining);
-  //   }, 1000);
-
-  //   // Clear the interval when the component unmounts
-  //   return () => clearInterval(intervalId);
-  // }, []);
+    // Clear the interval when the component unmounts
+    return () => clearInterval(intervalId);
+  }, []); */
 
   useEffect(() => {
     if (timeRemaining > 0) {
@@ -81,10 +80,9 @@ const Instructions = () => {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
-        Authorization: session?.accessTokenBackend ? `Bearer ${session.accessTokenBackend}` : '', // Fallback if undefined
+        Authorization: session?.accessTokenBackend ? `Bearer ${session.accessTokenBackend}` : '',
         "Access-Control-Allow-Origin": "*",
       }
-
     })
       .then((res) => {
         console.log("inside response", res);
@@ -110,9 +108,8 @@ const Instructions = () => {
   };
 
   return (
-    <main className="min-h-[100vh] text-white flex flex-col items-center">
-      <div className="flex flex-col items-start w-[90vw] px-8 py-4 border rounded-xl m-2">
-      <img src={bgWebsite.src} alt="Background" />
+    <main className="min-h-[100vh] text-black flex flex-col items-center">
+      <div className="flex flex-col items-start w-[90vw] px-8 py-4 border rounded-xl m-2 text-xl">
         <p>
           Welcome to the Qualifying round of Innoventure! The quiz is designed
           to assess your knowledge and skills. To successfully qualify, you must
@@ -125,19 +122,19 @@ const Instructions = () => {
         </p>
         <ul className="list-inside list-disc">
           <li>
-            The quiz is only <span className="text-red-400">30 minutes</span> long
+            The quiz is only <span className="text-red-600">30 minutes</span> long
             and can only be accessed using the button given below.
           </li>
           <li>
             The Quiz will{" "}
-            <span className="text-red-400">
+            <span className="text-red-600">
               stop accepting responses at 9:40 PM
             </span>
             , and hence maximum you can start the quiz is by 9:10 PM.
           </li>
           <li>
             The quiz contains{" "}
-            <span className="text-red-400">only Single Choice Correct</span>{" "}
+            <span className="text-red-600">only Single Choice Correct</span>{" "}
             questions. Be careful when you choose answers.
           </li>
           <li>
@@ -145,15 +142,15 @@ const Instructions = () => {
             the option closest to what you think is correct.
           </li>
           <li>
-            <span className="text-red-400">Only one response per team</span>{" "}
+            <span className="text-red-600">Only one response per team</span>{" "}
             will be accepted, quiz link would be visible only on the team
             leader&apos;s dashboard.
           </li>
-          <li className="text-red-400">
+          <li className="text-red-600">
             Make sure that the form is opened using the same account / email ID
             from which the leader had logged in and registered for the event.
           </li>
-          <li className="text-red-400">
+          <li className="text-red-600">
             In case of a submission form a mail ID that is different from the
             mail ID that was used to register will lead to immediate
             disqualification.
@@ -161,14 +158,14 @@ const Instructions = () => {
         </ul>
       </div>
       <div>
-        <button
-          className={`px-4 py-2 rounded-full text-black bg-gradient-to-br from-[#DCA64E] via-[#FEFAB7] to-[#D6993F] hover:bg-gradient-to-bl focus:ring-4 focus:outline-none m-4 w-full h-12 flex items-center justify-center font-bold hover:opacity-80 hover:cursor-pointer`}
-          onClick={() => startQuiz()}
-        >
-           {/* {loading ? <LoadingIcons.Oval height={"20px"} /> : "Start Quiz"}  */}
-          {loading ? "Loading..." : "Start Quiz"}
-        </button>
-        <div className="my-4">
+            <button
+              className={`px-4 py-2 rounded-full text-white bg-gradient-to-r from-purple-500 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none m-4 w-full h-12 flex items-center justify-center font-bold hover:opacity-80 hover:cursor-pointer`}
+              onClick={() => startQuiz()}
+            >
+              {/* {loading ? <LoadingIcons.Oval height={"20px"} /> : "Start Quiz"} */}
+              {loading ? "Loading..." : "Start Quiz"}
+            </button>
+            <div className="my-4">
         <p className="text-lg">Time remaining: <span className="text-red-500">{`${Math.floor(timeRemaining / 60)}:${(timeRemaining % 60).toString().padStart(2, "0")}`}</span></p>
       </div>
       </div>

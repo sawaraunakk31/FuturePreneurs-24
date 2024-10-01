@@ -25,7 +25,7 @@ export async function GET(req, res) {
     if (!qualTeam) {
       return NextResponse.json({ message: "team not found" }, { status: 404 });
     }
-    const quizStartTime = new Date("October 3, 2024 21:00:00");
+    const quizStartTime = new Date("October 1, 2024 21:30:00");
     const currentTime = new Date();
     console.log('Current Time:', currentTime);
     console.log('Quiz Start Time:', quizStartTime);

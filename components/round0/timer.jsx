@@ -1,6 +1,7 @@
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
+import '@/app/globals.css';
 
 const QualifierTimer = (props) => {
   const [endTime, setEndTime] = useState(Date.now());
@@ -34,6 +35,19 @@ const QualifierTimer = (props) => {
         });
     }
   }, [status]);
+
+  const LoadFont = () => (
+    <style>
+      {`
+        @font-face {
+          font-family: ${"GothamBlack"};
+          src: url(${"../public/fonts/Gotham-Black.ttf"}) format(${"truetype"});
+          font-weight: bold;
+          font-style: normal;
+        }
+      `}
+    </style>
+  );
 
   const calculateTimeRemaining = () => {
     const now = new Date().getTime();
@@ -69,19 +83,27 @@ const QualifierTimer = (props) => {
   });
 
   return (
-    <div className="w-full flex justify-center items-center bg-[#1a1a1a] h-20">
-      <div className="flex flex-col justify-center items-center h-full w-fit text-white ">
+    <div 
+    style={{
+      fontFamily: "'GothamBlack', sans-serif",
+      background: "black",
+      WebkitBackgroundClip: "text",
+      WebkitTextFillColor: "transparent",
+    }}
+    className="w-full flex justify-center items-center h-full">
+      <LoadFont/>
+      <div className="flex flex-col justify-center items-center h-full w-fit text-black">
       <div className="text-2xl">
         Team Name : {props.teamName}
       </div>
-        <div className="flex justify-evenly h-full w-full text-xl">
-          <div className="flex flex-col items-center">
-            <div className="flex flex-col">{timeRemaining.minutes}</div>
+        <div className="flex justify-evenly h-full w-full text-xl py-3">
+          <div className="flex flex-col items-center ">
+            <div className="flex flex-col text-3xl">{timeRemaining.minutes}</div>
             MINS
           </div>
           <span>:</span>
           <div className="flex flex-col items-center">
-            <div className="flex flex-col">{timeRemaining.seconds}</div>
+            <div className="flex flex-col text-3xl">{timeRemaining.seconds}</div>
             SECS
           </div>
         </div>
