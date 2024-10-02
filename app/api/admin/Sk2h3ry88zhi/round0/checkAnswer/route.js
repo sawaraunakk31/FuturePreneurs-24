@@ -2,18 +2,15 @@ import answers from "@/constant/round0/answers.json";
 import gamePoints from "@/constant/round0/points.json";
 import connectMongo from "@/libs/mongodb";
 import { Round0 } from "@/models/round0.model";
+import { NextResponse } from "next/server";
 
-export default async function handler(req, res) {
-  if (req.method !== "GET") {
-    return res.status(405).json({ message: "Method not allowed" });
-  }
+export async function GET(req, res) {
   try {
     await connectMongo();
 
     const qualTeams = await Round0.find();
     if (!qualTeams) {
-      res.status(400).json({ message: "Team not found" });
-      return;
+      return NextResponse.json({ message: "Team not found" },{status:400});
     }
 
     console.log("3456765434567898765434567897654345678");

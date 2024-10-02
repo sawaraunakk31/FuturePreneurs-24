@@ -12,7 +12,7 @@ export async function GET({ req }) {
       const teamName = team.teamName;
       const leaderName = team.leaderName;
       const leaderEmail = team.leaderEmail;
-      const newLevel1 = await new Qualifier({
+      const newLevel1 = await new Round0({
         teamName: teamName,
         teamId: teamId,
         leaderName: leaderName,

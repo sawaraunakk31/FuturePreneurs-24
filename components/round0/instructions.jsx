@@ -73,7 +73,8 @@ const Instructions = () => {
     }
   }, [timeRemaining]);
 
-  const startQuiz = () => {
+  const startQuiz = (e) => {
+    e.preventDefault();
     console.log("inside");
     setLoading(true);
     fetch("/api/round0/startQuiz", {
@@ -158,16 +159,15 @@ const Instructions = () => {
         </ul>
       </div>
       <div>
-            <button
-              className={`px-4 py-2 rounded-full text-white bg-gradient-to-r from-purple-500 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none m-4 w-full h-12 flex items-center justify-center font-bold hover:opacity-80 hover:cursor-pointer`}
-              onClick={() => startQuiz()}
-            >
-              {/* {loading ? <LoadingIcons.Oval height={"20px"} /> : "Start Quiz"} */}
-              {loading ? "Loading..." : "Start Quiz"}
-            </button>
-            <div className="my-4">
-        <p className="text-lg">Time remaining: <span className="text-red-500">{`${Math.floor(timeRemaining / 60)}:${(timeRemaining % 60).toString().padStart(2, "0")}`}</span></p>
-      </div>
+        <button
+          className={`px-4 py-2 rounded-full text-white bg-gradient-to-r from-purple-500 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none m-4 w-full h-12 flex items-center justify-center font-bold hover:opacity-80 hover:cursor-pointer`}
+          onClick={startQuiz}
+        >
+          {/* {loading ? <LoadingIcons.Oval height={"20px"} /> : "Start Quiz"} */}
+          {loading ? "Loading..." : "Start Quiz"}
+        </button>
+        <div className="my-4">
+        </div>
       </div>
       <Toaster />
     </main>

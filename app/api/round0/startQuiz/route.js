@@ -1,6 +1,7 @@
 import time from '@/constant/round0/time';
 import { connectMongo } from "@/libs/mongodb";
 import { Round0 } from "@/models/round0.model";
+import { TeamModel } from '@/models/team.model';
 import { Event1Test } from "@/models/user.model";
 import { getTokenDetails } from "@/utils/getTokenDetails";
 import { getToken } from "next-auth/jwt";
@@ -20,12 +21,12 @@ export async function GET(req, res) {
   
     // const teamId = Event1Test.findOneById({ _id: userId });
   
-    const qualTeam = await Round0.find({ teamLeaderId: userId });
+    const qualTeam = await TeamModel.find({ teamLeaderId: userId });
     console.log('adsffffffdffffffffffffff',qualTeam);
     if (!qualTeam) {
       return NextResponse.json({ message: "team not found" }, { status: 404 });
     }
-    const quizStartTime = new Date("October 1, 2024 21:30:00");
+    const quizStartTime = new Date("October 2, 2024 19:42:00");
     const currentTime = new Date();
     console.log('Current Time:', currentTime);
     console.log('Quiz Start Time:', quizStartTime);
@@ -36,13 +37,14 @@ export async function GET(req, res) {
       }, { status: 403 });
     } else{
     await Round0.findOneAndUpdate(
-      { teamLeaderId: userId },
+      { teamId: qualTeam._id },
       {
         $set: {
           questionCategory: 'easy',
           questionPointer: 0,
         },
-      }
+      },
+      {new:true}
     );
     return NextResponse.json({message:'Round0 started'},{status:200});
   }
