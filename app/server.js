@@ -60,18 +60,21 @@ app.prepare().then(async () => {
             return;
           }
 
+          const bondsBidFor = team.bondsBidFor;
+
           console.log("User details:", user);
           socket.emit("userDetails", { team });
+          console.log("Bids:", bondsBidFor);
                 
           // Fetch bond bidding data
           const bondBidding = await BondBidding.findById('66f84084d39aba9ca3f14ba5');
           if (!bondBidding) {
-              console.log("No bidding data found");
-              return;
+            console.log("No bidding data found");
+            return;
           }
           // Send current time left and highest bids to the newly connected user
           socket.emit("syncTimer", { timeLeft });
-          io.emit("highestBids", {highestBids: bondBidding.highestBids, allocatedBids: bondBidding.allocatedBids});
+          io.emit("highestBids", {highestBids: bondBidding.highestBids, allocatedBids: bondBidding.allocatedBids, bondsBidFor: bondsBidFor});
         
           socket.on("newBid", async({newBid, index})=>{
             const currentTime = Date.now();
@@ -83,9 +86,19 @@ app.prepare().then(async () => {
               return;
             }
 
+            if (bondsBidFor.includes(index)) {
+              console.log("User has already bid for this bond");
+              socket.emit("bid_error", { message: "This bond has already been bid for." });
+              return;
+            } else {
+              bondsBidFor.push(index);
+            }
+
             if (newBid>bondBidding.highestBids[index] && bondBidding.allocatedBids[index]==false) {
               bondBidding.highestBids[index] = newBid;
               await bondBidding.save();
+              team.bondsBidFor = bondsBidFor;
+              await team.save();
               io.emit("highestBid", {highestBid: newBid, index});
             } else {
               console.log("Bid is less than highest bid");
