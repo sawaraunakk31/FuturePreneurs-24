@@ -32,12 +32,11 @@ const UpgradeForm = () => {
     // Function to handle form submission
     const handleConfirmSubmit = async () => {
         setIsDialogOpen(false); // Close the dialog
-        router.replace('../../round2/venture'); // Redirect to venture folder using replace
 
-        // Prepare the data for the POST request (if needed)
-        const selectedOptions = checkedInputs
-            .map((checked, index) => (checked ? `Option ${index + 1}` : null))
-            .filter((option) => option !== null); // Only include checked options
+        // Set flag in localStorage to trigger alert on next page load
+        localStorage.setItem('formAutoSubmitted', 'true');
+
+        router.replace('../../round2/venture'); // Redirect to venture folder
     };
 
     const handleCancelSubmit = () => {
@@ -52,6 +51,10 @@ const UpgradeForm = () => {
             }, 1000);
             return () => clearInterval(timer); // Cleanup the timer on unmount
         } else {
+            // Set flag in localStorage to trigger alert on next page load
+            localStorage.setItem('formAutoSubmitted', 'true');
+
+            alert('Time is up! The form has been automatically submitted.'); // Alert the user
             router.replace('../../round2/venture'); // Redirect to venture folder when timer hits 0
         }
     }, [timeRemaining, router]); // Added `router` as a dependency
