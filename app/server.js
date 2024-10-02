@@ -16,7 +16,7 @@ const port = process.env.PORT ? process.env.PORT : 3000;
 const app = next({ dev, hostname, port });
 const handler = app.getRequestHandler();
 
-let timeLeft = 900; // initial time in seconds (15 minutes)
+let timeLeft = 120; // initial time in seconds (15 minutes)
 let timerInterval = null;
 
 app.prepare().then(async () => {
