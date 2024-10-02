@@ -53,10 +53,9 @@ export default function Bidder() {
                     console.log("Authentication successful");
                 });
 
-                socket.on("userDetails", (data) => {
-                    console.log("Received user details:", data.user);
-                    setWalletBalance(data.user.loan)
-                    // You can now use data.user to set any state or perform any action you want
+                socket.on("userDetails", ({team}) => {
+                    setWalletBalance(team.wallet)
+                    // You can now use team to set any state or perform any action you want
                 });
 
                 socket.on("highestBids", setHighestBids);

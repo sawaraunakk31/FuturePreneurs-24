@@ -46,14 +46,22 @@ app.prepare().then(async () => {
           // Fetch user details from MongoDB
           const user = await Users.findById(userId);
           if (!user) {
-              console.log("User not found");
-              socket.emit("auth_error", "User not found");
-              socket.disconnect();
-              return;
+            console.log("User not found");
+            socket.emit("auth_error", "User not found");
+            socket.disconnect();
+            return;
+          }
+
+          const team = await TeamModel.findOne({teamLeaderId: userId});
+          if (!team) {
+            console.log("User is not a team leader");
+            socket.emit("auth_error", "User is not a team leader");
+            socket.disconnect();
+            return;
           }
 
           console.log("User details:", user);
-          socket.emit("userDetails", { user });
+          socket.emit("userDetails", { team });
                 
           // Fetch bond bidding data
           const bondBidding = await BondBidding.findById('66f84084d39aba9ca3f14ba5');
@@ -95,7 +103,7 @@ app.prepare().then(async () => {
     io.on("disconnect", () => {
         console.log("A client disconnected");
     });
-    
+
     // Start the timer on the server if not already started
     if (!timerInterval) {
       timerInterval = setInterval(() => {
