@@ -157,14 +157,14 @@ export default function Page() {
           </div>
         ))}
       </div>
-      <button
+      {/* <button
         onClick={() => { 
           console.log('not working');
           handleShowModal(); }}
         className="bg-gradient-to-r from-purple-500 to-blue-500 text-white py-3 px-10 rounded-full mt-8 text-lg font-semibold transition-colors duration-300 hover:bg-[#1e5db8] focus:outline-none"
       >
         Leave
-      </button>
+      </button> */}
       {showModal && <MyModal
         isVisible={showModal}
         onClose={handleShowModal}  // Closes the modal on "No" or background click
