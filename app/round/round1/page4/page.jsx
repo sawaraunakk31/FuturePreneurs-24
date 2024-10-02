@@ -2,8 +2,14 @@
 import { useState, useEffect } from "react";
 import { FaUserCircle } from "react-icons/fa";
 import { socket } from "@/app/socket.js";
+import LoadingScreen from "@/components/LoadingScreen";
+import toast, { Toaster } from 'react-hot-toast';
+import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 export default function Bidder() {
+    const [loading, setLoading] = useState(true);
+    const { data: session, status } = useSession();
     const [items, setItems] = useState([]);
     const [allocatedItems, setAllocatedItems] = useState([]);
     const [price, setPrice] = useState("");
@@ -11,6 +17,7 @@ export default function Bidder() {
     const [timeLeft, setTimeLeft] = useState(900);
     const [selectedItem, setSelectedItem] = useState(null);
     const [hold,setHold]=useState(0);
+    const router = useRouter();
 
     const handlePriceChange = (e) => {
         const value = e.target.value;
@@ -20,17 +27,52 @@ export default function Bidder() {
     };
 
     useEffect(() => {
-        const storedLoanAmount = localStorage.getItem('loanAmount');
-        if (storedLoanAmount) 
-        {
-            
-            const wallet = parseInt(storedLoanAmount)-parseInt(hold);
-            setWalletBalance(wallet);
-            
+        if (status == "unauthenticated") {
+            setLoading(false);
+            toast.error("Please Log in or Sign up");
+            router.push("/");
+            return;
         }
-        
-        if (socket.connected) {
-            onConnect();
+
+        if (status == "authenticated") {
+            setLoading(false);
+            const token = session.accessTokenBackend; // Access the backend token
+            console.log(token);
+
+            if (socket.connected) {
+                console.log("Socket already connected");
+                onConnect();
+            } else {
+                socket.connect(); // First, connect without the token
+                socket.on("connect", () => {
+                    console.log("Connected to socket");
+                    socket.emit("authenticate", { token }); // Send the token in a custom event
+                });
+
+                socket.on("authenticated", () => {
+                    console.log("Authentication successful");
+                });
+
+                socket.on("userDetails", (data) => {
+                    console.log("Received user details:", data.user);
+                    setWalletBalance(data.user.loan)
+                    // You can now use data.user to set any state or perform any action you want
+                });
+
+                socket.on("highestBids", setHighestBids);
+                socket.on("highestBid", handleNewHighestBid);
+
+                socket.on("auth_error", (err) => {
+                    console.error("Authentication error:", err);
+                    toast.error("Authentication failed, please log in again.");
+                    router.push("/");
+                });
+
+                socket.on("connect_error", (err) => {
+                    console.error("Socket connection error:", err);
+                    toast.error("Socket connection error, please try again later.");
+                });
+            }
         }
         
         function onConnect() {
@@ -56,12 +98,15 @@ export default function Bidder() {
         })
         return () => {
             socket.off("connect", onConnect);
+            socket.off("authenticated");
+            socket.off("auth_error");
             socket.off("disconnect", onDisconnect);
             socket.off("highestBids", setHighestBids);
             socket.off("highestBid", handleNewHighestBid);
             socket.off("syncTimer");
+            socket.disconnect();
         };
-    }, []);
+    }, [status]);
 
     const setHighestBids = ({ highestBids, allocatedBids }) => {
         setItems(highestBids);
@@ -78,19 +123,23 @@ export default function Bidder() {
 
     const handleNewBid = (ID, currentBid) => {
         const index = ID-1;
-        if (currentBid<parseInt(price)) {
-            socket.emit("newBid", {newBid: parseInt(price), index});
-            // console.log("its me",label)
+        const newBidValue = parseInt(price);
+        if (isNaN(newBidValue) || newBidValue <= 0) {
+            alert("Please enter a valid bid amount.");
+            return;
+        } else if (currentBid<newBidValue) {
+            socket.emit("newBid", {newBid: newBidValue, index});
+            
             setItems(prevItems => {
                 const newItems = [...prevItems]; // Create a shallow copy of the items array
-                newItems[index] = parseInt(price); // Update the item at the specific index with the parsed integer value
+                newItems[index] = newBidValue; // Update the item at the specific index with the parsed integer value
                 return newItems; // Return the updated array
             });
             // Update the selectedItem if the updated item is currently selected
             if (selectedItem && selectedItem.id === index + 1) {
                 setSelectedItem({
                     ...selectedItem,
-                    highestBid: parseInt(price)
+                    highestBid: newBidValue
                 });
             }
             setPrice("");
@@ -108,6 +157,8 @@ export default function Bidder() {
 
     return (
         <div className="flex justify-center items-center min-h-screen bg-gradient-to-br from-purple-200 via-white-200 to-purple-400">
+            <Toaster />
+            {loading && <LoadingScreen />}
             <div className="flex flex-col w-[90%] lg:w-[80%] h-[90vh] rounded-xl shadow-2xl bg-white overflow-hidden">
                 
                 {/* Header */}
@@ -129,14 +180,16 @@ export default function Bidder() {
                                     ? 'bg-yellow-300 scale-105'
                                     : 'bg-purple-100 hover:bg-purple-200 hover:scale-105'
                                 }`}
-                                disabled={allocatedItems[index]}
+                                disabled={allocatedItems[index] || hold}
                                 onClick={() => {
-                                    if (!allocatedItems[index]) {
+                                    if (!allocatedItems[index] && !hold) {
                                         setPrice('');
                                         console.log(allocatedItems[index]);
                                         setSelectedItem(selectedItem && selectedItem.id === item.id ? null : {id: index+1, name: `Item ${index + 1}`, highestBid: item })
-                                    } else {
+                                    } else if ( allocatedItems[index] ) {
                                         alert("This item is already allocated to someone.");
+                                    } else {
+                                        alert("You are already bidding on an item");
                                     }
                                 }}
                             >
@@ -174,9 +227,10 @@ export default function Bidder() {
                                                 ? 'bg-purple-700 hover:bg-purple-800 hover:scale-105'
                                                 : 'bg-gray-400 cursor-not-allowed'
                                         }`}
-                                        disabled={!price && allocatedItems[selectedItem.id-1]}
+                                        disabled={!price && allocatedItems[selectedItem.id-1] && hold}
                                         onClick={() => {
                                             handleNewBid(selectedItem.id, selectedItem.highestBid);
+                                            setHold(true);
                                         }}
                                     >
                                         Submit
