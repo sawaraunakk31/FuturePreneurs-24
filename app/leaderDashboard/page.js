@@ -241,7 +241,7 @@ export default function Page() {
         ))}
       </div>
 
-      {/* {teamMembers.length < 4 && (
+      {teamMembers.length < 4 && (
         <div className="flex justify-center mt-4 w-full">
           <button
             className="bg-green-600 text-white py-2 px-6 rounded-full font-semibold transition-colors duration-300 hover:bg-green-700 focus:outline-none shadow-lg text-[0.9rem] max-w-[150px]"
@@ -250,7 +250,7 @@ export default function Page() {
             Add Member
           </button>
         </div>
-      )} */}
+      )}
 
       {/* {teamMembers.length == 1 && (
         <div className="flex justify-center mt-4 w-full">
