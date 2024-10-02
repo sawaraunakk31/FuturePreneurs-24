@@ -7,8 +7,8 @@ import Image from 'next/image';
 import Link from 'next/link';
 import back from '../back.svg';
 
-export default function Instructions() {
-    const [timeLeft, setTimeLeft] = useState(15);
+export default function Document() {
+    const [timeLeft, setTimeLeft] = useState(5);
     const [isTimerOver, setIsTimerOver] = useState(false);
     
     const router = useRouter();

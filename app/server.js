@@ -1,60 +1,128 @@
 import { createServer } from "http";
 import next from "next";
 import { Server } from "socket.io";
-import { NextResponse } from "next/server.js";
 import { connectMongo } from "../libs/mongodb.js";
+import jwt from "jsonwebtoken";
 
 //? MongoDB Schema
+import { Users } from "../models/user.model.js";
 import { TeamModel } from "../models/team.model.js";
 import { BondBidding } from "../models/bondBidding.model.js";
-
 
 const dev = process.env.NODE_ENV !== "production";
 const hostname = process.env.HOST ? process.env.HOST : "localhost";
 const port = process.env.PORT ? process.env.PORT : 3000;
 
-//! when using middleware `hostname` and `port` must be provided below
 const app = next({ dev, hostname, port });
 const handler = app.getRequestHandler();
 
-app.prepare().then(async() => {
+let timeLeft = 120; // initial time in seconds (15 minutes)
+let timerInterval = null;
+
+app.prepare().then(async () => {
   const httpServer = createServer(handler);
   const io = new Server(httpServer);
 
   await connectMongo(); //? Only connect once for a server
   
-  io.on("connect",async (socket)=>{
-    // todo: add authentication and find team by userId & token
+    io.on("connect", (socket) => {
+      console.log("Client connected to socket");
 
-    const bondBidding = await BondBidding.findById('66f84084d39aba9ca3f14ba5');
-    if (!bondBidding) {
-        return NextResponse.json({ message: "Bond Bidding Not found" });
+      // Listen for the "authenticate" event where the token is sent
+      socket.on("authenticate", async ({ token }) => {
+        console.log("Authentication", token);
+        if (!token) {
+          console.log("No token provided");
+          socket.emit("auth_error", "No token provided");
+          socket.disconnect();
+          return;
+        }
+
+        try {
+          console.log(token);
+          const decoded = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
+          const userId = decoded._id;
+
+          // Fetch user details from MongoDB
+          const user = await Users.findById(userId);
+          if (!user) {
+            console.log("User not found");
+            socket.emit("auth_error", "User not found");
+            socket.disconnect();
+            return;
+          }
+
+          const team = await TeamModel.findOne({teamLeaderId: userId});
+          if (!team) {
+            console.log("User is not a team leader");
+            socket.emit("auth_error", "User is not a team leader");
+            socket.disconnect();
+            return;
+          }
+
+          console.log("User details:", user);
+          socket.emit("userDetails", { team });
+                
+          // Fetch bond bidding data
+          const bondBidding = await BondBidding.findById('66f84084d39aba9ca3f14ba5');
+          if (!bondBidding) {
+              console.log("No bidding data found");
+              return;
+          }
+          // Send current time left and highest bids to the newly connected user
+          socket.emit("syncTimer", { timeLeft });
+          io.emit("highestBids", {highestBids: bondBidding.highestBids, allocatedBids: bondBidding.allocatedBids});
+        
+          socket.on("newBid", async({newBid, index})=>{
+            const currentTime = Date.now();
+            const cooldownTime = user.hold ? user.hold + 3 * 60 * 1000 : 0; // 3 minutes cooldown
+
+            if (currentTime < cooldownTime) {
+              const remainingTime = Math.ceil((cooldownTime - currentTime) / 1000);
+              socket.emit("bid_error", { message: `You must wait ${remainingTime} seconds before placing another bid.` });
+              return;
+            }
+
+            if (newBid>bondBidding.highestBids[index] && bondBidding.allocatedBids[index]==false) {
+              bondBidding.highestBids[index] = newBid;
+              await bondBidding.save();
+              io.emit("highestBid", {highestBid: newBid, index});
+            } else {
+              console.log("Bid is less than highest bid");
+              socket.emit("bid_error", { message: "Your bid is lower than the current highest bid." });
+            }
+          })
+        } catch (error) {
+            console.error("Token verification failed:", error);
+            socket.emit("auth_error", "Token verification failed");
+            socket.disconnect();
+          }
+      });
+    });
+
+    io.on("disconnect", () => {
+        console.log("A client disconnected");
+    });
+
+    // Start the timer on the server if not already started
+    if (!timerInterval) {
+      timerInterval = setInterval(() => {
+        if (timeLeft > 0) {
+          timeLeft -= 1;
+          io.emit("syncTimer", { timeLeft }); // Broadcast the remaining time to all clients
+        } else {
+          clearInterval(timerInterval);
+          timerInterval = null;
+        }
+      }, 1000);
     }
 
-    io.emit("highestBids", {highestBids: bondBidding.highestBids, allocatedBids: bondBidding.allocatedBids});
-
-    socket.on("newBid", async({newBid, index})=>{
-      console.log(`${index} - ${newBid}`)
-      if (newBid>bondBidding.highestBids[index] && bondBidding.allocatedBids[index]==false) {
-        bondBidding.highestBids[index] = newBid;
-        await bondBidding.save();
-        io.emit("highestBid", {highestBid: newBid, index});
-      } else {
-        console.log("Bid is less than highest bid");
-      }
-    })
-  })
-
-  io.on("disconnect", (socket)=>{
-    console.log('a client is disconnected');
-  })
-
-  httpServer
-    .once("error", (err) => {
-      console.error(err);
-      process.exit(1);
-    })
-    .listen(port, () => {
-      console.log(`> Ready on http://${hostname}:${port}`);
-    });
+    httpServer
+      .once("error", (err) => {
+        console.error(err);
+        process.exit(1);
+      })
+      .listen(port, () => {
+        console.log(`> Ready on http://${hostname}:${port}`);
+      });
 });

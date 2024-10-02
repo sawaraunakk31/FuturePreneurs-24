@@ -1,0 +1,802 @@
+[
+    {
+        "id": 1,
+        "company_name": "MacroHard corpora",
+        "overview": "MacroHard is a global technology company known for its software products and innovations.",
+        "financials": {
+            "revenue": "250 million",
+            "net_profit": "50 million",
+            "cash_reserve": "25 million"
+        },
+        "bond_details": {
+            "bond_value": 90000000,
+            "yield": 0.09,
+            "rating": "AAA",
+            "de_ratio": 0
+        }
+    },
+    {
+        "id": 2,
+        "company_name": "GiggleWiggle Inc.",
+        "overview": "GiggleWiggle is a tech company focused on semiconductor and software solutions for data centers.",
+        "financials": {
+            "revenue": "150 million",
+            "net_profit": "20 million",
+            "cash_reserve": "12 million"
+        },
+        "bond_details": {
+            "bond_value": 60000000,
+            "yield": 0.14,
+            "rating": "BBB",
+            "de_ratio": 1
+        }
+    },
+    {
+        "id": 3,
+        "company_name": "FizzBuzz Financials, Inc.",
+        "overview": "FizzBuzz Financials, Inc. provides investment management, insurance, and retirement planning services.",
+        "financials": {
+            "revenue": "120 million",
+            "net_profit": "15 million",
+            "cash_reserve": "8 million"
+        },
+        "bond_details": {
+            "bond_value": 80000000,
+            "yield": 0.15,
+            "rating": "BBB",
+            "de_ratio": 1
+        }
+    },
+    {
+        "id": 4,
+        "company_name": "SnoopyEye, Inc.",
+        "overview": "SnoopyEye, Inc. offers software and services for semiconductor design and manufacturing.",
+        "financials": {
+            "revenue": "210 million",
+            "net_profit": "35 million",
+            "cash_reserve": "18 million"
+        },
+        "bond_details": {
+            "bond_value": 90000000,
+            "yield": 0.095,
+            "rating": "AA",
+            "de_ratio": 1
+        }
+    },
+    {
+        "id": 5,
+        "company_name": "Serve-It-Up Now, Inc.",
+        "overview": "Serve-It-Up Now, Inc. provides cloud-based platforms to streamline service management and automate workflows.",
+        "financials": {
+            "revenue": "90 million",
+            "net_profit": "12 million",
+            "cash_reserve": "6 million"
+        },
+        "bond_details": {
+            "bond_value": 50000000,
+            "yield": 0.16,
+            "rating": "BBB",
+            "de_ratio": 1
+        }
+    },
+    {
+        "id": 6,
+        "company_name": "Hooray Hi-Tech Co. Ltd.",
+        "overview": "Hooray Hi-Tech Co., Ltd. is an electronics manufacturer specializing in consumer electronics.",
+        "financials": {
+            "revenue": "180 million",
+            "net_profit": "30 million",
+            "cash_reserve": "15 million"
+        },
+        "bond_details": {
+            "bond_value": 80000000,
+            "yield": 0.092,
+            "rating": "AA",
+            "de_ratio": 1
+        }
+    },
+    {
+        "id": 7,
+        "company_name": "Crayons Ltd.",
+        "overview": "Crayons Ltd. manufactures sensors and automation equipment for industrial applications.",
+        "financials": {
+            "revenue": "220 million",
+            "net_profit": "40 million",
+            "cash_reserve": "20 million"
+        },
+        "bond_details": {
+            "bond_value": 100000000,
+            "yield": 0.09,
+            "rating": "AAA",
+            "de_ratio": 0
+        }
+    },
+    {
+        "id": 8,
+        "company_name": "BigBen Medias Inc.",
+        "overview": "BigBen Medias Inc. develops chips and solutions for wireless communications and smart devices.",
+        "financials": {
+            "revenue": "160 million",
+            "net_profit": "22 million",
+            "cash_reserve": "10 million"
+        },
+        "bond_details": {
+            "bond_value": 70000000,
+            "yield": 0.155,
+            "rating": "BBB",
+            "de_ratio": 1
+        }
+    },
+    {
+        "id": 9,
+        "company_name": "Stark Industries Inc.",
+        "overview": "Stark Industries delivers networking and connectivity solutions for data infrastructure.",
+        "financials": {
+            "revenue": "140 million",
+            "net_profit": "18 million",
+            "cash_reserve": "10 million"
+        },
+        "bond_details": {
+            "bond_value": 90000000,
+            "yield": 0.16,
+            "rating": "BBB",
+            "de_ratio": 1
+        }
+    },
+    {
+        "id": 10,
+        "company_name": "InfiniteJunk Technologies Ltd.",
+        "overview": "InfiniteJunk Technologies Ltd. manufactures semiconductors for automotive and industrial applications.",
+        "financials": {
+            "revenue": "110 million",
+            "net_profit": "14 million",
+            "cash_reserve": "6 million"
+        },
+        "bond_details": {
+            "bond_value": 50000000,
+            "yield": 0.12,
+            "rating": "A",
+            "de_ratio": 1
+        }
+    },
+    {
+        "id": 11,
+        "company_name": "HealthSphere Solutions Inc.",
+        "overview": "HealthSphere Solutions, Inc. provides pharmaceutical products focusing on oncology, vaccines, and veterinary medicines.",
+        "financials": {
+            "revenue": "200 million",
+            "net_profit": "35 million",
+            "cash_reserve": "15 million"
+        },
+        "bond_details": {
+            "bond_value": 80000000,
+            "yield": 0.09,
+            "rating": "AAA",
+            "de_ratio": 0
+        }
+    },
+    {
+        "id": 12,
+        "company_name": "CardioTech Solutions",
+        "overview": "CardioTech Solutions is a medical devices company known for drug-eluting stents and devices in cardiology and neurology.",
+        "financials": {
+            "revenue": "180 million",
+            "net_profit": "25 million",
+            "cash_reserve": "10 million"
+        },
+        "bond_details": {
+            "bond_value": 70000000,
+            "yield": 0.093,
+            "rating": "AA",
+            "de_ratio": 1
+        }
+    },
+    {
+        "id": 13,
+        "company_name": "VitaMed Innovations",
+        "overview": "VitaMed Innovations develops medical devices focused on cardiology, neurology, and urology.",
+        "financials": {
+            "revenue": "120 million",
+            "net_profit": "15 million",
+            "cash_reserve": "8 million"
+        },
+        "bond_details": {
+            "bond_value": 60000000,
+            "yield": 0.12,
+            "rating": "A",
+            "de_ratio": 1
+        }
+    },
+    {
+        "id": 14,
+        "company_name": "CardioInnovate Technologies Inc.",
+        "overview": "CardioInnovate specializes in artificial heart valves and critical care catheters for heart therapies.",
+        "financials": {
+            "revenue": "80 million",
+            "net_profit": "10 million",
+            "cash_reserve": "5 million"
+        },
+        "bond_details": {
+            "bond_value": 50000000,
+            "yield": 0.16,
+            "rating": "BBB",
+            "de_ratio": 1
+        }
+    },
+    {
+        "id": 15,
+        "company_name": "Health Align Technology",
+        "overview": "Health Align Technology is known for its Invisalign clear aligners and aims to expand digital orthodontic solutions.",
+        "financials": {
+            "revenue": "150 million",
+            "net_profit": "20 million",
+            "cash_reserve": "10 million"
+        },
+        "bond_details": {
+            "bond_value": 70000000,
+            "yield": 0.10,
+            "rating": "AA",
+            "de_ratio": 1
+        }
+    },
+    {
+        "id": 16,
+        "company_name": "CellGenix Therapeutics",
+        "overview": "CellGenix Therapeutics specializes in CAR-T cell therapies for cancer treatment.",
+        "financials": {
+            "revenue": "100 million",
+            "net_profit": "12 million",
+            "cash_reserve": "6 million"
+        },
+        "bond_details": {
+            "bond_value": 60000000,
+            "yield": 0.14,
+            "rating": "BBB",
+            "de_ratio": 1
+        }
+    },
+    {
+        "id": 17,
+        "company_name": "HematoGenix, Inc.",
+        "overview": "HematoGenix is focused on developing therapies for sickle cell disease and other blood disorders.",
+        "financials": {
+            "revenue": "190 million",
+            "net_profit": "28 million",
+            "cash_reserve": "15 million"
+        },
+        "bond_details": {
+            "bond_value": 90000000,
+            "yield": 0.095,
+            "rating": "AA",
+            "de_ratio": 0
+        }
+    },
+    {
+        "id": 18,
+        "company_name": "IMMUNOQUEST Inc.",
+        "overview": "IMMUNOQUEST is a biotechnology company developing immune-based therapies to treat cancer and infectious diseases.",
+        "financials": {
+            "revenue": "85 million",
+            "net_profit": "10 million",
+            "cash_reserve": "5 million"
+        },
+        "bond_details": {
+            "bond_value": 50000000,
+            "yield": 0.17,
+            "rating": "BB",
+            "de_ratio": 2
+        }
+    },
+    {
+        "id": 19,
+        "company_name": "CELLGUARD INNOVATIONS",
+        "overview": "CELLGUARD focuses on harnessing immune system power to develop therapies for cancer and infectious diseases.",
+        "financials": {
+            "revenue": "200 million",
+            "net_profit": "30 million",
+            "cash_reserve": "12 million"
+        },
+        "bond_details": {
+            "bond_value": 90000000,
+            "yield": 0.091,
+            "rating": "AA",
+            "de_ratio": 0
+        }
+    },
+    {
+        "id": 20,
+        "company_name": "Fertility Forward",
+        "overview": "Fertility Forward is dedicated to transforming fertility care with innovative solutions and expanded access to reproductive health services.",
+        "financials": {
+            "revenue": "140 million",
+            "net_profit": "18 million",
+            "cash_reserve": "8 million"
+        },
+        "bond_details": {
+            "bond_value": 80000000,
+            "yield": 0.15,
+            "rating": "BBB",
+            "de_ratio": 1
+        }
+    },
+    {
+        "id": 21,
+        "company_name": "TRILEVER PVT LTD",
+        "overview": "TRILEVER produces, processes, and distributes food products, focusing on health, sustainability, and convenience.",
+        "financials": {
+            "revenue": "90 million",
+            "net_profit": "12 million",
+            "cash_reserve": "6 million"
+        },
+        "bond_details": {
+            "bond_value": 50000000,
+            "yield": 0.12,
+            "rating": "A",
+            "de_ratio": 1
+        }
+    },
+    {
+        "id": 22,
+        "company_name": "Hatmoon Agro",
+        "overview": "Hatmoon Agro manufactures and markets ice cream, milk, and other dairy products in India.",
+        "financials": {
+            "revenue": "170 million",
+            "net_profit": "22 million",
+            "cash_reserve": "10 million"
+        },
+        "bond_details": {
+            "bond_value": 70000000,
+            "yield": 0.15,
+            "rating": "BBB",
+            "de_ratio": 1
+        }
+    },
+    {
+        "id": 23,
+        "company_name": "Coolgate Pvt Ltd",
+        "overview": "Coolgate Pvt Ltd is known for its oral care products like toothpaste and toothbrushes.",
+        "financials": {
+            "revenue": "130 million",
+            "net_profit": "16 million",
+            "cash_reserve": "9 million"
+        },
+        "bond_details": {
+            "bond_value": 60000000,
+            "yield": 0.11,
+            "rating": "A",
+            "de_ratio": 0
+        }
+    },
+    {
+        "id": 24,
+        "company_name": "Jyothika Labs Ltd",
+        "overview": "Jyothika Labs is an Indian FMCG company known for household and personal care products.",
+        "financials": {
+            "revenue": "160 million",
+            "net_profit": "28 million",
+            "cash_reserve": "15 million"
+        },
+        "bond_details": {
+            "bond_value": 80000000,
+            "yield": 0.16,
+            "rating": "BBB",
+            "de_ratio": 1
+        }
+    },
+    {
+        "id": 25,
+        "company_name": "Maharaja Foods Ltd.",
+        "overview": "Maharaja Foods specializes in dairy products, including ingredients like whey protein and casein.",
+        "financials": {
+            "revenue": "190 million",
+            "net_profit": "30 million",
+            "cash_reserve": "12 million"
+        },
+        "bond_details": {
+            "bond_value": 90000000,
+            "yield": 0.10,
+            "rating": "AA",
+            "de_ratio": 1
+        }
+    },
+    {
+        "id": 26,
+        "company_name": "Qabur India Ltd.",
+        "overview": "Qabur India Ltd specializes in natural and Ayurvedic products, with a rich heritage since 1884.",
+        "financials": {
+            "revenue": "140 million",
+            "net_profit": "20 million",
+            "cash_reserve": "10 million"
+        },
+        "bond_details": {
+            "bond_value": 60000000,
+            "yield": 0.15,
+            "rating": "BBB",
+            "de_ratio": 1
+        }
+    },
+    {
+        "id": 27,
+        "company_name": "VIP Industries Ltd",
+        "overview": "VIP Industries Ltd is known for its manufacturing and sale of cigarettes and tobacco products.",
+        "financials": {
+            "revenue": "110 million",
+            "net_profit": "15 million",
+            "cash_reserve": "8 million"
+        },
+        "bond_details": {
+            "bond_value": 50000000,
+            "yield": 0.14,
+            "rating": "BBB",
+            "de_ratio": 1
+        }
+    },
+    {
+        "id": 28,
+        "company_name": "Southern Spirits Ltd",
+        "overview": "Southern Spirits specializes in the import and marketing of premium alcoholic beverages.",
+        "financials": {
+            "revenue": "140 million",
+            "net_profit": "18 million",
+            "cash_reserve": "9 million"
+        },
+        "bond_details": {
+            "bond_value": 70000000,
+            "yield": 0.15,
+            "rating": "BBB",
+            "de_ratio": 1
+        }
+    },
+    {
+        "id": 29,
+        "company_name": "Bamboo Agro",
+        "overview": "Bamboo Agro Industries Ltd offers a popular range of vermicelli and pasta products in the food processing sector.",
+        "financials": {
+            "revenue": "160 million",
+            "net_profit": "24 million",
+            "cash_reserve": "10 million"
+        },
+        "bond_details": {
+            "bond_value": 90000000,
+            "yield": 0.12,
+            "rating": "A",
+            "de_ratio": 1
+        }
+    },
+    {
+        "id": 30,
+        "company_name": "KGF Milk Food Ltd.",
+        "overview": "KGF Milk Food Ltd specializes in dairy products such as ghee, paneer, and flavored milk.",
+        "financials": {
+            "revenue": "140 million",
+            "net_profit": "18 million",
+            "cash_reserve": "9 million"
+        },
+        "bond_details": {
+            "bond_value": 70000000,
+            "yield": 0.15,
+            "rating": "BBB",
+            "de_ratio": 1
+        }
+    },
+    {
+        "id": 31,
+        "company_name": "cyju's",
+        "overview": "cyju's is an Indian edtech company offering online learning programs from kindergarten to 12th grade and competitive exam preparation.",
+        "financials": {
+            "revenue": "100 million",
+            "net_profit": "12 million",
+            "cash_reserve": "6 million"
+        },
+        "bond_details": {
+            "bond_value": 50000000,
+            "yield": 0.10,
+            "rating": "AA",
+            "de_ratio": 0.5
+        }
+    },
+    {
+        "id": 32,
+        "company_name": "Inacademy",
+        "overview": "Inacademy is an Indian online education platform providing courses for competitive exams and school subjects.",
+        "financials": {
+            "revenue": "160 million",
+            "net_profit": "24 million",
+            "cash_reserve": "11 million"
+        },
+        "bond_details": {
+            "bond_value": 80000000,
+            "yield": 0.16,
+            "rating": "BBB",
+            "de_ratio": 1.1
+        }
+    },
+    {
+        "id": 33,
+        "company_name": "Jedantu",
+        "overview": "Jedantu uses the WAVE (Whiteboard Animation Virtual Education) approach to enhance learning through visual aids and interactive tools.",
+        "financials": {
+            "revenue": "190 million",
+            "net_profit": "30 million",
+            "cash_reserve": "15 million"
+        },
+        "bond_details": {
+            "bond_value": 90000000,
+            "yield": 0.095,
+            "rating": "AA",
+            "de_ratio": 0.4
+        }
+    },
+    {
+        "id": 34,
+        "company_name": "Odemy",
+        "overview": "Odemy is a global online learning platform offering a wide range of courses from business and technology to arts and personal development.",
+        "financials": {
+            "revenue": "120 million",
+            "net_profit": "16 million",
+            "cash_reserve": "7 million"
+        },
+        "bond_details": {
+            "bond_value": 60000000,
+            "yield": 0.12,
+            "rating": "A",
+            "de_ratio": 0.8
+        }
+    },
+    {
+        "id": 35,
+        "company_name": "Rakesh Educational Services Limited (AESL)",
+        "overview": "AESL specializes in preparing students for medical and engineering entrance exams, such as NEET and JEE.",
+        "financials": {
+            "revenue": "170 million",
+            "net_profit": "20 million",
+            "cash_reserve": "10 million"
+        },
+        "bond_details": {
+            "bond_value": 70000000,
+            "yield": 0.14,
+            "rating": "BBB",
+            "de_ratio": 1.3
+        }
+    },
+    {
+        "id": 36,
+        "company_name": "Dimplilearn",
+        "overview": "Dimplilearn offers courses for upskilling and reskilling, combining self-paced learning, live virtual classrooms, and hands-on projects.",
+        "financials": {
+            "revenue": "210 million",
+            "net_profit": "40 million",
+            "cash_reserve": "20 million"
+        },
+        "bond_details": {
+            "bond_value": 100000000,
+            "yield": 0.092,
+            "rating": "AA",
+            "de_ratio": 0.5
+        }
+    },
+    {
+        "id": 37,
+        "company_name": "HighGrad's",
+        "overview": "HighGrad's provides flexible learning with live lectures, hands-on projects, and mentorship for practical skills.",
+        "financials": {
+            "revenue": "190 million",
+            "net_profit": "28 million",
+            "cash_reserve": "15 million"
+        },
+        "bond_details": {
+            "bond_value": 80000000,
+            "yield": 0.16,
+            "rating": "BBB",
+            "de_ratio": 0.9
+        }
+    },
+    {
+        "id": 38,
+        "company_name": "Addtramarks",
+        "overview": "Addtramarks focuses on personalized learning and offers solutions to integrate technology into traditional classrooms.",
+        "financials": {
+            "revenue": "130 million",
+            "net_profit": "15 million",
+            "cash_reserve": "8 million"
+        },
+        "bond_details": {
+            "bond_value": 60000000,
+            "yield": 0.11,
+            "rating": "A",
+            "de_ratio": 0.4
+        }
+    },
+    {
+        "id": 39,
+        "company_name": "Finite Learn",
+        "overview": "Finite Learn enhances student engagement and aims to equip learners with knowledge and skills for academic and competitive success.",
+        "financials": {
+            "revenue": "100 million",
+            "net_profit": "10 million",
+            "cash_reserve": "5 million"
+        },
+        "bond_details": {
+            "bond_value": 50000000,
+            "yield": 0.18,
+            "rating": "B",
+            "de_ratio": 1.6
+        }
+    },
+    {
+        "id": 40,
+        "company_name": "Forward Education",
+        "overview": "Forward Education offers interactive learning platforms, e-books, and assessment tools for students, teachers, and schools.",
+        "financials": {
+            "revenue": "120 million",
+            "net_profit": "18 million",
+            "cash_reserve": "9 million"
+        },
+        "bond_details": {
+            "bond_value": 70000000,
+            "yield": 0.155,
+            "rating": "BBB",
+            "de_ratio": 0.7
+        }
+    },
+    {
+        "id": 41,
+        "company_name": "DTFC",
+        "overview": "DTFC is a leading courier and logistics company in India offering domestic and international shipping services.",
+        "financials": {
+            "revenue": "180 million",
+            "net_profit": "30 million",
+            "cash_reserve": "12 million"
+        },
+        "bond_details": {
+            "bond_value": 90000000,
+            "yield": 0.10,
+            "rating": "AA",
+            "de_ratio": 0.5
+        }
+    },
+    {
+        "id": 42,
+        "company_name": "Zx Corp",
+        "overview": "Zx Corp is a global logistics and delivery services company specializing in transportation, e-commerce, and supply chain management.",
+        "financials": {
+            "revenue": "150 million",
+            "net_profit": "22 million",
+            "cash_reserve": "10 million"
+        },
+        "bond_details": {
+            "bond_value": 60000000,
+            "yield": 0.15,
+            "rating": "BBB",
+            "de_ratio": 1.2
+        }
+    },
+    {
+        "id": 43,
+        "company_name": "Logistics Help",
+        "overview": "Logistics Help is a startup focusing on optimizing last-mile delivery solutions using AI and data analytics.",
+        "financials": {
+            "revenue": "200 million",
+            "net_profit": "40 million",
+            "cash_reserve": "15 million"
+        },
+        "bond_details": {
+            "bond_value": 100000000,
+            "yield": 0.09,
+            "rating": "AAA",
+            "de_ratio": 0.3
+        }
+    },
+    {
+        "id": 44,
+        "company_name": "CropTech Solutions",
+        "overview": "CropTech Solutions leads agricultural innovation with AI and precision farming tools.",
+        "financials": {
+            "revenue": "140 million",
+            "net_profit": "20 million",
+            "cash_reserve": "8 million"
+        },
+        "bond_details": {
+            "bond_value": 70000000,
+            "yield": 0.12,
+            "rating": "A",
+            "de_ratio": 0.5
+        }
+    },
+    {
+        "id": 45,
+        "company_name": "Bubble Dart",
+        "overview": "Bubble Dart is a leading logistics and express delivery company in India specializing in time-sensitive shipments.",
+        "financials": {
+            "revenue": "110 million",
+            "net_profit": "15 million",
+            "cash_reserve": "6 million"
+        },
+        "bond_details": {
+            "bond_value": 50000000,
+            "yield": 0.16,
+            "rating": "BBB",
+            "de_ratio": 1.3
+        }
+    },
+    {
+        "id": 46,
+        "company_name": "Alavex",
+        "overview": "Alavex is a global logistics and transportation company focusing on courier delivery, freight forwarding, and sustainability in operations.",
+        "financials": {
+            "revenue": "130 million",
+            "net_profit": "18 million",
+            "cash_reserve": "7 million"
+        },
+        "bond_details": {
+            "bond_value": 60000000,
+            "yield": 0.14,
+            "rating": "BBB",
+            "de_ratio": 1.1
+        }
+    },
+    {
+        "id": 47,
+        "company_name": "United Parcel Service",
+        "overview": "United Parcel Service is a multinational shipping and supply chain management company.",
+        "financials": {
+            "revenue": "100 million",
+            "net_profit": "10 million",
+            "cash_reserve": "5 million"
+        },
+        "bond_details": {
+            "bond_value": 50000000,
+            "yield": 0.12,
+            "rating": "A",
+            "de_ratio": 0.4
+        }
+    },
+    {
+        "id": 48,
+        "company_name": "fast & safe",
+        "overview": "fast & safe is known for its extensive reach across India, pioneering delivery dates and refund guarantees.",
+        "financials": {
+            "revenue": "100 million",
+            "net_profit": "14 million",
+            "cash_reserve": "9 million"
+        },
+        "bond_details": {
+            "bond_value": 60000000,
+            "yield": 0.154,
+            "rating": "BB",
+            "de_ratio": 1.2
+        }
+    },
+    {
+        "id": 49,
+        "company_name": "Dcom Express",
+        "overview": "Dcom Express offers supply chain, storage, and fulfillment solutions along with digital services like e-KYC and document management.",
+        "financials": {
+            "revenue": "170 million",
+            "net_profit": "24 million",
+            "cash_reserve": "10 million"
+        },
+        "bond_details": {
+            "bond_value": 80000000,
+            "yield": 0.095,
+            "rating": "AA",
+            "de_ratio": 0.5
+        }
+    },
+    {
+        "id": 50,
+        "company_name": "Xpressway",
+        "overview": "Xpressway provides seamless logistical solutions and delivery services across diverse regions.",
+        "financials": {
+            "revenue": "180 million",
+            "net_profit": "30 million",
+            "cash_reserve": "15 million"
+        },
+        "bond_details": {
+            "bond_value": 90000000,
+            "yield": 0.10,
+            "rating": "AA",
+            "de_ratio": 0.4
+        }
+    }
+]
