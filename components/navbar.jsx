@@ -49,7 +49,8 @@ const Navbar = () => {
 
   const handleLoginClick = () => {
     if (status === "authenticated") {
-      signOut();
+      router.push('/');
+      // signOut();
     } else {
       // signIn("google"); // Redirect to login if not logged in
     }
