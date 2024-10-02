@@ -50,9 +50,9 @@ const Navbar = () => {
   const handleLoginClick = () => {
     if (status === "authenticated") {
       router.push('/');
-      // signOut();
+      signOut();
     } else {
-      // signIn("google"); // Redirect to login if not logged in
+      signIn(); // Redirect to login if not logged in
     }
   };
 
