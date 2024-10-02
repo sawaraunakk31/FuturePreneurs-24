@@ -87,8 +87,8 @@ export default function Qualifier() {
       .then((data) => {
         const user = data.user;
         // setIsLoading(false);
-        if (user.hasFilledDetails) {
-            if (user.teamId == null) {
+        if (user?.hasFilledDetails) {
+            if (user?.teamId == null) {
               router.push('/');
             } else {
               if (user.teamRole != 0) {

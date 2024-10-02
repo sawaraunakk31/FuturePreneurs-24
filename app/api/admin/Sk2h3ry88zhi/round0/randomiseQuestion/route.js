@@ -25,19 +25,11 @@ export async function GET({ req }) {
         const medium = [];
         const hard = [];
 
-        const easyLength = 10;
-        const mediumLength = 8;
-        const hardLength = 8;
+        const easyLength = 8;
+        const mediumLength = 12;
+        const hardLength = 5;
 
         const getRandomUniqueNumberEasy = (array) => {
-          let randomNumber;
-          do {
-            randomNumber = Math.floor(Math.random() * 29) + 1;
-          } while (array.includes(randomNumber));
-          return randomNumber;
-        };
-
-        const getRandomUniqueNumberMedium = (array) => {
           let randomNumber;
           do {
             randomNumber = Math.floor(Math.random() * 24) + 1;
@@ -45,10 +37,18 @@ export async function GET({ req }) {
           return randomNumber;
         };
 
+        const getRandomUniqueNumberMedium = (array) => {
+          let randomNumber;
+          do {
+            randomNumber = Math.floor(Math.random() * 29) + 1;
+          } while (array.includes(randomNumber));
+          return randomNumber;
+        };
+
         const getRandomUniqueNumberHard = (array) => {
           let randomNumber;
           do {
-            randomNumber = Math.floor(Math.random() * 19) + 1;
+            randomNumber = Math.floor(Math.random() * 24) + 1;
           } while (array.includes(randomNumber));
           return randomNumber;
         };
