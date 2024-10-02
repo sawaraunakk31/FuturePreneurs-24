@@ -9,19 +9,20 @@ import toast, { Toaster } from 'react-hot-toast';
 import Image from 'next/image';
 import back from '../back2.svg';
 
-export default function PreBidder() {
+export default function Bidder() {
+    const [loading, setLoading] = useState(true);
+    const { data: session, status } = useSession();
     const [items, setItems] = useState([]);
+    const [allocatedItems, setAllocatedItems] = useState([]);
+    const [price, setPrice] = useState("");
+    const [walletBalance, setWalletBalance] = useState(0);
     const [timeLeft, setTimeLeft] = useState(null);
     const [isFirstHalf, setIsFirstHalf] = useState(true);
     const [selectedItem, setSelectedItem] = useState(null);
     const [isOverlayOpen, setIsOverlayOpen] = useState(false);
-    const [loading, setLoading] = useState(true);
-    const { data: session, status } = useSession();
-    const [allocatedItems, setAllocatedItems] = useState([]);
-    const [price, setPrice] = useState("");
     const [team, setTeam] = useState("");
-    const [walletBalance, setWalletBalance] = useState(0);
     const [hold,setHold]=useState(0);
+    const [bondsBidFor, setBondsBidFor] = useState([]);
 
     const handlePriceChange = (e) => {
         const value = e.target.value;
@@ -34,7 +35,6 @@ export default function PreBidder() {
     const handleContinue = () => {
         setIsOverlayOpen(true);
     };
-
     const closeOverlay = () => {
         setIsOverlayOpen(false);
     };
@@ -135,6 +135,7 @@ export default function PreBidder() {
     const setHighestBids = ({ highestBids, allocatedBids }) => {
         setItems(highestBids);
         setAllocatedItems(allocatedBids);
+        setBondsBidFor(bondsBidFor);
     }
 
     const handleNewHighestBid = ({highestBid, index}) => {
@@ -159,6 +160,12 @@ export default function PreBidder() {
                 newItems[index] = newBidValue;
                 return newItems;
             });
+
+            setBondsBidFor(prev => [
+                ...prev,
+                index
+            ])
+
             if (selectedItem && selectedItem.id === index + 1) {
                 setSelectedItem({
                     ...selectedItem,
@@ -230,16 +237,17 @@ export default function PreBidder() {
                                     ? 'bg-[#8481FA] scale-110 transition-transform'
                                     : 'bg-[linear-gradient(114deg,rgba(232,232,232,0.10)_15.11%,rgba(0,56,255,0.10)_81.96%)] hover:scale-105'
                                 }`} 
-                                disabled={allocatedItems[index] || hold}
+                                disabled={allocatedItems[index] || hold || bondsBidFor.includes(index)}
                                 onClick={() => {
-                                    if (!allocatedItems[index] && !hold) {
+                                    if (!allocatedItems[index] && !hold && !bondsBidFor.includes(index)) {
                                         setPrice('');
-                                        console.log(allocatedItems[index]);
                                         setSelectedItem(selectedItem && selectedItem.id === item.id ? null : {id: index+1, name: `Item ${index + 1}`, highestBid: item })
                                     } else if ( allocatedItems[index] ) {
-                                        alert("This item is already allocated to someone.");
+                                        toast.error("This item is already allocated to someone.");
+                                    } else if ( bondsBidFor.includes(index) ) {
+                                        toast.error("You have already bid on this item");
                                     } else {
-                                        alert("You are already bidding on an item");
+                                        toast.error("You are currently holding or bidding on an item");
                                     }
                                 }}
                             >
@@ -262,9 +270,6 @@ export default function PreBidder() {
                         ))}
                     </div>
 
-                    
-
-
                     {/* Item Details */}
                     <div className="w-1/4 p-6 pl-0">
                         <div className="py-4 h-full flex flex-col justify-between bg-[linear-gradient(114deg,rgba(232,232,232,0.10)_15.11%,rgba(0,56,255,0.10)_81.96%)] border-white border-4 shadow-xl rounded-2xl">
@@ -277,8 +282,8 @@ export default function PreBidder() {
                                     <div className="m-2">
                                         <ul className="list-inside text-black">
                                             <li className="flex justify-between items-center font-semibold">
-                                                <span>Revenue</span>
-                                                <span className="ml-24 bg-white w-52 px-2 text-right">{selectedItem.id}</span>
+                                                <span>Current Bid</span>
+                                                <span className="ml-24 bg-white w-52 px-2 text-right">{items[selectedItem.id-1]/1000}</span>
                                             </li>
                                             <hr className="border-white w-full my-1"/>
                                             <li className="flex justify-between items-center font-semibold">
@@ -317,7 +322,7 @@ export default function PreBidder() {
                                                     ? 'bg-[#8481FA] hover:scale-105'
                                                     : 'bg-gray-400 cursor-not-allowed'
                                             }`}
-                                            disabled={!price && allocatedItems[selectedItem.id-1] && hold}
+                                            disabled={!price && allocatedItems[selectedItem.id-1] && hold && !bondsBidFor.includes(selectedItem.id-1)}
                                             onClick={() => {
                                                 handleNewBid(selectedItem.id, selectedItem.highestBid);
                                                 setHold(true);
