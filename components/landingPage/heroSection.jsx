@@ -15,7 +15,7 @@ import MyComponent4 from '@/components/ellipse2';
 const HeroSection = () => {
   const { data: session, status } = useSession();
   const router = useRouter();
-  const targetDate = new Date("2024-10-01T23:59");
+  const targetDate = new Date("2024-10-02T13:00");
 
   const testing = async () => {
     const res = await fetch("/api/userData", {
