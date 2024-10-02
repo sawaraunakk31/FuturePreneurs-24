@@ -1,15 +1,18 @@
 'use client';
 import React, { useState, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 
 const UpgradeForm = () => {
-    // State to track the checked status of each checkbox (4 checkboxes)
+    const router = useRouter(); // Initialize the router for navigation
     const [checkedInputs, setCheckedInputs] = useState([false, false, false, false]);
-    const [timeRemaining, setTimeRemaining] = useState(15 * 60); // 30 minutes in seconds
+    const [timeRemaining, setTimeRemaining] = useState(0.1 * 60); // Example timer (0.1 minutes)
     const [isDialogOpen, setIsDialogOpen] = useState(false); // State to manage dialog visibility
 
     // Function to handle checking inputs
     const handleCheck = (index) => {
-        setCheckedInputs((prevChecked) => prevChecked.map((checked, i) => (i === index ? !checked : checked)));
+        setCheckedInputs((prevChecked) =>
+            prevChecked.map((checked, i) => (i === index ? !checked : checked))
+        );
     };
 
     // Function to handle opening the confirmation dialog
@@ -17,7 +20,7 @@ const UpgradeForm = () => {
         event.preventDefault(); // Prevent default form submission
 
         // Check if no checkbox is selected
-        const isAnyCheckboxSelected = checkedInputs.some(checked => checked);
+        const isAnyCheckboxSelected = checkedInputs.some((checked) => checked);
         if (!isAnyCheckboxSelected) {
             alert('No checkbox is selected. Please select at least one option.');
             return; // Do not proceed to the confirmation dialog
@@ -29,31 +32,12 @@ const UpgradeForm = () => {
     // Function to handle form submission
     const handleConfirmSubmit = async () => {
         setIsDialogOpen(false); // Close the dialog
+        router.replace('../../round2/venture'); // Redirect to venture folder using replace
 
-        // Prepare the data for the POST request
+        // Prepare the data for the POST request (if needed)
         const selectedOptions = checkedInputs
             .map((checked, index) => (checked ? `Option ${index + 1}` : null))
-            .filter(option => option !== null); // Only include checked options
-
-        try {
-            const response = await fetch('YOUR_API_ENDPOINT', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ selectedOptions }),
-            });
-
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-
-            alert('Options submitted successfully!');
-            setCheckedInputs([false, false, false, false]); // Uncheck all inputs
-        } catch (error) {
-            console.error('Error:', error);
-            alert('There was a problem with your submission.');
-        }
+            .filter((option) => option !== null); // Only include checked options
     };
 
     const handleCancelSubmit = () => {
@@ -67,17 +51,21 @@ const UpgradeForm = () => {
                 setTimeRemaining((prevTime) => prevTime - 1);
             }, 1000);
             return () => clearInterval(timer); // Cleanup the timer on unmount
+        } else {
+            router.replace('../../round2/venture'); // Redirect to venture folder when timer hits 0
         }
-    }, [timeRemaining]);
+    }, [timeRemaining, router]); // Added `router` as a dependency
 
     const formatTime = (seconds) => {
         const minutes = Math.floor(seconds / 60);
         const remainingSeconds = seconds % 60;
-        return `${minutes.toString().padStart(2, '0')}:${remainingSeconds.toString().padStart(2, '0')}`;
+        return `${minutes.toString().padStart(2, '0')}:${remainingSeconds
+            .toString()
+            .padStart(2, '0')}`;
     };
 
     return (
-        <main className='bg-gradient-to-br from-purple-600 via-white to-purple-400 w-full h-full'>
+        <main className="bg-gradient-to-br from-purple-600 via-white to-purple-400 w-full h-full">
             <div className="flex items-center justify-center h-screen">
                 <div className="bg-white p-6 rounded-lg shadow-md w-full max-w-md">
                     {/* Timer display */}
@@ -106,7 +94,9 @@ const UpgradeForm = () => {
                                         checked={checkedInputs[index]}
                                         onChange={() => handleCheck(index)}
                                         className={`shadow appearance-none border rounded leading-tight focus:outline-none focus:shadow-outline h-4 w-4 transition ease-in-out duration-300 ${
-                                            checkedInputs[index] ? 'bg-blue-600' : 'bg-gray-200'
+                                            checkedInputs[index]
+                                                ? 'bg-blue-600'
+                                                : 'bg-gray-200'
                                         }`}
                                     />
                                     <label
