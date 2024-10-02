@@ -9,12 +9,12 @@ export async function POST(req){
         const {name,email}=await req.json();
         const userExists=await Users.findOne({email:email})
         if(!userExists){
-        const newUser = new Users({ name, email });
+        // const newUser = new Users({ name, email });
         
-        await newUser.save();
+        // await newUser.save();
        
-        console.log(name)
-        return NextResponse.json({ message: "User can registered", status: 200 });
+        // console.log(name)
+        return NextResponse.json({ message: "User cannot register", status: 500 });
         }else{
             return NextResponse.json({ message: "User has already registered", status: 200 });
         }
