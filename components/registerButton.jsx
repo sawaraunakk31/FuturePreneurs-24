@@ -67,7 +67,7 @@ const registerButton = () => {
           onClick={() => {
             router.push('/');
             setLoading(true);
-            signIn("google");
+            // signIn("google");
           }}
         >
           {loading ? <LoadingIcons.Oval /> : "Registrations Closed!"}
