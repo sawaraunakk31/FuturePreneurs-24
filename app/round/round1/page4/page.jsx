@@ -132,7 +132,7 @@ export default function Bidder() {
         };
     }, [status]);
 
-    const setHighestBids = ({ highestBids, allocatedBids }) => {
+    const setHighestBids = ({ highestBids, allocatedBids, bondsBidFor }) => {
         setItems(highestBids);
         setAllocatedItems(allocatedBids);
         setBondsBidFor(bondsBidFor);
@@ -150,7 +150,7 @@ export default function Bidder() {
         const index = ID-1;
         const newBidValue = parseInt(price);
         if (isNaN(newBidValue) || newBidValue <= 0) {
-            alert("Please enter a valid bid amount.");
+            toast.error("Please enter a valid bid amount.");
             return;
         } else if (currentBid<newBidValue) {
             socket.emit("newBid", {newBid: newBidValue, index});
@@ -174,7 +174,7 @@ export default function Bidder() {
             }
             setPrice("");
           } else {
-            alert("Your bid is lower than the current highest bid.");
+            toast.error("Your bid is lower than the current highest bid.");
             setPrice("");
           }
     };
