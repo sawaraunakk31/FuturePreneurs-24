@@ -43,20 +43,23 @@ export default function Bidder() {
             console.log("user disconnected");
         }
 
-        const timer = setInterval(() => {
-            setTimeLeft(prevTime => (prevTime > 0 ? prevTime - 1 : 0));
-        }, 1000);
+        // const timer = setInterval(() => {
+        //     setTimeLeft(prevTime => (prevTime > 0 ? prevTime - 1 : 0));
+        // }, 1000);
 
         socket.on("connect", onConnect);
         socket.on("disconnect", onDisconnect);
         socket.on("highestBids", setHighestBids);
         socket.on("highestBid", handleNewHighestBid);
+        socket.on("syncTimer",({timeLeft:serverTimeLeft})=>{
+            setTimeLeft(serverTimeLeft);
+        })
         return () => {
             socket.off("connect", onConnect);
             socket.off("disconnect", onDisconnect);
             socket.off("highestBids", setHighestBids);
             socket.off("highestBid", handleNewHighestBid);
-            clearInterval(timer);
+            socket.off("syncTimer");
         };
     }, []);
 
