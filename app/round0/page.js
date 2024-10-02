@@ -91,7 +91,7 @@ export default function Qualifier() {
             if (user?.teamId == null) {
               router.push('/');
             } else {
-              if (user.teamRole != 0) {
+              if (user?.teamRole != 0) {
                 toast.error("Only leader's can access the quiz");
                 router.push('/');
               } else {
