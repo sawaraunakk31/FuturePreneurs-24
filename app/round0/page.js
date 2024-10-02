@@ -170,7 +170,7 @@ export default function Qualifier() {
     <main className="min-h-screen pt-[5rem] p-6"
     style={{
       backgroundImage: `url(${bgWebsite.src})`,
-      backgroundSize: 'fill',
+      backgroundSize: 'cover',
       backgroundPosition: 'center',
       backgroundRepeat: 'no-repeat',
     }}>
