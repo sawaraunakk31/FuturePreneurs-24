@@ -66,11 +66,11 @@ const registerButton = () => {
           className="bg-gradient-to-r from-purple-500 to-blue-500 text-white font-semibold py-3 px-10 rounded-lg shadow-lg hover:shadow-xl transition duration-300 hover:text-black"
           onClick={() => {
             router.push('/');
-            // setLoading(true);
-            // signIn("google");
+            setLoading(true);
+            signIn("google");
           }}
         >
-          {loading ? <LoadingIcons.Oval /> : "Registrations Closed!"}
+          {loading ? <LoadingIcons.Oval /> : "Register!"}
         </button>
       ) : (
         <button

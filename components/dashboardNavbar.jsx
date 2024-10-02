@@ -42,7 +42,7 @@ const DashboardNavbar = () => {
       router.push('/')
       setLoading(false)
     } else {
-      signIn(); // Log in if not authenticated
+      signIn('google'); // Log in if not authenticated
       setLoading(false)
     }
   };

@@ -52,7 +52,7 @@ const Navbar = () => {
       router.push('/');
       signOut();
     } else {
-      signIn(); // Redirect to login if not logged in
+      signIn('google'); // Redirect to login if not logged in
     }
   };
 
