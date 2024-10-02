@@ -51,7 +51,7 @@ const Navbar = () => {
     if (status === "authenticated") {
       signOut();
     } else {
-      signIn("google"); // Redirect to login if not logged in
+      // signIn("google"); // Redirect to login if not logged in
     }
   };
 
