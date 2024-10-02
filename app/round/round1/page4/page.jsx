@@ -19,6 +19,8 @@ export default function Bidder() {
     const [hold,setHold]=useState(0);
     const router = useRouter();
 
+    const [bondsBidFor, setBondsBidFor] = useState([]);
+
     const handlePriceChange = (e) => {
         const value = e.target.value;
         if (/^\d*$/.test(value)) {
@@ -107,9 +109,10 @@ export default function Bidder() {
         };
     }, [status]);
 
-    const setHighestBids = ({ highestBids, allocatedBids }) => {
+    const setHighestBids = ({ highestBids, allocatedBids, bondsBidFor }) => {
         setItems(highestBids);
         setAllocatedItems(allocatedBids);
+        setBondsBidFor(bondsBidFor);
     }
 
     const handleNewHighestBid = ({highestBid, index}) => {
@@ -124,7 +127,7 @@ export default function Bidder() {
         const index = ID-1;
         const newBidValue = parseInt(price);
         if (isNaN(newBidValue) || newBidValue <= 0) {
-            alert("Please enter a valid bid amount.");
+            toast.error("Please enter a valid bid amount.");
             return;
         } else if (currentBid<newBidValue) {
             socket.emit("newBid", {newBid: newBidValue, index});
@@ -134,6 +137,12 @@ export default function Bidder() {
                 newItems[index] = newBidValue; // Update the item at the specific index with the parsed integer value
                 return newItems; // Return the updated array
             });
+
+            setBondsBidFor(prev => [
+                ...prev,
+                index
+            ])
+
             // Update the selectedItem if the updated item is currently selected
             if (selectedItem && selectedItem.id === index + 1) {
                 setSelectedItem({
@@ -142,10 +151,10 @@ export default function Bidder() {
                 });
             }
             setPrice("");
-          } else {
-            alert("Your bid is lower than the current highest bid.");
+        } else {
+            toast.error("Your bid is lower than the current highest bid.");
             setPrice("");
-          }
+        }
     };
 
     const formatTime = (seconds) => {
@@ -179,16 +188,17 @@ export default function Bidder() {
                                     ? 'bg-yellow-300 scale-105'
                                     : 'bg-purple-100 hover:bg-purple-200 hover:scale-105'
                                 }`}
-                                disabled={allocatedItems[index] || hold}
+                                disabled={allocatedItems[index] || hold || bondsBidFor.includes(index)}
                                 onClick={() => {
-                                    if (!allocatedItems[index] && !hold) {
+                                    if (!allocatedItems[index] && !hold && !bondsBidFor.includes(index)) {
                                         setPrice('');
-                                        console.log(allocatedItems[index]);
                                         setSelectedItem(selectedItem && selectedItem.id === item.id ? null : {id: index+1, name: `Item ${index + 1}`, highestBid: item })
                                     } else if ( allocatedItems[index] ) {
-                                        alert("This item is already allocated to someone.");
+                                        toast.error("This item is already allocated to someone.");
+                                    } else if (bondsBidFor.includes(index)) {
+                                        toast.error("You have already bid on this item");
                                     } else {
-                                        alert("You are already bidding on an item");
+                                        toast.error("You are currently holding or bidding on this item.");
                                     }
                                 }}
                             >
@@ -226,7 +236,7 @@ export default function Bidder() {
                                                 ? 'bg-purple-700 hover:bg-purple-800 hover:scale-105'
                                                 : 'bg-gray-400 cursor-not-allowed'
                                         }`}
-                                        disabled={!price && allocatedItems[selectedItem.id-1] && hold}
+                                        disabled={!price && allocatedItems[selectedItem.id-1] && hold && !bondsBidFor.includes(selectedItem.id-1)}
                                         onClick={() => {
                                             handleNewBid(selectedItem.id, selectedItem.highestBid);
                                             setHold(true);
