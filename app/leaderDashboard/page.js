@@ -231,12 +231,12 @@ export default function Page() {
             <h2 className="text-lg font-bold mb-1 text-white">Team Role: {member?.teamRole === 0 ? "Leader" : "Member"}</h2>
             <p className="text-xs mb-1 text-white">Reg. No.: {member?.regNo}</p>
             <p className="text-xs text-white">Mobile No.: {member?.mobNo}</p>
-            {/* {teamMembers.length>1 && <button
+            {teamMembers.length>1 && <button
               className="bg-gradient-to-r from-purple-500 to-blue-500 text-white py-1 px-4 rounded-full mt-2 font-semibold transition-colors duration-300 hover:text-black  focus:outline-none text-sm"
               onClick={() => handleShowModal(index, "remove")}
             >
               {index == 0 ? "Leave" : "Remove"}
-            </button>} */}
+            </button>}
           </div>
         ))}
       </div>
@@ -252,7 +252,7 @@ export default function Page() {
         </div>
       )}
 
-      {/* {teamMembers.length == 1 && (
+      {teamMembers.length == 1 && (
         <div className="flex justify-center mt-4 w-full">
           <button
             className="bg-red-600 text-white py-2 px-6 rounded-full font-semibold transition-colors duration-300 hover:bg-red-700 focus:outline-none shadow-lg text-[0.9rem] max-w-[150px]"
@@ -261,7 +261,7 @@ export default function Page() {
             Delete Team
           </button>
         </div>
-      )} */}
+      )}
 
       {showModal && (
         <MyModal
