@@ -70,7 +70,7 @@ const registerButton = () => {
             // signIn("google");
           }}
         >
-          {loading ? <LoadingIcons.Oval /> : "Register's Closed!"}
+          {loading ? <LoadingIcons.Oval /> : "Registrations Closed!"}
         </button>
       ) : (
         <button
