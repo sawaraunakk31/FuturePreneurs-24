@@ -1,6 +1,7 @@
 import time from "@/constant/round0/time";
 import { connectMongo } from "@/libs/mongodb";
 import { Round0 } from "@/models/round0.model";
+import { TeamModel } from "@/models/team.model";
 import { Event1Test } from "@/models/user.model";
 import { getTokenDetails } from "@/utils/getTokenDetails";
 import { getToken } from "next-auth/jwt";
@@ -14,11 +15,13 @@ export async function POST(req, res) {
       ? token.accessTokenFromBackend
       : req.headers.get("Authorization").split(" ")[1];
     let userId = await getTokenDetails(auth);
-    const teamData = await Round0.findOne({ teamLeaderId: userId });
-    console.log(teamData);
-    if (!teamData) {
+    const team = await TeamModel.findOne({ teamLeaderId: userId });
+    console.log(team);
+    if (!team) {
       return NextResponse.json({ message: "Team not found" }, { status: 400 });
     }
+
+    const teamData = await Round0.findOne({teamId:team._id});
     const { answer } = await req.json();
     // const answerData = req.body.answer;
     console.log("answerData", answer);
@@ -61,13 +64,13 @@ export async function POST(req, res) {
       caseStudyAnswers[questionPointer] = answer;
     }
 
-    if (questionCategory === "easy" && questionPointer === 9) {
+    if (questionCategory === "easy" && questionPointer === 7) {
       newQuestionPointer = 0;
       questionCategory = "medium";
-    } else if (questionCategory === "medium" && questionPointer === 9) {
+    } else if (questionCategory === "medium" && questionPointer === 11) {
       newQuestionPointer = 0;
       questionCategory = "hard";
-    } else if (questionCategory === "hard" && questionPointer === 9) {
+    } else if (questionCategory === "hard" && questionPointer === 4) {
       newQuestionPointer = 0;
       questionCategory = "waiting";
     } else if (questionCategory === "waiting") {
@@ -80,7 +83,7 @@ export async function POST(req, res) {
     }
 
     await Round0.findOneAndUpdate(
-      { teamLeaderId: userId },
+      { teamId: team._id },
       {
         questionPointer: newQuestionPointer,
         questionCategory: questionCategory,

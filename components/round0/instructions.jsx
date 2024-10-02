@@ -3,14 +3,16 @@
 import { useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
+import CountdownTimer from "./counter1[1]";
 //import LoadingIcons from "react-loading-icons";
 //import formLinks from "@/constant/round0/form";
 
 const Instructions = () => {
   const [buttonEnabled, setButtonEnabled] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [timeRemaining, setTimeRemaining] = useState(60);
+  // const [timeRemaining, setTimeRemaining] = useState(60);
   const { data: session, status } = useSession();
+  const targetDate = new Date("2024-10-03T21:00");
 
   /* const calculateTimeRemaining = () => {
     const now = new Date().getTime();
@@ -61,17 +63,17 @@ const Instructions = () => {
     return () => clearInterval(intervalId);
   }, []); */
 
-  useEffect(() => {
-    if (timeRemaining > 0) {
-      const timerInterval = setInterval(() => {
-        setTimeRemaining((prev) => prev - 1);
-      }, 1000);
+  // useEffect(() => {
+  //   if (timeRemaining > 0) {
+  //     const timerInterval = setInterval(() => {
+  //       setTimeRemaining((prev) => prev - 1);
+  //     }, 1000);
 
-      return () => clearInterval(timerInterval); // Clear interval when component unmounts
-    } else if (timeRemaining == 0) {
-      setButtonEnabled(true); // Enable button when timer reaches 0
-    }
-  }, [timeRemaining]);
+  //     return () => clearInterval(timerInterval); // Clear interval when component unmounts
+  //   } else if (timeRemaining == 0) {
+  //     setButtonEnabled(true); // Enable button when timer reaches 0
+  //   }
+  // }, [timeRemaining]);
 
   const startQuiz = () => {
     console.log("inside");
@@ -87,10 +89,10 @@ const Instructions = () => {
       .then((res) => {
         console.log("inside response", res);
         console.log(res.status);
-        if (res.status === 200) {
+        if (res.status == 200) {
           console.log("quizStartingNow.");
           location.reload();
-        } else if (res.status === 403) {
+        } else if (res.status == 403) {
           toast.error("Quiz has not started yet");
         } else {
           toast.error("too late");
@@ -110,8 +112,11 @@ const Instructions = () => {
   return (
     <main className="min-h-[100vh] text-black flex flex-col items-center">
       <div className="flex flex-col items-start w-[90vw] px-8 py-4 border rounded-xl m-2 text-xl">
+        <div className="px-[43%]">
+          <CountdownTimer targetDate={targetDate}/>
+        </div>
         <p>
-          Welcome to the Qualifying round of Innoventure! The quiz is designed
+          Welcome to the Qualifying round of FuturePrenuers 10.0 . The quiz is designed
           to assess your knowledge and skills. To successfully qualify, you must
           answer the questions with accuracy and precision.
         </p>
@@ -166,7 +171,7 @@ const Instructions = () => {
               {loading ? "Loading..." : "Start Quiz"}
             </button>
             <div className="my-4">
-        <p className="text-lg">Time remaining: <span className="text-red-500">{`${Math.floor(timeRemaining / 60)}:${(timeRemaining % 60).toString().padStart(2, "0")}`}</span></p>
+        {/* <p className="text-lg">Time remaining: <span className="text-red-500">{`${Math.floor(timeRemaining / 60)}:${(timeRemaining % 60).toString().padStart(2, "0")}`}</span></p> */}
       </div>
       </div>
       <Toaster />
