@@ -38,8 +38,8 @@ const DashboardNavbar = () => {
   const handleLoginClick = () => {
     setLoading(true)
     if (status === "authenticated") {
-      signOut(); // Log out if already authenticated
-      // router.push('/')
+      // signOut(); // Log out if already authenticated
+      router.push('/')
       setLoading(false)
     } else {
       // signIn("google"); // Log in if not authenticated
