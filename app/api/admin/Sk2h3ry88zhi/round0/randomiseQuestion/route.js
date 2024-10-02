@@ -32,7 +32,7 @@ export async function GET({ req }) {
         const getRandomUniqueNumberEasy = (array) => {
           let randomNumber;
           do {
-            randomNumber = Math.floor(Math.random() * 24) + 1;
+            randomNumber = Math.floor(Math.random() * 29) + 1;
           } while (array.includes(randomNumber));
           return randomNumber;
         };

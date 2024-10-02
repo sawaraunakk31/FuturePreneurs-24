@@ -1,5 +1,6 @@
 import { connectMongo } from "@/libs/mongodb";
 import { Round0 } from "@/models/round0.model";
+import { TeamModel } from "@/models/team.model";
 import { Event1Test } from "@/models/user.model";
 import { getTokenDetails } from "@/utils/getTokenDetails";
 import { getToken } from "next-auth/jwt";
@@ -14,7 +15,7 @@ export async function GET(req, res) {
       : req.headers.get("Authorization").split(" ")[1];
     let userId = await getTokenDetails(auth);
 
-    const teamData = await Round0.findOne({ teamLeaderId: userId });
+    const teamData = await TeamModel.findOne({ teamLeaderId: userId });
     console.log(userId);
     if (!teamData) {
       return NextResponse.json({ message: "team not found" }, { status: 404 });
@@ -26,13 +27,14 @@ export async function GET(req, res) {
     //     { status: 403 }
     //   );
     // } else {
-
-    const questionCatogory = teamData.questionCategory;
+    const round0Data = await Round0.findOne({teamId:teamData._id});
+    console.log('its me',round0Data)
+    const questionCatogory = round0Data.questionCategory;
     console.log('ggggggggggggggggggg',questionCatogory);
-    const pointer = teamData.questionPointer;
-    const easyOrder = teamData.easyOrder;
-    const mediumOrder = teamData.mediumOrder;
-    const hardOrder = teamData.hardOrder;
+    const pointer = round0Data.questionPointer;
+    const easyOrder = round0Data.easyOrder;
+    const mediumOrder = round0Data.mediumOrder;
+    const hardOrder = round0Data.hardOrder;
     console.log('adsfafdsfffffffffffffffff',pointer);
     let questionNumber = 0;
     if (questionCatogory == "waiting") {

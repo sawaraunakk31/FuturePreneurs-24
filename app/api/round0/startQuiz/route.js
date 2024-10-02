@@ -1,6 +1,7 @@
 import time from '@/constant/round0/time';
 import { connectMongo } from "@/libs/mongodb";
 import { Round0 } from "@/models/round0.model";
+import { TeamModel } from '@/models/team.model';
 import { Event1Test } from "@/models/user.model";
 import { getTokenDetails } from "@/utils/getTokenDetails";
 import { getToken } from "next-auth/jwt";
@@ -10,86 +11,62 @@ export async function GET(req, res) {
 
   await connectMongo();
   console.log('inside route')
+  
   const token = await getToken({ req });
   const auth = token
     ? token.accessTokenFromBackend
     : req.headers.get("Authorization").split(" ")[1];
+    
   let userId = await getTokenDetails(auth);
 
-  try{
-  
-    // const teamId = Event1Test.findOneById({ _id: userId });
-  
-    const qualTeam = await Round0.find({ teamLeaderId: userId });
-    console.log('adsffffffdffffffffffffff',qualTeam);
+  try {
+    // Fetch the team based on the leader's userId
+    const qualTeam = await TeamModel.findOne({ teamLeaderId: userId });
+
     if (!qualTeam) {
       return NextResponse.json({ message: "team not found" }, { status: 404 });
     }
-    const quizStartTime = new Date("October 1, 2024 21:30:00");
+
+    // Fetch the Round0 document associated with this team
+    const round0Data = await Round0.findOne({ teamId: qualTeam._id });
+
+    const quizStartTime = new Date("October 2, 2024 23:37:00");
     const currentTime = new Date();
     console.log('Current Time:', currentTime);
     console.log('Quiz Start Time:', quizStartTime);
+
     if (currentTime < quizStartTime) {
       return NextResponse.json({
         message: "Quiz has not started yet",
-        canStart: false, // Flag to indicate that the quiz cannot be started yet
+        canStart: false,
       }, { status: 403 });
-    } else{
-    await Round0.findOneAndUpdate(
-      { teamLeaderId: userId },
-      {
-        $set: {
-          questionCategory: 'easy',
-          questionPointer: 0,
-        },
+    } else {
+      // Log the existing round0Data for debugging
+      console.log("Existing Round0 Data:", round0Data);
+
+      if (round0Data.questionCategory !== 'easy' || round0Data.questionPointer !== 0) {
+        // Update only if the values are not already set to the desired state
+        const updatedData = await Round0.findOneAndUpdate(
+          { teamId: qualTeam._id },
+          {
+            $set: {
+              questionCategory: 'easy',
+              questionPointer: 0,
+            },
+          },
+          { new: true } // Return the updated document
+        );
+
+        // Log the updated document for debugging
+        console.log("Updated Round0 Data:", updatedData);
+        
+        return NextResponse.json({ message: 'Round0 started', data: updatedData }, { status: 200 });
+      } else {
+        return NextResponse.json({ message: 'Round0 already started' }, { status: 200 });
       }
-    );
-    return NextResponse.json({message:'Round0 started'},{status:200});
-  }
-}catch(error){
-    return NextResponse.json({message:error},{status:500});
+    }
+  } catch (error) {
+    console.error('Error in starting the quiz:', error);
+    return NextResponse.json({ message: error.message }, { status: 500 });
   }
 }
-
-  // try {
-
-  //   let startTime = new Date(January ${time.quizStartTime.day}, 2024 ${time.quizStartTime.hour}:${time.quizStartTime.minute}:${time.quizStartTime.second});
-  //   startTime.toTimeString();
-  //   startTime = startTime - 4;
-  //   console.log(startTime);
-    
-  //   // const currentTime = new Date();
-  //   const currentTime = startTime;
-
-  //   console.log('curentTime', currentTime, 'startTime', startTime);
-  //   console.log('asdf', Math.abs(currentTime - startTime))
-
-  //   if (Math.abs(currentTime - startTime) <= 20 * 60 * 1000) {
-  //     console.log('correct')
-      // await Round0.findOneAndUpdate(
-      //   { teamId: teamId },
-      //   {
-      //     $set: {
-      //       questionCategory: 'easy',
-      //       questionPointer: 0,
-      //     },
-      //   }
-      // );
-      // return NextResponse.json({message:'Round0 started'},{status:200});
-      
-  //   } else if (currentTime < startTime) {
-  //     return NextResponse.json({
-  //       time: currentTime,
-  //       message: 'Quiz has not started yet',
-  //     },
-  //   {status:403});
-  //   } else {
-  //     return NextResponse.json({
-  //       time: currentTime,
-  //       message: 'Too late',
-  //     },{status:404});
-  //   }
-  // } catch (error) {
-  //   return NextResponse.json({message:error.toString()},{status:500})
-  // }
-  
