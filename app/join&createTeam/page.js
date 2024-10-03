@@ -22,6 +22,7 @@ export default function page() {
       router.push("/");
     } else if (status == "authenticated") {
       setLoading(false);
+      router.push("/");
       getUserData();
     }
   }, [status, router]);
@@ -50,7 +51,7 @@ export default function page() {
         }
       }
     } else {
-      router.push("/userDetails");
+      router.push("/");
     }
   };
 
@@ -92,13 +93,13 @@ export default function page() {
 
   const handleJoinTeam = () => {
     setLoading(true);
-    router.push("/teamCode");
+    router.push("/");
   };
 
 const noTeam = () => {
   setLoading(true);
   if (!consent) {
-    router.push('/terms&Condition');
+    router.push('/');
     setLoading(false);
   } else {
     setLoading(false);

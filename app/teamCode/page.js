@@ -27,6 +27,7 @@ const JoinTeam = ({ teamCode: propTeamCode }) => {
       toast.error("Please Log in or Sign up");
     } else if (status == "authenticated") {
       setLoading(false);
+      router.push("/");
       getUserData();
     }
   }, [status, router]);
@@ -45,7 +46,7 @@ const JoinTeam = ({ teamCode: propTeamCode }) => {
       .then((data) => {
         const user = data.user;
         if (user.hasFilledDetails == false) {
-          router.push("/userDetails");
+          router.push("/");
         } else {
             if (user.teamId) {
               const redirect =
