@@ -117,51 +117,54 @@ const Instructions = () => {
           <CountdownTimer targetDate={targetDate}/>
         </div>
         <p>
-          Welcome to the Qualifying round of FuturePrenuers 10.0 . The quiz is designed
-          to assess your knowledge and skills. To successfully qualify, you must
-          answer the questions with accuracy and precision.
+          <h1><b>Welcome to the Qualifying round of FuturePrenuers 10.0!</b></h1>
+          <br/>
+          This qualifying round will evaluate your entrepreneurial knowledge, and business understanding. Your performance on this quiz will determine your eligibility to advance to the next round. 
+
         </p>
         <br />
         <p>
           Read the following instructions carefully to ensure a smooth and
           successful completion of the quiz.
+          
         </p>
+        <br/>
+        <h1><b>General Instructions:-</b></h1>
         <ul className="list-inside list-disc">
           <li>
-            The quiz is only <span className="text-red-600">30 minutes</span> long
-            and can only be accessed using the button given below.
+          All the participants will be given 30 minutes for the completion of the quiz.
+            
           </li>
           <li>
-            The Quiz will{" "}
-            <span className="text-red-600">
-              stop accepting responses at 9:40 PM
-            </span>
-            , and hence maximum you can start the quiz is by 9:10 PM.
+            
+          A timer will be displayed at the top of the screen.              
+            
+            
           </li>
           <li>
-            The quiz contains{" "}
-            <span className="text-red-600">only Single Choice Correct</span>{" "}
-            questions. Be careful when you choose answers.
+          The quiz can only be submitted after completion, otherwise, it will auto-submit after 30 minutes.
           </li>
           <li>
-            If you feel the answer is not given in the questions, you can choose
-            the option closest to what you think is correct.
+          There is <span className="text-black-600">no</span> negative marking.
           </li>
           <li>
-            <span className="text-red-600">Only one response per team</span>{" "}
-            will be accepted, quiz link would be visible only on the team
-            leader&apos;s dashboard.
+          You can skip and navigate through the questions. 
           </li>
-          <li className="text-red-600">
-            Make sure that the form is opened using the same account / email ID
-            from which the leader had logged in and registered for the event.
+          <br/>
+          <h1><b>Section division:</b></h1>
+          <li>
+            The quiz consists of a total of 25 questions and is divided into THREE sections.
+            
           </li>
-          <li className="text-red-600">
-            In case of a submission form a mail ID that is different from the
-            mail ID that was used to register will lead to immediate
-            disqualification.
+          <li>
+          Sections are categorized by the level of difficulty: Easy, Medium, and Hard.
           </li>
+          <li>Section one consists of 8 questions, each of 3 marks.</li>
+          <li>Section two consists of 12 questions, each of 4 marks.</li>
+          <li>Section three consists of 5 questions, each of 5 marks.</li>
         </ul>
+        <br/>
+        <h2><b>Best of luck to all the participants!</b></h2>
       </div>
       <div>
             <button
