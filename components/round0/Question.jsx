@@ -16,7 +16,7 @@ export default function QuestionForQualifier(props) {
             WebkitTextFillColor: "transparent",
           }}
           className="flex flex-col text-xl w-fit h-fit p-5 border border-black text-black rounded-lg">
-            <div className="text-2xl align-top">Question {props.chronoNumber + 1}</div>
+            <div className="text-2xl align-top">Question {props.chronoNumber + 14}</div>
             <div className="select-none">
               {
                 questions[props.questionCategory][props.questionNumber]?.q.content
@@ -84,7 +84,7 @@ export default function QuestionForQualifier(props) {
         )}
         {props.questionCategory === "medium" && (
           <div className="flex flex-col text-xl w-fit h-fit p-5 border border-black text-black rounded-lg">
-            <div className="text-4xl align-top">Question {props.chronoNumber + 6}</div>
+            <div className="text-4xl align-top">Question {props.chronoNumber + 1}</div>
             <div>
               {
                 questions[props.questionCategory][props.questionNumber]?.q
