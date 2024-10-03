@@ -44,13 +44,13 @@ export async function GET(req, res) {
       // Log the existing round0Data for debugging
       console.log("Existing Round0 Data:", round0Data);
 
-      if (round0Data.questionCategory !== 'easy' || round0Data.questionPointer !== 0) {
+      if (round0Data.questionCategory !== 'medium' || round0Data.questionPointer !== 0) {
         // Update only if the values are not already set to the desired state
         const updatedData = await Round0.findOneAndUpdate(
           { teamId: qualTeam._id },
           {
             $set: {
-              questionCategory: 'easy',
+              questionCategory: 'medium',
               questionPointer: 0,
             },
           },

@@ -64,13 +64,13 @@ export async function POST(req, res) {
       caseStudyAnswers[questionPointer] = answer;
     }
 
-    if (questionCategory === "easy" && questionPointer === 7) {
-      newQuestionPointer = 0;
-      questionCategory = "medium";
-    } else if (questionCategory === "medium" && questionPointer === 11) {
+    if (questionCategory === "easy" && questionPointer === 4) {
       newQuestionPointer = 0;
       questionCategory = "hard";
-    } else if (questionCategory === "hard" && questionPointer === 4) {
+    } else if (questionCategory === "medium" && questionPointer === 12) {
+      newQuestionPointer = 0;
+      questionCategory = "easy";
+    } else if (questionCategory === "hard" && questionPointer === 6) {
       newQuestionPointer = 0;
       questionCategory = "waiting";
     } else if (questionCategory === "waiting") {

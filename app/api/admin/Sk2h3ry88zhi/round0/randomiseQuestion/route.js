@@ -25,9 +25,9 @@ export async function GET({ req }) {
         const medium = [];
         const hard = [];
 
-        const easyLength = 8;
-        const mediumLength = 12;
-        const hardLength = 5;
+        const easyLength = 5;
+        const mediumLength = 13;
+        const hardLength = 7;
 
         const getRandomUniqueNumberEasy = (array) => {
           let randomNumber;
