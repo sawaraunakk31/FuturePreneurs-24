@@ -76,38 +76,43 @@ const Instructions = () => {
   // }, [timeRemaining]);
 
   const startQuiz = () => {
-    // e.preventDefault();
-    // console.log("inside");
     setLoading(true);
     fetch("/api/round0/startQuiz", {
-      method: "GET",
+      method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authorization: session?.accessTokenBackend
-          ? `Bearer ${session.accessTokenBackend}`
-          : "",
+        Authorization: session?.accessTokenBackend ? `Bearer ${session.accessTokenBackend}` : '',
         "Access-Control-Allow-Origin": "*",
-      },
+      }
     })
       .then((res) => {
-        console.log("inside response", res);
-        console.log(res.status);
-        if (res.status == 200) {
-          console.log("quizStartingNow.");
-          location.reload();
-        } else if (res.status == 403) {
-          toast.error("Quiz has not started yet");
-        } else {
-          toast.error("too late");
-        }
         setLoading(false);
-        console.log(res.status);
-        return res.json();
+  
+        // Handle different status codes here
+        if (res.status === 200) {
+          toast.success("Quiz started successfully.");
+          location.reload();
+          return res.json();  // Process the valid JSON response
+        } else if (res.status === 403) {
+          toast.error("Quiz has not started yet.");
+        } else if (res.status === 404) {
+          toast.error("Team not found.");
+        } else {
+          toast.error("An unexpected error occurred. Please try again.");
+        }
+  
+        // Return an empty object to avoid parsing issues if no JSON is returned
+        return {};
       })
       .then((data) => {
-        console.log(data);
+        if (Object.keys(data).length !== 0) {
+          // Process data if it's not an empty object
+          console.log(data);
+        }
       })
       .catch((err) => {
+        setLoading(false);
+        toast.error("An error occurred while starting the quiz.");
         console.log(err);
       });
   };
