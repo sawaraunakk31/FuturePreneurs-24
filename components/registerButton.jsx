@@ -50,11 +50,11 @@ const registerButton = () => {
         }
       } else {
         setLoading(false);
-        router.push("/join&createTeam");
+        router.push("/");
       }
     } else {
       setLoading(false);
-      router.push("/userDetails");
+      router.push("/");
     }
   };
 
@@ -81,10 +81,6 @@ const registerButton = () => {
         >
           {loading ? (
             <LoadingIcons.Oval />
-          ) : !details?.user?.hasFilledDetails ? (
-            "Get Started"
-          ) : !details?.user?.teamId ? (
-            "Create Team"
           ) : (
             "Dashboard"
           )}
