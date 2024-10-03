@@ -30,7 +30,7 @@ export async function GET(req, res) {
     // Fetch the Round0 document associated with this team
     const round0Data = await Round0.findOne({ teamId: qualTeam._id });
 
-    const quizStartTime = new Date("October 3, 2024 16:09:00");
+    const quizStartTime = new Date("October 3, 2024 16:17:00");
     const currentTime = new Date();
     console.log('Current Time:', currentTime);
     console.log('Quiz Start Time:', quizStartTime);
