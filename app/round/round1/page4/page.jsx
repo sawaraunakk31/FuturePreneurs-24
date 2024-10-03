@@ -1,13 +1,15 @@
 "use client";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { FaUserCircle } from "react-icons/fa";
 import { socket } from "@/app/socket.js";
 import LoadingScreen from "@/components/LoadingScreen";
 import toast, { Toaster } from 'react-hot-toast';
 import Image from 'next/image';
 import back from '../back2.svg';
+import file from '@/public/constant/round1/bonds.json';
+import { set } from "mongoose";
 
 export default function Bidder() {
     const [loading, setLoading] = useState(true);
@@ -18,8 +20,8 @@ export default function Bidder() {
     const [walletBalance, setWalletBalance] = useState(0);
     const [timeLeft, setTimeLeft] = useState(null);
     const [isFirstHalf, setIsFirstHalf] = useState(true);
+    const [isBiddingOver, setIsBiddingOver] = useState(false);
     const [selectedItem, setSelectedItem] = useState(null);
-    const [isOverlayOpen, setIsOverlayOpen] = useState(false);
     const [team, setTeam] = useState("");
     const [hold,setHold]=useState(0);
     const [bondsBidFor, setBondsBidFor] = useState([]);
@@ -30,14 +32,18 @@ export default function Bidder() {
             setPrice(value);
         }
     };
+    
+    const divRef = useRef(null);
+    useEffect(() => {
+        if (isBiddingOver) {
+            if (divRef.current) {
+                divRef.current.scrollTop = 0;
+            }
+            setSelectedItem(null);
+        }
+    }, [isBiddingOver]);
 
     const router = useRouter();
-    const handleContinue = () => {
-        setIsOverlayOpen(true);
-    };
-    const closeOverlay = () => {
-        setIsOverlayOpen(false);
-    };
 
     useEffect(() => {
         if (status == "unauthenticated") {
@@ -115,11 +121,15 @@ export default function Bidder() {
 
         socket.on("syncTimer",({timeLeft:serverTimeLeft})=>{
             setTimeLeft(serverTimeLeft);
-            if (serverTimeLeft == 60) {
-                alert("Bidding is over.");
+            if (serverTimeLeft == 450) {
+                setIsFirstHalf(false);
+            }
+            else if (serverTimeLeft == 0) {
+                setIsBiddingOver(true);
+                toast.error("Bidding is over.");
             }
         })
-
+        
         return () => {
             socket.off("connect", onConnect);
             socket.off("authenticated");
@@ -151,6 +161,19 @@ export default function Bidder() {
         const newBidValue = parseInt(price);
         if (isNaN(newBidValue) || newBidValue <= 0) {
             toast.error("Please enter a valid bid amount.");
+            setHold(false);
+            return;
+        } else if (newBidValue > (0.9*walletBalance)) {
+            toast.error("You can only bid 90% of your wallet amount.");
+            setHold(false);
+            return;
+        } else if (newBidValue < (50000000)) {
+            toast.error("You need to atleast bid ₹5Cr.");
+            setHold(false);
+            return;
+        } else if (newBidValue > (9999900000)) {
+            toast.error("You can max bid ₹999.99Cr.");
+            setHold(false);
             return;
         } else if (currentBid<newBidValue) {
             socket.emit("newBid", {newBid: newBidValue, index});
@@ -175,6 +198,7 @@ export default function Bidder() {
             setPrice("");
           } else {
             toast.error("Your bid is lower than the current highest bid.");
+            setHold(false);
             setPrice("");
           }
     };
@@ -183,6 +207,11 @@ export default function Bidder() {
         const mins = Math.floor(seconds / 60);
         const secs = seconds % 60;
         return `${mins < 10 ? '0' : ''}${mins}:${secs < 10 ? '0' : ''}${secs}`;
+    };
+
+    const getName = (id) => {
+        const obj = file.find(item => item.id == id);
+        return obj ? obj.company_name : 'Unknown Company';
     };
 
     return (
@@ -203,13 +232,11 @@ export default function Bidder() {
                 <div className="flex justify-between items-center bg-[#6865C9] text-white py-4 px-6 text-center h-[10vh] border-white border-4 shadow-xl scale-105 rounded-xl">
                     <h1 className="text-2xl font-semibold">{team}</h1>
                     <span className="text-lg font-bold">{formatTime(timeLeft)}</span>
-                    <div className="text-lg font-semibold">Wallet : ₹{(walletBalance / 10000000).toFixed(2)} Cr</div>
-                    <button
+                    <div
                         className="px-4 py-1.5 bg-[#FFE55B] text-[#573712] rounded-xl font-semibold shadow-lg transition-transform transform hover:scale-105 hover:bg-[#FFBE5C]"
-                        onClick={handleContinue}
                     >
-                        Apply Loan
-                    </button>
+                        Wallet: ₹{(walletBalance / 10000000).toFixed(2)}Cr
+                    </div>
                 </div>
 
                 {/* Main content */}
@@ -223,7 +250,11 @@ export default function Bidder() {
                     }
                 `}</style>
                 <div
-                    className="flex bg-[#F3F4F6] text-black leading-relaxed w-full h-[72vh] overflow-hidden"
+                    
+                    ref={divRef}
+                    className={`flex bg-[#F3F4F6] text-black leading-relaxed w-full h-[72vh] overflow-hidden ${
+                        isBiddingOver ? 'pointer-events-none' : ''
+                    }`}
                     style={{
                         background: 'linear-gradient(180deg, #FFF 0%, #DAD0FF 47%, #FFF 100%)',
                     }}>
@@ -233,39 +264,49 @@ export default function Bidder() {
                             <div
                                 key={index+1}
                                 className={`p-4 justify-center rounded-2xl shadow-lg transform transition-transform duration-300 ease-in-out text-center cursor-pointer border-white border-4 ${
-                                    selectedItem && selectedItem.id === index+1 
-                                    ? 'bg-[#8481FA] scale-110 transition-transform'
-                                    : 'bg-[linear-gradient(114deg,rgba(232,232,232,0.10)_15.11%,rgba(0,56,255,0.10)_81.96%)] hover:scale-105'
+                                    (isFirstHalf && index >= 25)
+                                    ? 'bg-gray-400 text-gray-700 cursor-not-allowed'
+                                    : selectedItem && selectedItem.id === index+1 
+                                    ? 'bg-[#8481FA] scale-110 transition-transform cursor-pointer'
+                                    : 'bg-[linear-gradient(114deg,rgba(232,232,232,0.10)_15.11%,rgba(0,56,255,0.10)_81.96%)] hover:scale-105 cursor-pointer'
                                 }`} 
-                                disabled={allocatedItems[index] || hold || bondsBidFor.includes(index)}
+                                disabled={(isFirstHalf && index >= 25) || allocatedItems[index] || hold || bondsBidFor.includes(index)}
                                 onClick={() => {
-                                    if (!allocatedItems[index] && !hold && !bondsBidFor.includes(index)) {
+                                    if ((!isFirstHalf || index <= 25) && !allocatedItems[index] && !hold && !bondsBidFor.includes(index)) {
                                         setPrice('');
-                                        setSelectedItem(selectedItem && selectedItem.id === item.id ? null : {id: index+1, name: `Item ${index + 1}`, highestBid: item })
+                                        setSelectedItem(selectedItem && selectedItem.id === item.id ? null : {id: index+1, name: getName(index+1), highestBid: item })
                                     } else if ( allocatedItems[index] ) {
                                         toast.error("This item is already allocated to someone.");
                                     } else if ( bondsBidFor.includes(index) ) {
                                         toast.error("You have already bid on this item");
+                                    } else if ( isFirstHalf && index >= 25 ) {
+                                        toast.error("You cannot bid on this item right now");
                                     } else {
                                         toast.error("You are currently holding or bidding on an item");
                                     }
                                 }}
                             >
                                 <h2 className={`text-xl font-bold ${
-                                    selectedItem && selectedItem.id === index+1 
+                                    (isFirstHalf && index >= 25)
+                                    ? 'text-white'
+                                    : selectedItem && selectedItem.id === index+1 
                                     ? 'text-white'
                                     : 'text-[#8481FA]'
                                 }`}>{`Item ${index + 1}`}</h2>
                                 <p className={`text-sm pt-2 pb-1 ${
-                                    selectedItem && selectedItem.id === index+1 
+                                    (isFirstHalf && index >= 25)
+                                    ? 'text-white'
+                                    : selectedItem && selectedItem.id === index+1 
                                     ? 'text-white'
                                     : 'text-black'
                                 }`}>Highest</p>
                                 <p className={`font-semibold pb-1 px-2 rounded-md w-[100%] ${
-                                    selectedItem && selectedItem.id === index+1 
+                                    (isFirstHalf && index >= 25)
+                                    ? 'text-white bg-white'
+                                    : selectedItem && selectedItem.id === index+1 
                                     ? 'text-black bg-white'
                                     : 'text-white bg-[#8481FA]'
-                                }`}>₹{(item/1000).toFixed(2)}k/-</p>
+                                }`}>₹{(item/10000000).toFixed(2)}Cr</p>
                             </div>
                         ))}
                     </div>
@@ -283,27 +324,27 @@ export default function Bidder() {
                                         <ul className="list-inside text-black">
                                             <li className="flex justify-between items-center font-semibold">
                                                 <span>Current Bid</span>
-                                                <span className="ml-24 bg-white w-52 px-2 text-right">{items[selectedItem.id-1]/1000}</span>
+                                                <span className="bg-white w-[40%] px-2 text-right">{items[selectedItem.id-1]/1000}</span>
                                             </li>
                                             <hr className="border-white w-full my-1"/>
                                             <li className="flex justify-between items-center font-semibold">
                                                 <span>Revenue</span>
-                                                <span className="ml-24 bg-white w-52 px-2 text-right">{selectedItem.id}</span>
+                                                <span className="bg-white w-[40%] px-2 text-right">{selectedItem.id}</span>
                                             </li>
                                             <hr className="border-white w-full my-1"/>
                                             <li className="flex justify-between items-center font-semibold">
                                                 <span>Revenue</span>
-                                                <span className="ml-24 bg-white w-52 px-2 text-right">{selectedItem.id}</span>
+                                                <span className="bg-white w-[40%] px-2 text-right">{selectedItem.id}</span>
                                             </li>
                                             <hr className="border-white w-full my-1"/>
                                             <li className="flex justify-between items-center font-semibold">
                                                 <span>Revenue</span>
-                                                <span className="ml-24 bg-white w-52 px-2 text-right">{selectedItem.id}</span>
+                                                <span className="bg-white w-[40%] px-2 text-right">{selectedItem.id}</span>
                                             </li>
                                             <hr className="border-white w-full my-1"/>
                                             <li className="flex justify-between items-center font-semibold">
                                                 <span>Revenue</span>
-                                                <span className="ml-24 bg-white w-52 px-2 text-right">{selectedItem.id}</span>
+                                                <span className="bg-white w-[40%] px-2 text-right">{selectedItem.id}</span>
                                             </li>
                                         </ul>
                                     </div>
@@ -324,8 +365,8 @@ export default function Bidder() {
                                             }`}
                                             disabled={!price && allocatedItems[selectedItem.id-1] && hold && !bondsBidFor.includes(selectedItem.id-1)}
                                             onClick={() => {
-                                                handleNewBid(selectedItem.id, selectedItem.highestBid);
                                                 setHold(true);
+                                                handleNewBid(selectedItem.id, selectedItem.highestBid);
                                             }}
                                         >
                                             Submit
@@ -341,38 +382,6 @@ export default function Bidder() {
                     </div>
                 </div>
             </div>
-
-            {isOverlayOpen && (
-                <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-75 backdrop-blur-sm">
-                    <div className="flex flex-col h-[72vh] w-[90%] md:w-[70%] lg:w-[50%] border-white border-4 rounded-xl shadow-xl overflow-hidden bg-[#6865C9] text-white items-center justify-center">
-                        {/* Header */}
-                        <div className="text-2xl font-bold h-[15%] w-full text-center pt-6">
-                            Do You Wish To Apply For Loan ?
-                        </div>
-                        <div
-                            className="py-[6%] text-md font-extrabold h-[85%]"
-                            style={{
-                                background: 'linear-gradient(180deg, #FFE35B 34.65%, #FFBA4C 77.17%)',
-                                WebkitBackgroundClip: 'text',
-                                WebkitTextFillColor: 'transparent',
-                            }}
-                        >
-                            Please fill out the loan application form. &nbsp;
-                            <button
-                                className="px-4 py-2 font-semibold shadow-lg transition-transform transform bg-[#8381E7] text-white hover:scale-105 hover:bg-[#5754b3] border rounded-md"
-                                onClick={closeOverlay}
-                                style={{
-                                    border: '2.84px solid',
-                                    borderImageSource: 'linear-gradient(101.11deg, #DAC9FF 38.45%, rgba(148, 120, 153, 0) 86.99%)',
-                                    borderImageSlice: 1,
-                                }}
-                            >
-                                Close
-                            </button>
-                        </div>
-                    </div>    
-                </div>
-            )}
         </div >
     );
 }

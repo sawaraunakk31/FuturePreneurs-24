@@ -16,7 +16,7 @@ const port = process.env.PORT ? process.env.PORT : 3000;
 const app = next({ dev, hostname, port });
 const handler = app.getRequestHandler();
 
-let timeLeft = 120; // initial time in seconds (15 minutes)
+let timeLeft = 900; // initial time in seconds (15 minutes)
 let timerInterval = null;
 
 app.prepare().then(async () => {
@@ -26,11 +26,8 @@ app.prepare().then(async () => {
   await connectMongo(); //? Only connect once for a server
   
     io.on("connect", (socket) => {
-      console.log("Client connected to socket");
-
       // Listen for the "authenticate" event where the token is sent
       socket.on("authenticate", async ({ token }) => {
-        console.log("Authentication", token);
         if (!token) {
           console.log("No token provided");
           socket.emit("auth_error", "No token provided");
@@ -39,7 +36,6 @@ app.prepare().then(async () => {
         }
 
         try {
-          console.log(token);
           const decoded = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
           const userId = decoded._id;
 
@@ -61,10 +57,10 @@ app.prepare().then(async () => {
           }
 
           const bondsBidFor = team.bondsBidFor;
+          const wallet = team.wallet;
 
           console.log("User details:", user);
           socket.emit("userDetails", { team });
-          console.log("Bids:", bondsBidFor);
                 
           // Fetch bond bidding data
           const bondBidding = await BondBidding.findById('66f84084d39aba9ca3f14ba5');
@@ -94,7 +90,7 @@ app.prepare().then(async () => {
               bondsBidFor.push(index);
             }
 
-            if (newBid>bondBidding.highestBids[index] && bondBidding.allocatedBids[index]==false) {
+            if (newBid>bondBidding.highestBids[index] && bondBidding.allocatedBids[index]==false && newBid<(0.9*wallet)) {
               bondBidding.highestBids[index] = newBid;
               await bondBidding.save();
               team.bondsBidFor = bondsBidFor;
