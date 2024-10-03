@@ -76,7 +76,8 @@ const Instructions = () => {
   // }, [timeRemaining]);
 
   const startQuiz = () => {
-    console.log("inside");
+    // e.preventDefault();
+    // console.log("inside");
     setLoading(true);
     fetch("/api/round0/startQuiz", {
       method: "GET",

@@ -17,6 +17,7 @@ export async function GET(req, res) {
 
     const teamData = await TeamModel.findOne({ teamLeaderId: userId });
     console.log(userId);
+    console.log(teamData);
     if (!teamData) {
       return NextResponse.json({ message: "team not found" }, { status: 404 });
     }
@@ -51,7 +52,7 @@ export async function GET(req, res) {
         {
           category: "instruction",
           questionNumber: -1,
-          teamName: teamData.teamName,
+          teamName: round0Data.teamName,
         },
         { status: 200 }
       );
@@ -60,7 +61,7 @@ export async function GET(req, res) {
         {
           category: "waiting",
           questionNumber: -1,
-          teamName: teamData.teamName,
+          teamName: round0Data.teamName,
         },
         { status: 200 }
       );
@@ -70,7 +71,7 @@ export async function GET(req, res) {
       category: questionCatogory,
       questionNumber: questionNumber,
       chronoNumber: pointer,
-      teamName: teamData.teamName,
+      teamName: round0Data.teamName,
     };
 
     console.log('adsfsgdfsagasasdsg',response);
@@ -81,7 +82,7 @@ export async function GET(req, res) {
         category: questionCatogory,
         questionNumber: questionNumber,
         chronoNumber: pointer,
-        teamName: teamData.teamName,
+        teamName: round0Data.teamName,
       },
       { status: 200 }
     );
