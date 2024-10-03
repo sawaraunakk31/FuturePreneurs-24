@@ -83,9 +83,11 @@ const Instructions = () => {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
-        Authorization: session?.accessTokenBackend ? `Bearer ${session.accessTokenBackend}` : '',
+        Authorization: session?.accessTokenBackend
+          ? `Bearer ${session.accessTokenBackend}`
+          : "",
         "Access-Control-Allow-Origin": "*",
-      }
+      },
     })
       .then((res) => {
         console.log("inside response", res);
@@ -114,12 +116,12 @@ const Instructions = () => {
     <main className="min-h-[100vh] text-black flex flex-col items-center">
       <div className="flex flex-col items-start w-[90vw] px-8 py-4 border rounded-xl m-2 text-xl">
         <div className="px-[43%]">
-          <CountdownTimer targetDate={targetDate}/>
+          <CountdownTimer targetDate={targetDate} />
         </div>
         <p>
-          Welcome to the Qualifying round of FuturePrenuers 10.0 . The quiz is designed
-          to assess your knowledge and skills. To successfully qualify, you must
-          answer the questions with accuracy and precision.
+          Welcome to the Qualifying round of FuturePrenuers 10.0 . The quiz is
+          designed to assess your knowledge and skills. To successfully qualify,
+          you must answer the questions with accuracy and precision.
         </p>
         <br />
         <p>
@@ -128,8 +130,8 @@ const Instructions = () => {
         </p>
         <ul className="list-inside list-disc">
           <li>
-            The quiz is only <span className="text-red-600">30 minutes</span> long
-            and can only be accessed using the button given below.
+            The quiz is only <span className="text-red-600">30 minutes</span>{" "}
+            long and can only be accessed using the button given below.
           </li>
           <li>
             The Quiz will{" "}
@@ -162,18 +164,6 @@ const Instructions = () => {
             disqualification.
           </li>
         </ul>
-      </div>
-      <div>
-            <button
-              className={`px-4 py-2 rounded-full text-white bg-gradient-to-r from-purple-500 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none m-4 w-full h-12 flex items-center justify-center font-bold hover:opacity-80 hover:cursor-pointer`}
-              onClick={() => startQuiz()}
-            >
-              {/* {loading ? <LoadingIcons.Oval height={"20px"} /> : "Start Quiz"} */}
-              {loading ? "Loading..." : "Start Quiz"}
-            </button>
-            <div className="my-4">
-        {/* <p className="text-lg">Time remaining: <span className="text-red-500">{`${Math.floor(timeRemaining / 60)}:${(timeRemaining % 60).toString().padStart(2, "0")}`}</span></p> */}
-      </div>
       </div>
       <Toaster />
     </main>
