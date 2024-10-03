@@ -1,6 +1,6 @@
 import answers from "@/constant/round0/answers.json";
 import gamePoints from "@/constant/round0/points.json";
-import connectMongo from "@/libs/mongodb";
+import { connectMongo } from "@/libs/mongodb";
 import { Round0 } from "@/models/round0.model";
 import { NextResponse } from "next/server";
 
@@ -99,22 +99,22 @@ export async function GET(req, res) {
         }
       }
       // for comparing caseStudy answers
-      for (
-        let pointer = 0;
-        pointer < answers.caseStudyAnswers.length;
-        pointer++
-      ) {
-        if (typeof qualifierData.caseStudyAnswers[pointer] === "object") {
-          if (
-            compareArrays(
-              qualifierData.caseStudyAnswers[pointer],
-              answers.caseStudyAnswers[pointer]
-            )
-          ) {
-            points += gamePoints.caseStudyPoints;
-          }
-        }
-      }
+      // for (
+      //   let pointer = 0;
+      //   pointer < answers.caseStudyAnswers.length;
+      //   pointer++
+      // ) {
+      //   if (typeof qualifierData.caseStudyAnswers[pointer] === "object") {
+      //     if (
+      //       compareArrays(
+      //         qualifierData.caseStudyAnswers[pointer],
+      //         answers.caseStudyAnswers[pointer]
+      //       )
+      //     ) {
+      //       points += gamePoints.caseStudyPoints;
+      //     }
+      //   }
+      // }
 
       await Round0.findOneAndUpdate(
         { teamName: qualTeam.teamName },
@@ -122,18 +122,16 @@ export async function GET(req, res) {
       );
     });
     console.log("Counter ==== ",counter);
-    return res.status(200).json({
-      message: "Points updated successfully",
-    });
+    return NextResponse.json({message: "Points updated successfully"},{status:200});
   } catch (err) {
     console.log(err);
-    return res.status(500).json({ error: "Internal server error" });
+    return NextResponse.json({ message: "Internal server error" },{status: 500});
   }
 }
 
 function compareArrays(arr1, arr2) {
   if (arr1 === null) {
-    return false;
+    return false; 
   }
   if (arr1.length !== arr2.length) {
     return false;
