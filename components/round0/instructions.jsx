@@ -1,79 +1,39 @@
 "use client";
-//import time from "@/constant/round0/time";
 import { useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import CountdownTimer from "./counter1[1]";
-//import LoadingIcons from "react-loading-icons";
-//import formLinks from "@/constant/round0/form";
 
 const Instructions = () => {
-  const [buttonEnabled, setButtonEnabled] = useState(false);
+  const [buttonEnabled, setButtonEnabled] = useState(false); // Manages button state
   const [loading, setLoading] = useState(false);
-  // const [timeRemaining, setTimeRemaining] = useState(60);
   const { data: session, status } = useSession();
   const targetDate = new Date("2024-10-03T22:00");
 
-  /* const calculateTimeRemaining = () => {
-    const now = new Date().getTime();
+  // Function to check current time and enable button at 22:00
+  const checkTime = () => {
+    const currentTime = new Date();
+    const targetTime = targetDate.getTime();
+    const currentTimestamp = currentTime.getTime();
 
-    const targetTime = new Date(
-      2024,
-      3,
-      time.quizStartTime.day,
-      time.quizStartTime.hour,
-      time.quizStartTime.minute,
-      time.quizStartTime.second
-    );
-    const timeDiff = targetTime - now;
-
-    if (timeDiff <= 0) {
-      // Target date has passed
+    // Enable the button when the current time is at or past 22:00
+    if (currentTimestamp >= targetTime) {
       setButtonEnabled(true);
-      return { minutes: "00", seconds: "00", hours: "00" };
+    } else {
+      setButtonEnabled(false);
     }
-
-    if (Math.floor(timeDiff / 1000) <= 0) {
-      console.log("asdf");
-    }
-
-    const hours = Math.floor(
-      (timeDiff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
-    );
-    const minutes = Math.floor((timeDiff % (1000 * 60 * 60)) / (1000 * 60));
-    const seconds = Math.floor((timeDiff % (1000 * 60)) / 1000);
-    return {
-      hours: hours.toString().padStart(2, "0"),
-      minutes: minutes.toString().padStart(2, "0"),
-      seconds: seconds.toString().padStart(2, "0"),
-    };
   };
 
-  const [timeRemaining, setTimeRemaining] = useState(calculateTimeRemaining);
-
-  
   useEffect(() => {
-    // if early then disable button
+    // Check time every second
+    const intervalId = setInterval(checkTime, 1000);
 
-    const intervalId = setInterval(() => {
-      setTimeRemaining(calculateTimeRemaining);
-    }, 1000);
+    // Initial check
+    checkTime();
 
-    // Clear the interval when the component unmounts
+    // Cleanup the interval on component unmount
     return () => clearInterval(intervalId);
-  }, []); */
-
-  // useEffect(() => {
-  //   if (timeRemaining > 0) {
-  //     const timerInterval = setInterval(() => {
-  //       setTimeRemaining((prev) => prev - 1);
-  //     }, 1000);
-
-  //     return () => clearInterval(timerInterval); // Clear interval when component unmounts
-  //   } else if (timeRemaining == 0) {
-  //     setButtonEnabled(true); // Enable button when timer reaches 0
-  //   }
-  // }, [timeRemaining]);
+  }, []);
 
   const startQuiz = () => {
     setLoading(true);
@@ -160,6 +120,15 @@ const Instructions = () => {
           You can skip the questions, but you cannot navigate backwards.
           </li>
         </ul>
+      </div>
+      <div>
+        <button
+          className={`px-4 py-2 rounded-full text-white bg-gradient-to-r from-purple-500 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none m-4 w-full h-12 flex items-center justify-center font-bold hover:opacity-80`}
+          onClick={() => startQuiz()}
+          disabled={!buttonEnabled} // Disable until time hits 22:00
+        >
+          {loading ? "Loading..." : buttonEnabled ? "Start Quiz" : "Quiz Locked"}
+        </button>
       </div>
       <Toaster />
     </main>
