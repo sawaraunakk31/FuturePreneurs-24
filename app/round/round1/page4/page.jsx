@@ -211,7 +211,7 @@ export default function Bidder() {
 
     const getName = (id) => {
         const obj = file.find(item => item.id == id);
-        return obj ? obj.company_name : 'Unknown Company';
+        return obj ? obj.name : 'Unknown Company';
     };
 
     return (

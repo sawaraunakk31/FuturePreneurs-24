@@ -10,39 +10,30 @@ import Image from 'next/image';
 import back from '../back2.svg';
 import file from '@/public/constant/round1/bonds.json';
 import { set } from "mongoose";
+import logo from '../logo.svg';
 
 export default function PreBidder() {
-    const [loading, setLoading] = useState(true);
+    const [loading, setLoading] = useState(false);
     const { data: session, status } = useSession();
     const [items, setItems] = useState([]);
-    const [allocatedItems, setAllocatedItems] = useState([]);
-    const [price, setPrice] = useState("");
-    const [walletBalance, setWalletBalance] = useState(0);
-    const [timeLeft, setTimeLeft] = useState(null);
-    const [isFirstHalf, setIsFirstHalf] = useState(true);
-    const [isBiddingOver, setIsBiddingOver] = useState(false);
-    const [selectedItem, setSelectedItem] = useState(null);
+    const [timeLeft, setTimeLeft] = useState(900);
     const [isOverlayOpen, setIsOverlayOpen] = useState(false);
-    const [team, setTeam] = useState("");
-    const [hold,setHold]=useState(0);
-    const [bondsBidFor, setBondsBidFor] = useState([]);
-
-    const handlePriceChange = (e) => {
-        const value = e.target.value;
-        if (/^\d*$/.test(value)) {
-            setPrice(value);
-        }
-    };
+    const [isConfirmOpen, setIsConfirmOpen] = useState(false);
+    const [isAgreementOpen, setIsAgreementOpen] = useState(false);
+    const [isBiddingStart, setIsBiddingStart] = useState(false);
+    const [selectedItem, setSelectedItem] = useState(null);
+    const [team, setTeam] = useState("BharatwaleJain");
+    const [loanAmount, setLoanAmount] = useState(null);
     
     const divRef = useRef(null);
     useEffect(() => {
-        if (isBiddingOver) {
+        if (isBiddingStart) {
             if (divRef.current) {
                 divRef.current.scrollTop = 0;
             }
             setSelectedItem(null);
         }
-    }, [isBiddingOver]);
+    }, [isBiddingStart]);
 
     const router = useRouter();
     const handleContinue = () => {
@@ -51,150 +42,43 @@ export default function PreBidder() {
     const closeOverlay = () => {
         setIsOverlayOpen(false);
     };
+    const openConfirm = () => {
+        setIsOverlayOpen(false);
+        setIsConfirmOpen(true);
+    };
+    const closeConfirm = () => {
+        setIsConfirmOpen(false);
+    };
+    const openAgreement = () => {
+        setIsConfirmOpen(false);
+        setIsAgreementOpen(true);
+    };
+    const closeAgreement = () => {
+        setIsAgreementOpen(false);
+    };
 
     useEffect(() => {
-        if (status == "unauthenticated") {
-            setLoading(false);
-            toast.error("Please Log in or Sign up");
-            router.push("/");
-            return;
+        async function fetchData() {
+            const data = Array.from({ length: 50 }, (v, i) => ({
+                id: i + 1,
+                name: `Item ${i + 1}`,
+                price: 0,
+            }));
+            setItems(data);
         }
+        fetchData();
 
-        if (status == "authenticated") {
-            setLoading(false);
-            const token = session.accessTokenBackend;
-            console.log(token);
-
-            if (socket.connected) {
-                console.log("Socket already connected");
-                onConnect();
-            } else {
-                socket.connect();
-                socket.on("connect", () => {
-                    console.log("Connected to socket");
-                    socket.emit("authenticate", { token });
-                });
-
-                socket.on("authenticated", () => {
-                    console.log("Authentication successful");
-                });
-
-                socket.on("userDetails", ({team}) => {
-                    setWalletBalance(team.wallet)
-                    setTeam(team.teamName);
-                });
-
-                socket.on("highestBids", setHighestBids);
-                socket.on("highestBid", handleNewHighestBid);
-
-                socket.on("auth_error", (err) => {
-                    console.error("Authentication error:", err);
-                    toast.error("Authentication failed, please log in again.");
-                    router.push("/");
-                });
-
-                socket.on("connect_error", (err) => {
-                    console.error("Socket connection error:", err);
-                    toast.error("Socket connection error, please try again later.");
-                });
-            }
-        }
-        
-        function onConnect() {
-            socket.io.engine.on("upgrade", () => {
-                console.log("upgrade to websocket");
+        const timer = setInterval(() => {
+            setTimeLeft((prevTime) => {
+                if (prevTime > 0) return prevTime - 1;
+                setIsBiddingStart(true);
+                clearInterval(timer);
+                toast.error("Bidding is started.");
+                return 0;
             });
-        }
-        
-        function onDisconnect() {
-            console.log("user disconnected");
-        }
-
-        // const timer = setInterval(() => {
-        //     setTimeLeft((prevTime) => {
-        //         if (prevTime > 0) return prevTime - 1;
-        //         setIsTimerOver(true);
-        //         clearInterval(timer);
-        //         return 0;
-        //     });
-        // }, 1000);
-        // return () => clearInterval(timer);
-
-        socket.on("connect", onConnect);
-        socket.on("disconnect", onDisconnect);
-
-        socket.on("highestBids", setHighestBids);
-        socket.on("highestBid", handleNewHighestBid);
-
-        socket.on("syncTimer",({timeLeft:serverTimeLeft})=>{
-            setTimeLeft(serverTimeLeft);
-            if (serverTimeLeft == 60) {
-                setIsFirstHalf(false);
-            }
-            else if (serverTimeLeft == 0) {
-                setIsBiddingOver(true);
-                toast.error("Bidding is over.");
-            }
-        })
-        
-        return () => {
-            socket.off("connect", onConnect);
-            socket.off("authenticated");
-            socket.off("auth_error");
-            socket.off("disconnect", onDisconnect);
-            socket.off("highestBids", setHighestBids);
-            socket.off("highestBid", handleNewHighestBid);
-            socket.off("syncTimer");
-            socket.disconnect();
-        };
+        }, 1000);
+        return () => clearInterval(timer);
     }, [status]);
-
-    const setHighestBids = ({ highestBids, allocatedBids, bondsBidFor }) => {
-        setItems(highestBids);
-        setAllocatedItems(allocatedBids);
-        setBondsBidFor(bondsBidFor);
-    }
-
-    const handleNewHighestBid = ({highestBid, index}) => {
-        setItems(prevItems => {
-            const newItems = [...prevItems];
-            newItems[index] = highestBid;
-            return newItems;
-        });
-    }
-
-    const handleNewBid = (ID, currentBid) => {
-        const index = ID-1;
-        const newBidValue = parseInt(price);
-        if (isNaN(newBidValue) || newBidValue <= 0) {
-            toast.error("Please enter a valid bid amount.");
-            return;
-        } else if (currentBid<newBidValue) {
-            socket.emit("newBid", {newBid: newBidValue, index});
-            
-            setItems(prevItems => {
-                const newItems = [...prevItems];
-                newItems[index] = newBidValue;
-                return newItems;
-            });
-
-            setBondsBidFor(prev => [
-                ...prev,
-                index
-            ])
-
-            if (selectedItem && selectedItem.id === index + 1) {
-                setSelectedItem({
-                    ...selectedItem,
-                    highestBid: newBidValue
-                });
-            }
-            setPrice("");
-          } else {
-            toast.error("Your bid is lower than the current highest bid.");
-            setPrice("");
-          }
-    };
 
     const formatTime = (seconds) => {
         const mins = Math.floor(seconds / 60);
@@ -204,7 +88,7 @@ export default function PreBidder() {
 
     const getName = (id) => {
         const obj = file.find(item => item.id == id);
-        return obj ? obj.company_name : 'Unknown Company';
+        return obj ? (obj.name.length > 24 ? `${obj.name.substring(0, 20)}...` : obj.name) : 'Unknown Company';
     };
 
     return (
@@ -244,10 +128,9 @@ export default function PreBidder() {
                     }
                 `}</style>
                 <div
-                    
                     ref={divRef}
                     className={`flex bg-[#F3F4F6] text-black leading-relaxed w-full h-[72vh] overflow-hidden ${
-                        isBiddingOver ? 'pointer-events-none' : ''
+                        isBiddingStart ? 'pointer-events-none' : ''
                     }`}
                     style={{
                         background: 'linear-gradient(180deg, #FFF 0%, #DAD0FF 47%, #FFF 100%)',
@@ -258,49 +141,29 @@ export default function PreBidder() {
                             <div
                                 key={index+1}
                                 className={`p-4 justify-center rounded-2xl shadow-lg transform transition-transform duration-300 ease-in-out text-center cursor-pointer border-white border-4 ${
-                                    (isFirstHalf && index >= 25)
-                                    ? 'bg-gray-400 text-gray-700 cursor-not-allowed'
-                                    : selectedItem && selectedItem.id === index+1 
+                                    selectedItem && selectedItem.id === index+1 
                                     ? 'bg-[#8481FA] scale-110 transition-transform cursor-pointer'
                                     : 'bg-[linear-gradient(114deg,rgba(232,232,232,0.10)_15.11%,rgba(0,56,255,0.10)_81.96%)] hover:scale-105 cursor-pointer'
-                                }`} 
-                                disabled={(isFirstHalf && index >= 25) || allocatedItems[index] || hold || bondsBidFor.includes(index)}
+                                }`}
                                 onClick={() => {
-                                    if ((!isFirstHalf || index <= 25) && !allocatedItems[index] && !hold && !bondsBidFor.includes(index)) {
-                                        setPrice('');
-                                        setSelectedItem(selectedItem && selectedItem.id === item.id ? null : {id: index+1, name: getName(index+1), highestBid: item })
-                                    } else if ( allocatedItems[index] ) {
-                                        toast.error("This item is already allocated to someone.");
-                                    } else if ( bondsBidFor.includes(index) ) {
-                                        toast.error("You have already bid on this item");
-                                    } else if ( isFirstHalf && index >= 25 ) {
-                                        toast.error("You cannot bid on this item right now");
-                                    } else {
-                                        toast.error("You are currently holding or bidding on an item");
-                                    }
+                                    setSelectedItem(selectedItem && selectedItem.id === item.id ? null : {id: index+1, name: getName(index+1), highestBid: 0 })
                                 }}
                             >
                                 <h2 className={`text-xl font-bold ${
-                                    (isFirstHalf && index >= 25)
-                                    ? 'text-white'
-                                    : selectedItem && selectedItem.id === index+1 
+                                    selectedItem && selectedItem.id === index+1 
                                     ? 'text-white'
                                     : 'text-[#8481FA]'
                                 }`}>{`Item ${index + 1}`}</h2>
                                 <p className={`text-sm pt-2 pb-1 ${
-                                    (isFirstHalf && index >= 25)
-                                    ? 'text-white'
-                                    : selectedItem && selectedItem.id === index+1 
+                                    selectedItem && selectedItem.id === index+1 
                                     ? 'text-white'
                                     : 'text-black'
                                 }`}>Highest</p>
                                 <p className={`font-semibold pb-1 px-2 rounded-md w-[100%] ${
-                                    (isFirstHalf && index >= 25)
-                                    ? 'text-white bg-white'
-                                    : selectedItem && selectedItem.id === index+1 
+                                    selectedItem && selectedItem.id === index+1 
                                     ? 'text-black bg-white'
                                     : 'text-white bg-[#8481FA]'
-                                }`}>₹{(item/10000000).toFixed(2)}Cr</p>
+                                }`}>₹{(0).toFixed(2)}Cr</p>
                             </div>
                         ))}
                     </div>
@@ -310,15 +173,15 @@ export default function PreBidder() {
                         <div className="py-4 h-full flex flex-col justify-between bg-[linear-gradient(114deg,rgba(232,232,232,0.10)_15.11%,rgba(0,56,255,0.10)_81.96%)] border-white border-4 shadow-xl rounded-2xl">
                             {selectedItem ? (
                                 <>
-                                    <div className="text-center">
-                                        <h1 className="text-2xl font-bold text-black">{selectedItem.name}</h1>
+                                    <div className="text-center h-[15%]">
+                                        <h1 className="text-xl font-bold text-black">{selectedItem.name}</h1>
                                     </div>
-                                    <hr className="border-white border-2 w-full my-1"/>
-                                    <div className="m-2">
+                                    <hr className="border-white border-2 w-full mb-2"/>
+                                    <div className="m-2 h-full">
                                         <ul className="list-inside text-black">
                                             <li className="flex justify-between items-center font-semibold">
                                                 <span>Current Bid</span>
-                                                <span className="bg-white w-[40%] px-2 text-right">{items[selectedItem.id-1]/1000}</span>
+                                                <span className="bg-white w-[40%] px-2 text-right">₹{0}</span>
                                             </li>
                                             <hr className="border-white w-full my-1"/>
                                             <li className="flex justify-between items-center font-semibold">
@@ -327,44 +190,30 @@ export default function PreBidder() {
                                             </li>
                                             <hr className="border-white w-full my-1"/>
                                             <li className="flex justify-between items-center font-semibold">
-                                                <span>Revenue</span>
+                                                <span>Profit</span>
                                                 <span className="bg-white w-[40%] px-2 text-right">{selectedItem.id}</span>
                                             </li>
                                             <hr className="border-white w-full my-1"/>
                                             <li className="flex justify-between items-center font-semibold">
-                                                <span>Revenue</span>
+                                                <span>Value</span>
                                                 <span className="bg-white w-[40%] px-2 text-right">{selectedItem.id}</span>
                                             </li>
                                             <hr className="border-white w-full my-1"/>
                                             <li className="flex justify-between items-center font-semibold">
-                                                <span>Revenue</span>
+                                                <span>Yield</span>
+                                                <span className="bg-white w-[40%] px-2 text-right">{selectedItem.id}</span>
+                                            </li>
+                                            <hr className="border-white w-full my-1"/>
+                                            <li className="flex justify-between items-center font-semibold">
+                                                <span>Rating</span>
+                                                <span className="bg-white w-[40%] px-2 text-right">{selectedItem.id}</span>
+                                            </li>
+                                            <hr className="border-white w-full my-1"/>
+                                            <li className="flex justify-between items-center font-semibold">
+                                                <span>D/E Ratio</span>
                                                 <span className="bg-white w-[40%] px-2 text-right">{selectedItem.id}</span>
                                             </li>
                                         </ul>
-                                    </div>
-                                    <hr className="border-white border-2 w-full my-1"/>
-                                    <div className="flex flex-col items-center justify-center">
-                                        <textarea
-                                            className="w-[80%] p-3 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#8481FA] mb-4"
-                                            placeholder="Enter Price"
-                                            value={price}
-                                            onChange={handlePriceChange}
-                                            inputMode="numeric"
-                                        ></textarea>
-                                        <button
-                                            className={`w-[80%] py-2 text-white rounded-md transition-transform ${
-                                                price
-                                                    ? 'bg-[#8481FA] hover:scale-105'
-                                                    : 'bg-gray-400 cursor-not-allowed'
-                                            }`}
-                                            disabled={!price && allocatedItems[selectedItem.id-1] && hold && !bondsBidFor.includes(selectedItem.id-1)}
-                                            onClick={() => {
-                                                handleNewBid(selectedItem.id, selectedItem.highestBid);
-                                                setHold(true);
-                                            }}
-                                        >
-                                            Submit
-                                        </button>
                                     </div>
                                 </>
                             ) : (
@@ -379,30 +228,74 @@ export default function PreBidder() {
 
             {isOverlayOpen && (
                 <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-75 backdrop-blur-sm">
-                    <div className="flex flex-col h-[72vh] w-[90%] md:w-[70%] lg:w-[50%] border-white border-4 rounded-xl shadow-xl overflow-hidden bg-[#6865C9] text-white items-center justify-center">
+                    <div className="flex flex-col h-[80vh] w-[90%] md:w-[70%] lg:w-[50%] border-white border-4 rounded-xl shadow-xl overflow-hidden bg-[#6865C9] text-white items-center justify-center">
                         {/* Header */}
                         <div className="text-2xl font-bold h-[15%] w-full text-center pt-6">
                             Do You Wish To Apply For Loan ?
                         </div>
-                        <div
-                            className="py-[6%] text-md font-extrabold h-[85%]"
-                            style={{
-                                background: 'linear-gradient(180deg, #FFE35B 34.65%, #FFBA4C 77.17%)',
-                                WebkitBackgroundClip: 'text',
-                                WebkitTextFillColor: 'transparent',
-                            }}
-                        >
-                            Please fill out the loan application form. &nbsp;
+                        <div className="text-md font-bold py-4 px-6 w-[60%] mx-auto text-center flex flex-col md:flex-row bg-opacity-50 bg-white text-black items-center justify-between rounded-lg shadow-md m-1">
+                            <span className="mb-2 md:mb-0">Range: 5Cr to 10Cr</span>
+                            <span>Interest: 13%</span>
+                        </div>
+                        <div className="text-md font-bold py-4 px-6 w-[60%] mx-auto text-center flex flex-col md:flex-row bg-opacity-50 bg-white text-black items-center justify-between rounded-lg shadow-md m-1">
+                            <span className="mb-2 md:mb-0">Range: 10Cr to 15Cr</span>
+                            <span>Interest: 17%</span>
+                        </div>
+                        <div className="text-md font-bold py-4 px-6 w-[60%] mx-auto text-center flex flex-col md:flex-row bg-opacity-50 bg-white text-black items-center justify-between rounded-lg shadow-md m-1">
+                            <span className="mb-2 md:mb-0">Range: 15Cr to 20Cr</span>
+                            <span>Interest: 21%</span>
+                        </div>
+                        <div className="text-md font-bold py-4 px-6 w-[60%] mx-auto text-center flex flex-col md:flex-row bg-opacity-50 bg-white text-black items-center justify-between rounded-lg shadow-md m-1">
+                            <span className="mb-2 md:mb-0">Range: Above 20Cr</span>
+                            <span>Interest: 25%</span>
+                        </div>
+                        <input
+                            type='number'
+                            step='100000'
+                            className="mt-5 p-2 border border-gray-300 rounded-md mb-4 focus:outline-none focus:ring-2 focus:ring-blue-400 text-black"
+                            placeholder="Enter the loan amount"
+                            value={loanAmount}
+                        />
+                        <div className="flex justify-between w-1/3 mt-2">
+                            <button
+                                className="px-4 py-2 font-semibold shadow-lg transition-transform transform bg-[#8381E7] text-white hover:scale-105 hover:bg-[#5754b3] border rounded-md"
+                                onClick={openConfirm}
+                            >
+                                Confirm
+                            </button>
                             <button
                                 className="px-4 py-2 font-semibold shadow-lg transition-transform transform bg-[#8381E7] text-white hover:scale-105 hover:bg-[#5754b3] border rounded-md"
                                 onClick={closeOverlay}
-                                style={{
-                                    border: '2.84px solid',
-                                    borderImageSource: 'linear-gradient(101.11deg, #DAC9FF 38.45%, rgba(148, 120, 153, 0) 86.99%)',
-                                    borderImageSlice: 1,
-                                }}
                             >
-                                Close
+                                Cancel
+                            </button>
+                        </div>
+                    </div>    
+                </div>
+            )}
+
+            {isConfirmOpen && (
+                <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-75 backdrop-blur-sm">
+                    <div className="flex flex-col h-[80vh] w-[90%] md:w-[70%] lg:w-[50%] border-white border-4 rounded-xl shadow-xl overflow-hidden bg-[#6865C9] text-white items-center justify-center">
+                        {/* Header */}
+                        <div className="text-2xl font-bold h-[15%] w-full text-center pt-6">
+                            Your Applied Loan Amount is
+                        </div>
+                        <div className="text-lg font-bold py-4 px-6 w-[60%] mx-auto text-center flex flex-col md:flex-row bg-opacity-50 bg-white text-black items-center justify-centre rounded-lg shadow-md m-1">
+                            <span>₹{loanAmount}Cr/-</span>
+                        </div>
+                        <div className="flex justify-between w-1/3 mt-2">
+                            <button
+                                className="px-4 py-2 font-semibold shadow-lg transition-transform transform bg-[#8381E7] text-white hover:scale-105 hover:bg-[#5754b3] border rounded-md"
+                                onClick={openAgreement}
+                            >
+                                Confirm
+                            </button>
+                            <button
+                                className="px-4 py-2 font-semibold shadow-lg transition-transform transform bg-[#8381E7] text-white hover:scale-105 hover:bg-[#5754b3] border rounded-md"
+                                onClick={closeConfirm}
+                            >
+                                Go Back
                             </button>
                         </div>
                     </div>    
