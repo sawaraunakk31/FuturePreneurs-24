@@ -1,4 +1,5 @@
 import { connectMongo } from "@/libs/mongodb";
+import { Round0 } from "@/models/round0.model";
 import { TeamModel } from "@/models/team.model";
 import { NextResponse } from "next/server";
 

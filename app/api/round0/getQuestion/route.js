@@ -28,8 +28,8 @@ export async function GET(req, res) {
     //     { status: 403 }
     //   );
     // } else {
-
-    const round0Data = await Round0.findOne({teamId:teamData._id})
+    const round0Data = await Round0.findOne({teamId:teamData._id});
+    console.log('its me',round0Data)
     const questionCatogory = round0Data.questionCategory;
     console.log('ggggggggggggggggggg',questionCatogory);
     const pointer = round0Data.questionPointer;

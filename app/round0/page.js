@@ -16,11 +16,12 @@ export default function Qualifier() {
   const [questionCategory, setQuestionCategory] = useState("instruction");
   const [questionNumber, setQuestionNumber] = useState(0);
   const [chronoNumber, setChronoNumber] = useState(0);
-  const [teamName, setTeamName] = useState("ripun");
+  const [teamName, setTeamName] = useState("");
   const [finalAnswer, setFinalAnswer] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const { data: session, status } = useSession();
   const router = useRouter();
+  const [test,setTest] = useState('');
 
   // useEffect(()=>{
   //   const fetchData = async () => {
@@ -50,7 +51,7 @@ export default function Qualifier() {
       getUserData();
       getQuestionData();
     }
-  },[status])
+  },[status,test])
 
   const autoSubmit = () => {
     setIsLoading(true);
@@ -124,10 +125,11 @@ export default function Qualifier() {
       });
       if (response.ok) {
         console.log(response);
-        // location.reload();
-        getQuestionData();
         setFinalAnswer([]);
         setIsLoading(false);
+        getQuestionData();
+        setTest(response);
+        // location.reload();
       } else {
         console.log("error");
         setIsLoading(false);
@@ -200,7 +202,7 @@ export default function Qualifier() {
                   setFinalAnswer={setFinalAnswer}
                 />
                 <div className="w-full flex  justify-center items-center">
-                  {(questionCategory === "hard" && chronoNumber === 9) ? (
+                  {(questionCategory === "hard" && chronoNumber === 4) ? (
                     <button
                       id="nextButton"
                       type="submit"

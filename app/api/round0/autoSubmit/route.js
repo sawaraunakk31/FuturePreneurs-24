@@ -1,6 +1,7 @@
 import time from "@/constant/round0/time";
 import { connectMongo } from "@/libs/mongodb";
 import { Round0 } from "@/models/round0.model";
+import { TeamModel } from "@/models/team.model";
 import { Event1Test } from "@/models/user.model";
 import { getTokenDetails } from "@/utils/getTokenDetails";
 import { getToken } from "next-auth/jwt";
@@ -15,13 +16,13 @@ export async function GET(req, res) {
       ? token.accessTokenFromBackend
       : req.headers.get("Authorization").split(" ")[1];
     let userId = await getTokenDetails(auth);
-    const teamData = await Round0.findOne({ teamLeaderId: userId });
+    const teamData = await TeamModel.findOne({ teamLeaderId: userId });
     if (!teamData) {
       return NextResponse.json({ message: "Team not found" }, { status: 400 });
     }
     
     await Round0.findOneAndUpdate(
-        { teamLeaderId: userId },
+        { teamId: teamData._id },
         {
           questionCategory: 'waiting'
         }

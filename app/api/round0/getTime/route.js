@@ -34,13 +34,15 @@ export async function GET(req) {
     }
 
     const teamId = team._id;  // Extract team ID
-    const teamData = await Round0.findOne({ _id: teamId });
+    const teamData = await Round0.findOne({ teamId:teamId });
+    console.log('hhhhhhhhhhhhhhhhhh',teamData)
 
     if (!teamData.startTime) {
       // If startTime is not set, update the document with startTime and endTime
       await Round0.findOneAndUpdate(
-        { _id: teamId },
-        { startTime, endTime }
+        { teamId:teamId },
+        { startTime, endTime },
+        { new : true}
       );
       return NextResponse.json(
         {
