@@ -119,49 +119,40 @@ const Instructions = () => {
           <CountdownTimer targetDate={targetDate} />
         </div>
         <p>
-          Welcome to the Qualifying round of FuturePrenuers 10.0 . The quiz is
-          designed to assess your knowledge and skills. To successfully qualify,
-          you must answer the questions with accuracy and precision.
+        Welcome to the Qualifying Round of Futurepreneurs 10.0!
         </p>
         <br />
         <p>
-          Read the following instructions carefully to ensure a smooth and
-          successful completion of the quiz.
+        This qualifying round will evaluate your entrepreneurial knowledge, and business understanding. Your performance on this quiz will determine your eligibility to advance to the next round.
+        </p>
+        <br />
+        <p>
+        Quiz Instructions:
         </p>
         <ul className="list-inside list-disc">
           <li>
-            The quiz is only <span className="text-red-600">30 minutes</span>{" "}
-            long and can only be accessed using the button given below.
+          Participants can start the quiz between 10 PM to 10:30 PM.
           </li>
           <li>
-            The Quiz will{" "}
-            <span className="text-red-600">
-              stop accepting responses at 9:40 PM
-            </span>
-            , and hence maximum you can start the quiz is by 9:10 PM.
+          The duration of the quiz is 40 minutes. The last submission will be at 11.10 PM.
           </li>
           <li>
-            The quiz contains{" "}
-            <span className="text-red-600">only Single Choice Correct</span>{" "}
-            questions. Be careful when you choose answers.
+          The Quiz can only be accessed from the Team Leaders dashboard with the Leader's registered email ID.
           </li>
           <li>
-            If you feel the answer is not given in the questions, you can choose
-            the option closest to what you think is correct.
+          Only one submission per team will be accepted. Multiple submissions will result in disqualification of the team.
           </li>
           <li>
-            <span className="text-red-600">Only one response per team</span>{" "}
-            will be accepted, quiz link would be visible only on the team
-            leader&apos;s dashboard.
+          The quiz can only be submitted after completion, otherwise, it will auto-submit after 40 minutes.
           </li>
-          <li className="text-red-600">
-            Make sure that the form is opened using the same account / email ID
-            from which the leader had logged in and registered for the event.
+          <li>
+          The Quiz contains only Single Choice Correct questions.
           </li>
-          <li className="text-red-600">
-            In case of a submission form a mail ID that is different from the
-            mail ID that was used to register will lead to immediate
-            disqualification.
+          <li>
+          There is no negative marking..
+          </li>
+          <li>
+          You can skip the questions, but you cannot navigate backwards.
           </li>
         </ul>
       </div>
