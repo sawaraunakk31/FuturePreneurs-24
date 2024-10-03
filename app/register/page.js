@@ -19,6 +19,7 @@ export default function Register() {
       router.push("/");
     } else if (status == "authenticated") {
       setLoading(false);
+      router.push("/");
       getUserData();
     }
   }, [status, router]);

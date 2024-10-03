@@ -42,6 +42,7 @@ export default function page() {
       router.push('/');
     } else {
       setLoading(false);
+      router.push("/");
       toast.error('Please give your consent');
     }
   }
@@ -53,6 +54,7 @@ export default function page() {
         router.push("/");
       } else if (status === "authenticated") {
         // toast.success("Logged In");
+        router.push("/");
         getData();
       }
     }

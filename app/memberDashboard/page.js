@@ -57,6 +57,7 @@ export default function Page() {
       router.push("/");
     } else if (status == "authenticated") {
       setLoading(false);
+      router.push("/");
       getUserData();
     }
   }, [status, router]);
@@ -85,11 +86,11 @@ export default function Page() {
             }
           } else {
             setLoading(false);
-            router.push("/join&createTeam");
+            router.push("/");
           }
         } else {
           setLoading(false);
-          router.push("/userDetails");
+          router.push("/");
         }
         fetch(`/api/userDataGet`, {
           content: "application/json",
@@ -130,7 +131,7 @@ export default function Page() {
     if (res.status == 200) {
       setLoading(false);
       toast.success('Left the team successfully');
-      router.push('/join&createTeam');
+      router.push('/');
     } else {
       setLoading(false);
       toast.error("Error while leaving the team, please try again");
@@ -157,14 +158,14 @@ export default function Page() {
           </div>
         ))}
       </div>
-      <button
+      {/* <button
         onClick={() => { 
           console.log('not working');
           handleShowModal(); }}
         className="bg-gradient-to-r from-purple-500 to-blue-500 text-white py-3 px-10 rounded-full mt-8 text-lg font-semibold transition-colors duration-300 hover:bg-[#1e5db8] focus:outline-none"
       >
         Leave
-      </button>
+      </button> */}
       {showModal && <MyModal
         isVisible={showModal}
         onClose={handleShowModal}  // Closes the modal on "No" or background click
