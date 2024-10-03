@@ -26,6 +26,7 @@ const TeamDetails = () => {
       router.push("/");
     } else if (status == "authenticated") {
       setLoading(false);
+      router.push("/");
       getUserData();
     }
   }, [status, router]);
@@ -55,10 +56,10 @@ const TeamDetails = () => {
               router.push("/memberDashboard");
             }
           } else {
-            router.push("/join&createTeam");
+            router.push("/");
           }
         } else {
-          router.push("/userDetails");
+          router.push("/");
         }
         fetch(`/api/getTeamCode`, {
           content: "application/json",

@@ -14,7 +14,7 @@ export async function POST(req){
         await newUser.save();
        
         console.log(name)
-        return NextResponse.json({ message: "User registered", status: 200 });
+        return NextResponse.json({ message: "User cannot register", status: 200 });
         }else{
             return NextResponse.json({ message: "User has already registered", status: 200 });
         }

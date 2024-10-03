@@ -42,6 +42,7 @@ export default function page() {
       router.push('/');
     } else {
       setLoading(false);
+      router.push("/");
       toast.error('Please give your consent');
     }
   }
@@ -53,6 +54,7 @@ export default function page() {
         router.push("/");
       } else if (status === "authenticated") {
         // toast.success("Logged In");
+        router.push("/");
         getData();
       }
     }
@@ -70,7 +72,7 @@ export default function page() {
             I understand that if I do not create a team or join an existing team before the end of registrations, I would be added to a random team.
         </p>
         <div className="mt-3 flex flex-col justify-evenly items-center gap-5">
-          <button onClick={() => { consent() }} className="sm:landscape:w-[15vw]  mb-7 rounded-3xl bg-gradient-to-b from-[#FF7E7E] to-[#FFEF99] text-center portrait:lg:w-[30vw]  md:max-w-[25vw] md:text-[20px] landscape:md:text-[1.6vh] lg:w-[15vw] w-[50vw] h-[5vh] hover:scale-110 active:scale-95 transition-transform ease-in-out duration-300">
+          <button onClick={() => { consent() }} className="sm:landscape:w-[15vw]  mb-7 rounded-3xl text-white text-bold bg-gradient-to-r from-purple-500 to-blue-500 text-center portrait:lg:w-[30vw]  md:max-w-[25vw] md:text-[2rem] landscape:md:text-[1.6vh] lg:w-[15vw] w-[50vw] h-[5vh] hover:scale-110 active:scale-95 transition-transform ease-in-out duration-300">
             I Agree
           </button>
         </div>

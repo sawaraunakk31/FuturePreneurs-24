@@ -35,7 +35,7 @@ export default function Timeline() {
   return (
     <div id='timeline'>
       <div className="hidden md:flex min-h-screen justify-center items-center bg-gradient-to-b from-blue-100 to-white relative overflow-hidden">
-        <div className="grid lg:grid-cols-5 md:grid-cols-4 gap-5 p-6 lg:max-w-[90%] md:max-w-[95%] relative">
+        <div className="grid lg:grid-cols-5 md:grid-cols-4 gap-5 pt-12 px-2 lg:max-w-[90%] md:max-w-[95%] relative">
           {/* Timeline Box (Excluded from effect) */}
           <div className="lg:col-span-3 md:col-span-2 bg-gradient-to-t from-purple-400 to-[#8055E0] rounded-2xl text-white p-5 flex flex-col justify-center items-center relative h-[18rem]">
             <h1 className="text-xl font-bold">Futurepreneurs 10.0</h1>
