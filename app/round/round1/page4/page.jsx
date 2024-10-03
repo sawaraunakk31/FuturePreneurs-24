@@ -151,6 +151,11 @@ export default function Bidder() {
         const newBidValue = parseInt(price);
         if (isNaN(newBidValue) || newBidValue <= 0) {
             toast.error("Please enter a valid bid amount.");
+            setHold(false);
+            return;
+        } else if (newBidValue>(0.9*walletBalance)) {
+            toast.error("You can only bid 90% of your wallet amount.");
+            setHold(false);
             return;
         } else if (currentBid<newBidValue) {
             socket.emit("newBid", {newBid: newBidValue, index});
@@ -175,6 +180,7 @@ export default function Bidder() {
             setPrice("");
           } else {
             toast.error("Your bid is lower than the current highest bid.");
+            setHold(false);
             setPrice("");
           }
     };
@@ -324,8 +330,8 @@ export default function Bidder() {
                                             }`}
                                             disabled={!price && allocatedItems[selectedItem.id-1] && hold && !bondsBidFor.includes(selectedItem.id-1)}
                                             onClick={() => {
-                                                handleNewBid(selectedItem.id, selectedItem.highestBid);
                                                 setHold(true);
+                                                handleNewBid(selectedItem.id, selectedItem.highestBid);
                                             }}
                                         >
                                             Submit
