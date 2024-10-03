@@ -10,14 +10,15 @@ const Instructions = () => {
   const { data: session, status } = useSession();
   const targetDate = new Date("2024-10-03T22:00");
 
-  // Function to check current time and enable button at 22:00
+  // Function to check current time and enable button between 22:00 and 22:30
   const checkTime = () => {
     const currentTime = new Date();
-    const targetTime = targetDate.getTime();
+    const startTime = targetDate.getTime(); // 22:00
+    const endTime = new Date("2024-10-03T22:30").getTime(); // 22:30
     const currentTimestamp = currentTime.getTime();
 
-    // Enable the button when the current time is at or past 22:00
-    if (currentTimestamp >= targetTime) {
+    //Enable the button when the current time is between 22:00 and 22:30
+    if (currentTimestamp >= startTime && currentTimestamp <= endTime) {
       setButtonEnabled(true);
     } else {
       setButtonEnabled(false);
@@ -41,18 +42,20 @@ const Instructions = () => {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authorization: session?.accessTokenBackend ? `Bearer ${session.accessTokenBackend}` : '',
+        Authorization: session?.accessTokenBackend
+          ? `Bearer ${session.accessTokenBackend}`
+          : "",
         "Access-Control-Allow-Origin": "*",
-      }
+      },
     })
       .then((res) => {
         setLoading(false);
-  
+
         // Handle different status codes here
         if (res.status === 200) {
           toast.success("Quiz started successfully.");
           location.reload();
-          return res.json();  // Process the valid JSON response
+          return res.json(); // Process the valid JSON response
         } else if (res.status === 403) {
           toast.error("Quiz has not started yet.");
         } else if (res.status === 404) {
@@ -60,7 +63,7 @@ const Instructions = () => {
         } else {
           toast.error("An unexpected error occurred. Please try again.");
         }
-  
+
         // Return an empty object to avoid parsing issues if no JSON is returned
         return {};
       })
@@ -83,56 +86,52 @@ const Instructions = () => {
         <div className="px-[43%]">
           <CountdownTimer targetDate={targetDate} />
         </div>
-        <p>
-        Welcome to the Qualifying Round of Futurepreneurs 10.0!
-        </p>
+        <p>Welcome to the Qualifying Round of Futurepreneurs 10.0!</p>
         <br />
         <p>
-        This qualifying round will evaluate your entrepreneurial knowledge, and business understanding. Your performance on this quiz will determine your eligibility to advance to the next round.
+          This qualifying round will evaluate your entrepreneurial knowledge and business
+          understanding. Your performance on this quiz will determine your eligibility to
+          advance to the next round.
         </p>
         <br />
-        <p>
-        Quiz Instructions:
-        </p>
+        <p>Quiz Instructions:</p>
         <ul className="list-inside list-disc">
+          <li>Participants can start the quiz between 10 PM to 10:30 PM.</li>
           <li>
-          Participants can start the quiz between 10 PM to 10:30 PM.
+            The duration of the quiz is 40 minutes. The last submission will be at 11.10
+            PM.
           </li>
           <li>
-          The duration of the quiz is 40 minutes. The last submission will be at 11.10 PM.
+            The Quiz can only be accessed from the Team Leaders dashboard with the
+            Leader's registered email ID.
           </li>
           <li>
-          The Quiz can only be accessed from the Team Leaders dashboard with the Leader's registered email ID.
+            Only one submission per team will be accepted. Multiple submissions will
+            result in disqualification of the team.
           </li>
           <li>
-          Only one submission per team will be accepted. Multiple submissions will result in disqualification of the team.
+            The quiz can only be submitted after completion, otherwise, it will
+            auto-submit after 40 minutes.
           </li>
-          <li>
-          The quiz can only be submitted after completion, otherwise, it will auto-submit after 40 minutes.
-          </li>
-          <li>
-          The Quiz contains only Single Choice Correct questions.
-          </li>
-          <li>
-          There is no negative marking..
-          </li>
-          <li>
-          You can skip the questions, but you cannot navigate backwards.
-          </li>
+          <li>The Quiz contains only Single Choice Correct questions.</li>
+          <li>There is no negative marking.</li>
+          <li>You can skip the questions, but you cannot navigate backwards.</li>
+          <br/>
+          <p class="flex flex-row justify-center items-center pl-[34%] text-4xl font-bold ">THE QUIZ IS NOW OVER!</p>
+
         </ul>
       </div>
       <div>
-        <button
+        {/* <button
           className={`px-4 py-2 rounded-full text-white bg-gradient-to-r from-purple-500 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none m-4 w-full h-12 flex items-center justify-center font-bold hover:opacity-80`}
           onClick={() => startQuiz()}
-          disabled={!buttonEnabled} // Disable until time hits 22:00
+          disabled={!buttonEnabled} // Disable until time hits 22:00 and after 22:30
         >
           {loading ? "Loading..." : buttonEnabled ? "Start Quiz" : "Quiz Locked"}
-        </button>
+        </button> */}
       </div>
       <Toaster />
     </main>
   );
 };
-
 export default Instructions;
