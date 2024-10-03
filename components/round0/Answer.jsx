@@ -5,6 +5,10 @@ import questions from "@/constant/round0/questions.json";
 export default function AnswerForQualifier(props) {
   const [selectedOptions, setSelectedOptions] = useState({});
 
+
+  useEffect(() => {
+    setSelectedOptions({});
+  }, [props.questionNumber]);
   useEffect(()=>{
     setSelectedOptions({});
   },[props.changeOption])
