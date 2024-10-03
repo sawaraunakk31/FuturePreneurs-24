@@ -204,7 +204,7 @@
                     setFinalAnswer={setFinalAnswer}
                   />
                   <div className="w-full flex  justify-center items-center">
-                    {(questionCategory === "hard" && chronoNumber === 4) ? (
+                    {(questionCategory === "hard" && chronoNumber === 6) ? (
                       <button
                         id="nextButton"
                         type="submit"
