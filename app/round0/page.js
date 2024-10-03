@@ -63,6 +63,29 @@ export default function Qualifier() {
   },[status,test])
 
 
+  const checkRound = () => {
+    setIsLoading(true);
+    setIsLoading(true);
+    fetch(`/api/checkRound`, {
+      content: 'application/json',
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${session.accessTokenBackend}`,
+        'Access-Control-Allow-Origin': '*',
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if(data.level == 0){
+          setIsLoading(false);
+        }else{
+          router.push('/');
+        }
+        setIsLoading(false);
+      });
+  };
+
   const autoSubmit = () => {
     setIsLoading(true);
     console.log('hii');
