@@ -24,7 +24,6 @@ const TimerOverlay = ({ hold, startTime }) => {
             setTimeLeft(timeRemaining);
             setIsActive(true);
         } else {
-            // Reset timer and overlay when hold is false
             setIsActive(false);
             setTimeLeft(0);
         }
@@ -38,14 +37,13 @@ const TimerOverlay = ({ hold, startTime }) => {
                 setTimeLeft((prev) => prev - 1);
             }, 1000);
         } else if (timeLeft <= 0) {
-            // If time runs out, deactivate the overlay
             setIsActive(false);
         }
 
         return () => clearInterval(timer);
     }, [isActive, timeLeft]);
 
-    if (!isActive || !hold) return null; // Do not render the overlay if it's inactive or hold is false
+    if (!isActive || !hold) return null;
 
     return (
         <div style={overlayStyles}>
@@ -60,7 +58,6 @@ const TimerOverlay = ({ hold, startTime }) => {
     );
 };
 
-  
   const overlayStyles = {
     position: 'fixed',
     top: 0,
@@ -78,8 +75,8 @@ const TimerOverlay = ({ hold, startTime }) => {
   const timerStyles = {
     textAlign: 'center',
   };
+
 export default function Bidder() {
- 
     const [loading, setLoading] = useState(true);
     const { data: session, status } = useSession();
     const [items, setItems] = useState([]);
@@ -198,7 +195,7 @@ export default function Bidder() {
         socket.on("highestBids", setHighestBids);
         socket.on("initialWallet", initialWallet);
 
-        socket.on("HoldFalse", () => setHold(false)); // Using an arrow function
+        socket.on("HoldFalse", () => setHold(false));
         socket.on("highestBid", handleNewHighestBid);
 
         socket.on("syncTimer",({timeLeft:serverTimeLeft})=>{
@@ -229,7 +226,7 @@ export default function Bidder() {
         };
     }, [status]);
 
-    const setHighestBids = ({ highestBids, allocatedBids, bondsBidFor, wallet }) => {
+    const setHighestBids = ({ highestBids, allocatedBids, bondsBidFor }) => {
         setItems(highestBids);
         setAllocatedItems(allocatedBids);
         setBondsBidFor(bondsBidFor);
@@ -437,7 +434,7 @@ export default function Bidder() {
                                             </li>
                                             <hr className="border-white w-full my-1"/>
                                             <li className="flex justify-between items-center font-semibold">
-                                                <span>Profit</span>
+                                                <span>Net Profit</span>
                                                 <span className="bg-white w-[40%] px-2 text-right">
                                                     ₹ {(selectedItem.obj.profit/10000000).toFixed(2)} Cr
                                                 </span>
@@ -498,7 +495,7 @@ export default function Bidder() {
                                 </>
                             ) : (
                                 <div className="flex flex-col justify-center items-center h-full text-center">
-                                    <h1 className="text-xl text-black">No Item Selected</h1>
+                                    <h1 className="text-xl text-black mb-5">No Item Selected</h1>
                                     {isAdmin?
                                         <button
                                             className={`w-[80%] py-2 text-white rounded-md transition-transform ${
