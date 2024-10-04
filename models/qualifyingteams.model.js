@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 
-const teamSchema = mongoose.Schema(
+const   qualifiedTeamSchema = mongoose.Schema(
   {
     teamName: {
       type: String,
@@ -75,8 +75,8 @@ const teamSchema = mongoose.Schema(
       type: Number,  
     },
   },
-  { collection: 'TeamModel' }
+  { collection: 'QualifiedTeam' }
 );
 
-export const TeamModel =
-  mongoose.models.TeamModel || mongoose.model('TeamModel', teamSchema);
+export const QualifiedTeam =
+  mongoose.models.QualifiedTeam || mongoose.model('QualifiedTeam', qualifiedTeamSchema);
