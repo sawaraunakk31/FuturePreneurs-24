@@ -17,6 +17,7 @@ const app = next({ dev, hostname, port });
 const handler = app.getRequestHandler();
 
 let timeLeft = 900; // initial time in seconds (15 minutes)
+let startTimer =false;
 let timerInterval = null;
 
 app.prepare().then(async () => {
@@ -56,12 +57,45 @@ app.prepare().then(async () => {
             socket.disconnect();
             return;
           }
+
           socket.join(`${team.teamLeaderId}`);
+
+          if (team.isAdmin != true && startTimer == false) {
+            console.log("The round has not started yet");
+            socket.emit("start_error", {message : "The round has not started yet"});
+            socket.disconnect();
+            return;
+          }
+
+          socket.emit("isAdmin", { isAdmin: (team.isAdmin == true ? true : false)});
+
           const bondsBidFor = team.bondsBidFor;
           const wallet = team.wallet;
 
           console.log("User details:", user);
-          socket.emit("userDetails", { team });
+          
+          socket.on("startTimer", () => {
+            if (team.isAdmin == true) {
+              startTimer = true;
+              timeLeft = 900;
+              if (!timerInterval && startTimer==true) {
+                timerInterval = setInterval(() => {
+                  if (timeLeft > 0) {
+                    timeLeft -= 1;
+                    io.emit("syncTimer", { timeLeft }); // Broadcast the remaining time to all clients
+                  } else {
+                    clearInterval(timerInterval);
+                    timerInterval = null;
+                  }
+                }, 1000);
+              }
+            } else {
+              console.log("The round has not started yet");
+              socket.emit("startError", {message : "The round has not started yet"});
+              socket.disconnect();
+              return;
+            }
+          })
                 
           // Fetch bond bidding data
           let bondBidding = await BondBidding.findById('66f84084d39aba9ca3f14ba5');
@@ -71,6 +105,7 @@ app.prepare().then(async () => {
           }
           // Send current time left and highest bids to the newly connected user
           socket.emit("syncTimer", { timeLeft });
+          socket.emit("initialWallet", {wallet: wallet})
           io.emit("highestBids", {highestBids: bondBidding.highestBids, allocatedBids: bondBidding.allocatedBids, bondsBidFor: bondsBidFor});
         
           socket.on("newBid", async({newBid, index})=>{
@@ -123,19 +158,6 @@ app.prepare().then(async () => {
     io.on("disconnect", () => {
         console.log("A client disconnected");
     });
-
-    // Start the timer on the server if not already started
-    if (!timerInterval) {
-      timerInterval = setInterval(() => {
-        if (timeLeft > 0) {
-          timeLeft -= 1;
-          io.emit("syncTimer", { timeLeft }); // Broadcast the remaining time to all clients
-        } else {
-          clearInterval(timerInterval);
-          timerInterval = null;
-        }
-      }, 1000);
-    }
 
     httpServer
       .once("error", (err) => {

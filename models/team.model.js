@@ -73,6 +73,10 @@ const teamSchema = mongoose.Schema(
     hold:{
       type:Number,
       default:null
+    },
+    isAdmin: {
+      type: Boolean,
+      default: false,
     }
   },
   { collection: 'TeamModel' }
