@@ -10,6 +10,7 @@ import Image from 'next/image';
 import back from '../back2.svg';
 import file from '@/public/constant/round1/bonds.json';
 import { set } from "mongoose";
+
 const TimerOverlay = ({ hold, startTime }) => {
     const [timeLeft, setTimeLeft] = useState(0);
     const [isActive, setIsActive] = useState(false);
@@ -92,14 +93,18 @@ export default function Bidder() {
     const [team, setTeam] = useState("");
     const [hold,setHold]=useState(0);
     const [bondsBidFor, setBondsBidFor] = useState([]);
-
-  const [startTime, setStartTime] = useState(0);
+    const [priceChange, setPriceChange] = useState(false);
+    const [isOverlayOpen, setIsOverlayOpen] = useState(false);
+    const [startTime, setStartTime] = useState(0);
 
     const handlePriceChange = (e) => {
-        const value = e.target.value;
-        if (/^\d*$/.test(value)) {
-            setPrice(value);
+        let value = e.target.value;
+        value = value.replace(/[^0-9]/g, '');
+        if (value.length > 10) {
+            toast.error('Value cannot exceed 999.99 Cr.', { duration: 500 });
+            return;
         }
+        setPrice(value);
     };
     
     const divRef = useRef(null);
@@ -178,16 +183,6 @@ export default function Bidder() {
             console.log("user disconnected");
         }
 
-        // const timer = setInterval(() => {
-        //     setTimeLeft((prevTime) => {
-        //         if (prevTime > 0) return prevTime - 1;
-        //         setIsTimerOver(true);
-        //         clearInterval(timer);
-        //         return 0;
-        //     });
-        // }, 1000);
-        // return () => clearInterval(timer);
-
         socket.on("connect", onConnect);
         socket.on("disconnect", onDisconnect);
 
@@ -203,6 +198,8 @@ export default function Bidder() {
             else if (serverTimeLeft == 0) {
                 setIsBiddingOver(true);
                 toast.error("Bidding is over.");
+                setTimeout(10000);
+                router.push("./page5");
             }
         })
         
@@ -230,6 +227,7 @@ export default function Bidder() {
             newItems[index] = highestBid;
             return newItems;
         });
+        setTimeout(1000, setPriceChange(true));
     }
 
     const handleNewBid = (ID, currentBid) => {
@@ -254,6 +252,8 @@ export default function Bidder() {
         } else if (currentBid<newBidValue) {
             socket.emit("newBid", {newBid: newBidValue, index});
             
+            setPriceChange(true);
+
             setItems(prevItems => {
                 const newItems = [...prevItems];
                 newItems[index] = newBidValue;
@@ -285,9 +285,9 @@ export default function Bidder() {
         return `${mins < 10 ? '0' : ''}${mins}:${secs < 10 ? '0' : ''}${secs}`;
     };
 
-    const getName = (id) => {
+    const getObject = (id) => {
         const obj = file.find(item => item.id == id);
-        return obj ? obj.name : 'Unknown Company';
+        return obj ? obj : null;
     };
 
     return (
@@ -324,6 +324,15 @@ export default function Bidder() {
                     .hide-scrollbar::-webkit-scrollbar {
                         display: none;  /* Safari and Chrome */
                     }
+                    @keyframes blink {
+                        0% { opacity: 1; }
+                        50% { opacity: 0; }
+                        100% { opacity: 1; }
+                        100% { opacity: 1; }
+                    }
+                    .blink-text {
+                        animation: blink 1s forwards;
+                    }
                 `}</style>
                 <div
                     
@@ -350,7 +359,7 @@ export default function Bidder() {
                                 onClick={() => {
                                     if ((!isFirstHalf || index <= 25) && !allocatedItems[index] && !hold && !bondsBidFor.includes(index)) {
                                         setPrice('');
-                                        setSelectedItem(selectedItem && selectedItem.id === item.id ? null : {id: index+1, name: getName(index+1), highestBid: item })
+                                        setSelectedItem(selectedItem && selectedItem.id === item.id ? null : {id: index+1, obj: getObject(index+1), highestBid: item })
                                     } else if ( allocatedItems[index] ) {
                                         toast.error("This item is already allocated to someone.");
                                     } else if ( bondsBidFor.includes(index) ) {
@@ -366,14 +375,14 @@ export default function Bidder() {
                                     : selectedItem && selectedItem.id === index+1 
                                     ? 'text-white'
                                     : 'text-[#8481FA]'
-                                }`}>{`Item ${index + 1}`}</h2>
+                                }`}>{`Bond ${index + 1}`}</h2>
                                 <p className={`text-sm pt-2 pb-1 ${
                                     (isFirstHalf && index >= 25)
                                     ? 'text-white'
                                     : selectedItem && selectedItem.id === index+1 
                                     ? 'text-white'
                                     : 'text-black'
-                                }`}>Highest</p>
+                                }`}>Highest Bid</p>
                                 <p className={`font-semibold pb-1 px-2 rounded-md w-[100%] ${
                                     (isFirstHalf && index >= 25)
                                     ? 'text-white bg-white'
@@ -390,47 +399,65 @@ export default function Bidder() {
                         <div className="py-4 h-full flex flex-col justify-between bg-[linear-gradient(114deg,rgba(232,232,232,0.10)_15.11%,rgba(0,56,255,0.10)_81.96%)] border-white border-4 shadow-xl rounded-2xl">
                             {selectedItem ? (
                                 <>
-                                    <div className="text-center">
-                                        <h1 className="text-2xl font-bold text-black">{selectedItem.name}</h1>
+                                    <div className="text-center h-[10%] pb-4">
+                                        <h1 className="text-xl font-bold text-black">{selectedItem.obj.name.length > 24 ? `${selectedItem.obj.name.substring(0, 20)}...` : selectedItem.obj.name}</h1>
                                     </div>
-                                    <hr className="border-white border-2 w-full my-1"/>
-                                    <div className="m-2">
+                                    <hr className="border-white border-2 w-full mb-2"/>
+                                    <div className="m-2 h-[60%]">
                                         <ul className="list-inside text-black">
                                             <li className="flex justify-between items-center font-semibold">
                                                 <span>Current Bid</span>
-                                                <span className="bg-white w-[40%] px-2 text-right">{items[selectedItem.id-1]/1000}</span>
+                                                <span className="bg-white w-[40%] px-2 text-right">
+                                                    ₹ {(selectedItem.highestBid/10000000).toFixed(2)} Cr
+                                                </span>
                                             </li>
                                             <hr className="border-white w-full my-1"/>
                                             <li className="flex justify-between items-center font-semibold">
-                                                <span>Revenue</span>
-                                                <span className="bg-white w-[40%] px-2 text-right">{selectedItem.id}</span>
+                                                <span>Net Revenue</span>
+                                                <span className="bg-white w-[40%] px-2 text-right">
+                                                    ₹ {(selectedItem.obj.revenue/10000000).toFixed(2)} Cr
+                                                </span>
                                             </li>
                                             <hr className="border-white w-full my-1"/>
                                             <li className="flex justify-between items-center font-semibold">
-                                                <span>Revenue</span>
-                                                <span className="bg-white w-[40%] px-2 text-right">{selectedItem.id}</span>
+                                                <span>Profit</span>
+                                                <span className="bg-white w-[40%] px-2 text-right">
+                                                    ₹ {(selectedItem.obj.profit/10000000).toFixed(2)} Cr
+                                                </span>
                                             </li>
                                             <hr className="border-white w-full my-1"/>
                                             <li className="flex justify-between items-center font-semibold">
-                                                <span>Revenue</span>
-                                                <span className="bg-white w-[40%] px-2 text-right">{selectedItem.id}</span>
+                                                <span>Yield</span>
+                                                <span className="bg-white w-[40%] px-2 text-right">
+                                                    {selectedItem.obj.yield}
+                                                </span>
                                             </li>
                                             <hr className="border-white w-full my-1"/>
                                             <li className="flex justify-between items-center font-semibold">
-                                                <span>Revenue</span>
-                                                <span className="bg-white w-[40%] px-2 text-right">{selectedItem.id}</span>
+                                                <span>Rating</span>
+                                                <span className="bg-white w-[40%] px-2 text-right">
+                                                    {selectedItem.obj.rating}
+                                                </span>
+                                            </li>
+                                            <hr className="border-white w-full my-1"/>
+                                            <li className="flex justify-between items-center font-semibold">
+                                                <span>D/E Ratio</span>
+                                                <span className="bg-white w-[40%] px-2 text-right">
+                                                    {selectedItem.obj.ratio}
+                                                </span>
                                             </li>
                                         </ul>
                                     </div>
-                                    <hr className="border-white border-2 w-full my-1"/>
-                                    <div className="flex flex-col items-center justify-center">
-                                        <textarea
-                                            className="w-[80%] p-3 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#8481FA] mb-4"
-                                            placeholder="Enter Price"
+                                    <hr className="border-white border-2 w-full mt-2"/>
+                                    <div className="flex flex-col items-center justify-center h-[30%]">
+                                        <input
+                                            type='text'
+                                            step='100000'
+                                            className="my-5 p-2 border w-[80%] border-gray-300 rounded-md mb-4 focus:outline-none focus:ring-2 focus:ring-[#FFE55B] text-[#573712]"
+                                            placeholder="Enter the Bid"
                                             value={price}
                                             onChange={handlePriceChange}
-                                            inputMode="numeric"
-                                        ></textarea>
+                                        />
                                         <button
                                             className={`w-[80%] py-2 text-white rounded-md transition-transform ${
                                                 price

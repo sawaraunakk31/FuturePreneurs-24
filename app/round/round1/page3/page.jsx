@@ -185,17 +185,9 @@ export default function PreBidder() {
                         background: 'linear-gradient(180deg, #FFF 0%, #DAD0FF 47%, #FFF 100%)',
                     }}>
                     <div className="p-8 w-3/4 overflow-y-auto hide-scrollbar">
-                        <div className="border-white border-4 rounded-2xl py-3 px-8 w-full bg-[linear-gradient(114deg,rgba(232,232,232,0.10)_15.11%,rgba(0,56,255,0.10)_81.96%)] cursor-pointer flex flex-row items-center justify-between mb-5 text-xl font-bold">
-                            <span className="text-black mb-0">Average Value (Large Cap)</span>
-                            <span className="w-[30%] text-right py-1 px-2 rounded-md text-white bg-[#8481FA]">₹ {(500.5).toFixed(4)} Cr /-</span>
-                        </div>
-                        <div className="border-white border-4 rounded-2xl py-3 px-8 w-full bg-[linear-gradient(114deg,rgba(232,232,232,0.10)_15.11%,rgba(0,56,255,0.10)_81.96%)] cursor-pointer flex flex-row items-center justify-between mb-5 text-xl font-bold">
-                            <span className="text-black mb-0">Average Value (Mid Cap)</span>
-                            <span className="w-[30%] text-right py-1 px-2 rounded-md text-white bg-[#8481FA]">₹ {(500.5).toFixed(4)} Cr /-</span>
-                        </div>
                         <div className="border-white border-4 rounded-2xl py-3 px-8 w-full bg-[linear-gradient(114deg,rgba(232,232,232,0.10)_15.11%,rgba(0,56,255,0.10)_81.96%)] cursor-pointer flex flex-row items-center justify-between mb-8 text-xl font-bold">
-                            <span className="text-black mb-0">Average Value (Small Cap)</span>
-                            <span className="w-[30%] text-right py-1 px-2 rounded-md text-white bg-[#8481FA]">₹ {(500.5).toFixed(4)} Cr /-</span>
+                            <span className="text-black mb-0">Average Value of Bond</span>
+                            <span className="w-[25%] text-right py-1 px-2 rounded-md text-white bg-[#8481FA]">₹ {(7.16).toFixed(2)} Cr /-</span>
                         </div>
                         {/* Items Grid */}
                         <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-10">
@@ -494,7 +486,7 @@ export default function PreBidder() {
                                         placeholder="Signature of Team Leader"
                                         value={teamLeaderSignature}
                                         onChange={(e) => setTeamLeaderSignature(e.target.value)}
-                                        className="border rounded p-2 w-full mb-2 bg-white bg-opacity-15 font-bold text-black placeholder-gray-800  "
+                                        className="border rounded p-2 w-full mb-2 bg-white bg-opacity-15 font-bold text-black placeholder-[ #c9c9c9]"
                                     />
                                 </div>
                             </div>
