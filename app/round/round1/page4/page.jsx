@@ -507,7 +507,7 @@ export default function Bidder() {
                                                 socket.emit("startTimer");
                                             }}
                                         >
-                                                StartBidding
+                                                Admin Start Timer
                                         </button> :
                                         null
                                     }

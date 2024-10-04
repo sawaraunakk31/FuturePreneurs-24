@@ -96,6 +96,8 @@ app.prepare().then(async () => {
               return;
             }
           })
+
+          socket.emit("userDetails", {team})
                 
           // Fetch bond bidding data
           let bondBidding = await BondBidding.findById('66f84084d39aba9ca3f14ba5');
