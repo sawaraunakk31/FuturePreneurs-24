@@ -39,10 +39,10 @@ const DashboardNavbar = () => {
     setLoading(true)
     if (status === "authenticated") {
       signOut(); // Log out if already authenticated
-      // router.push('/')
+      router.push('/')
       setLoading(false)
     } else {
-      signIn("google"); // Log in if not authenticated
+      signIn('google'); // Log in if not authenticated
       setLoading(false)
     }
   };

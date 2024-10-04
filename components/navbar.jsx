@@ -49,9 +49,10 @@ const Navbar = () => {
 
   const handleLoginClick = () => {
     if (status === "authenticated") {
+      router.push('/');
       signOut();
     } else {
-      signIn("google"); // Redirect to login if not logged in
+      signIn('google'); // Redirect to login if not logged in
     }
   };
 
@@ -177,7 +178,7 @@ const Navbar = () => {
 
       {/* Mobile Menu (only when isMenuOpen is true) */}
       {isMenuOpen && (
-        <div className="fixed inset-0 bg-black bg-opacity-85 backdrop-blur-sm transition-transform transform duration-300 ease-in-out md:hidden h-full w-full z-[9999]">
+        <div className="fixed inset-0 bg-black bg-opacity-85 backdrop-blur-sm transition-transform transform duration-300 ease-in-out md:hidden h-[100vh] w-[100vw] z-[9999]">
           <div className="flex flex-col items-center space-y-10 py-12 pt-16 h-full justify-center relative">
             {/* Close Button */}
             <button

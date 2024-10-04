@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import img1 from "@/assests/assests/teammember.jpg";
 import { useRouter } from "next/navigation";
-import {MyModal,ChangeLeaderModal} from "@/components/Modal";
+import { MyModal, ChangeLeaderModal } from "@/components/Modal";
 import { useSession } from "next-auth/react";
 import LoadingScreen from "@/components/LoadingScreen";
 import toast, { Toaster } from "react-hot-toast";
@@ -25,7 +25,6 @@ export default function Page() {
       getData();
     }
   }, [status, router]);
-
 
   const [teamMembers, setTeamMembers] = useState([
     {
@@ -66,7 +65,8 @@ export default function Page() {
   const [loading, setLoading] = useState(true);
   const [num, setNum] = useState(null);
   const [handleDeleteModal, setHandleDeleteModal] = useState(false);
-  const [deleteText,setDeleteText] = useState('');
+  const [deleteText, setDeleteText] = useState("");
+  const [isQualified, setIsQualified] = useState(false);
 
   const getUserData = async () => {
     const res = await fetch("/api/userInfo", {
@@ -74,30 +74,30 @@ export default function Page() {
       headers: {
         "Content-Type": "application/json",
       },
-  
+
       Authorization: `Bearer ${session?.accessTokenBackend}`,
       "Access-Control-Allow-Origin": "*",
     });
-    
+
     const data = await res.json();
-  
-    if(data?.user?.hasFilledDetails==true){
-      if(data?.user?.teamId){
-        if(data?.user?.teamRole==0){
+
+    if (data?.user?.hasFilledDetails == true) {
+      if (data?.user?.teamId) {
+        if (data?.user?.teamRole == 0) {
           setLoading(false);
-        }else{
+        } else {
           setLoading(false);
-          router.push('/memberDashboard')
+          router.push("/memberDashboard");
         }
-      }else{
+      } else {
         setLoading(false);
-        router.push('/join&createTeam');
+        router.push("/");
       }
-    }else{
+    } else {
       setLoading(false);
-      router.push('/userDetails');
+      router.push("/");
     }
-  }
+  };
 
   const getData = async () => {
     setLoading(true);
@@ -115,6 +115,7 @@ export default function Page() {
     setTeamName(data?.team?.teamName);
     setTeamMembers(data?.members);
     setcheck(data?.user?.teamRole);
+    setIsQualified(data?.team?.isQualified);
     setLoading(false);
   };
 
@@ -182,7 +183,7 @@ export default function Page() {
           "Content-Type": "application/json",
           Authorization: `Bearer ${session?.accessTokenBackend}`,
         },
-        body: JSON.stringify({  }),
+        body: JSON.stringify({}),
       });
 
       if (response.ok) {
@@ -190,7 +191,7 @@ export default function Page() {
         console.log(data);
         toast.success("Team is deleted");
         setLoading(false);
-        router.push('/join&createTeam');
+        router.push("/");
       } else {
         toast.error("Team can't be deleted");
         setLoading(false);
@@ -205,13 +206,13 @@ export default function Page() {
   };
 
   const handleAddTeamMember = () => {
-    router.push("/teamDetails");
+    router.push("/");
   };
 
   return (
     <div className=" bg-[url(../assests/assests/bg_website.png)] bg-cover bg-center min-h-screen flex flex-col items-center justify-center p-4 text-black pt-[12vh]">
       {loading && <LoadingScreen />}
-      <Navbar/>
+      <Navbar />
       <h1 className="text-2xl sm:text-3xl font-extrabold mb-4 text-center drop-shadow-lg">
         {teamName}
       </h1>
@@ -227,21 +228,27 @@ export default function Page() {
               alt="Team Member"
               className="w-16 h-16 mb-3 rounded-full shadow-md"
             />
-            <h2 className="text-lg font-bold mb-1 text-white">{member?.name}</h2>
-            <h2 className="text-lg font-bold mb-1 text-white">Team Role: {member?.teamRole === 0 ? "Leader" : "Member"}</h2>
+            <h2 className="text-lg font-bold mb-1 text-white">
+              {member?.name}
+            </h2>
+            <h2 className="text-lg font-bold mb-1 text-white">
+              Team Role: {member?.teamRole === 0 ? "Leader" : "Member"}
+            </h2>
             <p className="text-xs mb-1 text-white">Reg. No.: {member?.regNo}</p>
             <p className="text-xs text-white">Mobile No.: {member?.mobNo}</p>
-            {teamMembers.length>1 && <button
+            {/* {teamMembers.length>1 && <button
+            {teamMembers.length > 1 && <button
               className="bg-gradient-to-r from-purple-500 to-blue-500 text-white py-1 px-4 rounded-full mt-2 font-semibold transition-colors duration-300 hover:text-black  focus:outline-none text-sm"
               onClick={() => handleShowModal(index, "remove")}
             >
               {index == 0 ? "Leave" : "Remove"}
-            </button>}
+            </button>
+            } */}
           </div>
         ))}
       </div>
 
-      {teamMembers.length < 4 && (
+      {/* {teamMembers.length < 4 && (
         <div className="flex justify-center mt-4 w-full">
           <button
             className="bg-green-600 text-white py-2 px-6 rounded-full font-semibold transition-colors duration-300 hover:bg-green-700 focus:outline-none shadow-lg text-[0.9rem] max-w-[150px]"
@@ -252,7 +259,7 @@ export default function Page() {
         </div>
       )}
 
-      {teamMembers.length == 1 && (
+      {teamMembers.length > 1 && (
         <div className="flex justify-center mt-4 w-full">
           <button
             className="bg-red-600 text-white py-2 px-6 rounded-full font-semibold transition-colors duration-300 hover:bg-red-700 focus:outline-none shadow-lg text-[0.9rem] max-w-[150px]"
@@ -260,6 +267,38 @@ export default function Page() {
           >
             Delete Team
           </button>
+        </div>
+      )} */}
+
+      {/* {teamMembers.length > 0 && (
+        <div className="flex justify-center mt-4 w-full">
+          <button
+            className="bg-gradient-to-r from-purple-500 to-blue-500 text-white py-2 px-6 rounded-full font-semibold transition-colors duration-300 hover:text-black focus:outline-none shadow-lg text-[0.9rem] max-w-[150px]"
+            onClick={() => router.push('/round0')}
+          >
+            Attempt Quiz
+          </button>
+        </div>
+      )} */}
+
+      {isQualified ? (
+        <div className="flex flex-col text-black items-center border p-2 rounded-xl my-2">
+          <h1 className="text-lg font-bold">
+            Congratulations! 
+            <br/>
+            Your team had successfully made it through the
+            qualifying round of Futurepreneurs 10.0. Your collective dedication,
+            skills, and determination have truly set your team apart. 
+            <br/>
+            All the best for the next round!
+          </h1>
+        </div>
+      ) : (
+        <div className="flex flex-col text-black items-center border p-2 rounded-xl my-2">
+          <h1 className="text-lg font-bold">
+            Thank you for your participation but we regret to inform you that
+            you have not been qualified. We hope to see you in future events.
+          </h1>
         </div>
       )}
 
@@ -271,10 +310,10 @@ export default function Page() {
             if (modalType == "remove") {
               console.log(modalMemberId);
               handleRemove(modalMemberId);
-            } else if(modalType=="add") {
+            } else if (modalType == "add") {
               handleAddTeamMember();
-            }else{
-              console.log('inside  delete team');
+            } else {
+              console.log("inside  delete team");
 
               deleteTeam();
             }
@@ -282,39 +321,38 @@ export default function Page() {
           text={
             modalType === "remove"
               ? "Do you want to remove this member?"
-              : modalType ==="add" ? "Do you want to add a member?"
-              :"Do you want to delete the team?"
+              : modalType === "add"
+              ? "Do you want to add a member?"
+              : "Do you want to delete the team?"
           }
         />
       )}
       {handleDeleteModal && (
         <MyModal
-        isVisible={true}
-        onClose={handleCloseModal}
-        onConfirm={deleteTeam}
-        text={deleteText}
-      />
+          isVisible={true}
+          onClose={handleCloseModal}
+          onConfirm={deleteTeam}
+          text={deleteText}
+        />
       )}
-        
 
       {/*  ye new leaader selection ka h  */}
-     
-     {leaveLeaderModal && (
-      <ChangeLeaderModal
-        isOpen={leaveLeaderModal}
-        onClose={() => setLeaveLeaderModal(false)}
-        members={teamMembers}
-        onConfirm={(selectedMemberIndex) => {
-          if (selectedMemberIndex !== null) { // Check if a valid index is selected
-            setNum(selectedMemberIndex); // Store the selected member's index in `num`
-            console.log("New leader index:", selectedMemberIndex);
-          }
-          setLeaveLeaderModal(false); // Close the modal after confirmation
-        }}
-      />
-    )}
-    
 
+      {leaveLeaderModal && (
+        <ChangeLeaderModal
+          isOpen={leaveLeaderModal}
+          onClose={() => setLeaveLeaderModal(false)}
+          members={teamMembers}
+          onConfirm={(selectedMemberIndex) => {
+            if (selectedMemberIndex !== null) {
+              // Check if a valid index is selected
+              setNum(selectedMemberIndex); // Store the selected member's index in `num`
+              console.log("New leader index:", selectedMemberIndex);
+            }
+            setLeaveLeaderModal(false); // Close the modal after confirmation
+          }}
+        />
+      )}
 
       <Toaster />
     </div>

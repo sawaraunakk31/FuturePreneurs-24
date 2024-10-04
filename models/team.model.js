@@ -23,6 +23,9 @@ const teamSchema = mongoose.Schema(
       type: Boolean,
       default: false,
     },
+    level: {
+      type: Number,
+    },
     members: [
       {
         type: mongoose.Schema.Types.ObjectId,

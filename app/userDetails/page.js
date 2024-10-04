@@ -30,6 +30,7 @@ export default function UserDetail() {
       router.push("/");
     } else if (status == "authenticated") {
       setLoading(false);
+      // router.push("/");
       getUserData();
     }
   }, [status, router]);
@@ -58,7 +59,7 @@ export default function UserDetail() {
         }
       } else {
         setLoading(false);
-        router.push("/join&createTeam");
+        router.push("/");
       }
     } else {
       setLoading(false);
@@ -122,7 +123,7 @@ export default function UserDetail() {
         setFormData({ name: "", email: "", regNo: "", number: "" });
         setErrors({});
         setLoading(false);
-        router.push("/join&createTeam");
+        router.push("/");
       } else if (response.status == 401) {
         toast.error("Duplicate Registration Number");
         setLoading(false);

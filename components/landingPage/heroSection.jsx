@@ -15,7 +15,7 @@ import MyComponent4 from '@/components/ellipse2';
 const HeroSection = () => {
   const { data: session, status } = useSession();
   const router = useRouter();
-  const targetDate = new Date("2024-10-01T23:59");
+  const targetDate = new Date("2024-10-02T13:30");
 
   const testing = async () => {
     const res = await fetch("/api/userData", {
@@ -36,7 +36,7 @@ const HeroSection = () => {
   return (
     <main className='p-5'>
       <div className='w-[100vw]  min-h-screen overflow-scroll'>
-        <div className='z-[9999] absolute h-[10vh] w-[100vw] overflow-scroll'><Navbar /></div>
+        <div className='z-[9999] absolute h-[10vh] w-[100vw]'><Navbar /></div>
         <div className='h-[100vh]'>
           <div>
             <MyComponent />

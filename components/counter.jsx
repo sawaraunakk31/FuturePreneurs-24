@@ -64,7 +64,7 @@ export default function CountdownTimer({ targetDate }) {
 
       <div className="absolute bottom-0 right-0 lg:mr-7 lg:mb-7 md:mr-5 md:mb-5 sm:mr-6 sm:mb-6 flex flex-col text-bold space-y-1">
         <div className="text-md font-bold pr-2 text-white sm:text-sm md:text-xl">
-          Registration Closes In:
+          Registrations Closed
         </div>
 
         <div className="flex space-x-1 pr-4 pb-4 lg:pb-0 lg:pr-0 md:pb-0 md:pr-0 sm:pb-0 sm:pr-0">
