@@ -63,6 +63,13 @@
 }
 }
 
+.custom-round2 {
+    background-image: url('../assests/assests/Round2Back.svg');
+    background-size:cover;
+    background-repeat: no-repeat;
+    background-position: center;
+
+}
 
 
 :root {
