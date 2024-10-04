@@ -12,6 +12,12 @@ const bondBiddingSchema = mongoose.Schema(
       {
         type: Boolean
       }
+    ],
+    currentBidders:[
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Users',
+      }
     ]
   },
   { collection: 'BondBidding' }
