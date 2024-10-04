@@ -92,6 +92,7 @@ export default function Bidder() {
     const [team, setTeam] = useState("");
     const [hold,setHold]=useState(0);
     const [bondsBidFor, setBondsBidFor] = useState([]);
+    const [isAdmin, setIsAdmin] = useState(false);
 
   const [startTime, setStartTime] = useState(0);
 
@@ -161,6 +162,14 @@ export default function Bidder() {
                     router.push("/");
                 });
 
+                socket.on("start_error", ({message}) => {
+                    console.error("Error starting this round:", message);
+                    toast.error(`${message}`);
+                    router.push("/");
+                })
+                
+                socket.on("isAdmin", ({isAdmin}) =>{setIsAdmin(isAdmin)})
+
                 socket.on("connect_error", (err) => {
                     console.error("Socket connection error:", err);
                     toast.error("Socket connection error, please try again later.");
@@ -192,6 +201,8 @@ export default function Bidder() {
         socket.on("disconnect", onDisconnect);
 
         socket.on("highestBids", setHighestBids);
+        socket.on("initialWallet", initialWallet);
+
         socket.on("HoldFalse", () => setHold(false)); // Using an arrow function
         socket.on("highestBid", handleNewHighestBid);
 
@@ -208,8 +219,11 @@ export default function Bidder() {
         
         return () => {
             socket.off("connect", onConnect);
+            socket.off("isAdmin");
+            socket.off("start_error");
             socket.off("authenticated");
             socket.off("auth_error");
+            socket.off("initialWallet");
             socket.off("disconnect", onDisconnect);
             socket.off("highestBids", setHighestBids);
             socket.off("highestBid", handleNewHighestBid);
@@ -218,12 +232,15 @@ export default function Bidder() {
         };
     }, [status]);
 
-    const setHighestBids = ({ highestBids, allocatedBids, bondsBidFor }) => {
+    const setHighestBids = ({ highestBids, allocatedBids, bondsBidFor, wallet }) => {
         setItems(highestBids);
         setAllocatedItems(allocatedBids);
         setBondsBidFor(bondsBidFor);
     }
-
+    
+    const initialWallet = ({wallet}) => {
+        setWalletBalance(wallet);
+    }
     const handleNewHighestBid = ({highestBid, index}) => {
         setItems(prevItems => {
             const newItems = [...prevItems];
@@ -455,6 +472,21 @@ export default function Bidder() {
                             ) : (
                                 <div className="flex flex-col justify-center items-center h-full text-center">
                                     <h1 className="text-xl text-black">No Item Selected</h1>
+                                    {isAdmin?
+                                        <button
+                                            className={`w-[80%] py-2 text-white rounded-md transition-transform ${
+                                                isAdmin
+                                                    ? 'bg-[#8481FA] hover:scale-105'
+                                                    : 'bg-gray-400 cursor-not-allowed'
+                                            }`}
+                                            onClick={() => {
+                                                socket.emit("startTimer");
+                                            }}
+                                        >
+                                                StartBidding
+                                        </button> :
+                                        null
+                                    }
                                 </div>
                             )}
                         </div>
