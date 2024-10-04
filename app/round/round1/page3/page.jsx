@@ -22,7 +22,7 @@ export default function PreBidder() {
     const [isAgreementOpen, setIsAgreementOpen] = useState(false);
     const [isBiddingStart, setIsBiddingStart] = useState(false);
     const [selectedItem, setSelectedItem] = useState(null);
-    const [team, setTeam] = useState("BharatwaleJain");
+    const [team, setTeam] = useState("");
     const [loanAmount, setLoanAmount] = useState(null);
     const [interest, setInterest] = useState(null);
     const [score, setScore] = useState(null);
@@ -146,6 +146,28 @@ export default function PreBidder() {
         setIsAgreementOpen(false);
         toast.success('Loan Agreement Submitted.');
     };
+
+    async function fetchName() {
+        try {
+            const response = await fetch('/api/round1/preBidCheck', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            });
+            const data = await response.json();
+            if (response.ok) {
+                setTeam(data.teamName);
+            } else {
+                console.log("Error:", data.message);
+                toast.error("Please Log in or Sign up");
+                router.push("/");
+            }
+        } catch (error) {
+            console.error("Failed:", error);
+        }
+    };
+    fetchName();
 
     useEffect(() => {
         async function fetchData() {
