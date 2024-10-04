@@ -25,13 +25,7 @@ export async function POST(req) {
 
         const teamId = user.teamId;
         const team = await TeamModel.findById(teamId);
-        const teamLeader = await (team.leaderName);
-        const p1 = await Users.findById(team.members[1]);
-        const p2 = await Users.findById(team.members[2]);
-        const p3 = await Users.findById(team.members[3]);
-        const participant1 = await (p1 ? p1.name : "");
-        const participant2 = await (p2 ? p2.name : "");
-        const participant3 = await (p3 ? p3.name : "");
+        const teamName = await (team.teamName);
     
         if (!team) {
             return NextResponse.json({ message: "Team not found" }, { status: 404 });
@@ -41,36 +35,9 @@ export async function POST(req) {
             return NextResponse.json({ message: "You are not the team leader" }, { status: 403 });
         }
 
-        const { loanAmount, interest, creditScore } = await req.json();
-       
-        if (loanAmount <= 0) {
-            return NextResponse.json({ message: "Invalid loan amount" }, { status: 400 });
-        }
-
-        if (interest <= 0) {
-            return NextResponse.json({ message: "Invalid interest rate" }, { status: 400 });
-        }
-
-        if (team.loanAmount && !(team.loanAmount === null)) {
-            return NextResponse.json({ message: "Loan already taken" }, { status: 402 });
-        }
-       
-        team.loanAmount = loanAmount;
-        team.interest = interest;
-        team.wallet = loanAmount;
-        team.creditScore = creditScore;
-
-        await team.save();
-
         return NextResponse.json({ 
-            message: "Loan created successfully", 
-            loanAmount, 
-            interest, 
-            creditScore,
-            teamLeader,
-            participant1,
-            participant2,
-            participant3
+            message: "Authenticated successfully", 
+            teamName,
         }, { status: 200 });
 
     } catch (e) {
