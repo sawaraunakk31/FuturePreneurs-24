@@ -10,7 +10,7 @@ import Image from 'next/image';
 import back from '../back2.svg';
 import file from '@/public/constant/round1/bonds.json';
 import { set } from "mongoose";
-import logo from '../logo.svg';
+import logo from '../logo.png';
 
 export default function PreBidder() {
     const [loading, setLoading] = useState(false);
@@ -24,7 +24,23 @@ export default function PreBidder() {
     const [selectedItem, setSelectedItem] = useState(null);
     const [team, setTeam] = useState("BharatwaleJain");
     const [loanAmount, setLoanAmount] = useState(null);
-    
+    const [interest, setInterest] = useState(null);
+    const [score, setScore] = useState(null);
+    const [currentDate, setCurrentDate] = useState("");
+    const [lenderName, setLenderName] = useState("");
+    const [registrationNumber, setRegistrationNumber] = useState("");
+    const [teamLeaderName, setTeamLeaderName] = useState("");
+    const [nominee1, setNominee1] = useState("");
+    const [nominee2, setNominee2] = useState("");
+    const [nominee3, setNominee3] = useState("");
+    const [lenderSignature, setLenderSignature] = useState("");
+    const [teamLeaderSignature, setTeamLeaderSignature] = useState("");
+
+    useEffect(() => {
+        const date = new Date().toLocaleDateString("en-GB");
+        setCurrentDate(date);
+    }, []);
+
     const divRef = useRef(null);
     useEffect(() => {
         if (isBiddingStart) {
@@ -36,6 +52,17 @@ export default function PreBidder() {
     }, [isBiddingStart]);
 
     const router = useRouter();
+    const handleInputChange = (e) => {
+        let value = e.target.value;
+        value = value.replace(/[^0-9]/g, '');
+        if (value.length > 10) {
+            toast.error('Value cannot exceed 999.99 Cr.', { duration: 500 });
+            return;
+        }
+        setLoanAmount(value);
+        setInterest(0.15);
+        setScore(65);
+    };
     const handleContinue = () => {
         setIsOverlayOpen(true);
     };
@@ -43,17 +70,30 @@ export default function PreBidder() {
         setIsOverlayOpen(false);
     };
     const openConfirm = () => {
+        let numericValue = parseInt(loanAmount, 10);
+        if (numericValue % 100000 !== 0) {
+            toast.error('Please enter a value in multiples of 1 lakh.');
+            return;
+        }
+        if (numericValue > 9999900000) {
+            toast.error('Value cannot exceed 999.99 Cr.');
+            return;
+        }
         setIsOverlayOpen(false);
         setIsConfirmOpen(true);
     };
     const closeConfirm = () => {
         setIsConfirmOpen(false);
+        setIsOverlayOpen(true);
     };
     const openAgreement = () => {
         setIsConfirmOpen(false);
         setIsAgreementOpen(true);
     };
     const closeAgreement = () => {
+        setIsAgreementOpen(false);
+    };
+    const doneAgreement = () => {
         setIsAgreementOpen(false);
     };
 
@@ -86,9 +126,9 @@ export default function PreBidder() {
         return `${mins < 10 ? '0' : ''}${mins}:${secs < 10 ? '0' : ''}${secs}`;
     };
 
-    const getName = (id) => {
+    const getObject = (id) => {
         const obj = file.find(item => item.id == id);
-        return obj ? (obj.name.length > 24 ? `${obj.name.substring(0, 20)}...` : obj.name) : 'Unknown Company';
+        return obj ? obj : null;
     };
 
     return (
@@ -108,7 +148,7 @@ export default function PreBidder() {
                 {/* Header */}
                 <div className="flex justify-between items-center bg-[#6865C9] text-white py-4 px-6 text-center h-[10vh] border-white border-4 shadow-xl scale-105 rounded-xl">
                     <h1 className="text-2xl font-semibold">{team}</h1>
-                    <span className="text-lg font-bold">{formatTime(timeLeft)}</span>   
+                    <span className="text-lg font-bold">{formatTime(timeLeft)}</span>
                     <button
                         className="px-4 py-1.5 bg-[#FFE55B] text-[#573712] rounded-xl font-semibold shadow-lg transition-transform transform hover:scale-105 hover:bg-[#FFBE5C]"
                         onClick={handleContinue}
@@ -125,6 +165,15 @@ export default function PreBidder() {
                     }
                     .hide-scrollbar::-webkit-scrollbar {
                         display: none;  /* Safari and Chrome */
+                    }
+                    @keyframes blink {
+                        0% { opacity: 1; }
+                        50% { opacity: 0; }
+                        100% { opacity: 1; }
+                        100% { opacity: 1; }
+                    }
+                    .blink-text {
+                        animation: blink 1s forwards;
                     }
                 `}</style>
                 <div
@@ -146,74 +195,97 @@ export default function PreBidder() {
                                     : 'bg-[linear-gradient(114deg,rgba(232,232,232,0.10)_15.11%,rgba(0,56,255,0.10)_81.96%)] hover:scale-105 cursor-pointer'
                                 }`}
                                 onClick={() => {
-                                    setSelectedItem(selectedItem && selectedItem.id === item.id ? null : {id: index+1, name: getName(index+1), highestBid: 0 })
+                                    setSelectedItem(selectedItem && selectedItem.id === item.id ? null : {id: index+1, obj: getObject(index+1), highestBid: 0 })
                                 }}
                             >
                                 <h2 className={`text-xl font-bold ${
                                     selectedItem && selectedItem.id === index+1 
                                     ? 'text-white'
                                     : 'text-[#8481FA]'
-                                }`}>{`Item ${index + 1}`}</h2>
+                                }`}>{`Bond ${index + 1}`}</h2>
                                 <p className={`text-sm pt-2 pb-1 ${
                                     selectedItem && selectedItem.id === index+1 
                                     ? 'text-white'
                                     : 'text-black'
-                                }`}>Highest</p>
+                                }`}>Highest Bid</p>
                                 <p className={`font-semibold pb-1 px-2 rounded-md w-[100%] ${
                                     selectedItem && selectedItem.id === index+1 
                                     ? 'text-black bg-white'
                                     : 'text-white bg-[#8481FA]'
-                                }`}>₹{(0).toFixed(2)}Cr</p>
+                                }`}>
+                                    <span className={selectedItem && selectedItem.id === index + 1 ? 'blink-text text-black' : 'text-white'}>
+                                        ₹{(0).toFixed(2)} Cr
+                                        {/* ₹{(item.highestBid / 10000000).toFixed(2)} Cr */}
+                                    </span>
+                                </p>
                             </div>
                         ))}
                     </div>
 
                     {/* Item Details */}
                     <div className="w-1/4 p-6 pl-0">
-                        <div className="py-4 h-full flex flex-col justify-between bg-[linear-gradient(114deg,rgba(232,232,232,0.10)_15.11%,rgba(0,56,255,0.10)_81.96%)] border-white border-4 shadow-xl rounded-2xl">
+                        <div className="pt-4 pb-0 h-full flex flex-col justify-between bg-[linear-gradient(114deg,rgba(232,232,232,0.10)_15.11%,rgba(0,56,255,0.10)_81.96%)] border-white border-4 shadow-xl rounded-2xl">
                             {selectedItem ? (
                                 <>
-                                    <div className="text-center h-[15%]">
-                                        <h1 className="text-xl font-bold text-black">{selectedItem.name}</h1>
+                                    <div className="text-center h-[10%]">
+                                        <h1 className="text-xl font-bold text-black">{selectedItem.obj.name.length > 24 ? `${selectedItem.obj.name.substring(0, 20)}...` : selectedItem.obj.name}</h1>
                                     </div>
                                     <hr className="border-white border-2 w-full mb-2"/>
-                                    <div className="m-2 h-full">
+                                    <div className="m-2 h-[60%]">
                                         <ul className="list-inside text-black">
                                             <li className="flex justify-between items-center font-semibold">
                                                 <span>Current Bid</span>
-                                                <span className="bg-white w-[40%] px-2 text-right">₹{0}</span>
+                                                <span className="bg-white w-[40%] px-2 text-right">
+                                                    ₹ {(selectedItem.highestBid/10000000).toFixed(2)} Cr
+                                                </span>
                                             </li>
                                             <hr className="border-white w-full my-1"/>
                                             <li className="flex justify-between items-center font-semibold">
-                                                <span>Revenue</span>
-                                                <span className="bg-white w-[40%] px-2 text-right">{selectedItem.id}</span>
+                                                <span>Net Revenue</span>
+                                                <span className="bg-white w-[40%] px-2 text-right">
+                                                    ₹ {(selectedItem.obj.revenue/10000000).toFixed(2)} Cr
+                                                </span>
                                             </li>
                                             <hr className="border-white w-full my-1"/>
                                             <li className="flex justify-between items-center font-semibold">
                                                 <span>Profit</span>
-                                                <span className="bg-white w-[40%] px-2 text-right">{selectedItem.id}</span>
+                                                <span className="bg-white w-[40%] px-2 text-right">
+                                                    ₹ {(selectedItem.obj.profit/10000000).toFixed(2)} Cr
+                                                </span>
                                             </li>
                                             <hr className="border-white w-full my-1"/>
                                             <li className="flex justify-between items-center font-semibold">
-                                                <span>Value</span>
-                                                <span className="bg-white w-[40%] px-2 text-right">{selectedItem.id}</span>
+                                                <span>Cash Reserve</span>
+                                                <span className="bg-white w-[40%] px-2 text-right">
+                                                    ₹ {(selectedItem.obj.reserve/10000000).toFixed(2)} Cr
+                                                </span>
                                             </li>
                                             <hr className="border-white w-full my-1"/>
                                             <li className="flex justify-between items-center font-semibold">
                                                 <span>Yield</span>
-                                                <span className="bg-white w-[40%] px-2 text-right">{selectedItem.id}</span>
+                                                <span className="bg-white w-[40%] px-2 text-right">
+                                                    {selectedItem.obj.yield}
+                                                </span>
                                             </li>
                                             <hr className="border-white w-full my-1"/>
                                             <li className="flex justify-between items-center font-semibold">
                                                 <span>Rating</span>
-                                                <span className="bg-white w-[40%] px-2 text-right">{selectedItem.id}</span>
+                                                <span className="bg-white w-[40%] px-2 text-right">
+                                                    {selectedItem.obj.rating}
+                                                </span>
                                             </li>
                                             <hr className="border-white w-full my-1"/>
                                             <li className="flex justify-between items-center font-semibold">
                                                 <span>D/E Ratio</span>
-                                                <span className="bg-white w-[40%] px-2 text-right">{selectedItem.id}</span>
+                                                <span className="bg-white w-[40%] px-2 text-right">
+                                                    {selectedItem.obj.ratio}
+                                                </span>
                                             </li>
                                         </ul>
+                                    </div>
+                                    <hr className="border-white border-2 w-full mt-2"/>
+                                    <div className="p-2 pb-0 text-left h-[30%] text-sm font-semibold text-black overflow-hidden text-wrap">
+                                        {selectedItem.obj.overview.length > 175 ? `${selectedItem.obj.overview.substring(0, 170)}...` : selectedItem.obj.overview}
                                     </div>
                                 </>
                             ) : (
@@ -230,44 +302,48 @@ export default function PreBidder() {
                 <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-75 backdrop-blur-sm">
                     <div className="flex flex-col h-[80vh] w-[90%] md:w-[70%] lg:w-[50%] border-white border-4 rounded-xl shadow-xl overflow-hidden bg-[#6865C9] text-white items-center justify-center">
                         {/* Header */}
-                        <div className="text-2xl font-bold h-[15%] w-full text-center pt-6">
+                        <div className="text-2xl font-bold mb-6 w-full text-center">
                             Do You Wish To Apply For Loan ?
                         </div>
-                        <div className="text-md font-bold py-4 px-6 w-[60%] mx-auto text-center flex flex-col md:flex-row bg-opacity-50 bg-white text-black items-center justify-between rounded-lg shadow-md m-1">
+                        <div className="text-md font-bold py-2 px-4 w-[70%] lg:w-[60%] mx-auto text-center flex flex-col md:flex-row bg-opacity-25 bg-white text-black items-center justify-between rounded-lg shadow-md m-2">
                             <span className="mb-2 md:mb-0">Range: 5Cr to 10Cr</span>
-                            <span>Interest: 13%</span>
+                            <span>Interest: 15%</span>
                         </div>
-                        <div className="text-md font-bold py-4 px-6 w-[60%] mx-auto text-center flex flex-col md:flex-row bg-opacity-50 bg-white text-black items-center justify-between rounded-lg shadow-md m-1">
+                        <div className="text-md font-bold py-2 px-4 w-[70%] lg:w-[60%] mx-auto text-center flex flex-col md:flex-row bg-opacity-25 bg-white text-black items-center justify-between rounded-lg shadow-md m-2">
                             <span className="mb-2 md:mb-0">Range: 10Cr to 15Cr</span>
-                            <span>Interest: 17%</span>
+                            <span>Interest: 18%</span>
                         </div>
-                        <div className="text-md font-bold py-4 px-6 w-[60%] mx-auto text-center flex flex-col md:flex-row bg-opacity-50 bg-white text-black items-center justify-between rounded-lg shadow-md m-1">
+                        <div className="text-md font-bold py-2 px-4 w-[70%] lg:w-[60%] mx-auto text-center flex flex-col md:flex-row bg-opacity-25 bg-white text-black items-center justify-between rounded-lg shadow-md m-2">
                             <span className="mb-2 md:mb-0">Range: 15Cr to 20Cr</span>
                             <span>Interest: 21%</span>
                         </div>
-                        <div className="text-md font-bold py-4 px-6 w-[60%] mx-auto text-center flex flex-col md:flex-row bg-opacity-50 bg-white text-black items-center justify-between rounded-lg shadow-md m-1">
+                        <div className="text-md font-bold py-2 px-4 w-[70%] lg:w-[60%] mx-auto text-center flex flex-col md:flex-row bg-opacity-25 bg-white text-black items-center justify-between rounded-lg shadow-md m-2">
                             <span className="mb-2 md:mb-0">Range: Above 20Cr</span>
                             <span>Interest: 25%</span>
                         </div>
-                        <input
-                            type='number'
-                            step='100000'
-                            className="mt-5 p-2 border border-gray-300 rounded-md mb-4 focus:outline-none focus:ring-2 focus:ring-blue-400 text-black"
-                            placeholder="Enter the loan amount"
-                            value={loanAmount}
-                        />
-                        <div className="flex justify-between w-1/3 mt-2">
+                        <div className="relative w-1/3">
+                            <span className="absolute left-3 top-[52%] align-middle transform -translate-y-1/2 text-[#573712] font-bold text-2xl">₹</span>
+                            <input
+                                type='text'
+                                step='100000'
+                                className="my-5 p-2 pl-9 border w-full border-gray-300 rounded-md mb-4 focus:outline-none focus:ring-2 focus:ring-[#FFE55B] text-[#573712]"
+                                placeholder="Enter the Loan Amount"
+                                value={loanAmount}
+                                onChange={handleInputChange}
+                            />
+                        </div>
+                        <div className="flex justify-between w-2/5 mt-2">
                             <button
-                                className="px-4 py-2 font-semibold shadow-lg transition-transform transform bg-[#8381E7] text-white hover:scale-105 hover:bg-[#5754b3] border rounded-md"
+                                className="px-6 py-1.5 bg-[#FFE55B] text-[#573712] rounded-md font-bold shadow-lg transition-transform transform hover:scale-105 hover:bg-[#FFBE5C] border"
                                 onClick={openConfirm}
                             >
                                 Confirm
                             </button>
                             <button
-                                className="px-4 py-2 font-semibold shadow-lg transition-transform transform bg-[#8381E7] text-white hover:scale-105 hover:bg-[#5754b3] border rounded-md"
+                                className="px-6 py-1.5 bg-[#FFE55B] text-[#573712] rounded-md font-bold shadow-lg transition-transform transform hover:scale-105 hover:bg-[#FFBE5C] border"
                                 onClick={closeOverlay}
                             >
-                                Cancel
+                                Go Back
                             </button>
                         </div>
                     </div>    
@@ -276,31 +352,45 @@ export default function PreBidder() {
 
             {isConfirmOpen && (
                 <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-75 backdrop-blur-sm">
-                    <div className="flex flex-col h-[80vh] w-[90%] md:w-[70%] lg:w-[50%] border-white border-4 rounded-xl shadow-xl overflow-hidden bg-[#6865C9] text-white items-center justify-center">
+                    <div className="flex flex-col h-[80vh] w-[90%] md:w-[70%] lg:w-[50%] border-white border-4 rounded-xl shadow-xl overflow-hidden bg-[#6865C9] text-white items-center justify-center my-auto">
                         {/* Header */}
-                        <div className="text-2xl font-bold h-[15%] w-full text-center pt-6">
+                        <div className="text-2xl font-bold h-[20%] w-full text-center pt-6">
                             Your Applied Loan Amount is
                         </div>
-                        <div className="text-lg font-bold py-4 px-6 w-[60%] mx-auto text-center flex flex-col md:flex-row bg-opacity-50 bg-white text-black items-center justify-centre rounded-lg shadow-md m-1">
-                            <span>₹{loanAmount}Cr/-</span>
-                        </div>
-                        <div className="flex justify-between w-1/3 mt-2">
-                            <button
-                                className="px-4 py-2 font-semibold shadow-lg transition-transform transform bg-[#8381E7] text-white hover:scale-105 hover:bg-[#5754b3] border rounded-md"
-                                onClick={openAgreement}
-                            >
-                                Confirm
-                            </button>
-                            <button
-                                className="px-4 py-2 font-semibold shadow-lg transition-transform transform bg-[#8381E7] text-white hover:scale-105 hover:bg-[#5754b3] border rounded-md"
-                                onClick={closeConfirm}
-                            >
-                                Go Back
-                            </button>
+                        <div className="flex flex-row w-full h-[40%] items-center justify-center px-2">
+                            {/* Left Section */}
+                            <div className="flex flex-col w-2/3 px-10">
+                                <div className="text-2xl font-bold py-2 w-[80%] text-center bg-opacity-40 bg-white text-black rounded-lg shadow-md my-2">
+                                    ₹ {(loanAmount / 10000000).toFixed(2)} Cr /-
+                                </div>
+                                <div className="text-md font-bold py-2 w-[80%] text-center bg-opacity-40 bg-white text-black rounded-lg shadow-md mt-2 mb-5">
+                                    @{(interest * 100).toFixed(2)}% Interest with CIBIL of {score}
+                                </div>
+                                <button
+                                    className="px-6 py-2 w-[40%] bg-[#FFE55B] text-[#573712] rounded-md font-bold shadow-lg transition-transform transform hover:scale-105 hover:bg-[#FFBE5C] border my-2"
+                                    onClick={openAgreement}
+                                >
+                                    Confirm
+                                </button>
+                                <button
+                                    className="px-6 py-2 w-[40%] bg-white text-[#573712] rounded-md font-bold shadow-lg transition-transform transform hover:scale-105 hover:bg-gray-300 border my-2"
+                                    onClick={closeConfirm}
+                                >
+                                    Go Back
+                                </button>
+                            </div>
+                            {/* Right Section */}
+                            <div className="flex w-1/3 items-center justify-center">
+                                <Image
+                                    src={logo}
+                                    className="w-[80%] h-auto"
+                                />
+                            </div>
                         </div>
                     </div>    
                 </div>
             )}
+
         </div >
     );
 }

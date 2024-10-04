@@ -4,7 +4,7 @@ import path from 'path';
 const nextConfig = {
     webpack: (config, { isServer }) => {
         config.module.rules.push({
-            test: /\.(mp4|webm|ogg|mp3|wav|flac|aac)$/,
+            test: /\.(mp4|webm|ogg|mp3|wav|flac|aac|pdf)$/,
             use: {
                 loader: 'file-loader',
                 options: {
