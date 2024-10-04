@@ -146,29 +146,7 @@ export default function PreBidder() {
         setIsAgreementOpen(false);
         toast.success('Loan Agreement Submitted.');
     };
-
-    async function fetchName() {
-        try {
-            const response = await fetch('/api/round1/preBidCheck', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-            });
-            const data = await response.json();
-            if (response.ok) {
-                setTeam(data.teamName);
-            } else {
-                console.log("Error:", data.message);
-                toast.error("Please Log in or Sign up");
-                router.push("/");
-            }
-        } catch (error) {
-            console.error("Failed:", error);
-        }
-    };
-    fetchName();
-
+    
     useEffect(() => {
         async function fetchData() {
             const data = Array.from({ length: 50 }, (v, i) => ({
@@ -179,6 +157,27 @@ export default function PreBidder() {
             setItems(data);
         }
         fetchData();
+
+        async function fetchName() {
+            try {
+                const response = await fetch('/api/round1/preBidCheck', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                });
+                const data = await response.json();
+                if (response.ok) {
+                    setTeam(data.teamName);
+                } else {
+                    router.push("/");
+                    toast.error("Please Log in or Sign up");
+                }
+            } catch (error) {
+                console.error("Failed:", error);
+            }
+        };
+        fetchName();
         
         const timer = setInterval(() => {
             setTimeLeft((prevTime) => {

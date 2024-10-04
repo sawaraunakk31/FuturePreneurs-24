@@ -29,9 +29,9 @@ export async function POST(req) {
         const p1 = await Users.findById(team.members[1]);
         const p2 = await Users.findById(team.members[2]);
         const p3 = await Users.findById(team.members[3]);
-        const participant1 = await (p1.name);
-        const participant2 = await (p2.name);
-        const participant3 = await (p3.name);
+        const participant1 = await (p1 ? p1.name : "");
+        const participant2 = await (p2 ? p2.name : "");
+        const participant3 = await (p3 ? p3.name : "");
     
         if (!team) {
             return NextResponse.json({ message: "Team not found" }, { status: 404 });
