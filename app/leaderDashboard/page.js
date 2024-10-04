@@ -26,7 +26,6 @@ export default function Page() {
     }
   }, [status, router]);
 
-
   const [teamMembers, setTeamMembers] = useState([
     {
       id: 1,
@@ -66,7 +65,8 @@ export default function Page() {
   const [loading, setLoading] = useState(true);
   const [num, setNum] = useState(null);
   const [handleDeleteModal, setHandleDeleteModal] = useState(false);
-  const [deleteText, setDeleteText] = useState('');
+  const [deleteText, setDeleteText] = useState("");
+  const [isQualified, setIsQualified] = useState(false);
 
   const getUserData = async () => {
     const res = await fetch("/api/userInfo", {
@@ -87,17 +87,17 @@ export default function Page() {
           setLoading(false);
         } else {
           setLoading(false);
-          router.push('/memberDashboard')
+          router.push("/memberDashboard");
         }
       } else {
         setLoading(false);
-        router.push('/');
+        router.push("/");
       }
     } else {
       setLoading(false);
-      router.push('/');
+      router.push("/");
     }
-  }
+  };
 
   const getData = async () => {
     setLoading(true);
@@ -115,6 +115,7 @@ export default function Page() {
     setTeamName(data?.team?.teamName);
     setTeamMembers(data?.members);
     setcheck(data?.user?.teamRole);
+    setIsQualified(data?.team?.isQualified);
     setLoading(false);
   };
 
@@ -190,7 +191,7 @@ export default function Page() {
         console.log(data);
         toast.success("Team is deleted");
         setLoading(false);
-        router.push('/');
+        router.push("/");
       } else {
         toast.error("Team can't be deleted");
         setLoading(false);
@@ -227,8 +228,12 @@ export default function Page() {
               alt="Team Member"
               className="w-16 h-16 mb-3 rounded-full shadow-md"
             />
-            <h2 className="text-lg font-bold mb-1 text-white">{member?.name}</h2>
-            <h2 className="text-lg font-bold mb-1 text-white">Team Role: {member?.teamRole === 0 ? "Leader" : "Member"}</h2>
+            <h2 className="text-lg font-bold mb-1 text-white">
+              {member?.name}
+            </h2>
+            <h2 className="text-lg font-bold mb-1 text-white">
+              Team Role: {member?.teamRole === 0 ? "Leader" : "Member"}
+            </h2>
             <p className="text-xs mb-1 text-white">Reg. No.: {member?.regNo}</p>
             <p className="text-xs text-white">Mobile No.: {member?.mobNo}</p>
             {/* {teamMembers.length>1 && <button
@@ -242,7 +247,6 @@ export default function Page() {
           </div>
         ))}
       </div>
-
 
       {/* {teamMembers.length < 4 && (
         <div className="flex justify-center mt-4 w-full">
@@ -265,8 +269,8 @@ export default function Page() {
           </button>
         </div>
       )} */}
-      
-      {teamMembers.length > 0 && (
+
+      {/* {teamMembers.length > 0 && (
         <div className="flex justify-center mt-4 w-full">
           <button
             className="bg-gradient-to-r from-purple-500 to-blue-500 text-white py-2 px-6 rounded-full font-semibold transition-colors duration-300 hover:text-black focus:outline-none shadow-lg text-[0.9rem] max-w-[150px]"
@@ -275,8 +279,28 @@ export default function Page() {
             Attempt Quiz
           </button>
         </div>
-      )}
+      )} */}
 
+      {isQualified ? (
+        <div className="flex flex-col text-black items-center border p-2 rounded-xl my-2">
+          <h1 className="text-lg font-bold">
+            Congratulations! 
+            <br/>
+            Your team had successfully made it through the
+            qualifying round of Futurepreneurs 10.0. Your collective dedication,
+            skills, and determination have truly set your team apart. 
+            <br/>
+            All the best for the next round!
+          </h1>
+        </div>
+      ) : (
+        <div className="flex flex-col text-black items-center border p-2 rounded-xl my-2">
+          <h1 className="text-lg font-bold">
+            Thank you for your participation but we regret to inform you that
+            you have not been qualified. We hope to see you in future events.
+          </h1>
+        </div>
+      )}
 
       {showModal && (
         <MyModal
@@ -289,7 +313,7 @@ export default function Page() {
             } else if (modalType == "add") {
               handleAddTeamMember();
             } else {
-              console.log('inside  delete team');
+              console.log("inside  delete team");
 
               deleteTeam();
             }
@@ -297,8 +321,9 @@ export default function Page() {
           text={
             modalType === "remove"
               ? "Do you want to remove this member?"
-              : modalType === "add" ? "Do you want to add a member?"
-                : "Do you want to delete the team?"
+              : modalType === "add"
+              ? "Do you want to add a member?"
+              : "Do you want to delete the team?"
           }
         />
       )}
@@ -311,7 +336,6 @@ export default function Page() {
         />
       )}
 
-
       {/*  ye new leaader selection ka h  */}
 
       {leaveLeaderModal && (
@@ -320,7 +344,8 @@ export default function Page() {
           onClose={() => setLeaveLeaderModal(false)}
           members={teamMembers}
           onConfirm={(selectedMemberIndex) => {
-            if (selectedMemberIndex !== null) { // Check if a valid index is selected
+            if (selectedMemberIndex !== null) {
+              // Check if a valid index is selected
               setNum(selectedMemberIndex); // Store the selected member's index in `num`
               console.log("New leader index:", selectedMemberIndex);
             }
@@ -328,8 +353,6 @@ export default function Page() {
           }}
         />
       )}
-
-
 
       <Toaster />
     </div>
