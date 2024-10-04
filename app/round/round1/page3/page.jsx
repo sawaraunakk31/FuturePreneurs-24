@@ -184,42 +184,56 @@ export default function PreBidder() {
                     style={{
                         background: 'linear-gradient(180deg, #FFF 0%, #DAD0FF 47%, #FFF 100%)',
                     }}>
-                    {/* Items Grid */}
-                    <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-10 p-8 w-3/4 overflow-y-auto hide-scrollbar">
-                        {items.map((item, index) => (
-                            <div
-                                key={index+1}
-                                className={`p-4 justify-center rounded-2xl shadow-lg transform transition-transform duration-300 ease-in-out text-center cursor-pointer border-white border-4 ${
-                                    selectedItem && selectedItem.id === index+1 
-                                    ? 'bg-[#8481FA] scale-110 transition-transform cursor-pointer'
-                                    : 'bg-[linear-gradient(114deg,rgba(232,232,232,0.10)_15.11%,rgba(0,56,255,0.10)_81.96%)] hover:scale-105 cursor-pointer'
-                                }`}
-                                onClick={() => {
-                                    setSelectedItem(selectedItem && selectedItem.id === item.id ? null : {id: index+1, obj: getObject(index+1), highestBid: 0 })
-                                }}
-                            >
-                                <h2 className={`text-xl font-bold ${
-                                    selectedItem && selectedItem.id === index+1 
-                                    ? 'text-white'
-                                    : 'text-[#8481FA]'
-                                }`}>{`Bond ${index + 1}`}</h2>
-                                <p className={`text-sm pt-2 pb-1 ${
-                                    selectedItem && selectedItem.id === index+1 
-                                    ? 'text-white'
-                                    : 'text-black'
-                                }`}>Highest Bid</p>
-                                <p className={`font-semibold pb-1 px-2 rounded-md w-[100%] ${
-                                    selectedItem && selectedItem.id === index+1 
-                                    ? 'text-black bg-white'
-                                    : 'text-white bg-[#8481FA]'
-                                }`}>
-                                    <span className={selectedItem && selectedItem.id === index + 1 ? 'blink-text text-black' : 'text-white'}>
-                                        ₹{(0).toFixed(2)} Cr
-                                        {/* ₹{(item.highestBid / 10000000).toFixed(2)} Cr */}
-                                    </span>
-                                </p>
-                            </div>
-                        ))}
+                    <div className="p-8 w-3/4 overflow-y-auto hide-scrollbar">
+                        <div className="border-white border-4 rounded-2xl py-3 px-8 w-full bg-[linear-gradient(114deg,rgba(232,232,232,0.10)_15.11%,rgba(0,56,255,0.10)_81.96%)] cursor-pointer flex flex-row items-center justify-between mb-5 text-xl font-bold">
+                            <span className="text-black mb-0">Average Value (Large Cap)</span>
+                            <span className="w-[30%] text-right py-1 px-2 rounded-md text-white bg-[#8481FA]">₹ {(500.5).toFixed(4)} Cr /-</span>
+                        </div>
+                        <div className="border-white border-4 rounded-2xl py-3 px-8 w-full bg-[linear-gradient(114deg,rgba(232,232,232,0.10)_15.11%,rgba(0,56,255,0.10)_81.96%)] cursor-pointer flex flex-row items-center justify-between mb-5 text-xl font-bold">
+                            <span className="text-black mb-0">Average Value (Mid Cap)</span>
+                            <span className="w-[30%] text-right py-1 px-2 rounded-md text-white bg-[#8481FA]">₹ {(500.5).toFixed(4)} Cr /-</span>
+                        </div>
+                        <div className="border-white border-4 rounded-2xl py-3 px-8 w-full bg-[linear-gradient(114deg,rgba(232,232,232,0.10)_15.11%,rgba(0,56,255,0.10)_81.96%)] cursor-pointer flex flex-row items-center justify-between mb-8 text-xl font-bold">
+                            <span className="text-black mb-0">Average Value (Small Cap)</span>
+                            <span className="w-[30%] text-right py-1 px-2 rounded-md text-white bg-[#8481FA]">₹ {(500.5).toFixed(4)} Cr /-</span>
+                        </div>
+                        {/* Items Grid */}
+                        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-10">
+                            {items.map((item, index) => (
+                                <div
+                                    key={index+1}
+                                    className={`p-4 justify-center rounded-2xl shadow-lg transform transition-transform duration-300 ease-in-out text-center cursor-pointer border-white border-4 ${
+                                        selectedItem && selectedItem.id === index+1 
+                                        ? 'bg-[#8481FA] scale-110 transition-transform cursor-pointer'
+                                        : 'bg-[linear-gradient(114deg,rgba(232,232,232,0.10)_15.11%,rgba(0,56,255,0.10)_81.96%)] hover:scale-105 cursor-pointer'
+                                    }`}
+                                    onClick={() => {
+                                        setSelectedItem(selectedItem && selectedItem.id === item.id ? null : {id: index+1, obj: getObject(index+1), highestBid: 0 })
+                                    }}
+                                >
+                                    <h2 className={`text-xl font-bold ${
+                                        selectedItem && selectedItem.id === index+1 
+                                        ? 'text-white'
+                                        : 'text-[#8481FA]'
+                                    }`}>{`Bond ${index + 1}`}</h2>
+                                    <p className={`text-sm pt-2 pb-1 ${
+                                        selectedItem && selectedItem.id === index+1 
+                                        ? 'text-white'
+                                        : 'text-black'
+                                    }`}>Highest Bid</p>
+                                    <p className={`font-semibold pb-1 px-2 rounded-md w-[100%] ${
+                                        selectedItem && selectedItem.id === index+1 
+                                        ? 'text-black bg-white'
+                                        : 'text-white bg-[#8481FA]'
+                                    }`}>
+                                        <span className={selectedItem && selectedItem.id === index + 1 ? 'blink-text text-black' : 'text-white'}>
+                                            ₹{(0).toFixed(2)} Cr
+                                            {/* ₹{(item.highestBid / 10000000).toFixed(2)} Cr */}
+                                        </span>
+                                    </p>
+                                </div>
+                            ))}
+                        </div>
                     </div>
 
                     {/* Item Details */}
