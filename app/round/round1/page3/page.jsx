@@ -391,6 +391,117 @@ export default function PreBidder() {
                 </div>
             )}
 
+            {isAgreementOpen && (
+                <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-75 backdrop-blur-sm">
+                    <div className="flex flex-col h-[80vh] w-[90%] md:w-[70%] lg:w-[50%] border-white border-4 rounded-xl shadow-xl overflow-hidden bg-[#6865C9] text-white items-center justify-center">
+                        {/* Header */}
+                        <div className="text-2xl font-bold w-full text-center pb-2">
+                            Loan Agreement
+                        </div>
+                        <div className="flex flex-row w-full h-[70%] p-4">
+                            <style jsx>{`
+                                .hide-scrollbar {
+                                    -ms-overflow-style: none;
+                                    scrollbar-width: none;
+                                }
+                                .hide-scrollbar::-webkit-scrollbar {
+                                    display: none;  /* Safari and Chrome */
+                                }
+                                @keyframes blink {
+                                    0% { opacity: 1; }
+                                    50% { opacity: 0; }
+                                    100% { opacity: 1; }
+                                    100% { opacity: 1; }
+                                }
+                                .blink-text {
+                                    animation: blink 1s forwards;
+                                }
+                                .placeholder-black::placeholder {
+                                    color: black;
+                                }
+                            `}</style>
+                            <div className="px-4 overflow-y-auto hide-scrollbar text-md text-black">
+                                <p>This Loan Agreement (the 'Agreement') is entered into on <strong>{currentDate}</strong>, by and between:</p>
+                                <div className="my-4">
+                                    <p className="font-semibold mb-1">Lender:</p>
+                                    <div className="border rounded p-2 w-full mb-2 bg-white bg-opacity-15 font-bold">
+                                        Lender's Full Legal Name
+                                    </div>
+                                </div>
+                                <div className="my-4">
+                                    <p className="font-semibold mb-1">Team Leader:</p>
+                                    <div className="border rounded p-2 w-full mb-2 bg-white bg-opacity-15 font-bold">
+                                        Team Leader's Full Legal Name
+                                    </div>
+                                </div>
+
+                                <div className="my-4">
+                                    <p className="font-semibold mb-1">Nominees:</p>
+                                    <div className="border rounded p-2 w-full mb-2 bg-white bg-opacity-15 font-bold">
+                                        Particpant 1's Full Legal Name
+                                    </div>
+                                    <div className="border rounded p-2 w-full mb-2 bg-white bg-opacity-15 font-bold">
+                                        Particpant 2's Full Legal Name
+                                    </div>
+                                    <div className="border rounded p-2 w-full mb-2 bg-white bg-opacity-15 font-bold">
+                                        Particpant 3's Full Legal Name
+                                    </div>
+                                </div>
+
+                                <p className="font-bold mt-4">Declaration</p>
+                                <p>
+                                    I, the Team Leader, along with the Nominees, hereby declare and affirm that they are jointly and severally liable for the repayment of the Loan. They undertake and covenant to pay the principal sum, along with any accrued interest, in accordance with the terms and conditions outlined in this Agreement. Failure to make timely payments will result in a breach of this Agreement and may lead to legal action, including but not limited to recovery of the outstanding amounts due.
+                                </p>
+
+                                <p className="font-bold mt-4 mb-2">Loan Details</p>
+                                <div className="border rounded py-2 px-5 w-full mb-2 bg-white bg-opacity-15 flex flex-row items-center justify-between font-bold">
+                                    <span className="mb-2 md:mb-0">1. Loan Amount</span>
+                                    <span>₹ {(loanAmount / 10000000).toFixed(2)} Cr /-</span>
+                                </div>
+                                <div className="border rounded py-2 px-5 w-full mb-2 bg-white bg-opacity-15 flex flex-row items-center justify-between font-bold">
+                                    <span className="mb-2 md:mb-0">2. Interest Rate</span>
+                                    <span>@ {(interest * 100).toFixed(2)} %</span>
+                                </div>
+
+                                <p className="font-bold mt-4 mb-1">Loan Term</p>
+                                <p>The Loan shall be for a term of EOR (end of round) or UNTIL THE FULL AMOUNT IS PAID, commencing on ROUND 1 and ending when the amount is paid in full with interest . The Loan shall be compounded for 2 terms.</p>
+                                <p className="font-bold mt-4 mb-1">Default</p>
+                                <p>In the event the Team Leader or any of the Nominees fails to make any payment when due, or otherwise breaches this Agreement, the Loan shall be considered in default. The Lender may demand immediate repayment of the full outstanding principal and accrued interest.</p>
+                                
+                                <p className="font-bold mt-4 mb-1">Signatures</p>
+                                <div className="my-4">
+                                    <p className="font-semibold mb-1">Lender:</p>
+                                    <div className="border rounded p-2 w-full mb-2 bg-white bg-opacity-15 font-bold">
+                                        Signature of Lender
+                                    </div>
+                                    <p className="font-semibold mb-1">Team Leader:</p>
+                                    <input
+                                        type="text"
+                                        placeholder="Signature of Team Leader"
+                                        value={teamLeaderSignature}
+                                        onChange={(e) => setTeamLeaderSignature(e.target.value)}
+                                        className="border rounded p-2 w-full mb-2 bg-white bg-opacity-15 font-bold text-black placeholder-gray-800  "
+                                    />
+                                </div>
+                            </div>
+                        </div>
+                        <div className="flex justify-between w-2/3 mt-2">
+                            <button
+                                className="px-6 py-1.5 bg-[#FFE55B] text-[#573712] rounded-md font-bold shadow-lg transition-transform transform hover:scale-105 hover:bg-[#FFBE5C] border"
+                                onClick={doneAgreement}
+                            >
+                                Confirm
+                            </button>
+                            <button
+                                className="px-6 py-1.5 bg-[#FFE55B] text-[#573712] rounded-md font-bold shadow-lg transition-transform transform hover:scale-105 hover:bg-[#FFBE5C] border"
+                                onClick={closeAgreement}
+                            >
+                                Go Back
+                            </button>
+                        </div>
+                    </div>    
+                </div>
+            )}
         </div >
     );
 }
