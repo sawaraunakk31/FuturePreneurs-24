@@ -30,6 +30,7 @@ export default function UserDetail() {
       router.push("/");
     } else if (status == "authenticated") {
       setLoading(false);
+      // router.push("/");
       getUserData();
     }
   }, [status, router]);
@@ -58,7 +59,7 @@ export default function UserDetail() {
         }
       } else {
         setLoading(false);
-        router.push("/join&createTeam");
+        router.push("/");
       }
     } else {
       setLoading(false);
@@ -122,7 +123,7 @@ export default function UserDetail() {
         setFormData({ name: "", email: "", regNo: "", number: "" });
         setErrors({});
         setLoading(false);
-        router.push("/join&createTeam");
+        router.push("/");
       } else if (response.status == 401) {
         toast.error("Duplicate Registration Number");
         setLoading(false);
@@ -252,7 +253,7 @@ export default function UserDetail() {
               </div>
               <button
                 type="submit"
-                className="p-2 rounded-3xl bg-blue-600 text-white text-2xl hover:bg-blue-700 active:transform transition duration-200 w-full h-auto text-center"
+                className="p-2 rounded-3xl bg-gradient-to-r from-purple-500 to-blue-500 text-white text-2xl  hover:text-black active:transform transition duration-200 w-full h-auto text-center"
               >
                 Submit
               </button>

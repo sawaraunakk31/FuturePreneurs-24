@@ -23,6 +23,7 @@ export default function CountdownTimer({ targetDate }) {
     return timeLeft;
   };
 
+
   const [timeLeft, setTimeLeft] = useState(calculateTimeLeft());
 
   useEffect(() => {
@@ -49,10 +50,9 @@ export default function CountdownTimer({ targetDate }) {
   );
 
   return (
-    <div>
+    <div >
       <LoadFont />
 
-      {/* Background Image */}
       <div className="bottom-0 right-0 absolute w-[80%] h-[50%] sm:w-[60%] sm:h-[40%] md:w-[50%] md:h-[35%] lg:w-[50%] lg:h-[50%]">
         <Image
           src={grad}
@@ -62,16 +62,14 @@ export default function CountdownTimer({ targetDate }) {
         />
       </div>
 
-      {/* Timer Text */}
-      <div className="absolute bottom-0 right-0 lg:mr-7 lg:mb-7 md:mr-5 md:mb-5 sm:mr-6 sm:mb-6 flex flex-col text-bold space-y-2">
+      <div className="absolute bottom-0 right-0 lg:mr-7 lg:mb-7 md:mr-5 md:mb-5 sm:mr-6 sm:mb-6 flex flex-col text-bold space-y-1">
         <div className="text-md font-bold pr-2 text-white sm:text-sm md:text-xl">
-          Registration Closes In:
+          Registrations Closed
         </div>
 
-        <div className="flex space-x-1 sm:space-x-0">
+        <div className="flex space-x-1 pr-4 pb-4 lg:pb-0 lg:pr-0 md:pb-0 md:pr-0 sm:pb-0 sm:pr-0">
 
-          {/* Days */}
-          <div className="flex flex-col items-center flex-1">
+          <div className="flex flex-col items-center ">
             <div
               style={{
                 fontFamily: "'GothamBlack', sans-serif",
@@ -81,29 +79,12 @@ export default function CountdownTimer({ targetDate }) {
               }}
               className="text-4xl font-bold text-white bg-clip-text text-transparent sm:text-6xl md:text-8xl"
             >
-              {formatNumber(timeLeft.days)}
+              {formatNumber(timeLeft.days)}:
             </div>
-            <span className="text-sm text-white sm:text-xs md:text-lg sm:text-[0.75rem] pn:text-[0.75rem]">DAYS</span>
+            <span className="text-xs text-white sm:text-xs md:text-lg">DAYS</span>
           </div>
 
-          {/* Colon */}
           <div className="flex flex-col items-center">
-            <div
-              style={{
-                fontFamily: "'GothamBlack', sans-serif",
-                background: "linear-gradient(81deg, rgba(255, 255, 255, 0.70) 69.39%, #F2CEFE 95.46%)",
-                WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent",
-              }}
-              className="text-2xl font-bold text-white bg-clip-text text-transparent sm:text-5xl pn:mt-1 lg:mt-0 md:text-8xl"
-            >
-              :
-            </div>
-            <span className="text-sm text-white sm:text-xs md:text-lg sm:text-[0.75rem] pn:text-[0.75rem]"> </span>
-          </div>
-
-          {/* Hours */}
-          <div className="flex flex-col items-center flex-1">
             <div
               style={{
                 fontFamily: "'GothamBlack', sans-serif",
@@ -115,27 +96,10 @@ export default function CountdownTimer({ targetDate }) {
             >
               {formatNumber(timeLeft.hours)}
             </div>
-            <span className="text-sm text-white md:text-lg sm:text-[0.75rem] pn:text-[0.75rem]">HOURS</span>
+            <span className="text-xs text-white sm:text-xs md:text-lg">HOURS</span>
           </div>
 
-          {/* Colon */}
           <div className="flex flex-col items-center">
-            <div
-              style={{
-                fontFamily: "'GothamBlack', sans-serif",
-                background: "linear-gradient(81deg, rgba(255, 255, 255, 0.70) 69.39%, #F2CEFE 95.46%)",
-                WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent",
-              }}
-              className="text-2xl font-bold text-white bg-clip-text text-transparent sm:text-5xl pn:mt-1 lg:mt-0 md:text-8xl"
-            >
-              :
-            </div>
-            <span className="text-sm text-white sm:text-xs md:text-lg sm:text-[0.75rem] pn:text-[0.75rem]"> </span>
-          </div>
-
-          {/* Minutes */}
-          <div className="flex flex-col items-center flex-1">
             <div
               style={{
                 fontFamily: "'GothamBlack', sans-serif",
@@ -145,13 +109,13 @@ export default function CountdownTimer({ targetDate }) {
               }}
               className="text-4xl font-bold text-white bg-clip-text text-transparent sm:text-6xl md:text-8xl"
             >
-              {formatNumber(timeLeft.minutes)}
+              :{formatNumber(timeLeft.minutes)}
             </div>
-            <span className="text-sm text-white md:text-lg sm:text-[0.75rem] pn:text-[0.75rem]">MINUTES</span>
+            <span className="text-xs text-white sm:text-xs md:text-lg">MINUTES</span>
           </div>
-
         </div>
       </div>
+
     </div>
   );
 }
