@@ -69,7 +69,11 @@ const teamSchema = mongoose.Schema(
       {
         type: Number //? Array of bond numbers the user has bid for
       }
-    ]
+    ],
+    hold:{
+      type:Number,
+      default:null
+    }
   },
   { collection: 'TeamModel' }
 );
