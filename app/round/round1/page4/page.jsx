@@ -10,8 +10,75 @@ import Image from 'next/image';
 import back from '../back2.svg';
 import file from '@/public/constant/round1/bonds.json';
 import { set } from "mongoose";
+const TimerOverlay = ({ hold, startTime }) => {
+    const [timeLeft, setTimeLeft] = useState(0);
+    const [isActive, setIsActive] = useState(false);
 
+    useEffect(() => {
+        if (hold) {
+            const currentTime = Date.now();
+            const duration = 60 * 1000; // 3 minutes in milliseconds
+            const timeRemaining = Math.max(0, Math.floor((startTime + duration - currentTime) / 1000));
+            
+            setTimeLeft(timeRemaining);
+            setIsActive(true);
+        } else {
+            // Reset timer and overlay when hold is false
+            setIsActive(false);
+            setTimeLeft(0);
+        }
+    }, [hold, startTime]);
+
+    useEffect(() => {
+        let timer;
+
+        if (isActive && timeLeft > 0) {
+            timer = setInterval(() => {
+                setTimeLeft((prev) => prev - 1);
+            }, 1000);
+        } else if (timeLeft <= 0) {
+            // If time runs out, deactivate the overlay
+            setIsActive(false);
+        }
+
+        return () => clearInterval(timer);
+    }, [isActive, timeLeft]);
+
+    if (!isActive || !hold) return null; // Do not render the overlay if it's inactive or hold is false
+
+    return (
+        <div style={overlayStyles}>
+            <div style={timerStyles}>
+                {timeLeft > 0 ? (
+                    <h1>{`${Math.floor(timeLeft / 60).toString().padStart(2, '0')}:${(timeLeft % 60).toString().padStart(2, '0')}`} remaining</h1>
+                ) : (
+                    <h1>Time's up!</h1>
+                )}
+            </div>
+        </div>
+    );
+};
+
+  
+  const overlayStyles = {
+    position: 'fixed',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    backgroundColor: 'rgba(0, 0, 0, 0.7)',
+    color: 'white',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    zIndex: 1000,
+  };
+  
+  const timerStyles = {
+    textAlign: 'center',
+  };
 export default function Bidder() {
+ 
     const [loading, setLoading] = useState(true);
     const { data: session, status } = useSession();
     const [items, setItems] = useState([]);
@@ -25,6 +92,8 @@ export default function Bidder() {
     const [team, setTeam] = useState("");
     const [hold,setHold]=useState(0);
     const [bondsBidFor, setBondsBidFor] = useState([]);
+
+  const [startTime, setStartTime] = useState(0);
 
     const handlePriceChange = (e) => {
         const value = e.target.value;
@@ -75,8 +144,14 @@ export default function Bidder() {
                 socket.on("userDetails", ({team}) => {
                     setWalletBalance(team.wallet)
                     setTeam(team.teamName);
-                });
+                    if(team.hold && ((Date.now() - team.hold) / 60000 < 1)
+                ){
+                        setHold(true);
+                    }
+                    setStartTime(team.hold);
 
+                });
+                 
                 socket.on("highestBids", setHighestBids);
                 socket.on("highestBid", handleNewHighestBid);
 
@@ -117,6 +192,7 @@ export default function Bidder() {
         socket.on("disconnect", onDisconnect);
 
         socket.on("highestBids", setHighestBids);
+        socket.on("HoldFalse", () => setHold(false)); // Using an arrow function
         socket.on("highestBid", handleNewHighestBid);
 
         socket.on("syncTimer",({timeLeft:serverTimeLeft})=>{
@@ -281,9 +357,7 @@ export default function Bidder() {
                                         toast.error("You have already bid on this item");
                                     } else if ( isFirstHalf && index >= 25 ) {
                                         toast.error("You cannot bid on this item right now");
-                                    } else {
-                                        toast.error("You are currently holding or bidding on an item");
-                                    }
+                                    } 
                                 }}
                             >
                                 <h2 className={`text-xl font-bold ${
@@ -366,7 +440,12 @@ export default function Bidder() {
                                             disabled={!price && allocatedItems[selectedItem.id-1] && hold && !bondsBidFor.includes(selectedItem.id-1)}
                                             onClick={() => {
                                                 setHold(true);
+                                                setTimeout(()=>{
+                                                    setHold(false);
+                                                },60000)
+                                                setStartTime(Date.now());
                                                 handleNewBid(selectedItem.id, selectedItem.highestBid);
+                                                
                                             }}
                                         >
                                             Submit
@@ -382,6 +461,7 @@ export default function Bidder() {
                     </div>
                 </div>
             </div>
+            <TimerOverlay hold={hold} startTime={startTime}></TimerOverlay>
         </div >
     );
 }
