@@ -34,7 +34,7 @@ const gettokenfrombackend = async (user, account) => {
 
 const authOptions = {
   providers: [
-    GoogleProvider({
+    GoogleProvider.default({
       clientId: process.env.GOOGLE_CLIENT_ID,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
       authorization: {
@@ -164,6 +164,6 @@ async function refreshAccessToken(token) {
   }
 }
 
-const handler = NextAuth(authOptions);
+const handler = NextAuth.default(authOptions);
 
 export { handler as GET, handler as POST };
