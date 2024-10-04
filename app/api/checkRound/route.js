@@ -1,7 +1,5 @@
 import { connectMongo } from "@/libs/mongodb";
-import { Round0 } from "@/models/round0.model";
 import { TeamModel } from "@/models/team.model";
-import { Event1Test } from "@/models/user.model";
 import { getTokenDetails } from "@/utils/getTokenDetails";
 import { getToken } from "next-auth/jwt";
 import { NextResponse } from "next/server";
