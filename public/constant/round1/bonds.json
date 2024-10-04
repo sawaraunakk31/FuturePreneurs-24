@@ -1,502 +1,602 @@
 [
     {
         "id": 1,
-        "name": "MacroHard corpora",
-        "revenue": 250000000,
-        "profit": 50000000,
+        "name": "MacroHard Corporation",
+        "overview": "MacroHard is a global technology company known for its software products, including the Macro operating system and Macro Office suite, as well as innovations in cloud computing, gaming (MacroBox), and artificial intelligence.",
+        "revenue": 2500000000,
+        "profit": 500000000,
+        "reserve": 250000000,
         "value": 90000000,
         "yield": 0.09,
         "rating": "AAA",
-        "de_ratio": 0.5
+        "ratio": 0.5
     },
     {
         "id": 2,
         "name": "GiggleWiggle Inc.",
-        "revenue": 150000000,
-        "profit": 20000000,
+        "overview": "GiggleWiggle is a tech company focused on designing semiconductor and software solutions for data centers, networking, broadband, and wireless communications.",
+        "revenue": 1500000000,
+        "profit": 200000000,
+        "reserve": 120000000,
         "value": 60000000,
         "yield": 0.14,
         "rating": "BBB",
-        "de_ratio": 0.7
+        "ratio": 0.7
     },
     {
         "id": 3,
         "name": "FizzBuzz Financials, Inc.",
-        "revenue": 120000000,
-        "profit": 15000000,
+        "overview": "FizzBuzz Financials, Inc. provides a comprehensive suite of solutions, including investment management, insurance, and retirement planning.",
+        "revenue": 1200000000,
+        "profit": 150000000,
+        "reserve": 80000000,
         "value": 80000000,
         "yield": 0.15,
         "rating": "BBB",
-        "de_ratio": 1.2
+        "ratio": 1.2
     },
     {
         "id": 4,
         "name": "SnoopyEye, Inc.",
-        "revenue": 210000000,
-        "profit": 35000000,
+        "overview": "SnoopyEye, Inc. is an innovative electronic design automation (EDA) company that offers software and services for semiconductor design and manufacturing.",
+        "revenue": 2100000000,
+        "profit": 350000000,
+        "reserve": 180000000,
         "value": 90000000,
         "yield": 0.095,
         "rating": "AA",
-        "de_ratio": 0.4
+        "ratio": 0.4
     },
     {
         "id": 5,
         "name": "Serve-It-Up Now, Inc.",
-        "revenue": 90000000,
-        "profit": 12000000,
+        "overview": "Serve-It-Up Now, Inc. is a dynamic provider of cloud-based platforms designed to streamline service management and automate workflows for organizations.",
+        "revenue": 900000000,
+        "profit": 120000000,
+        "reserve": 60000000,
         "value": 50000000,
         "yield": 0.16,
         "rating": "BBB",
-        "de_ratio": 0.8
+        "ratio": 0.8
     },
     {
         "id": 6,
         "name": "Hooray Hi-Tech Co. Ltd.",
-        "revenue": 180000000,
-        "profit": 30000000,
+        "overview": "Hooray Hi-Tech Co., Ltd. is a prominent multinational electronics manufacturer specializing in the production of consumer electronics and collaborating with major tech companies to drive innovation in the global supply chain.",
+        "revenue": 1800000000,
+        "profit": 300000000,
+        "reserve": 150000000,
         "value": 80000000,
         "yield": 0.092,
         "rating": "AA",
-        "de_ratio": 0.6
+        "ratio": 0.6
     },
     {
         "id": 7,
         "name": "Crayons Ltd.",
-        "revenue": 220000000,
-        "profit": 40000000,
+        "overview": "Crayons Ltd. is an innovative manufacturer of sensors, measurement systems, and automation equipment, recognized for its advanced technology and solutions in industrial applications.",
+        "revenue": 2200000000,
+        "profit": 400000000,
+        "reserve": 200000000,
         "value": 100000000,
         "yield": 0.09,
         "rating": "AAA",
-        "de_ratio": 0.3
+        "ratio": 0.3
     },
     {
         "id": 8,
         "name": "BigBen Medias Inc.",
-        "revenue": 160000000,
-        "profit": 22000000,
+        "overview": "BigBen Medias Inc. is a global semiconductor company that develops cutting-edge chips and solutions for wireless communications, home entertainment, and smart devices.",
+        "revenue": 1600000000,
+        "profit": 220000000,
+        "reserve": 100000000,
         "value": 70000000,
         "yield": 0.155,
         "rating": "BBB",
-        "de_ratio": 0.6
+        "ratio": 0.6
     },
     {
         "id": 9,
         "name": "Stark Industries Inc.",
-        "revenue": 140000000,
-        "profit": 18000000,
+        "overview": "Stark Industries is a cutting-edge technology company that delivers innovative storage, networking, and connectivity solutions for data infrastructure and cloud applications.",
+        "revenue": 1400000000,
+        "profit": 180000000,
+        "reserve": 100000000,
         "value": 90000000,
         "yield": 0.16,
         "rating": "BBB",
-        "de_ratio": 1.1
+        "ratio": 1.1
     },
     {
         "id": 10,
         "name": "InfiniteJunk Technologies Ltd.",
-        "revenue": 110000000,
-        "profit": 14000000,
+        "overview": "InfiniteJunk Technologies Ltd. is a global semiconductor manufacturer focused on innovative solutions for automotive, industrial, and security applications.",
+        "revenue": 1100000000,
+        "profit": 140000000,
+        "reserve": 60000000,
         "value": 50000000,
         "yield": 0.12,
         "rating": "A",
-        "de_ratio": 0.8
+        "ratio": 0.8
     },
     {
         "id": 11,
         "name": "HealthSphere Solutions Inc.",
-        "revenue": 200000000,
-        "profit": 35000000,
+        "overview": "HealthSphere Solutions, Inc. is a global healthcare company providing pharmaceutical products in oncology, vaccines, and veterinary medicines. The company aims to advance scientific innovation in healthcare, focusing on breakthroughs in oncology and vaccine development.",
+        "revenue": 2000000000,
+        "profit": 350000000,
+        "reserve": 150000000,
         "value": 80000000,
         "yield": 0.09,
         "rating": "AAA",
-        "de_ratio": 0.4
+        "ratio": 0.4
     },
     {
         "id": 12,
         "name": "CardioTech Solutions",
-        "revenue": 180000000,
-        "profit": 25000000,
+        "overview": "CardioTech Solutions, Inc. is a medical devices company known for its drug-eluting stents and devices in cardiology, neurology, oncology, and urology. The company aims to create less invasive medical devices and enhance heart and nerve therapies to improve patient care globally.",
+        "revenue": 1800000000,
+        "profit": 250000000,
+        "reserve": 100000000,
         "value": 70000000,
         "yield": 0.093,
         "rating": "AA",
-        "de_ratio": 0.5
+        "ratio": 0.5
     },
     {
         "id": 13,
         "name": "VitaMed Innovations",
-        "revenue": 120000000,
-        "profit": 15000000,
+        "overview": "VitaMed Innovations, Inc. is a medical devices company recognized for its drug-eluting stents and devices across cardiology, neurology, oncology, and urology. The company strives to develop less invasive medical technologies and improve heart and nerve therapies to enhance patient care worldwide.",
+        "revenue": 1200000000,
+        "profit": 150000000,
+        "reserve": 80000000,
         "value": 60000000,
         "yield": 0.12,
         "rating": "A",
-        "de_ratio": 0.7
+        "ratio": 0.7
     },
     {
         "id": 14,
         "name": "CardioInnovate Technologies Inc.",
-        "revenue": 80000000,
-        "profit": 10000000,
+        "overview": "CardioInnovate Technologies, Inc. specializes in artificial heart valves and hemodynamic monitoring, designing surgical valves, transcatheter heart therapies, and critical care catheters. The company aims to advance heart therapies and critical care technologies to improve patient outcomes and increase access to life-saving treatments globally.",
+        "revenue": 800000000,
+        "profit": 100000000,
+        "reserve": 50000000,
         "value": 50000000,
         "yield": 0.16,
         "rating": "BBB",
-        "de_ratio": 1.3
+        "ratio": 1.3
     },
     {
         "id": 15,
         "name": "Health Align Technology",
-        "revenue": 150000000,
-        "profit": 20000000,
+        "overview": "Health Align Technology, Inc. is a leader in clear aligners, particularly known for Invisalign. The company aims to expand its digital orthodontics solutions and improve patient access to its products.",
+        "revenue": 1500000000,
+        "profit": 200000000,
+        "reserve": 100000000,
         "value": 70000000,
         "yield": 0.10,
         "rating": "AA",
-        "de_ratio": 0.5
+        "ratio": 0.5
     },
     {
         "id": 16,
         "name": "CellGenix Therapeutics",
-        "revenue": 100000000,
-        "profit": 12000000,
+        "overview": "CellGenix Therapeutics specializes in CAR-T cell therapies for cancer treatment. The company aims to expand its product pipeline and manufacturing capabilities to enhance patient outcomes worldwide.",
+        "revenue": 1000000000,
+        "profit": 120000000,
+        "reserve": 60000000,
         "value": 60000000,
         "yield": 0.14,
         "rating": "BBB",
-        "de_ratio": 1.1
+        "ratio": 1.1
     },
     {
         "id": 17,
         "name": "HematoGenix, Inc.",
-        "revenue": 190000000,
-        "profit": 28000000,
+        "overview": "HematoGenix, Inc. is a biotechnology company focused on developing transformative therapies for sickle cell disease and other blood disorders. The company aims to expand its research pipeline and improve treatment accessibility to enhance the quality of life for patients globally.",
+        "revenue": 1900000000,
+        "profit": 280000000,
+        "reserve": 150000000,
         "value": 90000000,
         "yield": 0.095,
         "rating": "AA",
-        "de_ratio": 0.4
+        "ratio": 0.4
     },
     {
         "id": 18,
         "name": "IMMUNOQUEST Inc.",
-        "revenue": 85000000,
-        "profit": 10000000,
+        "overview": "ImmunoQuest, Inc. is a biotechnology company dedicated to developing innovative immune-based therapies to treat cancer and infectious diseases. The company aims to expand its pipeline of immune-oncology treatments and enhance patient access to cutting-edge therapies worldwide.",
+        "revenue": 850000000,
+        "profit": 100000000,
+        "reserve": 50000000,
         "value": 50000000,
         "yield": 0.17,
         "rating": "BB",
-        "de_ratio": 1.5
+        "ratio": 1.5
     },
     {
         "id": 19,
         "name": "CELLGUARD INNOVATIONS",
-        "revenue": 200000000,
-        "profit": 30000000,
+        "overview": "CellGuard Innovations, Inc. is a biotechnology company focused on harnessing the power of the immune system to develop advanced therapies for cancer and infectious diseases. The company aims to expand its portfolio of immune-based treatments and improve patient outcomes through innovative research and development.",
+        "revenue": 2000000000,
+        "profit": 300000000,
+        "reserve": 120000000,
         "value": 90000000,
         "yield": 0.091,
         "rating": "AA",
-        "de_ratio": 0.3
+        "ratio": 0.3
     },
     {
         "id": 20,
         "name": "Fertility Forward",
-        "revenue": 140000000,
-        "profit": 18000000,
+        "overview": "FertilityForward, Inc. is a healthcare company dedicated to transforming fertility care through comprehensive benefits and innovative solutions. The company aims to expand access to reproductive health services and enhance the overall fertility journey for individuals and couples.",
+        "revenue": 1400000000,
+        "profit": 180000000,
+        "reserve": 80000000,
         "value": 80000000,
         "yield": 0.15,
         "rating": "BBB",
-        "de_ratio": 1.2
+        "ratio": 1.2
     },
     {
         "id": 21,
         "name": "TRILEVER PVT LTD",
-        "revenue": 90000000,
-        "profit": 12000000,
+        "overview": "TRILEVER PVT LTD produces, processes, and distributes food products, ranging from raw ingredients to packaged meals. They focus on quality, safety, and innovation in areas like health, sustainability, and convenience.",
+        "revenue": 900000000,
+        "profit": 120000000,
+        "reserve": 60000000,
         "value": 50000000,
         "yield": 0.12,
         "rating": "A",
-        "de_ratio": 0.8
+        "ratio": 0.8
     },
     {
         "id": 22,
         "name": "Hatmoon Agro",
-        "revenue": 170000000,
-        "profit": 22000000,
+        "overview": "Hatmoon Agro manufactures and markets ice creams, milk, milk products, and cattle feed primarily in India. The company offers standardized, full cream, and toned milk.",
+        "revenue": 1700000000,
+        "profit": 220000000,
+        "reserve": 100000000,
         "value": 70000000,
         "yield": 0.15,
         "rating": "BBB",
-        "de_ratio": 0.9
+        "ratio": 0.9
     },
     {
         "id": 23,
-        "name": "Coolgate Pvt Ltd",
-        "revenue": 130000000,
-        "profit": 16000000,
+        "name": "Coolgate Pvt Ltd.",
+        "overview": "Coolgate Pvt Ltd is a leading consumer goods company, primarily known for its oral care products like toothpaste and toothbrushes.",
+        "revenue": 1300000000,
+        "profit": 160000000,
+        "reserve": 90000000,
         "value": 60000000,
         "yield": 0.11,
         "rating": "A",
-        "de_ratio": 0.4
+        "ratio": 0.4
     },
     {
         "id": 24,
         "name": "Jyothika Labs Ltd",
-        "revenue": 160000000,
-        "profit": 28000000,
+        "overview": "Jyothy Labs Ltd is an Indian FMCG company known for its household and personal care products. It offers a range of products in fabric care, home care, personal care, and dishwashing segments across India.",
+        "revenue": 1600000000,
+        "profit": 280000000,
+        "reserve": 150000000,
         "value": 80000000,
         "yield": 0.16,
         "rating": "BBB",
-        "de_ratio": 1.3
+        "ratio": 1.3
     },
     {
         "id": 25,
         "name": "Maharaja Foods Ltd.",
-        "revenue": 190000000,
-        "profit": 30000000,
+        "overview": "Maharaja Foods Ltd is an Indian company primarily engaged in the production of dairy-based products, specializing in ingredients like casein, whey protein, and lactose.",
+        "revenue": 1900000000,
+        "profit": 300000000,
+        "reserve": 120000000,
         "value": 90000000,
         "yield": 0.10,
         "rating": "AA",
-        "de_ratio": 0.5
+        "ratio": 0.5
     },
     {
         "id": 26,
         "name": "Qabur India Ltd.",
-        "revenue": 140000000,
-        "profit": 20000000,
+        "overview": "Qabur India Ltd is one of India's largest and oldest consumer goods companies, specializing in natural and Ayurvedic products. Founded in 1884, it has a rich heritage in health care, personal care, and food products.",
+        "revenue": 1400000000,
+        "profit": 200000000,
+        "reserve": 100000000,
         "value": 60000000,
         "yield": 0.15,
         "rating": "BBB",
-        "de_ratio": 1.2
+        "ratio": 1.2
     },
     {
         "id": 27,
-        "name": "VIP Industries Ltd",
-        "revenue": 110000000,
-        "profit": 15000000,
+        "name": "VIP Industries Ltd.",
+        "overview": "VIP Industries Ltd is an Indian company primarily engaged in the manufacturing and sale of cigarettes and tobacco products, with popular brands like Total and Charms.",
+        "revenue": 1100000000,
+        "profit": 150000000,
+        "reserve": 80000000,
         "value": 50000000,
         "yield": 0.14,
         "rating": "BBB",
-        "de_ratio": 0.9
+        "ratio": 0.9
     },
     {
         "id": 28,
-        "name": "Southern Spirits Ltd",
-        "revenue": 140000000,
-        "profit": 18000000,
+        "name": "Southern Spirits Ltd.",
+        "overview": "Southern Spirits Ltd is an Indian company that specializes in the import, distribution, and marketing of premium alcoholic beverages, including international liquor brands.",
+        "revenue": 1400000000,
+        "profit": 180000000,
+        "reserve": 90000000,
         "value": 70000000,
         "yield": 0.15,
         "rating": "BBB",
-        "de_ratio": 1.2
+        "ratio": 1.2
     },
     {
         "id": 29,
         "name": "Bamboo Agro",
-        "revenue": 160000000,
-        "profit": 24000000,
+        "overview": "Bamboo Agro Industries Ltd is an Indian company known for its popular range of vermicelli and pasta products. It operates in the food processing sector, offering a variety of convenience food items like instant mixes and snacks.",
+        "revenue": 1600000000,
+        "profit": 240000000,
+        "reserve": 100000000,
         "value": 90000000,
         "yield": 0.12,
         "rating": "A",
-        "de_ratio": 0.6
+        "ratio": 0.6
     },
     {
         "id": 30,
         "name": "KGF Milk Food Ltd.",
-        "revenue": 140000000,
-        "profit": 18000000,
+        "overview": "KGF Milk Food Ltd is an Indian dairy company specializing in the production of a variety of milk-based products, including ghee, paneer, and flavored milk. Committed to quality and innovation, it serves both domestic and international markets with a focus on healthy and nutritious offerings.",
+        "revenue": 1400000000,
+        "profit": 180000000,
+        "reserve": 90000000,
         "value": 70000000,
         "yield": 0.15,
         "rating": "BBB",
-        "de_ratio": 1.2
+        "ratio": 1.2
     },
     {
         "id": 31,
-        "name": "cyju's",
-        "revenue": 100000000,
-        "profit": 12000000,
+        "name": "Cyju's",
+        "overview": "Cyju's is an Indian edtech company that offers online learning programs for students from kindergarten to 12th grade, as well as competitive exam preparation.",
+        "revenue": 1000000000,
+        "profit": 120000000,
+        "reserve": 60000000,
         "value": 50000000,
         "yield": 0.10,
         "rating": "AA",
-        "de_ratio": 0.5
+        "ratio": 0.5
     },
     {
         "id": 32,
         "name": "Inacademy",
-        "revenue": 160000000,
-        "profit": 24000000,
+        "overview": "Inacademy is an Indian online education platform that provides a wide range of courses and resources for students preparing for competitive exams, as well as for school and college subjects.",
+        "revenue": 1600000000,
+        "profit": 240000000,
+        "reserve": 110000000,
         "value": 80000000,
         "yield": 0.16,
         "rating": "BBB",
-        "de_ratio": 1.1
+        "ratio": 1.1
     },
     {
         "id": 33,
         "name": "Jedantu",
-        "revenue": 190000000,
-        "profit": 30000000,
+        "overview": "Jedantu uses a unique approach called 'WAVE' (Whiteboard Animation Virtual Education), which enhances the learning experience through visual aids and interactive tools.",
+        "revenue": 1900000000,
+        "profit": 300000000,
+        "reserve": 150000000,
         "value": 90000000,
         "yield": 0.095,
         "rating": "AA",
-        "de_ratio": 0.4
+        "ratio": 0.4
     },
     {
         "id": 34,
         "name": "Odemy",
-        "revenue": 120000000,
-        "profit": 16000000,
+        "overview": "Odemy is a global online learning platform that offers a vast array of courses across various subjects, from business and technology to arts and personal development.",
+        "revenue": 1200000000,
+        "profit": 160000000,
+        "reserve": 70000000,
         "value": 60000000,
         "yield": 0.12,
         "rating": "A",
-        "de_ratio": 0.8
+        "ratio": 0.8
     },
     {
         "id": 35,
         "name": "Rakesh Educational Services Limited (AESL)",
-        "revenue": 170000000,
-        "profit": 20000000,
+        "overview": "Rakesh Educational Services Limited (AESL) is a prominent Indian coaching institution that specializes in preparing students for medical and engineering entrance examinations, such as NEET and JEE.",
+        "revenue": 1700000000,
+        "profit": 200000000,
+        "reserve": 100000000,
         "value": 70000000,
         "yield": 0.14,
         "rating": "BBB",
-        "de_ratio": 1.3
+        "ratio": 1.3
     },
     {
         "id": 36,
         "name": "Dimplilearn",
-        "revenue": 210000000,
-        "profit": 40000000,
+        "overview": "Dimplilearn’s courses are designed to help individuals upskill or reskill for career advancement. The platform provides a combination of self-paced learning, live virtual classrooms, and hands-on projects to ensure practical understanding of the subject matter.",
+        "revenue": 2100000000,
+        "profit": 400000000,
+        "reserve": 200000000,
         "value": 100000000,
         "yield": 0.092,
         "rating": "AA",
-        "de_ratio": 0.5
+        "ratio": 0.5
     },
     {
         "id": 37,
         "name": "HighGrad's",
-        "revenue": 190000000,
-        "profit": 28000000,
+        "overview": "HighGrad's learning experience includes live lectures, hands-on projects, and personalized mentorship, ensuring that students gain practical skills applicable in their careers. The platform emphasizes flexible learning, allowing students to balance their education with professional commitments.",
+        "revenue": 1900000000,
+        "profit": 280000000,
+        "reserve": 150000000,
         "value": 80000000,
         "yield": 0.16,
         "rating": "BBB",
-        "de_ratio": 0.9
+        "ratio": 0.9
     },
     {
         "id": 38,
         "name": "Addtramarks",
-        "revenue": 130000000,
-        "profit": 15000000,
+        "overview": "Addtramarks emphasizes personalized learning, allowing students to progress at their own pace and revisit topics as needed. The company also offers solutions for schools, integrating technology into traditional classrooms to enhance the overall learning experience.",
+        "revenue": 1300000000,
+        "profit": 150000000,
+        "reserve": 80000000,
         "value": 60000000,
         "yield": 0.11,
         "rating": "A",
-        "de_ratio": 0.4
+        "ratio": 0.4
     },
     {
         "id": 39,
         "name": "Finite Learn",
-        "revenue": 100000000,
-        "profit": 10000000,
+        "overview": "With a commitment to enhancing student engagement and understanding, Finite Learn aims to equip learners with the knowledge and skills necessary to excel academically and in competitive environments.",
+        "revenue": 1000000000,
+        "profit": 100000000,
+        "reserve": 50000000,
         "value": 50000000,
         "yield": 0.18,
         "rating": "B",
-        "de_ratio": 1.6
+        "ratio": 1.6
     },
     {
         "id": 40,
         "name": "Forward Education",
-        "revenue": 120000000,
-        "profit": 18000000,
+        "overview": "Forward Education offers a range of products including interactive learning platforms, e-books, and assessment tools for students, teachers, and schools. They ensure content is up-to-date across various educational boards.",
+        "revenue": 1200000000,
+        "profit": 180000000,
+        "reserve": 90000000,
         "value": 70000000,
         "yield": 0.155,
         "rating": "BBB",
-        "de_ratio": 0.7
+        "ratio": 0.7
     },
     {
         "id": 41,
         "name": "DTFC",
-        "revenue": 180000000,
-        "profit": 30000000,
+        "overview": "DTFC is a leading courier and logistics company in India, offering domestic and international shipping services. They focus on expanding digital infrastructure to enhance customer experience and streamline supply chain solutions.",
+        "revenue": 1800000000,
+        "profit": 300000000,
+        "reserve": 120000000,
         "value": 90000000,
         "yield": 0.10,
         "rating": "AA",
-        "de_ratio": 0.5
+        "ratio": 0.5
     },
     {
         "id": 42,
         "name": "Zx Corp",
-        "revenue": 150000000,
-        "profit": 22000000,
+        "overview": "Zx Corp is a global logistics and delivery services company specializing in transportation, e-commerce, and supply chain management, focusing on expanding digital capabilities and sustainable logistics solutions.",
+        "revenue": 1500000000,
+        "profit": 220000000,
+        "reserve": 100000000,
         "value": 60000000,
         "yield": 0.15,
         "rating": "BBB",
-        "de_ratio": 1.2
+        "ratio": 1.2
     },
     {
         "id": 43,
         "name": "Logistics Help",
-        "revenue": 200000000,
-        "profit": 40000000,
+        "overview": "Logistics Help is a logistics and delivery startup specializing in last-mile delivery solutions, optimizing delivery routes using AI and data analytics for fast, reliable, and cost-effective services.",
+        "revenue": 2000000000,
+        "profit": 400000000,
+        "reserve": 150000000,
         "value": 100000000,
         "yield": 0.09,
         "rating": "AAA",
-        "de_ratio": 0.3
+        "ratio": 0.3
     },
     {
         "id": 44,
         "name": "CropTech Solutions",
-        "revenue": 140000000,
-        "profit": 20000000,
+        "overview": "CropTech Solutions is at the forefront of agricultural innovation, integrating AI and precision farming tools to help farmers optimize resource usage, though facing competition from traditional practices.",
+        "revenue": 1400000000,
+        "profit": 200000000,
+        "reserve": 80000000,
         "value": 70000000,
         "yield": 0.12,
         "rating": "A",
-        "de_ratio": 0.5
+        "ratio": 0.5
     },
     {
         "id": 45,
         "name": "Bubble Dart",
-        "revenue": 110000000,
-        "profit": 15000000,
+        "overview": "Bubble Dart is a leading logistics and express delivery company in India, specializing in time-sensitive shipments, focusing on enhancing e-commerce logistics and expanding their delivery network across the country.",
+        "revenue": 1100000000,
+        "profit": 150000000,
+        "reserve": 60000000,
         "value": 50000000,
         "yield": 0.16,
         "rating": "BBB",
-        "de_ratio": 1.3
+        "ratio": 1.3
     },
     {
         "id": 46,
         "name": "Alavex",
-        "revenue": 130000000,
-        "profit": 18000000,
+        "overview": "Alavex is a global logistics and transportation company specializing in express solutions, courier delivery, and freight forwarding services, with a focus on expanding e-commerce and improving sustainability in their operations.",
+        "revenue": 1300000000,
+        "profit": 180000000,
+        "reserve": 70000000,
         "value": 60000000,
         "yield": 0.14,
         "rating": "BBB",
-        "de_ratio": 1.1
+        "ratio": 1.1
     },
     {
         "id": 47,
-        "name": "United Parcel Service",
-        "revenue": 100000000,
-        "profit": 10000000,
+        "name": "United Parcel Service (UPS)",
+        "overview": "United Parcel Service is an American multinational shipping and supply chain management company. Once specializing in telegraphs, UPS has become one of the world’s largest shipping couriers.",
+        "revenue": 1000000000,
+        "profit": 100000000,
+        "reserve": 50000000,
         "value": 50000000,
         "yield": 0.12,
         "rating": "A",
-        "de_ratio": 0.4
+        "ratio": 0.4
     },
     {
         "id": 48,
-        "name": "fast & safe",
-        "revenue": 100000000,
-        "profit": 14000000,
+        "name": "Fast & Safe",
+        "overview": "Fast & Safe was the pioneer in India to introduce delivery dates on dockets and guaranteed refunds. They have extensive reach across India and offer efficient delivery services.",
+        "revenue": 1000000000,
+        "profit": 140000000,
+        "reserve": 90000000,
         "value": 60000000,
         "yield": 0.154,
         "rating": "BB",
-        "de_ratio": 1.2
+        "ratio": 1.2
     },
     {
         "id": 49,
         "name": "Dcom Express",
-        "revenue": 170000000,
-        "profit": 24000000,
+        "overview": "Dcom Express provides supply chain, storage, and fulfillment solutions, leveraging its extensive network to offer services like e-KYC, cash collection, and document management for sectors like banking and retail.",
+        "revenue": 1700000000,
+        "profit": 240000000,
+        "reserve": 100000000,
         "value": 80000000,
         "yield": 0.095,
         "rating": "AA",
-        "de_ratio": 0.5
+        "ratio": 0.5
     },
     {
         "id": 50,
         "name": "Xpressway",
-        "revenue": 180000000,
-        "profit": 30000000,
+        "overview": "Xpressway offers advanced logistical solutions, with a strong infrastructure enabling seamless delivery across diverse regions. They specialize in providing tracking and efficient shipment solutions.",
+        "revenue": 1800000000,
+        "profit": 300000000,
+        "reserve": 150000000,
         "value": 90000000,
         "yield": 0.10,
         "rating": "AA",
-        "de_ratio": 0.4
+        "ratio": 0.4
     }
 ]
