@@ -12,6 +12,7 @@ import file from '@/public/constant/round1/bonds.json';
 import { set } from "mongoose";
 import logo from '../logo.png';
 
+
 export default function PreBidder() {
     const [loading, setLoading] = useState(false);
     const { data: session, status } = useSession();
@@ -86,10 +87,41 @@ export default function PreBidder() {
         setIsConfirmOpen(false);
         setIsOverlayOpen(true);
     };
-    const openAgreement = () => {
-        setIsConfirmOpen(false);
-        setIsAgreementOpen(true);
+    
+    const handleConfirm= async () => {
+        try {
+            const response = await fetch('/api/round1/loanTaking', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    loanAmount: Number(loanAmount),
+                    interest: Number(interest),
+                }),
+            });
+    
+            const data = await response.json();
+    
+            if (response.ok) {
+                alert("Loan created successfully!");
+                console.log("Credit Score:", data.creditScore);
+                router.push("./page4");
+
+               
+            }else if(response.status==402) 
+                {
+                  alert("loan already taken");
+                  router.push("./page4");
+                } 
+            else {
+                console.log("Error:", data.message);
+            }
+        } catch (error) {
+            console.error("Failed to create loan:", error);
+        }
     };
+    
     const closeAgreement = () => {
         setIsAgreementOpen(false);
     };
@@ -125,6 +157,33 @@ export default function PreBidder() {
         const secs = seconds % 60;
         return `${mins < 10 ? '0' : ''}${mins}:${secs < 10 ? '0' : ''}${secs}`;
     };
+    const handleCheckLoan = () => {
+        const loanAmountNum = Number(loanAmount);
+        if(! loanAmountNum){
+          alert("Enter the loan amount");
+        }
+         else if (loanAmountNum >= 50000000 && loanAmountNum % 10000 === 0) {
+          setLoanAmount(loanAmountNum);
+          openConfirm();
+        } else if (loanAmountNum < 50000000) {
+          setLoanAmount('');
+          alert("The minimum loan amount you can apply for is ₹5 crore");
+        } else {
+          setLoanAmount('');
+          alert("Loans should be in multiples of lakhs only");
+        }
+      };
+    const handleInterest = (loanAmountNum) => {
+        if (loanAmountNum >= 50000000 && loanAmountNum <= 100000000) {
+          setInterest(15);
+        } else if (loanAmountNum > 100000000 && loanAmountNum <= 150000000) {
+          setInterest(18);
+        } else if (loanAmountNum > 150000000 && loanAmountNum <= 200000000) {
+          setInterest(21);
+        } else {
+          setInterest(25);
+        }
+      };
 
     const getObject = (id) => {
         const obj = file.find(item => item.id == id);
@@ -335,13 +394,15 @@ export default function PreBidder() {
                                 className="my-5 p-2 pl-9 border w-full border-gray-300 rounded-md mb-4 focus:outline-none focus:ring-2 focus:ring-[#FFE55B] text-[#573712]"
                                 placeholder="Enter the Loan Amount"
                                 value={loanAmount}
-                                onChange={handleInputChange}
+                                handleInterest(Number(e.target.value));
+                                // onChange={handleInputChange}
                             />
                         </div>
                         <div className="flex justify-between w-2/5 mt-2">
                             <button
                                 className="px-6 py-1.5 bg-[#FFE55B] text-[#573712] rounded-md font-bold shadow-lg transition-transform transform hover:scale-105 hover:bg-[#FFBE5C] border"
-                                onClick={openConfirm}
+                                onClick={handleCheckLoan}
+                                // onClick={openConfirm}
                             >
                                 Confirm
                             </button>
