@@ -12,7 +12,6 @@ import file from '@/public/constant/round1/bonds.json';
 import { set } from "mongoose";
 import logo from '../logo.png';
 
-
 export default function PreBidder() {
     const [loading, setLoading] = useState(false);
     const { data: session, status } = useSession();
@@ -28,14 +27,11 @@ export default function PreBidder() {
     const [interest, setInterest] = useState(null);
     const [score, setScore] = useState(null);
     const [currentDate, setCurrentDate] = useState("");
-    const [lenderName, setLenderName] = useState("");
-    const [registrationNumber, setRegistrationNumber] = useState("");
-    const [teamLeaderName, setTeamLeaderName] = useState("");
-    const [nominee1, setNominee1] = useState("");
-    const [nominee2, setNominee2] = useState("");
-    const [nominee3, setNominee3] = useState("");
-    const [lenderSignature, setLenderSignature] = useState("");
-    const [teamLeaderSignature, setTeamLeaderSignature] = useState("");
+    const [teamLeader, setTeamLeader] = useState("");
+    const [participant1, setParticipant1] = useState("");
+    const [participant2, setParticipant2] = useState("");
+    const [participant3, setParticipant3] = useState("");
+    const [signature, setSignature] = useState("");
 
     useEffect(() => {
         const date = new Date().toLocaleDateString("en-GB");
@@ -61,8 +57,6 @@ export default function PreBidder() {
             return;
         }
         setLoanAmount(value);
-        setInterest(0.15);
-        setScore(65);
     };
     const handleContinue = () => {
         setIsOverlayOpen(true);
@@ -71,14 +65,35 @@ export default function PreBidder() {
         setIsOverlayOpen(false);
     };
     const openConfirm = () => {
-        let numericValue = parseInt(loanAmount, 10);
-        if (numericValue % 100000 !== 0) {
+        const loanAmountNum = parseInt(loanAmount, 10);
+        if(!loanAmountNum){
+            toast.error('Please enter the loan amount.');
+            return;
+        }
+        else if (loanAmountNum % 100000 !== 0) {
             toast.error('Please enter a value in multiples of 1 lakh.');
             return;
         }
-        if (numericValue > 9999900000) {
-            toast.error('Value cannot exceed 999.99 Cr.');
+        else if (loanAmountNum > 9999900000) {
+            toast.error('Loan value cannot exceed 999.99 Cr.');
             return;
+        }
+        else if (loanAmountNum < 50000000) {
+            toast.error('The minimum loan amount you can apply for is ₹5 crore.');
+            return;
+        }
+        if (loanAmountNum <= 100000000) {
+            setInterest(0.15);
+            setScore(1100);
+        } else if (loanAmountNum <= 150000000) {
+            setInterest(0.18);
+            setScore(1000);
+        } else if (loanAmountNum <= 200000000) {
+            setInterest(0.21);
+            setScore(800);
+        } else {
+            setInterest(0.25);
+            setScore(600);
         }
         setIsOverlayOpen(false);
         setIsConfirmOpen(true);
@@ -87,8 +102,7 @@ export default function PreBidder() {
         setIsConfirmOpen(false);
         setIsOverlayOpen(true);
     };
-    
-    const handleConfirm= async () => {
+    const openAgreement = async () => {
         try {
             const response = await fetch('/api/round1/loanTaking', {
                 method: 'POST',
@@ -98,35 +112,39 @@ export default function PreBidder() {
                 body: JSON.stringify({
                     loanAmount: Number(loanAmount),
                     interest: Number(interest),
+                    creditScore: Number(score),
                 }),
             });
-    
             const data = await response.json();
-    
             if (response.ok) {
-                alert("Loan created successfully!");
-                console.log("Credit Score:", data.creditScore);
-                router.push("./page4");
-
-               
-            }else if(response.status==402) 
-                {
-                  alert("loan already taken");
-                  router.push("./page4");
-                } 
-            else {
+                setTeamLeader(data.teamLeader);
+                setParticipant1(data.participant1);
+                setParticipant2(data.participant2);
+                setParticipant3(data.participant3);
+                setIsConfirmOpen(false);
+                setIsAgreementOpen(true);
+            } else if(response.status==402) {
+                toast.error("Loan is already taken.");
+            } else {
                 console.log("Error:", data.message);
             }
         } catch (error) {
             console.error("Failed to create loan:", error);
         }
     };
-    
     const closeAgreement = () => {
-        setIsAgreementOpen(false);
+        toast.error('Loan Agreement is Mandatory.');
     };
     const doneAgreement = () => {
+        if (!signature) {
+            toast.error('Please enter the leader signature.');
+            return;
+        } else if (signature.toLowerCase() !== teamLeader.toLowerCase()) {
+            toast.error('Invalid Signature.');
+            return;
+        }
         setIsAgreementOpen(false);
+        toast.success('Loan Agreement Submitted.');
     };
 
     useEffect(() => {
@@ -139,7 +157,7 @@ export default function PreBidder() {
             setItems(data);
         }
         fetchData();
-
+        
         const timer = setInterval(() => {
             setTimeLeft((prevTime) => {
                 if (prevTime > 0) return prevTime - 1;
@@ -157,33 +175,7 @@ export default function PreBidder() {
         const secs = seconds % 60;
         return `${mins < 10 ? '0' : ''}${mins}:${secs < 10 ? '0' : ''}${secs}`;
     };
-    const handleCheckLoan = () => {
-        const loanAmountNum = Number(loanAmount);
-        if(! loanAmountNum){
-          alert("Enter the loan amount");
-        }
-         else if (loanAmountNum >= 50000000 && loanAmountNum % 10000 === 0) {
-          setLoanAmount(loanAmountNum);
-          openConfirm();
-        } else if (loanAmountNum < 50000000) {
-          setLoanAmount('');
-          alert("The minimum loan amount you can apply for is ₹5 crore");
-        } else {
-          setLoanAmount('');
-          alert("Loans should be in multiples of lakhs only");
-        }
-      };
-    const handleInterest = (loanAmountNum) => {
-        if (loanAmountNum >= 50000000 && loanAmountNum <= 100000000) {
-          setInterest(15);
-        } else if (loanAmountNum > 100000000 && loanAmountNum <= 150000000) {
-          setInterest(18);
-        } else if (loanAmountNum > 150000000 && loanAmountNum <= 200000000) {
-          setInterest(21);
-        } else {
-          setInterest(25);
-        }
-      };
+    
 
     const getObject = (id) => {
         const obj = file.find(item => item.id == id);
@@ -313,7 +305,7 @@ export default function PreBidder() {
                                             </li>
                                             <hr className="border-white w-full my-1"/>
                                             <li className="flex justify-between items-center font-semibold">
-                                                <span>Profit</span>
+                                                <span>Net Profit</span>
                                                 <span className="bg-white w-[40%] px-2 text-right">
                                                     ₹ {(selectedItem.obj.profit/10000000).toFixed(2)} Cr
                                                 </span>
@@ -394,15 +386,13 @@ export default function PreBidder() {
                                 className="my-5 p-2 pl-9 border w-full border-gray-300 rounded-md mb-4 focus:outline-none focus:ring-2 focus:ring-[#FFE55B] text-[#573712]"
                                 placeholder="Enter the Loan Amount"
                                 value={loanAmount}
-                                handleInterest(Number(e.target.value));
-                                // onChange={handleInputChange}
+                                onChange={handleInputChange}
                             />
                         </div>
                         <div className="flex justify-between w-2/5 mt-2">
                             <button
                                 className="px-6 py-1.5 bg-[#FFE55B] text-[#573712] rounded-md font-bold shadow-lg transition-transform transform hover:scale-105 hover:bg-[#FFBE5C] border"
-                                onClick={handleCheckLoan}
-                                // onClick={openConfirm}
+                                onClick={openConfirm}
                             >
                                 Confirm
                             </button>
@@ -498,20 +488,20 @@ export default function PreBidder() {
                                 <div className="my-4">
                                     <p className="font-semibold mb-1">Team Leader:</p>
                                     <div className="border rounded p-2 w-full mb-2 bg-white bg-opacity-15 font-bold">
-                                        Team Leader's Full Legal Name
+                                        {teamLeader}
                                     </div>
                                 </div>
 
                                 <div className="my-4">
                                     <p className="font-semibold mb-1">Nominees:</p>
                                     <div className="border rounded p-2 w-full mb-2 bg-white bg-opacity-15 font-bold">
-                                        Particpant 1's Full Legal Name
+                                        {participant1}
                                     </div>
                                     <div className="border rounded p-2 w-full mb-2 bg-white bg-opacity-15 font-bold">
-                                        Particpant 2's Full Legal Name
+                                        {participant2}
                                     </div>
                                     <div className="border rounded p-2 w-full mb-2 bg-white bg-opacity-15 font-bold">
-                                        Particpant 3's Full Legal Name
+                                        {participant3}
                                     </div>
                                 </div>
 
@@ -529,6 +519,10 @@ export default function PreBidder() {
                                     <span className="mb-2 md:mb-0">2. Interest Rate</span>
                                     <span>@ {(interest * 100).toFixed(2)} %</span>
                                 </div>
+                                <div className="border rounded py-2 px-5 w-full mb-2 bg-white bg-opacity-15 flex flex-row items-center justify-between font-bold">
+                                    <span className="mb-2 md:mb-0">3. Credit Score</span>
+                                    <span>{(score).toFixed(2)}</span>
+                                </div>
 
                                 <p className="font-bold mt-4 mb-1">Loan Term</p>
                                 <p>The Loan shall be for a term of EOR (end of round) or UNTIL THE FULL AMOUNT IS PAID, commencing on ROUND 1 and ending when the amount is paid in full with interest . The Loan shall be compounded for 2 terms.</p>
@@ -545,9 +539,9 @@ export default function PreBidder() {
                                     <input
                                         type="text"
                                         placeholder="Signature of Team Leader"
-                                        value={teamLeaderSignature}
-                                        onChange={(e) => setTeamLeaderSignature(e.target.value)}
-                                        className="border rounded p-2 w-full mb-2 bg-white bg-opacity-15 font-bold text-black placeholder-[ #c9c9c9]"
+                                        value={signature}
+                                        onChange={(e) => setSignature(e.target.value)}
+                                        className="border rounded p-2 w-full mb-2 bg-white bg-opacity-15 font-bold text-black placeholder-gray-700 focus:outline-none"
                                     />
                                 </div>
                             </div>
