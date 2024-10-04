@@ -16,7 +16,7 @@ const port = process.env.PORT ? process.env.PORT : 3000;
 const app = next({ dev, hostname, port });
 const handler = app.getRequestHandler();
 
-let timeLeft = 120; // initial time in seconds (15 minutes)
+let timeLeft = 900; // initial time in seconds (15 minutes)
 let timerInterval = null;
 
 app.prepare().then(async () => {
@@ -26,6 +26,7 @@ app.prepare().then(async () => {
   await connectMongo(); //? Only connect once for a server
   
     io.on("connect", (socket) => {
+      
       // Listen for the "authenticate" event where the token is sent
       socket.on("authenticate", async ({ token }) => {
         if (!token) {
@@ -55,7 +56,7 @@ app.prepare().then(async () => {
             socket.disconnect();
             return;
           }
-
+          socket.join(`${team.teamLeaderId}`);
           const bondsBidFor = team.bondsBidFor;
           const wallet = team.wallet;
 
@@ -63,7 +64,7 @@ app.prepare().then(async () => {
           socket.emit("userDetails", { team });
                 
           // Fetch bond bidding data
-          const bondBidding = await BondBidding.findById('66f84084d39aba9ca3f14ba5');
+          let bondBidding = await BondBidding.findById('66f84084d39aba9ca3f14ba5');
           if (!bondBidding) {
             console.log("No bidding data found");
             return;
@@ -73,14 +74,14 @@ app.prepare().then(async () => {
           io.emit("highestBids", {highestBids: bondBidding.highestBids, allocatedBids: bondBidding.allocatedBids, bondsBidFor: bondsBidFor});
         
           socket.on("newBid", async({newBid, index})=>{
-            const currentTime = Date.now();
-            const cooldownTime = user.hold ? user.hold + 3 * 60 * 1000 : 0; // 3 minutes cooldown
+            // const currentTime = Date.now();
+            // const cooldownTime = user.hold ? user.hold + 3 * 60 * 1000 : 0; // 3 minutes cooldown
 
-            if (currentTime < cooldownTime) {
-              const remainingTime = Math.ceil((cooldownTime - currentTime) / 1000);
-              socket.emit("bid_error", { message: `You must wait ${remainingTime} seconds before placing another bid.` });
-              return;
-            }
+            // if (currentTime < cooldownTime) {
+            //   const remainingTime = Math.ceil((cooldownTime - currentTime) / 1000);
+            //   socket.emit("bid_error", { message: `You must wait ${remainingTime} seconds before placing another bid.` });
+            //   return;
+            // }
 
             if (bondsBidFor.includes(index)) {
               console.log("User has already bid for this bond");
@@ -93,8 +94,18 @@ app.prepare().then(async () => {
             if (newBid>bondBidding.highestBids[index] && bondBidding.allocatedBids[index]==false && newBid<(0.9*wallet)) {
               bondBidding.highestBids[index] = newBid;
               await bondBidding.save();
+               bondBidding = await BondBidding.findById('66f84084d39aba9ca3f14ba5');
               team.bondsBidFor = bondsBidFor;
+              team.hold=Date.now();
               await team.save();
+                  
+                console.log("hushdkjdhaskhdkjahdhasdkjhdhasdkhask")
+                const lastTeam = bondBidding.currentBidders[index];
+                console.log("lastTeam:");
+                console.log(lastTeam);    
+                io.to(`${lastTeam}`).emit("HoldFalse");  
+              bondBidding.currentBidders[index]=team.teamLeaderId;
+              await bondBidding.save();
               io.emit("highestBid", {highestBid: newBid, index});
             } else {
               console.log("Bid is less than highest bid");
