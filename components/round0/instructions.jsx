@@ -117,7 +117,7 @@ const Instructions = () => {
           <li>There is no negative marking.</li>
           <li>You can skip the questions, but you cannot navigate backwards.</li>
           <br/>
-          <p class="flex flex-row justify-center items-center pl-[34%] text-4xl font-bold ">THE QUIZ IS NOW OVER!</p>
+          <p class="flex flex-row justify-center items-center pl-[25%] text-4xl font-bold ">THE QUIZ IS NOW OVER!</p>
 
         </ul>
       </div>
